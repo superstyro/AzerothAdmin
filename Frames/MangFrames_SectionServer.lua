@@ -313,6 +313,4 @@ function MangAdmin:CreateServerSection()
       x.NextUpdate=x.NextUpdate + 1
     end)
   x:Show()
-
-
 end

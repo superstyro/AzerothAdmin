@@ -19,7 +19,7 @@ local lib={}
 local GraphFunctions={}
 
 --Search for just Addon\\ at the front since the interface part often gets trimmed
-local TextureDirectory="Interface\\AddOns\\TrinityAdmin\\Libraries\\GraphTextures\\"
+local TextureDirectory="Interface\\AddOns\\AzerothAdmin\\Libraries\\GraphTextures\\"
 
 local tinsert, tremove = tinsert, tremove
 local pairs, ipairs = pairs, ipairs

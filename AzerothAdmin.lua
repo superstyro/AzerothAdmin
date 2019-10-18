@@ -105,7 +105,7 @@ MangAdmin:RegisterDefaults("account",
       loading = false
     },
     style = {
-      updatedelay = "4000",
+      updatedelay = "20000", -- Set to approx. 10 Minutes
       showtooltips = true,
       showchat = false,
       showminimenu = true,
@@ -1128,9 +1128,9 @@ function MangAdmin:AndBit(value, test)
   return mod(value, test*2) >= test
 end
 
---=================================--
---MangAdmin Commands functions--
---=================================--
+--================================--
+  --MangAdmin Commands functions--
+--================================--
 function MangAdmin:SetLanguage()
     if self.db.account.language then
     Locale:SetLocale(self.db.account.language)
@@ -1419,7 +1419,7 @@ function MangAdmin:CreateGuild(leader, name)
   self:LogAction("Created guild '"..name.."' with leader "..leader..".")
 end
 
-function MangAdmin:SendMail(recipient, subject, body)  --[TODO]:Mail Update this to allow sending of imtems with items(mail) command
+function MangAdmin:SendMail(recipient, subject, body)  --[TODO]:Mail-Update this to allow sending with items(mail) command
   recipient = string.gsub(recipient, " ", "")
   subject = string.gsub(subject, " ", "")
   body = string.gsub(body, "\n", " ")

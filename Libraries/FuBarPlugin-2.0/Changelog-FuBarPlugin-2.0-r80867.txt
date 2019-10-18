@@ -1,0 +1,8 @@
+------------------------------------------------------------------------
+r80867 | Swix | 2008-08-23 18:52:24 -0400 (Sat, 23 Aug 2008) | 2 lines
+Changed paths:
+   M /trunk/FuBarPlugin-2.0/FuBarPlugin-2.0/FuBarPlugin-2.0.lua
+
+FuBarPlugin-2.0: 
+-small ruRU fix (Specially for Ellipsis)
+------------------------------------------------------------------------

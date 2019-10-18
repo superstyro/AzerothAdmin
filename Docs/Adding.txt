@@ -1,0 +1,14 @@
+Extending TrinityAdmin
+
+
+Preface: This is a living document, meaning it will grow and change as time goes by. I am using it as a 'scratchpad' to record notes for myself, and perhaps someday, YOU.
+It contains snippets and shortcuts to make developing for TrinityAdmin easier and faster.
+
+
+[[Adding a new command button to TrinityAdmin]]
+Broadly, in order to add a button with a command, four steps are required (in toc order):
+-make tooltips and button text localized in ./Locales/xxxx.lua
+-write the function in ./Commands/Commands_xxxx.lua
+-prototype/init the button, function, text, and tooltip in FunctionInit.lua
+-Draw the button in the ./Frames/MangFrames_Sectionxxxx.lua
+

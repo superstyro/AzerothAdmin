@@ -1,0 +1,16 @@
+﻿## Interface: 20400
+## LoadOnDemand: 1
+## Title: Lib: FuBarPlugin-2.0
+## Notes: A library to provide a means create a FuBar-compatible plugin.
+## Notes-esES: Una biblioteca para crear plugins compatibles con Fubar.
+## Notes-zhCN: 一个提供 FuBar 支持所需功能的插件。
+## Author: ckknight
+## eMail: ckknight@gmail.com
+## Version: 2.0 $Revision: 66634 $
+## X-Category: Library
+## Dependencies: 
+## OptionalDeps: Ace2, FuBar
+## X-License: LGPL v2.1
+
+FuBarPlugin-2.0\FuBarPlugin-2.0.lua
+

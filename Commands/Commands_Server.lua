@@ -34,7 +34,7 @@ function ReloadTable(tablename)
   if not (tablename == "") then
     MangAdmin:ChatMsg(".reload "..tablename)
     if tablename == "all" then
-      MangAdmin:LogAction("Reloaded all reloadable TrinityCore database tables.")
+      MangAdmin:LogAction("Reloaded all reloadable AzerothCore database tables.")
     else
       MangAdmin:LogAction("Reloaded the table "..tablename..".")
     end

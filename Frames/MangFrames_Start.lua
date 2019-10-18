@@ -69,7 +69,7 @@ function MangAdmin:CreateStartFrames()
     inherits = nil
   })
 
-  FrameLib:BuildFrame({ --Top Window Frame that has TrinityAdmin Logo
+  FrameLib:BuildFrame({ --Top Window Frame that has AzerothAdmin Logo
     name = "ma_topframe",
     group = "bg",
     parent = ma_bgframe,
@@ -237,7 +237,7 @@ function MangAdmin:CreateStartFrames()
     name = "ma_inforevisiontext",
     group = "bg",
     parent = ma_rightframe,
-    text = "TrinityCore Revision: ...",
+    text = "AzerothCore Revision: ...",
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,

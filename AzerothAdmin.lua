@@ -907,11 +907,15 @@ function MangAdmin:AddMessage(frame, text, r, g, b, id)
 --        output = MangAdmin.db.account.style.showchat
         output = MangAdmin.db.account.style.showchat
     end
-    for users, maxusers in string.gmatch(text, Strings["ma_GmatchOnlinePlayers"]) do
+    for users in string.gmatch(text, Strings["ma_GmatchOnlinePlayers"]) do
       ma_infoonlinetext:SetText(Locale["info_online"]..users)
-      ma_infomaxonlinetext:SetText(Locale["info_maxonline"]..maxusers)
         catchedSth = true
 --        output = MangAdmin.db.account.style.showchat
+        output = MangAdmin.db.account.style.showchat
+    end
+    for maxConnections in string.gmatch(text, Strings ["ma_GmatchMaxConnections"]) do
+      ma_infomaxonlinetext:SetText(Locale["info_maxonline"]..maxConnections)
+        catchedSth = true
         output = MangAdmin.db.account.style.showchat
     end
     for uptime in string.gmatch(text, Strings["ma_GmatchUptime"]) do

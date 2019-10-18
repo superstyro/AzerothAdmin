@@ -258,7 +258,7 @@ function MangAdmin:CreateServerSection()
     name = "ma_lagmetertext2",
     group = "server",
     parent = ma_midframe,
-    text = "^Update Diff",
+    text = "^Update Diff:",
     setpoint = {
       pos = "TOPLEFT",
       offX = 170,
@@ -273,8 +273,8 @@ function MangAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 250,
-      offY = -170
+      offX = 232, --Original 250
+      offY = -170 --Original -170
     }
   })
 
@@ -287,21 +287,20 @@ function MangAdmin:CreateServerSection()
   z:SetMode("RAW")
   z:SetBarColors({0.2,0.0,0.0,0.4},{0.0,0.0,1.0,1.0})
   local x = CreateFrame("Frame",name,parent)
-  x.frames=0
+  x.frames = 0
   x.NextUpdate=GetTime()
-  local q=0
+  local q = 0
   x:SetScript("OnUpdate",function()
-      q=q+1
-      if q > tonumber(ma_delayparam:GetText()) then --20000=approx 5 minutes, 4000= ~1 minute
+      q = q + 1
+      if q > tonumber(ma_delayparam:GetText()) then --20000=approx 5 minutes, 4000=approx 1 minute
           MangAdmin:ChatMsg(".server info")
-          q=0
-          local s = ma_difftext:GetText()
-          --MangAdmin:ChatMsg("Diff="..s)
-          local r = "100" -- Trinity says anything over 150 is bad
-          if s < r then
+          q = 0
+          local s = 101 --ma_difftext:GetText()
+          local r = 100 -- Trinity says anything over 150 is bad
+          if s > r then
               z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red
           else
-              z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- otherwise green
+              z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
           end
           z:AddBar(s)
           s = "0"
@@ -309,8 +308,6 @@ function MangAdmin:CreateServerSection()
       if x.NextUpdate>GetTime() then
         return
       end
-      --local down, up, lag = GetNetStats();
-      --ma_difftext:SetText(""..lag.." ms")
       x.NextUpdate=x.NextUpdate + 1
     end)
   x:Show()

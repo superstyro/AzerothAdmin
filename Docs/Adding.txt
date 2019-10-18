@@ -1,14 +1,25 @@
-Extending TrinityAdmin
+-------------------------------------------------------------------------------------------------------------
+--
+-- AzerothAdmin Version 3.x
+-- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
+--
+-- Copyright (C) 2019 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- This is free software: you are free to change and redistribute it.
+-- There is NO WARRANTY, to the extent permitted by law.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program; if not, write to the Free Software
+-- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+--
+-- Repository: https://gitlab.superstyro.com/superstyro/azerothadmin
+-------------------------------------------------------------------------------------------------------------
 
+Extending AzerothAdmin
 
-Preface: This is a living document, meaning it will grow and change as time goes by. I am using it as a 'scratchpad' to record notes for myself, and perhaps someday, YOU.
-It contains snippets and shortcuts to make developing for TrinityAdmin easier and faster.
-
-
-[[Adding a new command button to TrinityAdmin]]
+[[Adding a new command button to AzerothAdmin]]
 Broadly, in order to add a button with a command, four steps are required (in toc order):
 -make tooltips and button text localized in ./Locales/xxxx.lua
 -write the function in ./Commands/Commands_xxxx.lua
 -prototype/init the button, function, text, and tooltip in FunctionInit.lua
 -Draw the button in the ./Frames/MangFrames_Sectionxxxx.lua
-

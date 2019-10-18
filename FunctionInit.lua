@@ -84,8 +84,6 @@ function InitControls()
   MangAdmin:PrepareScript(ma_speedsliderreset_button         , Locale["tt_SpeedSliderReset"]           , function() ResetSpeed() end)
   MangAdmin:PrepareScript(ma_scalesliderreset_button         , Locale["tt_ScaleSliderReset"]           , function() ResetScale() end)
 
-
-
   -- Speed Slider
   ma_speedslider:SetOrientation("HORIZONTAL")
   ma_speedslider:SetMinMaxValues(.5, 30)
@@ -136,7 +134,6 @@ function InitControls()
   MangAdmin:PrepareScript(ma_charunpossessbutton             , Locale["tt_charunpossess"]              , function() CharUnPossess() end)
   MangAdmin:PrepareScript(ma_charrecallbutton                , Locale["tt_charrecall"]                 , function() CharRecall() end)
   MangAdmin:PrepareScript(ma_charrepairitemsbutton           , Locale["tt_charrepair"]                 , function() CharRepair() end)
-
 
   LearnLangDropDownInitialize()
   UIDropDownMenu_Initialize(ma_learnlangdropdown , LearnLangDropDownInitialize)
@@ -272,7 +269,6 @@ function InitControls()
 
 --[[Tickets Tab]]
   MangAdmin:PrepareScript(ma_tabbutton_ticket                , Locale["tt_TicketButton"]               , function() ShowTicketTab() end)
-
   MangAdmin:PrepareScript(ma_resetticketsbutton              , "Not working? Click REFRESH!"           , function() ResetTickets() end)
   MangAdmin:PrepareScript(ma_showticketsbutton               , nil                                     , function() RefreshTickets() end)
   MangAdmin:PrepareScript(ma_showonlineticketsbutton         , nil                                     , function() RefreshOnlineTickets() end)
@@ -316,5 +312,4 @@ function InitControls()
   MangAdmin:PrepareScript(ma_who_jailabutton                 , Locale["tt_who_jailabutton"]            , function() Who("jaila") end)
   MangAdmin:PrepareScript(ma_who_jailhbutton                 , Locale["tt_who_jailhbutton"]            , function() Who("jailh") end)
   MangAdmin:PrepareScript(ma_who_unjailbutton                , Locale["tt_who_unjailbutton"]           , function() Who("unjail") end)
-
 end

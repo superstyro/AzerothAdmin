@@ -69,7 +69,8 @@ function MangAdmin:CreateServerSection()
   g:SetYMax(120)
   g:SetXAxis(-10,0)
   g:SetMode("RAW")
-  g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0})
+  g:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- GREEN
+  --g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0}) -- RED
   local f = CreateFrame("Frame",name,parent)
   f.frames=0
   f.NextUpdate=GetTime()

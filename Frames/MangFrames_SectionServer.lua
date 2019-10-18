@@ -295,7 +295,7 @@ function MangAdmin:CreateServerSection()
       if q > tonumber(ma_delayparam:GetText()) then --20000=approx 5 minutes, 4000=approx 1 minute
           MangAdmin:ChatMsg(".server info")
           q = 0
-          local s = 101 --ma_difftext:GetText()
+          local s = tonumber(ma_difftext:GetText())
           local r = 100 -- Trinity says anything over 150 is bad
           if s > r then
               z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red

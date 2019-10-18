@@ -296,14 +296,14 @@ function MangAdmin:CreateServerSection()
           q=0
           local s = ma_difftext:GetText()
           --MangAdmin:ChatMsg("Diff="..s)
-          local r="100" -- Trinity says anything over 150 is bad
-          if s > r then
+          local r = "100" -- Trinity says anything over 150 is bad
+          if s < r then -- If was checking backwards
               z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->150, turn red
           else
               z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- otherwise green
           end
           z:AddBar(s)
-          s="0"
+          s = "0"
       end
       if x.NextUpdate>GetTime() then
         return

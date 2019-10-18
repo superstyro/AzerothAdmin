@@ -30,7 +30,7 @@ How to add a localised string:
   ["strength"] = "Stärke",
 6. Some of these lines also contain color codes (example: |cFF00FF00 and |r) Don't alter these, please.
 
-TrinityAdmin Locale Team:
+AzerothAdmin Locale Team:
 You have received this file which currently contains enUS strings, but will actually be the file for your
 selected language.
 1. Edit the first un-commented line below, which should resemble: function Return_enUS(). Change
@@ -38,11 +38,11 @@ selected language.
 2. Proceed to localisation by examining each line in the file, and altering the US English strings on
   the RIGHT of each equation to your selected language. DO NOT alter anything on the LEFT sides
   (the tokens). Example: ["token_do_not_edit"] = "Edit this string to your language",
-3. Some text includes color codes:     ["info_revision"] = "|cFF00FF00Trinity Revision:|r ",
+3. Some text includes color codes:     ["info_revision"] = "|cFF00FF00Azeroth Revision:|r ",
   The Color code should NOT be localised/edited. The color code is a tag, with an opening element
   and a closing element. The opening element is "|c" followed by 8 numbers. The closing element
   is "|r". In the example above, "|cFF00FF00" and "|r" are the color code and should NOT be changed.
-  That leaves "Trinity Revision:" as the string to edit in the above example.
+  That leaves "Azeroth Revision:" as the string to edit in the above example.
 4. Some strings may not be edited at all because they are used in code or contain code. They
   are marked.
 5. Please do not edit comments. In LUA, the programming language we use here, code comments are seperated from code by the
@@ -55,20 +55,20 @@ function Return_enUS()
   return {
 --[[General]]
   --[[Tooltips]]
-    ["ma_IconHint"]                   = "|cffeda55fClick|r to open TrinityAdmin. |cffeda55fShift-Click|r to reload the user interface.",
+    ["ma_IconHint"]                   = "|cffeda55fClick|r to open AzerothAdmin. |cffeda55fShift-Click|r to reload the user interface.",
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
-    ["tt_LanguageButton"]             = "Reload TrinityAdmin.", --Removed locals. Updated tooltip to just reload
+    ["tt_LanguageButton"]             = "Reload AzerothAdmin.", --Removed locals. Updated tooltip to just reload
   --[[Control Labels]]
     ["ma_LanguageButton"]             = "Change language",
-    ["info_revision"]                 = "|cFF00FF00TrinityCore rev:|r ", --Updated: Matched string output to TrinityCore
+    ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ", --Updated: Matched string output to AzerothAdmin
     ["info_platform"]                 = "|cFF00FF00Server Platform:|r ",
     ["info_online"]                   = "|cFF00FF00Players Online:|r ",
     ["info_maxonline"]                = "|cFF00FF00Maximum Online:|r ",
     ["info_uptime"]                   = "|cFF00FF00Uptime:|r ",
     ["ma_CloseWindow"]                = "X",
-    ["tt_CloseWindow"]                = "Close TrinityAdmin",
+    ["tt_CloseWindow"]                = "Close Window",
   --[[Other]]
-    ["slashcmds"]                     = { "/trinityadmin", "/ta" },
+    ["slashcmds"]                     = { "/AzerothAdmin", "/aa" },
     ["lang"]                          = "English",
     ["realm"]                         = "|cFF00FF00Realm:|r "..GetCVar("realmName"), --do not change this line!
     ["char"]                          = "|cFF00FF00Char:|r "..UnitName("player"), --do not change this line!
@@ -87,7 +87,7 @@ function Return_enUS()
   --[[Name]]
     ["tabmenu_Main"]                  = "GM",
   --[[Tooltips]]
-    ["tt_MainButton"]                 = "Toggle TrinityAdmins Mainframe.",
+    ["tt_MainButton"]                 = "Toggle AzerothAdmins Mainframe.",
     ["tt_DisplayAccountLevel"]        = "Display your account level",
     ["tt_GMOnButton"]                 = "Activate your GM-mode.",
     ["tt_GMOffButton"]                = "Deactivate your GM-mode.",
@@ -599,7 +599,7 @@ function Return_enUS()
 
 --[[Log Tab]]
     ["tabmenu_log"]                   = "LOG",
-    ["tt_LogButton"]                  = "Show the log of all actions done with TrinityAdmin.",
+    ["tt_LogButton"]                  = "Show the log of all actions done with AzerothAdmin.",
   --[[Tooltips]]
   --[[Control Labels]]
   --[[Other]]

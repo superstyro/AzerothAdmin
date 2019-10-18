@@ -44,7 +44,7 @@ Commands\Commands_Who.lua
 dbc.lua
 TeleportTable.lua
 FunctionInit.lua
-TrinityAdmin.lua
+AzerothAdmin.lua
 MangLinkifier.lua
 Frames\MangFrames_Start.lua
 Frames\MangFrames_Tabs.lua

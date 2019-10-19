@@ -151,7 +151,7 @@ function MangAdmin:CreateStartFrames()
       file = ROOT_PATH.."Textures\\logo.tga"
     },
     size = {
-      width = 512,
+      width = 500, --Original 512
       height = 64
     },
     setpoint = {

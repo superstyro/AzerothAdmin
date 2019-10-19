@@ -25,5 +25,6 @@ AzerothAdmin v3.3.5 is a general interface add-on which will help admins and GMs
 - [ ] WHO
 
 ## SCREENSHOT:
-![image](/Textures/screenshot1.png)
-![image](/Textures/screenshot1.png)
+![image](/Textures/AA_char.jpg)
+![image](/Textures/AA_gm.jpg)
+![image](/Textures/AA_server.jpg)

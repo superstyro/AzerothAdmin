@@ -4,6 +4,8 @@
 - FIX Server info tab
   - Updated strings to match AzerothCore
 - FIX Diff Graph LUA error
+- Update MiniMenu Icon
+- Update Logo
 
 ### -=[ Revision 01 - 18/18/2019]=-
 - Initial Commit for AzerothAdmin (Ported from TrinityAdmin/MangAdmin)

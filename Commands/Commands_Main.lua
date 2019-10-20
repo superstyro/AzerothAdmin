@@ -12,7 +12,8 @@
 -- along with this program; if not, write to the Free Software
 -- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
--- Repository: https://gitlab.superstyro.com/superstyro/azerothadmin
+-- Repository: https://github.com/superstyro/AzerothAdmin
+--
 -------------------------------------------------------------------------------------------------------------
 
 function DisplayAccountLevel()
@@ -23,7 +24,7 @@ function ToggleGMMode(value)
   MangAdmin:ChatMsg(".gm "..value)
   MangAdmin:LogAction("Turned GM-mode to "..value..".")
   MangAdmin:ChatMsg(".gm chat "..value)
-  Manadmin:LogAction("Turned Gm-Chat to "..value..".")
+  MangAdmin:LogAction("Turned Gm-Chat to "..value..".")
 end
 
 function ToggleFlyMode(value)
@@ -75,7 +76,7 @@ function ToggleTaxicheat(value)
   end
 end
 
-function ToggleMaps(value)
+function ToggleMaps(value) --TODO: Add confirm diaglog when attempting to perform action
   MangAdmin:ChatMsg(".explorecheat "..value)
   if value == 1 then
     MangAdmin:LogAction("Revealed all maps for selected player.")
@@ -101,8 +102,8 @@ function SetSpeed()
     --self:ChatMsg(".modify speed "..value)
     --self:ChatMsg(".modify fly "..value)
     --self:ChatMsg(".modify swim "..value)
-    MangAdmin:ChatMsg(".modify speed "..value)
-    MangAdmin:LogAction("Set speed of "..player.." to "..value..".")
+    MangAdmin:ChatMsg(".mod speed all "..value)
+    MangAdmin:LogAction("Set all speed of "..player.." to "..value..".")
   else
     MangAdmin:Print(Locale["selectionerror1"])
     ma_speedslider:SetValue(1)
@@ -189,7 +190,7 @@ function GridNavigate(x, y)
       MangAdmin:ChatMsg(".go xy "..newx.." "..newy)
       MangAdmin:LogAction("Teleported to grid position: X: "..newx.." Y: "..newy)
     else
-      MangAdmin:Print("Value must be a number!")
+      MangAdmin:Print(Locale["numbererror"])
     end
   end
 end
@@ -204,7 +205,7 @@ function ToggleWaterwalk(value)
   MangAdmin:LogAction("Turned Waterwalk to "..value..".")
 end
 
-function ToggleAccountlock(value)
+function ToggleAccountlock(value) --TODO: Add confirm diaglog when attempting to perform action
   MangAdmin:ChatMsg(".account lock "..value)
   MangAdmin:LogAction("Turned GM account lock to "..value..".")
 end
@@ -324,13 +325,13 @@ function GmClear()
   ma_parameter:SetText("")
 end
 
-function AcctCreate()
+function AcctCreate() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
   MangAdmin:ChatMsg(".account create "..param)
   MangAdmin:LogAction("Created account: "..param)
 end
 
-function AcctDelete()
+function AcctDelete() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
   MangAdmin:ChatMsg(".account delete "..param)
   MangAdmin:LogAction("Deleted account: "..param)
@@ -367,7 +368,7 @@ function TeleAddButton()
 
 end
 
-function TeleDelButton()
+function TeleDelButton() --TODO: Add confirm diaglog when attempting to perform action
   local cname = ma_parameter:GetText()
   MangAdmin:ChatMsg(".tele del "..cname)
   MangAdmin:LogAction("Deleted .tele location: "..cname..".")
@@ -377,7 +378,7 @@ end
 function ResetSpeed()
     ma_speedslider:SetValue(1)
     ma_speedsliderText:SetText("Speed: 1.0")
-    MangAdmin:ChatMsg(".mod speed 1")
+    MangAdmin:ChatMsg(".mod speed all 1")
 
 end
 

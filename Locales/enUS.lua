@@ -12,7 +12,8 @@
 -- along with this program; if not, write to the Free Software
 -- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
--- Repository: https://gitlab.superstyro.com/superstyro/azerothadmin
+-- Repository: https://github.com/superstyro/AzerothAdmin
+--
 -------------------------------------------------------------------------------------------------------------
 
 --[[
@@ -78,6 +79,7 @@ function Return_enUS()
     ["selectionerror2"]               = "Please select only yourself or nothing!",
     ["selectionerror3"]               = "Please select only another player!",
     ["selectionerror4"]               = "Please select only a NPC!",
+    ["numbererror"]                   = "Value must be a number!",
     ["searchResults"]                 = "|cFF00FF00Search-Results:|r ",
     ["ma_parameters"]                 = "Parameter(s):", --Used on multiple tabs
 

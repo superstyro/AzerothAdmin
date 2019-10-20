@@ -12,7 +12,8 @@
 -- along with this program; if not, write to the Free Software
 -- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
--- Repository: https://gitlab.superstyro.com/superstyro/azerothadmin
+-- Repository: https://github.com/superstyro/AzerothAdmin
+--
 -------------------------------------------------------------------------------------------------------------
 
 local genv = getfenv(0)
@@ -31,7 +32,7 @@ gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
 MAJOR_VERSION = "AzerothAdmin-3.3.5"
-MINOR_VERSION = "$Revision: 001 $"
+MINOR_VERSION = "$Revision: 002 $"
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end

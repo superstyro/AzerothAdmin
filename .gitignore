@@ -28,7 +28,7 @@ docker/worldserver/data/
 !.gitkeep
 
 #
-#Generic
+# Generic
 #
 
 .directory
@@ -79,7 +79,6 @@ local.properties
 .project
 .cproject
 
-
 # ==================
 #
 #  CUSTOM
@@ -91,4 +90,3 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
-

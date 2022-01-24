@@ -14,6 +14,8 @@
 --
 -- Repository: https://github.com/superstyro/AzerothAdmin
 --
+-- Lua Patterns Viewer: https://gitspartv.github.io/lua-patterns/
+--
 -------------------------------------------------------------------------------------------------------------
 
 function ReturnStrings_enUS()
@@ -30,9 +32,9 @@ function ReturnStrings_enUS()
     ["ma_GmatchTele"] = "%|cffffffff%|Htele:(.*)%|h%[(.*)%]%|h%|r",
     ["ma_GmatchTeleFound"] = "Locations found are:",
     ["ma_GmatchUpdateDiff"] = "Update time diff: (.*)",
-    ["ma_GmatchUpdateDiffTime"] = "Update time diff: (%d+)", --Only the time number
+    ["ma_GmatchUpdateDiffTime"] = "Update time diff: (%d+)",
     ["ma_GmatchNewTicket"] = "New ticket from(.+)",
-    ["ma_GmatchTicketsFull"] = "Ticket Message.-:.-|c(.*)",
+    ["ma_GmatchTicketMessage"] = "Ticket Message.-:.-%[(.*).-%]",
     ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
     ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
     ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",

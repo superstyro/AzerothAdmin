@@ -17,6 +17,7 @@
 
 function ShowTicketTab()
   wipe(MangAdmin.db.account.buffer.tickets)
+  ma_goticketbutton:Disable()
   ma_deleteticketbutton:Disable()
   ma_answerticketbutton:Disable()
   ma_getcharticketbutton:Disable()
@@ -67,7 +68,11 @@ function ResetTickets()
     end
     getglobal("ma_showticketsbutton"):Show()
     getglobal("ma_showonlineticketsbutton"):Show()
-
+    getglobal("ma_ticketdetail"):Hide();
+    local ticketdetail = nil
+    ma_ticketid:SetText(nil)
+    ma_ticketwho:SetText(nil)
+    MangAdmin:LogAction("Reset/Cleared tickets.")
 end
 
 function ShowTickets()
@@ -180,6 +185,7 @@ function InlineScrollUpdate()
           if object then
             getglobal("ma_ticketscrollframe"..line):SetText("Id: |cffffffff"..object["tNumber"].."|r Who: |cffffffff"..object["tChar"].."|r When: |cffffffff"..object["tLCreate"].."|r")
             MangAdmin.db.account.tickets.selected = object
+            ma_goticketbutton:Enable()
             ma_deleteticketbutton:Enable()
             ma_answerticketbutton:Enable()
             ma_getcharticketbutton:Enable()
@@ -206,6 +212,7 @@ end
 
 function ReadTicket(tNumber, tChar)
      MangAdmin.db.char.requests.ticket = false
+     ma_goticketbutton:Enable()
      ma_deleteticketbutton:Enable()
      ma_answerticketbutton:Enable()
      ma_getcharticketbutton:Enable()
@@ -226,10 +233,11 @@ function ReadTicket(tNumber, tChar)
     --ma_ticketdetail:SetText("Hello")
     --MangAdmin:ChatMsg(MangAdmin.db.account.buffer.ticketsfull["tMsg"])
     local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
+    getglobal("ma_ticketdetail"):Show();
     --ma_ticketdetail:SetText(ticketdetail["tMsg"])
     --getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText(ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Hello")
-
 end
+ 

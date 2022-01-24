@@ -46,10 +46,10 @@ function MangAdmin:CreateTicketSection()
     },
     setpoint = {
         pos = "TOPLEFT",
-        offX = 10,
+        offX = 5,
         offY = -5
     },
-    text = "1.RESET"
+    text = "RESET"
 })
 
   FrameLib:BuildButton({
@@ -69,7 +69,7 @@ function MangAdmin:CreateTicketSection()
         offX = 80,
         offY = 0
     },
-    text = "2.Load All or"
+    text = "Load All"
 })
 
   FrameLib:BuildButton({
@@ -89,7 +89,7 @@ function MangAdmin:CreateTicketSection()
         offX = 80,
         offY = -15
     },
-    text = "2.Load Online"
+    text = "Load Online"
 })
 
   FrameLib:BuildButton({
@@ -109,7 +109,7 @@ function MangAdmin:CreateTicketSection()
         offX = 200,
         offY = -5
     },
-    text = "3.SHOW"
+    text = "SHOW"
 })
 
   FrameLib:BuildButton({
@@ -258,28 +258,6 @@ function MangAdmin:CreateTicketSection()
 --    inherits = "UIPanelScrollFrameTemplate"
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_ticketdetail",
-    group = "ticket",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 260,
-      height = 165
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 2,
-      offY = -55
-    },
-    maxletters = 623,
-    multiline = true
-  })
-
   FrameLib:BuildFontString({
     name = "ma_ticketidlabel",
     group = "ticket",
@@ -312,7 +290,7 @@ function MangAdmin:CreateTicketSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,
-      offY = -40
+      offY = -42
     }
   })
 
@@ -324,7 +302,7 @@ function MangAdmin:CreateTicketSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 57,  
-      offY = -40
+      offY = -42
     }
   })
 
@@ -360,7 +338,7 @@ function MangAdmin:CreateTicketSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 115,
-      offY = -40
+      offY = -42
     }
   })
 
@@ -374,6 +352,40 @@ function MangAdmin:CreateTicketSection()
       offX = 177,
       offY = -40
     }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_ticketmessagelabel",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "Ticket Message:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 2,
+      offY = -58
+    }
+  })
+  
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_ticketdetail",
+    group = "ticket",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_ticketeditbox_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 260,
+      height = 165
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 2,
+      offY = -72
+    },
+    maxletters = 623,
+    multiline = true
   })
 
   FrameLib:BuildButton({

@@ -23,6 +23,8 @@ function ShowTicketTab()
   ma_getcharticketbutton:Disable()
   ma_gocharticketbutton:Disable()
   ma_whisperticketbutton:Disable()
+  ma_resetticketsbutton:Disable()
+  ma_showbutton:Disable()
   MangAdmin:InstantGroupToggle("ticket")
   ResetTickets()
 end
@@ -36,8 +38,9 @@ function RefreshOnlineTickets()
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
-    getglobal("ma_loadallticktsbutton"):Hide()
-
+    ma_loadonlineticketsbutton:Disable()
+    ma_loadallticktsbutton:Hide()
+    ma_showbutton:Enable()
 end
 
 function RefreshTickets()
@@ -50,7 +53,9 @@ function RefreshTickets()
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
-    getglobal("ma_loadonlineticketsbutton"):Hide()
+    ma_loadallticktsbutton:Disable()
+    ma_loadonlineticketsbutton:Hide()
+    ma_showbutton:Enable()
 end
 
 function ResetTickets()
@@ -64,9 +69,11 @@ function ResetTickets()
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
-    getglobal("ma_loadallticktsbutton"):Show()
-    getglobal("ma_loadonlineticketsbutton"):Show()
-    getglobal("ma_ticketdetail"):Hide();
+    ma_loadallticktsbutton:Enable()
+    ma_loadonlineticketsbutton:Enable()
+    ma_loadallticktsbutton:Show()
+    ma_loadonlineticketsbutton:Show()
+    ma_ticketdetail:Hide();
     local ticketdetail = nil
     ma_ticketid:SetText(nil)
     ma_ticketcreatedby:SetText(nil)
@@ -82,6 +89,8 @@ function ResetTickets()
 end
 
 function ShowTickets()
+  ma_resetticketsbutton:Enable()
+  ma_showbutton:Disable()
  InlineScrollUpdate()
 end
 
@@ -211,13 +220,13 @@ function InlineScrollUpdate()
 end
 
 function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
-     MangAdmin.db.char.requests.ticket = false
-     ma_goticketbutton:Enable()
-     ma_deleteticketbutton:Enable()
-     ma_answerticketbutton:Enable()
-     ma_getcharticketbutton:Enable()
-     ma_gocharticketbutton:Enable()
-     ma_whisperticketbutton:Enable()
+    MangAdmin.db.char.requests.ticket = false
+    ma_goticketbutton:Enable()
+    ma_deleteticketbutton:Enable()
+    ma_answerticketbutton:Enable()
+    ma_getcharticketbutton:Enable()
+    ma_gocharticketbutton:Enable()
+    ma_whisperticketbutton:Enable()
     tNumber = string.match(tNumber, "%d+")
     MangAdmin:ChatMsg(".ticket viewid "..tNumber)
     ma_ticketid:SetText(tNumber)
@@ -226,7 +235,7 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     ma_ticketlastchange:SetText(tLUpdate)
     MangAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
     local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
-    getglobal("ma_ticketdetail"):Show();
+    ma_ticketdetail:Show();
     --MangAdmin:ChatMsg("???")
     --ma_ticketdetail:SetText("Hello")
     --MangAdmin:ChatMsg(MangAdmin.db.account.buffer.ticketsfull["tMsg"])

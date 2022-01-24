@@ -69,7 +69,9 @@ function ResetTickets()
     getglobal("ma_ticketdetail"):Hide();
     local ticketdetail = nil
     ma_ticketid:SetText(nil)
-    ma_ticketwho:SetText(nil)
+    ma_ticketcreatedby:SetText(nil)
+    ma_tickettimecreated:SetText(nil)
+    ma_ticketlastchange:SetText(nil)
     MangAdmin:LogAction("Reset/Cleared tickets.")
     ma_goticketbutton:Disable()
     ma_deleteticketbutton:Disable()
@@ -140,17 +142,17 @@ function Ticket(value)
     ResetTickets()
     --InlineScrollUpdate()
   elseif value == "gochar" then
-    MangAdmin:ChatMsg(".appear "..ma_ticketwho:GetText())
+    MangAdmin:ChatMsg(".appear "..ma_ticketcreatedby:GetText())
   elseif value == "getchar" then
-    MangAdmin:ChatMsg(".summon "..ma_ticketwho:GetText())
+    MangAdmin:ChatMsg(".summon "..ma_ticketcreatedby:GetText())
   elseif value == "answer" then
---    MangAdmin:TogglePopup("mail", {recipient = ma_ticketwho:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
-    MangAdmin:TogglePopup("mail", {recipient = ma_ticketwho:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
---    MangAdmin:TogglePopup("mail", {recipient = ma_ticketwho:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")", body = ma_ticketdetail:GetText()})
+--    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
+    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
+--    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")", body = ma_ticketdetail:GetText()})
     ma_maileditbox:SetText(ma_ticketdetail:GetText())
   elseif value == "whisper" then
 --    ChatFrameEditBox:Show()
---    ChatFrameEditBox:Insert("/w "..ma_ticketwho:GetText().." ");
+--    ChatFrameEditBox:Insert("/w "..ma_ticketcreatedby:GetText().." ");
        local editbox = ChatFrame1EditBox
        if not editbox then
          -- Support for 3.3.5 and newer
@@ -158,7 +160,7 @@ function Ticket(value)
        end
        ChatEdit_ActivateChat(editbox);
        if editbox then
-         editbox:Insert("/w "..ma_ticketwho:GetText().." ");
+         editbox:Insert("/w "..ma_ticketcreatedby:GetText().." ");
        end
 
   elseif value == "goticket" then
@@ -187,7 +189,7 @@ function InlineScrollUpdate()
         if lineplusoffset <= ticketCount then
           local object = MangAdmin.db.account.buffer.tickets[lineplusoffset]
           if object then
-            getglobal("ma_ticketscrollframe"..line):SetText("Id: |cffffffff"..object["tNumber"].."|r Who: |cffffffff"..object["tChar"].."|r When: |cffffffff"..object["tLCreate"].."|r")
+            getglobal("ma_ticketscrollframe"..line):SetText("Ticket:|cffffffff"..object["tNumber"].."|r Created by: |cffffffff"..object["tChar"].."|r Last change:|cffffffff"..object["tLUpdate"].."|r")
             MangAdmin.db.account.tickets.selected = object
             getglobal("ma_ticketscrollframe"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
             getglobal("ma_ticketscrollframe"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
@@ -208,7 +210,7 @@ function InlineScrollUpdate()
 --MangAdmin.db.char.requests.ticket = false
 end
 
-function ReadTicket(tNumber, tChar)
+function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
      MangAdmin.db.char.requests.ticket = false
      ma_goticketbutton:Enable()
      ma_deleteticketbutton:Enable()
@@ -216,15 +218,12 @@ function ReadTicket(tNumber, tChar)
      ma_getcharticketbutton:Enable()
      ma_gocharticketbutton:Enable()
      ma_whisperticketbutton:Enable()
---   MangAdmin:ChatMsg(tNumber)
---   tNumber=string.gsub(tNumber, ".", "")
---   MangAdmin:ChatMsg(tNumber)
-    --x = x - 1
     tNumber = string.match(tNumber, "%d+")
     MangAdmin:ChatMsg(".ticket viewid "..tNumber)
     ma_ticketid:SetText(tNumber)
-    ma_ticketwho:SetText(tChar)
-    --MangAdmin:ChatMsg(".pinfo "..tChar)
+    ma_ticketcreatedby:SetText(tChar)
+    ma_tickettimecreated:SetText(tLCreate)
+    ma_ticketlastchange:SetText(tLUpdate)
     MangAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
     local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
     getglobal("ma_ticketdetail"):Show();

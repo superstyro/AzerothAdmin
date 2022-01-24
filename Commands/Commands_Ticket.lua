@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -73,6 +73,12 @@ function ResetTickets()
     ma_ticketid:SetText(nil)
     ma_ticketwho:SetText(nil)
     MangAdmin:LogAction("Reset/Cleared tickets.")
+    ma_goticketbutton:Disable()
+    ma_deleteticketbutton:Disable()
+    ma_answerticketbutton:Disable()
+    ma_getcharticketbutton:Disable()
+    ma_gocharticketbutton:Disable()
+    ma_whisperticketbutton:Disable()
 end
 
 function ShowTickets()
@@ -185,12 +191,6 @@ function InlineScrollUpdate()
           if object then
             getglobal("ma_ticketscrollframe"..line):SetText("Id: |cffffffff"..object["tNumber"].."|r Who: |cffffffff"..object["tChar"].."|r When: |cffffffff"..object["tLCreate"].."|r")
             MangAdmin.db.account.tickets.selected = object
-            ma_goticketbutton:Enable()
-            ma_deleteticketbutton:Enable()
-            ma_answerticketbutton:Enable()
-            ma_getcharticketbutton:Enable()
-            ma_gocharticketbutton:Enable()
-            ma_whisperticketbutton:Enable()
             getglobal("ma_ticketscrollframe"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
             getglobal("ma_ticketscrollframe"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
             getglobal("ma_ticketscrollframe"..line):SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"]) end)

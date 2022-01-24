@@ -46,10 +46,10 @@ function MangAdmin:CreateTicketSection()
     },
     setpoint = {
         pos = "TOPLEFT",
-        offX = 10,
+        offX = 5,
         offY = -5
     },
-    text = "1.RESET"
+    text = "RESET"
 })
 
   FrameLib:BuildButton({
@@ -69,7 +69,7 @@ function MangAdmin:CreateTicketSection()
         offX = 80,
         offY = 0
     },
-    text = "2.Load All or"
+    text = "Load All"
 })
 
   FrameLib:BuildButton({
@@ -89,7 +89,7 @@ function MangAdmin:CreateTicketSection()
         offX = 80,
         offY = -15
     },
-    text = "2.Load Online"
+    text = "Load Online"
 })
 
   FrameLib:BuildButton({
@@ -109,7 +109,7 @@ function MangAdmin:CreateTicketSection()
         offX = 200,
         offY = -5
     },
-    text = "3.SHOW"
+    text = "SHOW"
 })
 
   FrameLib:BuildButton({

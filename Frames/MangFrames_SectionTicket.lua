@@ -284,10 +284,10 @@ function MangAdmin:CreateTicketSection()
     name = "ma_ticketidlabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "ID:",
+    text = "Ticket:",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 10,
+      offX = 2,
       offY = -30
     }
   })
@@ -299,32 +299,80 @@ function MangAdmin:CreateTicketSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 30,
+      offX = 35,
       offY = -30
     }
   })
 
   FrameLib:BuildFontString({
-    name = "ma_ticketwholabel",
+    name = "ma_ticketcreatedbylabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Who:",
+    text = "Created by:",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 80,
-      offY = -30
+      offX = 2,
+      offY = -40
     }
   })
 
   FrameLib:BuildFontString({
-    name = "ma_ticketwho",
+    name = "ma_ticketcreatedby",
     group = "ticket",
     parent = ma_midframe,
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 120,
+      offX = 57,  
+      offY = -40
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_tickettimecreatedlabel",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "Created:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 115,
       offY = -30
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_tickettimecreated",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 156,
+      offY = -30
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_ticketlastchangelabel",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "Last Change:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 115,
+      offY = -40
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_ticketlastchange",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 177,
+      offY = -40
     }
   })
 

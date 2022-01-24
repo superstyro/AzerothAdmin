@@ -1,5 +1,15 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 03 - 1/24/2022]=-
+- Updated Copyright year 2022
+- FIX Ticket TAB
+  - Ticket Message text was black and difficult to read
+  - Updated ticket list information to include 'Last change'
+  - Changed Id to 'Ticket'
+  - Added Created Label
+  - Added Last Change Label
+  - Lots off little things added.
+  - I am bad at keeping this changelog updated.
 ### -=[ Revision 02 - 10/20/2019]=-
 - FIX GM tab
   - Typo in GM-mode on/off

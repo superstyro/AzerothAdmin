@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -270,7 +270,7 @@ function InitControls()
 
 --[[Tickets Tab]]
   MangAdmin:PrepareScript(ma_tabbutton_ticket                , Locale["tt_TicketButton"]               , function() ShowTicketTab() end)
-  MangAdmin:PrepareScript(ma_resetticketsbutton              , "Not working? Click REFRESH!"           , function() ResetTickets() end)
+  MangAdmin:PrepareScript(ma_resetticketsbutton              , "Reset loaded tickets"                  , function() ResetTickets() end)
   MangAdmin:PrepareScript(ma_showticketsbutton               , nil                                     , function() RefreshTickets() end)
   MangAdmin:PrepareScript(ma_showonlineticketsbutton         , nil                                     , function() RefreshOnlineTickets() end)
   MangAdmin:PrepareScript(ma_deleteticketbutton              , nil                                     , function() Ticket("delete") end)

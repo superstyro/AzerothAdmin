@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -227,9 +227,9 @@ function ReadTicket(tNumber, tChar)
     --MangAdmin:ChatMsg(MangAdmin.db.account.buffer.ticketsfull["tMsg"])
     local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
     --ma_ticketdetail:SetText(ticketdetail["tMsg"])
-    --    getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
---    ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
---    ma_ticketdetail:SetText(ticketdetail["tMsg"].."|r")
+    --getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
+    --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
+    --ma_ticketdetail:SetText(ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Hello")
 
 end

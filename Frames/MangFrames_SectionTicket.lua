@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -276,9 +276,9 @@ function MangAdmin:CreateTicketSection()
       offX = 2,
       offY = -55
     },
-    maxletters = 100000,
+    maxletters = 10000, --Lowered the maxletters from 100000 to 10000
     multiline = true,
-    textcolor = {1, 1, 1, 1.0}
+    --textcolor = {0, 0, 0, 0.5} --What color is this changing? Multiple attempts with no change in black text color. Dafult Value {1, 1, 1, 1.0}
   })
 
   FrameLib:BuildFontString({

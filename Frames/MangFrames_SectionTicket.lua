@@ -276,9 +276,8 @@ function MangAdmin:CreateTicketSection()
       offX = 2,
       offY = -55
     },
-    maxletters = 10000, --Lowered the maxletters from 100000 to 10000
-    multiline = true,
-    --textcolor = {0, 0, 0, 0.5} --What color is this changing? Multiple attempts with no change in black text color. Dafult Value {1, 1, 1, 1.0}
+    maxletters = 623,
+    multiline = true
   })
 
   FrameLib:BuildFontString({

@@ -271,16 +271,16 @@ function InitControls()
 --[[Tickets Tab]]
   MangAdmin:PrepareScript(ma_tabbutton_ticket                , Locale["tt_TicketButton"]               , function() ShowTicketTab() end)
   MangAdmin:PrepareScript(ma_resetticketsbutton              , "Reset loaded tickets"                  , function() ResetTickets() end)
-  MangAdmin:PrepareScript(ma_showticketsbutton               , nil                                     , function() RefreshTickets() end)
-  MangAdmin:PrepareScript(ma_showonlineticketsbutton         , nil                                     , function() RefreshOnlineTickets() end)
+  MangAdmin:PrepareScript(ma_loadallticktsbutton             , "Load All tickets"                      , function() RefreshTickets() end)
+  MangAdmin:PrepareScript(ma_showonlineticketsbutton         , "Load online player tickets"            , function() RefreshOnlineTickets() end)
   MangAdmin:PrepareScript(ma_deleteticketbutton              , nil                                     , function() Ticket("delete") end)
   MangAdmin:PrepareScript(ma_answerticketbutton              , nil                                     , function() Ticket("answer") end)
   MangAdmin:PrepareScript(ma_getcharticketbutton             , nil                                     , function() Ticket("getchar") end)
   MangAdmin:PrepareScript(ma_gocharticketbutton              , nil                                     , function() Ticket("gochar") end)
   MangAdmin:PrepareScript(ma_whisperticketbutton             , nil                                     , function() Ticket("whisper") end)
   MangAdmin:PrepareScript(ma_goticketbutton                  , nil                                     , function() Ticket("goticket") end)
-  MangAdmin:PrepareScript(ma_showbutton                      , nil                                     , function() ShowTickets() end)
-
+  MangAdmin:PrepareScript(ma_showbutton                      , "Show loaded tickets"                   , function() ShowTickets() end)
+  --ma_showticketsbutton
 --[[Misc Tab]]
   MangAdmin:PrepareScript(ma_bgcolorshowbutton               , nil                                     , function() ShowColorPicker("bg") end)
   MangAdmin:PrepareScript(ma_frmcolorshowbutton              , nil                                     , function() ShowColorPicker("frm") end)

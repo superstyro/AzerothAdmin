@@ -149,7 +149,7 @@ function MangAdmin:CreateTicketSection()
       offX = 325,
       offY = -226
     },
-    text = "Whisper" --Locale["ma_WhisperButton"]
+    text = Locale["ma_ticketwhisperbutton"]
   })
 
   FrameLib:BuildButton({
@@ -262,7 +262,7 @@ function MangAdmin:CreateTicketSection()
     name = "ma_ticketidlabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Ticket:",
+    text = Locale["ma_ticketidlabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,
@@ -286,7 +286,7 @@ function MangAdmin:CreateTicketSection()
     name = "ma_ticketcreatedbylabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Created by:",
+    text = Locale["ma_ticketcreatedbylabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,
@@ -310,7 +310,7 @@ function MangAdmin:CreateTicketSection()
     name = "ma_tickettimecreatedlabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Created:",
+    text = Locale["ma_tickettimecreatedlabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 115,
@@ -334,7 +334,7 @@ function MangAdmin:CreateTicketSection()
     name = "ma_ticketlastchangelabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Last Change:",
+    text = Locale["ma_ticketlastchangelabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 115,
@@ -358,7 +358,7 @@ function MangAdmin:CreateTicketSection()
     name = "ma_ticketmessagelabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Ticket Message:",
+    text = Locale["ma_ticketmessagelabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,

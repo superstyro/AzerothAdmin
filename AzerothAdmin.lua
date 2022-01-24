@@ -946,39 +946,13 @@ function MangAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.requests.ticketbody = id
         self.db.char.msgDeltaTime = time()
     end
-    for msg in string.gmatch(text, "Ticket Message.-:.-(.*)") do
-        MangAdmin.db.account.buffer.ticketread=true
+    for msg in string.gmatch(text, Strings["ma_GmatchTicketMessage"]) do
         MangAdmin.db.account.buffer.ticketsfull = {}
         table.remove(MangAdmin.db.account.buffer.ticketsfull, 1)
-        --table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = msg})
-        table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = " "})
-        ma_ticketdetail:SetText("|cffffffff"..msg)
+        table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = ""})
+        ma_ticketdetail:SetText("|cff00ff00"..msg)  -- Currently set to green |cff00ff00
         catchedSth = true
         output = MangAdmin.db.account.style.showchat
-    end
-    if MangAdmin.db.account.buffer.ticketread==true then
-        for msg in string.gmatch(text, "(.*)]|r") do
-            local object = MangAdmin.db.account.buffer.ticketsfull[1]
-            local t_msg = ""
-            t_msg = object["tMsg"]
-            t_msg = t_msg.." ".."|cffffffff"..msg
-            table.remove(MangAdmin.db.account.buffer.ticketsfull, 1)
-            table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = t_msg})
-            MangAdmin.db.account.buffer.ticketread=false
-            ma_ticketdetail:SetText("|cffffffff"..t_msg)
-            catchedSth = true
-            output = MangAdmin.db.account.style.showchat
-        end
-        for msg in string.gmatch(text, "(.*)") do
-            local object = MangAdmin.db.account.buffer.ticketsfull[1]
-            local t_msg = ""
-            t_msg = object["tMsg"]
-            t_msg = t_msg.." ".."|cffffffff"..msg
-            table.remove(MangAdmin.db.account.buffer.ticketsfull, 1)
-            table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = t_msg})
-            catchedSth = true
-            output = MangAdmin.db.account.style.showchat
-        end
     end
     for eraseme in string.gmatch(text, "Showing list of open tickets") do
         catchedSth = true

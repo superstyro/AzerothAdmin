@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -50,6 +50,36 @@ selected language.
   use of "" (makes anything AFTER it a comment, to the end of the line) or comments can be enclosed between.
 
 If you have any questions, contact iotech.
+
+Color List:
+
+LIGHTRED       |cffff6060
+LIGHTBLUE      |cff00ccff
+TORQUISEBLUE	 |cff00C78C
+SPRINGGREEN	   |cff00FF7F
+GREENYELLOW    |cffADFF2F
+BLUE           |cff0000ff
+PURPLE		     |cffDA70D6
+GREEN	         |cff00ff00
+RED            |cffff0000
+GOLD           |cffffcc00
+GOLD2			     |cffFFC125
+GREY           |cff888888
+WHITE          |cffffffff
+SUBWHITE       |cffbbbbbb
+MAGENTA        |cffff00ff
+YELLOW         |cffffff00
+ORANGEY		     |cffFF4500
+CHOCOLATE		   |cffCD661D
+CYAN           |cff00ffff
+IVORY			     |cff8B8B83
+LIGHTYELLOW	   |cffFFFFE0
+SEXGREEN		   |cff71C671
+SEXTEAL		     |cff388E8E
+SEXPINK		     |cffC67171
+SEXBLUE		     |cff00E5EE
+SEXHOTPINK	   |cffFF6EB4
+
 ]]--
 
 function Return_enUS()

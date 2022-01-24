@@ -950,7 +950,7 @@ function MangAdmin:AddMessage(frame, text, r, g, b, id)
         MangAdmin.db.account.buffer.ticketsfull = {}
         table.remove(MangAdmin.db.account.buffer.ticketsfull, 1)
         table.insert(MangAdmin.db.account.buffer.ticketsfull, {tMsg = ""})
-        ma_ticketdetail:SetText("|cff00ff00"..msg)  -- Currently set to green |cff00ff00
+        ma_ticketdetail:SetText("|cffffff00"..msg)  -- Change to yellow to match formatting
         catchedSth = true
         output = MangAdmin.db.account.style.showchat
     end

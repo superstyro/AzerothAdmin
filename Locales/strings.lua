@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -13,6 +13,8 @@
 -- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 --
 -- Repository: https://github.com/superstyro/AzerothAdmin
+--
+-- Lua Patterns Viewer: https://gitspartv.github.io/lua-patterns/
 --
 -------------------------------------------------------------------------------------------------------------
 
@@ -30,9 +32,9 @@ function ReturnStrings_enUS()
     ["ma_GmatchTele"] = "%|cffffffff%|Htele:(.*)%|h%[(.*)%]%|h%|r",
     ["ma_GmatchTeleFound"] = "Locations found are:",
     ["ma_GmatchUpdateDiff"] = "Update time diff: (.*)",
-    ["ma_GmatchUpdateDiffTime"] = "Update time diff: (%d+)", --Only the time number
+    ["ma_GmatchUpdateDiffTime"] = "Update time diff: (%d+)",
     ["ma_GmatchNewTicket"] = "New ticket from(.+)",
-    ["ma_GmatchTicketsFull"] = "Ticket Message.-:.-|c(.*)",
+    ["ma_GmatchTicketMessage"] = "Ticket Message.-:.-%[(.*).-%]",
     ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
     ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
     ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",

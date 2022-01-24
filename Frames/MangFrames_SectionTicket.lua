@@ -3,7 +3,7 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2019 Free Software Foundation, Inc.
+-- Copyright (C) 2022 Free Software Foundation, Inc.
 -- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
@@ -53,7 +53,7 @@ function MangAdmin:CreateTicketSection()
 })
 
   FrameLib:BuildButton({
-    name = "ma_showticketsbutton",
+    name = "ma_loadallticktsbutton",
     group = "ticket",
     parent = ma_midframe,
     texture = {
@@ -73,7 +73,7 @@ function MangAdmin:CreateTicketSection()
 })
 
   FrameLib:BuildButton({
-    name = "ma_showonlineticketsbutton",
+    name = "ma_loadonlineticketsbutton",
     group = "ticket",
     parent = ma_midframe,
     texture = {
@@ -276,19 +276,18 @@ function MangAdmin:CreateTicketSection()
       offX = 2,
       offY = -55
     },
-    maxletters = 100000,
-    multiline = true,
-    textcolor = {1, 1, 1, 1.0}
+    maxletters = 623,
+    multiline = true
   })
 
   FrameLib:BuildFontString({
     name = "ma_ticketidlabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "ID:",
+    text = "Ticket:",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 10,
+      offX = 2,
       offY = -30
     }
   })
@@ -300,32 +299,80 @@ function MangAdmin:CreateTicketSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 30,
+      offX = 35,
       offY = -30
     }
   })
 
   FrameLib:BuildFontString({
-    name = "ma_ticketwholabel",
+    name = "ma_ticketcreatedbylabel",
     group = "ticket",
     parent = ma_midframe,
-    text = "Who:",
+    text = "Created by:",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 80,
-      offY = -30
+      offX = 2,
+      offY = -40
     }
   })
 
   FrameLib:BuildFontString({
-    name = "ma_ticketwho",
+    name = "ma_ticketcreatedby",
     group = "ticket",
     parent = ma_midframe,
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 120,
+      offX = 57,  
+      offY = -40
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_tickettimecreatedlabel",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "Created:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 115,
       offY = -30
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_tickettimecreated",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 156,
+      offY = -30
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_ticketlastchangelabel",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "Last Change:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 115,
+      offY = -40
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_ticketlastchange",
+    group = "ticket",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 177,
+      offY = -40
     }
   })
 

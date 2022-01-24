@@ -50,7 +50,7 @@ function RefreshTickets()
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
-    getglobal("ma_showonlineticketsbutton"):Hide()
+    getglobal("ma_loadonlineticketsbutton"):Hide()
 end
 
 function ResetTickets()
@@ -65,7 +65,7 @@ function ResetTickets()
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
     getglobal("ma_loadallticktsbutton"):Show()
-    getglobal("ma_showonlineticketsbutton"):Show()
+    getglobal("ma_loadonlineticketsbutton"):Show()
     getglobal("ma_ticketdetail"):Hide();
     local ticketdetail = nil
     ma_ticketid:SetText(nil)

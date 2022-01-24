@@ -73,7 +73,7 @@ function MangAdmin:CreateTicketSection()
 })
 
   FrameLib:BuildButton({
-    name = "ma_showonlineticketsbutton",
+    name = "ma_loadonlineticketsbutton",
     group = "ticket",
     parent = ma_midframe,
     texture = {

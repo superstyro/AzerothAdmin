@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -25,8 +25,6 @@ function ShowTicketTab()
   ma_whisperticketbutton:Disable()
   MangAdmin:InstantGroupToggle("ticket")
   ResetTickets()
- --  RefreshTickets()
- --  RefreshTickets()
 end
 
 function RefreshOnlineTickets()
@@ -228,12 +226,11 @@ function ReadTicket(tNumber, tChar)
     ma_ticketwho:SetText(tChar)
     --MangAdmin:ChatMsg(".pinfo "..tChar)
     MangAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
-
+    local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
+    getglobal("ma_ticketdetail"):Show();
     --MangAdmin:ChatMsg("???")
     --ma_ticketdetail:SetText("Hello")
     --MangAdmin:ChatMsg(MangAdmin.db.account.buffer.ticketsfull["tMsg"])
-    local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
-    getglobal("ma_ticketdetail"):Show();
     --ma_ticketdetail:SetText(ticketdetail["tMsg"])
     --getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")

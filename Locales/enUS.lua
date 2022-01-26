@@ -563,12 +563,20 @@ function Return_enUS()
     ["tabmenu_ticket"]                = "TICKETS",
     ["tt_TicketButton"]               = "Toggle a window which shows all tickets and lets you administrate them.",
   --[[Tooltips]]
+    ["tt_TicketOn"]                   = "Announce new tickets.",
+    ["tt_TicketOff"]                  = "Don't announce new tickets.",
   --[[Control Labels]]
+    ["ma_ticketidlabel"]              = "|cFF00FF00Ticket:",
+    ["ma_ticketcreatedbylabel"]       = "|cFF00FF00Created by:",
+    ["ma_tickettimecreatedlabel"]     = "|cFF00FF00Created:",
+    ["ma_ticketlastchangelabel"]      = "|cFF00FF00Last change:",
+    ["ma_ticketmessagelabel"]         = "|cFF00FF00Ticket Message:",
     ["ma_LoadTicketsButton"]          = "Refresh",
     ["ma_GetCharTicketButton"]        = "Summon",
     ["ma_GoCharTicketButton"]         = "Go Player",
     ["ma_AnswerButton"]               = "Mail",
     ["ma_DeleteButton"]               = "Close",
+    ["ma_ticketwhisperbutton"]        = "Whisper",
     ["ma_TicketCount"]                = "|cFF00FF00Tickets:|r ",
     ["ma_TicketsNoNew"]               = "You have no new tickets.",
     ["ma_TicketsNewNumber"]           = "You have |cffeda55f%s|r new tickets!",
@@ -589,8 +597,6 @@ function Return_enUS()
     ["ma_TicketTicketLoaded"]         = "|cFF00FF00Loaded Ticket-Nr:|r %s\n\nPlayer Information\n\n",
     ["ma_Reload"]                     = "Reload",
     ["ma_LoadMore"]                   = "Load more...",
-    ["tt_TicketOn"]                   = "Announce new tickets.",
-    ["tt_TicketOff"]                  = "Don't announce new tickets.",
   --[[Other]]
 
 

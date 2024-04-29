@@ -795,7 +795,7 @@ function MangAdmin:AddMessage(frame, text, r, g, b, id)
             local itemName, itemLink, itemQuality, _, _, _, _, _, _ = GetItemInfo(id);
             if not itemName then
               GameTooltip:SetOwner(ma_popupframe, "ANCHOR_RIGHT")
-              GameTooltip:SetHyperlink("item:"..id..":0:0:0:0:0:0:0")
+              GameTooltip:SetHyperlink("item:"..id)
               GameTooltip:Hide()
             end
             PopupScrollUpdate()
@@ -2083,14 +2083,14 @@ function PopupScrollUpdate()
           local key = lineplusoffset
           --item icons
           getglobal("ma_PopupScrollBarEntryIcon"..line.."IconTexture"):SetTexture(GetItemIcon(item["itId"]))
-          getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]..":0:0:0:0:0:0:0"); GameTooltip:Show() end)
+          getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
           getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
           getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnClick", function() MangAdmin:AddItem(item["itId"], arg1) end)
           getglobal("ma_PopupScrollBarEntryIcon"..line):Show()
           --item description
           getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..item["itId"].."|r Name: |cffffffff"..item["itName"].."|r")
           getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() MangAdmin:AddItem(item["itId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]..":0:0:0:0:0:0:0"); GameTooltip:Show() end)
+          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
           getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
           getglobal("ma_PopupScrollBarEntry"..line):Enable()
           getglobal("ma_PopupScrollBarEntry"..line):Show()

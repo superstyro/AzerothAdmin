@@ -1,5 +1,8 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 04 - 4/29/2024]=-
+- FIX [ADD] [ITEM] buttons
+  - TODO: Correct [ADD] item count default to 1 in chat window
 ### -=[ Revision 03 - 1/24/2022]=-
 - Updated Copyright year 2022
 - FIX Ticket TAB

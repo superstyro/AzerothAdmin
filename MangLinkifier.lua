@@ -132,8 +132,8 @@ function MangLinkifier_Link(orgtxt, id, type)
   elseif(type == "lookupitem") then
     for orgtxt, color in string.gmatch (orgtxt, "(.*)%-(.*)") do
       link = "|cff" .. color .."|Hitem:" .. id .. "|h[" .. orgtxt .. "]|h|r"
-      link = link .." - |cff" .. urlcolor .. "|Hlookupitemadd:" .. id .. "|h["..Locale["lfer_Add"].."]|h|r "
-      link = link .." - |cff" .. urlcolor .. "|Hlookupitemlist:" .. id .. "|h["..Locale["lfer_List"].."]|h|r "
+      link = link .." - |cff" .. urlcolor .. "|Hlookupitemadd:" .. id .. "|h["..Locale["lfer_Add"].."]|h|r "  -- BUG: When clicking link in chat, error happens issue #6
+      link = link .." - |cff" .. urlcolor .. "|Hlookupitemlist:" .. id .. "|h["..Locale["lfer_List"].."]|h|r "  -- BUG: When clicking link in chat, error happens issue #6
     end
   elseif(type == "lookupgo") then
     link = "|cffffffff|Hgameobject_entry:" .. id .. "|h[" .. orgtxt .. "]|h|r"

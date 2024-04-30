@@ -132,7 +132,7 @@ function MangLinkifier_Link(orgtxt, id, type)
   elseif(type == "lookupitem") then
     for orgtxt, color in string.gmatch (orgtxt, "(.*)%-(.*)") do
       link = "|cff" .. color .."|Hitem:" .. id .. "|h[" .. orgtxt .. "]|h|r"
-      link = link .." - |cff" .. urlcolor .. "|Hlookupitemadd:" .. id .. "|h["..Locale["lfer_Add"].."]|h|r "
+      link = link .." - |cff" .. urlcolor .. "|Hlookupitemadd:" .. id .. "|h["..Locale["lfer_Add"].."]|h|r "  
       link = link .." - |cff" .. urlcolor .. "|Hlookupitemlist:" .. id .. "|h["..Locale["lfer_List"].."]|h|r "
     end
   elseif(type == "lookupgo") then
@@ -234,11 +234,16 @@ function MangLinkifier_SetItemRef(link, text, button)
   elseif ( strsub(link, 1, 14) == "lookupquestrem" ) then
     SendChatMessage(".quest remove "..strsub(link, 16), say, nil, nil)
     return;
-  elseif ( strsub(link, 1, 13) == "lookupitemadd" ) then
-    SendChatMessage(".additem "..strsub(link, 15), say, nil, nil)
+  elseif ( strsub(link, 1, 13) == "lookupitemadd" ) then -- Updated new string parse, may need to be used in other functions FIX: #6
+    local str = link
+    local _, _, parsedId = str:find("lookupitemadd:(%d+)")
+    --SendChatMessage("DEBUG: ".. parsedId, say, nil, nil) -- DEBUG output
+    SendChatMessage(".additem ".. parsedId, say, nil, nil)  --TODO: Need to add in amount parameter to string when [ADD] is clicked, defaults to 1 item count.
     return;
-  elseif ( strsub(link, 1, 14) == "lookupitemlist" ) then
-    SendChatMessage(".list item "..strsub(link, 16), say, nil, nil)
+  elseif ( strsub(link, 1, 14) == "lookupitemlist" ) then -- Updated new string parse, may need to be used in other functions FIX #6
+    local str = link
+    local _, _, parsedId = str:find("lookupitemlist:(%d+)")
+    SendChatMessage(".list item ".. parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 16) == "gameobject_entry" ) then
     SendChatMessage(".gobject add "..strsub(link, 18), say, nil, nil)

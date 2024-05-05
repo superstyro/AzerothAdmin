@@ -135,7 +135,7 @@ end
 
 function Demorph()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".demorph")
+    MangAdmin:ChatMsg(".morph reset")
     MangAdmin:LogAction("Demorphed player "..player..".")
 end
 
@@ -480,7 +480,7 @@ end
 
 function CharRepair()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".repairitems")
+    MangAdmin:ChatMsg(".gear repair")
     MangAdmin:LogAction("Repaired  "..player.."'s items")
 end
 
@@ -709,12 +709,15 @@ function HonorAddButton()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
   MangAdmin:ChatMsg(".honor add "..cname)
-  MangAdmin:LogAction(".honor add "..cname..".")
+  MangAdmin:LogAction("Honor add "..cname..".")
 end
 
 function HonorUpdateButton()
-  local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".honor update ")
-  MangAdmin:LogAction(".honor update.")
+  if MangAdmin:Selection("player") or MangAdmin:Selection("self") or MangAdmin:Selection("none") then
+    local player = UnitName("target") or UnitName("player")
+    MangAdmin:ChatMsg(".honor update ")
+    MangAdmin:LogAction("Honor updated for "..player..".")
+  else
+    MangAdmin:Print(Locale["selectionerror1"])
+  end
 end

@@ -18,7 +18,6 @@
 
 local genv = getfenv(0)
 local Mang = genv.Mang
-GPS = '.gps'
 cWorking = 0
 cMap = 0
 cX = 0
@@ -32,7 +31,7 @@ gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
 MAJOR_VERSION = "AzerothAdmin-3.3.5"
-MINOR_VERSION = "$Revision: 004 $"
+MINOR_VERSION = "$Revision: 005 $"
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
@@ -141,7 +140,7 @@ MangAdmin:RegisterDefaults("account",
     }
   }
 )
---require("Frames\TABS\TAB_Disable.lua")
+
 -- Register Translations
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()
@@ -288,8 +287,13 @@ function MangAdmin:OnEnable()
   ma_hoveroffbutton:Disable()
   ma_acctcreatebutton:Disable()
   ma_acctdeletebutton:Disable()
+
+  -- Dissable unusable options in Char tab WIP: FIX #9
   ma_mapsonbutton:Disable()
   ma_mapsoffbutton:Disable()
+  ma_showmapsbutton:Disable()
+  ma_hidemapsbutton:Disable()
+  ma_charlistfreezebutton:Disable()
 end
 
 --events

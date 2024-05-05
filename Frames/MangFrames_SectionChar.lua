@@ -1422,7 +1422,7 @@ function MangAdmin:CreateCharSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "BOTTOMLEFT",
-      offX = 222, --charColTwo
+      offX = 218, --charColTwo
       offY = 8
     }
   })

@@ -18,7 +18,6 @@
 
 local genv = getfenv(0)
 local Mang = genv.Mang
-GPS = '.gps'
 cWorking = 0
 cMap = 0
 cX = 0

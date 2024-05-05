@@ -716,7 +716,7 @@ function MangAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 334,
+      offX = 327,
       offY = -167
     }
   })

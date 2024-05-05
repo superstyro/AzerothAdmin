@@ -201,7 +201,7 @@ function ToggleChat(value)
 end
 
 function ToggleWaterwalk(value)
-  MangAdmin:ChatMsg(".waterwalk "..value)
+  MangAdmin:ChatMsg(".cheat waterwalk "..value)
   MangAdmin:LogAction("Turned Waterwalk to "..value..".")
 end
 

@@ -4,6 +4,14 @@
 - FIX #11 Hide WHO buttons
   - Cannot use level 4 account unless manually set in server console
 - FIX #13 Correct server update frequency to be more accurate
+- FIX #10 GM TAB Buttons
+  - Disable Hover-mode buttons
+  - Correct Taxicheat buttons function
+  - Disable View All Maps (Could not find a replacment command, yet)
+  - Correct Waterwalking buttons function
+  - Disable AcctCreate button (Needs account level 4)
+  - Disable AcctDelete button (Needs account level 4)
+  - Correct Bank button function
 ### -=[ Revision 04 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window

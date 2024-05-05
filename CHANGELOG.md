@@ -12,6 +12,13 @@
   - Disable AcctCreate button (Needs account level 4)
   - Disable AcctDelete button (Needs account level 4)
   - Correct Bank button function
+- FIX #9 CHAR TAB Buttons/Functions
+  - Correct demorph button function
+  - Disable Show/Hide maps buttons (No command available)
+  - Correct Repair button function
+  - Correct GPS button function
+  - Disable ListFreeze button (No command available)
+  - Correct HonorUpdt button function (Output is in LOG tab)
 ### -=[ Revision 04 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window

@@ -283,12 +283,13 @@ function MangAdmin:OnEnable()
   ma_tabbutton_who:Hide()
   ma_mm_whobutton:Hide()
 
-  -- Dissable unusable options in GM(main) tab
+  -- Dissable unusable options in GM(main) tab WIP: FIX #10
   ma_hoveronbutton:Disable()
   ma_hoveroffbutton:Disable()
-
   ma_acctcreatebutton:Disable()
   ma_acctdeletebutton:Disable()
+  ma_mapsonbutton:Disable()
+  ma_mapsoffbutton:Disable()
 end
 
 --events

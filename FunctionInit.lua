@@ -286,7 +286,7 @@ function InitControls()
   MangAdmin:PrepareScript(ma_frmcolorshowbutton              , nil                                     , function() ShowColorPicker("frm") end)
   MangAdmin:PrepareScript(ma_btncolorshowbutton              , nil                                     , function() ShowColorPicker("btn") end)
   MangAdmin:PrepareScript(ma_linkifiercolorbutton            , nil                                     , function() ShowColorPicker("linkifier") end)
-  MangAdmin:PrepareScript(ma_updatechangesbutton                , nil                                     , function() ApplyStyleChanges() end)
+  MangAdmin:PrepareScript(ma_updatechangesbutton             , Locale["tt_updatechanges"]              , function() ApplyStyleChanges() end)
   --MangAdmin:PrepareScript(ma_windowismovable                 , nil                                     , function() AllowMovableWindow() end)
   MangAdmin:PrepareScript(ma_changeweatherbutton             , nil                                     , function() ChangeWeather(UIDropDownMenu_GetSelectedValue(ma_weatherdropdown)) end)
 

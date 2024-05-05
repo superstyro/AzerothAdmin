@@ -290,6 +290,8 @@ function MangAdmin:OnEnable()
   ma_acctdeletebutton:Disable()
   ma_mapsonbutton:Disable()
   ma_mapsoffbutton:Disable()
+  ma_showmapsbutton:Disable()
+  ma_hidemapsbutton:Disable()
 end
 
 --events

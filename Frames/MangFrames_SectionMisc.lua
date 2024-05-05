@@ -107,7 +107,7 @@ function MangAdmin:CreateMiscSection()
     name = "ma_delayparamlabel2",
     group = "misc",
     parent = ma_midframe,
-    text = "Specifies update frequency of Diff graph on Server tab.\n 4000 = ~1 minute, 20000 =~5 minutes",
+    text = "Specifies update frequency of Diff graph on Server tab.\n 10000 = ~1 minute, 50000 =~5 minutes", -- FIX #13
     setpoint = {
       pos = "TOPLEFT",
       offX = 165,

@@ -135,7 +135,7 @@ end
 
 function Demorph()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".demorph")
+    MangAdmin:ChatMsg(".morph reset")
     MangAdmin:LogAction("Demorphed player "..player..".")
 end
 

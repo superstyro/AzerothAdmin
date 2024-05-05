@@ -129,7 +129,7 @@ function Screenie()
 end
 
 function ShowBank()
-  MangAdmin:ChatMsg(".bank")
+  MangAdmin:ChatMsg(".character check bank") -- FIX 10 Broken Bank button
 end
 
 function DismountPlayer()

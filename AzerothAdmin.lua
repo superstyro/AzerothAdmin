@@ -282,6 +282,13 @@ function MangAdmin:OnEnable()
   -- Hide Who buttons for FIX #11. Admin level 4 not possible ingame?
   ma_tabbutton_who:Hide()
   ma_mm_whobutton:Hide()
+
+  -- Dissable unusable options in GM(main) tab
+  ma_hoveronbutton:Disable()
+  ma_hoveroffbutton:Disable()
+
+  ma_acctcreatebutton:Disable()
+  ma_acctdeletebutton:Disable()
 end
 
 --events

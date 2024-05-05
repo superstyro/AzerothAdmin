@@ -141,7 +141,7 @@ MangAdmin:RegisterDefaults("account",
     }
   }
 )
-
+--require("Frames\TABS\TAB_Disable.lua")
 -- Register Translations
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()
@@ -278,6 +278,10 @@ function MangAdmin:OnEnable()
   self:RegisterEvent("PLAYER_ALIVE")
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
+
+  -- Hide Who buttons for FIX #11. Admin level 4 not possible ingame?
+  ma_tabbutton_who:Hide()
+  ma_mm_whobutton:Hide()
 end
 
 --events

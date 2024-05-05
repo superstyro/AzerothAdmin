@@ -291,7 +291,7 @@ function MangAdmin:CreateServerSection()
   x.frames = 0
   x.NextUpdate=GetTime()
   local q = 0
-  x:SetScript("OnUpdate",function()
+  x:SetScript("OnUpdate",function()  -- TODO: Pause update function when player is dead
       q = q + 1
       if q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           MangAdmin:ChatMsg(".server info")

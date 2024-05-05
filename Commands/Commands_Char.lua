@@ -480,7 +480,7 @@ end
 
 function CharRepair()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".repairitems")
+    MangAdmin:ChatMsg(".gear repair")
     MangAdmin:LogAction("Repaired  "..player.."'s items")
 end
 

@@ -141,7 +141,7 @@ MangAdmin:RegisterDefaults("account",
     }
   }
 )
---require("Frames\TABS\TAB_Disable.lua")
+
 -- Register Translations
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()

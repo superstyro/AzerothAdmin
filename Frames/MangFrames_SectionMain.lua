@@ -254,11 +254,11 @@ function MangAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_taxicheatonbutton",
+    name = "ma_cheattaxionbutton",
     group = "main",
     parent = ma_midframe,
     texture = {
-      name = "ma_taxicheatonbutton_texture",
+      name = "ma_cheattaxionbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -274,11 +274,11 @@ function MangAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_taxicheatoffbutton",
+    name = "ma_cheattaxioffbutton",
     group = "main",
     parent = ma_midframe,
     texture = {
-      name = "ma_taxicheatoffbutton_texture",
+      name = "ma_cheattaxioffbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -716,7 +716,7 @@ function MangAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 334,
+      offX = 327,
       offY = -167
     }
   })

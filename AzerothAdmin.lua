@@ -106,7 +106,7 @@ MangAdmin:RegisterDefaults("account",
       loading = false
     },
     style = {
-      updatedelay = "20000", -- Set to approx. 10 Minutes
+      updatedelay = "100000", -- Set to approx. 10 Minutes
       showtooltips = true,
       showchat = false,
       showminimenu = true,
@@ -2608,7 +2608,7 @@ function MangAdmin:InitCheckButtons()
   ma_showtooltipsbutton:SetChecked(self.db.account.style.showtooltips)
   ma_showchatoutputbutton:SetChecked(self.db.account.style.showchat)
   local dp = MangAdmin.db.account.style.delayparam
-  if dp == Nil or dp == "" then dp = "4000" end
+  if dp == Nil or dp == "" then dp = "10000" end --10k is close 1 minute of in-game time FIX #13
   ma_delayparam:SetText(dp)
 end
 

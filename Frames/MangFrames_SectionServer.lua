@@ -293,7 +293,7 @@ function MangAdmin:CreateServerSection()
   local q = 0
   x:SetScript("OnUpdate",function()
       q = q + 1
-      if q > tonumber(ma_delayparam:GetText()) then --20000=approx 5 minutes, 4000=approx 1 minute
+      if q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           MangAdmin:ChatMsg(".server info")
           q = 0
           local s = tonumber(ma_difftext:GetText())

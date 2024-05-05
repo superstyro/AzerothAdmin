@@ -1,5 +1,9 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 05 - 5/04/2024]=-
+- FIX #11 Hide WHO buttons
+  - Cannot use level 4 account unless manually set in server console
+- FIX #13 Correct server update frequency to be more accurate
 ### -=[ Revision 04 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window

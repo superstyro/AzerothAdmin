@@ -289,11 +289,11 @@ function MangAdmin:CreateMiscSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_applystylebutton",
+    name = "ma_updatechangesbutton",
     group = "misc",
     parent = ma_midframe,
     texture = {
-      name = "ma_applystylebutton_texture",
+      name = "ma_updatechangesbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

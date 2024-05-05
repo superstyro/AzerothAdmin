@@ -62,14 +62,14 @@ function ToggleVisible(value)
   end
 end
 
-function ToggleTaxicheat(value)
+function ToggleCheatTaxi(value)
   if MangAdmin:Selection("player") or MangAdmin:Selection("self") or MangAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".taxicheat "..value)
+    MangAdmin:ChatMsg(".cheat taxi "..value) -- FIX 10
     if value == 1 then
-      MangAdmin:LogAction("Activated taxicheat to "..player..".")
+      MangAdmin:LogAction("Activated cheat taxi to "..player..".")
     else
-      MangAdmin:LogAction("Disabled taxicheat to "..player..".")
+      MangAdmin:LogAction("Disabled cheat taxi to "..player..".")
     end
   else
     MangAdmin:Print(Locale["selectionerror1"])

@@ -190,7 +190,7 @@ function Return_enUS()
     ["ma_HoverOnButton"]              = "Hover-mode on",
     ["ma_WhisperOnButton"]            = "Whisper on",
     ["ma_InvisOnButton"]              = "Invisibility on",
-    ["ma_TaxiOnButton"]               = "Taxicheat on",
+    ["ma_TaxiOnButton"]               = "Cheat Taxi on",
     ["ma_ShowMapsButton"]             = "Show Maps",
     ["ma_HideMapsButton"]             = "Hide Maps",
     ["ma_instakill"]                  = "Insta-kill enemy creatures",

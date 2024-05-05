@@ -15,7 +15,7 @@
 -- Repository: https://gitlab.superstyro.com/superstyro/azerothadmin
 -------------------------------------------------------------------------------------------------------------
 
-function ApplyStyleChanges()
+function UpdateChanges()
   if MangAdmin.db.account.style.color.buffer.backgrounds then
     MangAdmin.db.account.style.color.backgrounds = MangAdmin.db.account.style.color.buffer.backgrounds
   end

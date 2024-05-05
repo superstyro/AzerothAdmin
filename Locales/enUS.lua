@@ -606,9 +606,10 @@ function Return_enUS()
     ["tabmenu_Misc"]                  = "MISC",
     ["tt_MiscButton"]                 = "Toggle a window with miscellaneous actions.",
   --[[Tooltips]]
-    ["tt_FrmTrSlider"]                = "Change frame transparency.",
-    ["tt_BtnTrSlider"]                = "Change button transparency.",
+    ["tt_FrmTrSlider"]                = "Change frame transparency",
+    ["tt_BtnTrSlider"]                = "Change button transparency",
     ["tt_windowismovable"]            = "Allow a movable window",
+    ["tt_updatechanges"]              = "Apply changes made to settings. Reloads screen.",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Toggle the main window",
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",

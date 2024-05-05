@@ -140,7 +140,7 @@ MangAdmin:RegisterDefaults("account",
     }
   }
 )
---require("Frames\TABS\TAB_Disable.lua")
+
 -- Register Translations
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()
@@ -287,10 +287,13 @@ function MangAdmin:OnEnable()
   ma_hoveroffbutton:Disable()
   ma_acctcreatebutton:Disable()
   ma_acctdeletebutton:Disable()
+
+  -- Dissable unusable options in Char tab WIP: FIX #9
   ma_mapsonbutton:Disable()
   ma_mapsoffbutton:Disable()
   ma_showmapsbutton:Disable()
   ma_hidemapsbutton:Disable()
+  ma_charlistfreezebutton:Disable()
 end
 
 --events

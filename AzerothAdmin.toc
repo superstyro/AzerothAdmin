@@ -42,7 +42,7 @@ Commands\Commands_NPC.lua
 Commands\Commands_GO.lua
 Commands\Commands_Who.lua
 DBC.lua
-TeleTable.lua
+TeleportTable.lua
 FunctionInit.lua
 AzerothAdmin.lua
 MangLinkifier.lua

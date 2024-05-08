@@ -17,19 +17,19 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangAdmin.lua"
--- Also some variables are globally taken from MangAdmin.lua
+-- This script must be listed in the .toc after "AzerothAdmin.lua"
+-- Also some variables are globally taken from AzerothAdmin.lua
 
-function MangAdmin:CreateMiniMenu()
+function AzerothAdmin:CreateMiniMenu()
   local transparency = {
-    bg = MangAdmin.db.account.style.transparency.backgrounds,
-    btn = MangAdmin.db.account.style.transparency.buttons,
-    frm = MangAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.account.style.transparency.buttons,
+    frm = AzerothAdmin.db.account.style.transparency.frames
   }
   local color = {
-    bg = MangAdmin.db.account.style.color.backgrounds,
-    btn = MangAdmin.db.account.style.color.buttons,
-    frm = MangAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.account.style.color.backgrounds,
+    btn = AzerothAdmin.db.account.style.color.buttons,
+    frm = AzerothAdmin.db.account.style.color.frames
   }
 
   -- [[ MiniMenu Elements ]]

@@ -12,8 +12,8 @@
 ## OptionalDeps: AceLibrary,AceEvent-2.0,AceHook-2.1,AceDebug-2.0,AceLocale-2.2,AceConsole-2.0,AceAddon-2.0
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
-## SavedVariables: MangAdminDb
-## SavedVariablesPerCharacter: MangAdminDbPerChar
+## SavedVariables: AzerothAdminDb
+## SavedVariablesPerCharacter: AzerothAdminDbPerChar
 Libraries\AceLibrary\AceLibrary.lua
 Libraries\AceOO-2.0\AceOO-2.0.lua
 Libraries\AceEvent-2.0\AceEvent-2.0.lua

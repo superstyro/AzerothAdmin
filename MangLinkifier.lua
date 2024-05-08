@@ -85,7 +85,7 @@ function MangLinkifier_Decompose(chatstring)
 end
 
 function MangLinkifier_Link(orgtxt, id, type)
-  local color = MangAdmin.db.account.style.color.linkifier
+  local color = AzerothAdmin.db.account.style.color.linkifier
   local urlcolor = RGBPercToHex(color.r,color.g,color.b)
   --local urlcolor = (string.rep("0",6-string.len((string.upper(string.format("%x", dec)))))..(string.upper(string.format("%x", dec))))
   ----------====~~GO Target Command Replace Text ~~====----------

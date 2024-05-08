@@ -16,32 +16,32 @@
 -------------------------------------------------------------------------------------------------------------
 
 function Announce(value)
-  MangAdmin:ChatMsg(".announce "..value)
-  MangAdmin:LogAction("Announced message: "..value)
+  AzerothAdmin:ChatMsg(".announce "..value)
+  AzerothAdmin:LogAction("Announced message: "..value)
 end
 
 function Shutdown(value)
   if value == "" then
-    MangAdmin:ChatMsg(".server shutdown 0")
-    MangAdmin:LogAction("Shut down server instantly.")
+    AzerothAdmin:ChatMsg(".server shutdown 0")
+    AzerothAdmin:LogAction("Shut down server instantly.")
   else
-    MangAdmin:ChatMsg(".server shutdown "..value)
-    MangAdmin:LogAction("Shut down server in "..value.." seconds.")
+    AzerothAdmin:ChatMsg(".server shutdown "..value)
+    AzerothAdmin:LogAction("Shut down server in "..value.." seconds.")
   end
 end
 
 function ReloadTable(tablename)
   if not (tablename == "") then
-    MangAdmin:ChatMsg(".reload "..tablename)
+    AzerothAdmin:ChatMsg(".reload "..tablename)
     if tablename == "all" then
-      MangAdmin:LogAction("Reloaded all reloadable AzerothCore database tables.")
+      AzerothAdmin:LogAction("Reloaded all reloadable AzerothCore database tables.")
     else
-      MangAdmin:LogAction("Reloaded the table "..tablename..".")
+      AzerothAdmin:LogAction("Reloaded the table "..tablename..".")
     end
   end
 end
 
 function ReloadScripts()
-  MangAdmin:ChatMsg(".reload smart_scripts")
-  MangAdmin:LogAction("Reload Smart Scripts.")
+  AzerothAdmin:ChatMsg(".reload smart_scripts")
+  AzerothAdmin:LogAction("Reload Smart Scripts.")
 end

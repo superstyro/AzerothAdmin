@@ -18,42 +18,42 @@
 function OBJGo()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_guidbutton:GetText()
-    MangAdmin:ChatMsg(".go object "..obj)
-    MangAdmin:LogAction("Go Object for player "..player..".")
+    AzerothAdmin:ChatMsg(".go object "..obj)
+    AzerothAdmin:LogAction("Go Object for player "..player..".")
 end
 
 function OBJAdd()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_idbutton:GetText()
-    MangAdmin:ChatMsg(".gobject add "..obj)
-    MangAdmin:LogAction("Object Add for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject add "..obj)
+    AzerothAdmin:LogAction("Object Add for player "..player..".")
 end
 
 function OBJMove()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_guidbutton:GetText()
-    MangAdmin:ChatMsg(".gobject move "..obj)
-    MangAdmin:LogAction("Object Move for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject move "..obj)
+    AzerothAdmin:LogAction("Object Move for player "..player..".")
 end
 
 function OBJTurn()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_guidbutton:GetText()
-    MangAdmin:ChatMsg(".gobject turn "..obj)
-    MangAdmin:LogAction("Object Turn for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject turn "..obj)
+    AzerothAdmin:LogAction("Object Turn for player "..player..".")
 end
 
 function OBJDel()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_guidbutton:GetText()
-    MangAdmin:ChatMsg(".gobject delete "..obj)
-    MangAdmin:LogAction("Object Delete for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject delete "..obj)
+    AzerothAdmin:LogAction("Object Delete for player "..player..".")
 end
 
 function OBJNear()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".gobject near")
-    MangAdmin:LogAction("Object Near for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject near")
+    AzerothAdmin:LogAction("Object Near for player "..player..".")
 end
 
 function OBJTarget()
@@ -63,39 +63,39 @@ function OBJTarget()
         --ma_gobinfoinfo:SetText("|cffffffff")
 
         local player =  UnitName("player")
-        MangAdmin:ChatMsg(".gobject target")
-        MangAdmin:LogAction("Object Target for player "..player..".")
+        AzerothAdmin:ChatMsg(".gobject target")
+        AzerothAdmin:LogAction("Object Target for player "..player..".")
         --gettingGOBinfoinfo=1
-        MangAdmin:ChatMsg(".gobject info")
+        AzerothAdmin:ChatMsg(".gobject info")
         --ShowGobModel()
     end
 end
 
 function OBJActivate()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".gobject activate "..ma_Obj_guidbutton:GetText())
-    MangAdmin:LogAction("Object "..ma_Obj_guidbutton:GetText().." activated for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject activate "..ma_Obj_guidbutton:GetText())
+    AzerothAdmin:LogAction("Object "..ma_Obj_guidbutton:GetText().." activated for player "..player..".")
 end
 
 function OBJAddTemp()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_idbutton:GetText()
-    MangAdmin:ChatMsg(".gobject add temp "..obj)
-    MangAdmin:LogAction("Object Add(Temp) for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject add temp "..obj)
+    AzerothAdmin:LogAction("Object Add(Temp) for player "..player..".")
 end
 
 function OBJInfo()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".gobject info")
-    MangAdmin:LogAction("Object "..ma_Obj_guidbutton:GetText().." info obtained for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject info")
+    AzerothAdmin:LogAction("Object "..ma_Obj_guidbutton:GetText().." info obtained for player "..player..".")
 end
 
 function OBJSetPhase()
     local player = UnitName("target") or UnitName("player")
     local obj =	ma_Obj_guidbutton:GetText()
     local phase = ma_gobsetphaseinput:GetText()
-    MangAdmin:ChatMsg(".gobject set phase "..obj.." "..phase)
-    MangAdmin:LogAction("Object "..obj.." phase set to "..phase.." for player "..player..".")
+    AzerothAdmin:ChatMsg(".gobject set phase "..obj.." "..phase)
+    AzerothAdmin:LogAction("Object "..obj.." phase set to "..phase.." for player "..player..".")
 end
 
 function ShowGobModel()
@@ -135,7 +135,7 @@ end
 --ma_gobjectmodel:SetRotation((RotValSlider:GetValue() * Radian))
 
 function InitGobModelFrame()
-  ma_gobjectmodel:SetScript("OnUpdate", function() MangAdminModelOnUpdate(arg1) end)
+  ma_gobjectmodel:SetScript("OnUpdate", function() AzerothAdminModelOnUpdate(arg1) end)
   ma_gobjectmodel.rotation = 0.61
   ma_gobjectmodel:SetRotation(0.61)
   --ma_gobjectmodel:SetUnit("player")

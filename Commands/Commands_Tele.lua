@@ -36,7 +36,7 @@ function TeleScrollUpdate()
         SubzoneScrollUpdate()
       end
       --AzerothAdmin:LogAction("added index: "..index)
-      table.insert(TeleTable, {name = index, subzones = value})
+      table.insert(TeleportTable, {name = index, subzones = value})
     end
 
     if zoneCount > -1 then
@@ -51,7 +51,7 @@ function TeleScrollUpdate()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_ZoneScrollBar)
         --self:ChatMsg("L+O:" ..lineplusoffset)
         if lineplusoffset <= zoneCount then
-          local teleobj = TeleTable[lineplusoffset]
+          local teleobj = TeleportTable[lineplusoffset]
           if AzerothAdmin.db.char.selectedZone == teleobj.name then
             getglobal("ma_ZoneScrollBarEntry"..line):SetText("|cffff0000"..teleobj.name.."|r")
           else
@@ -86,7 +86,7 @@ function SubzoneScrollUpdate()
  end
 
 --    cont = AzerothAdmin.db.char.selectedCont
-  local TeleTable = {}
+  local TeleportTable = {}
   local subzoneCount = 0
   local shownZone = "Alterac Mountains"
   if AzerothAdmin.db.char.selectedZone then
@@ -96,7 +96,7 @@ function SubzoneScrollUpdate()
   for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
     if index == shownZone then
       for i, v in pairsByKeys(value) do
-        table.insert(TeleTable, {name = i, command = v})
+        table.insert(TeleportTable, {name = i, command = v})
         subzoneCount = subzoneCount + 1
       end
     end
@@ -109,7 +109,7 @@ function SubzoneScrollUpdate()
       --lineplusoffset = line + ((AzerothAdmin.db.account.tickets.page - 1) * 4)  --for paged mode
       lineplusoffset = line + FauxScrollFrame_GetOffset(ma_SubzoneScrollBar)
       if lineplusoffset <= subzoneCount then
-        local teleobj = TeleTable[lineplusoffset]
+        local teleobj = TeleportTable[lineplusoffset]
         getglobal("ma_SubzoneScrollBarEntry"..line):SetText(teleobj.name)
         getglobal("ma_SubzoneScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:ChatMsg(teleobj.command) end)
         getglobal("ma_SubzoneScrollBarEntry"..line):SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)

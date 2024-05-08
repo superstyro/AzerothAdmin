@@ -45,7 +45,7 @@ DBC.lua
 TeleTable.lua
 FunctionInit.lua
 AzerothAdmin.lua
-AzerothLinkifier.lua
+MangLinkifier.lua
 Frames\MangFrames_Start.lua
 Frames\MangFrames_Tabs.lua
 Frames\MangFrames_MiniMenu.lua
@@ -62,4 +62,4 @@ Frames\MangFrames_SectionServer.lua
 Frames\MangFrames_SectionNpc.lua
 Frames\MangFrames_SectionGO.lua
 Frames\MangFrames_SectionWho.lua
-AzerothFrames.lua
+MangFrames.lua

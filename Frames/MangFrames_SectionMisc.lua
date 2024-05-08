@@ -18,19 +18,19 @@
 
 -- Initializing dynamic frames with LUA and FrameLib
 -- This script must be listed in the .toc after "MangFrames_SectionTicket.lua"
--- Also some variables are globally taken from MangAdmin.lua
+-- Also some variables are globally taken from AzerothAdmin.lua
 
-function MangAdmin:CreateMiscSection()
+function AzerothAdmin:CreateMiscSection()
   local transparency = {
-    bg = MangAdmin.db.account.style.transparency.backgrounds,
-    btn = MangAdmin.db.account.style.transparency.buttons,
-    frm = MangAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.account.style.transparency.buttons,
+    frm = AzerothAdmin.db.account.style.transparency.frames
   }
   local color = {
-    bg = MangAdmin.db.account.style.color.backgrounds,
-    btn = MangAdmin.db.account.style.color.buttons,
-    frm = MangAdmin.db.account.style.color.frames,
-    linkifier = MangAdmin.db.account.style.color.linkifier
+    bg = AzerothAdmin.db.account.style.color.backgrounds,
+    btn = AzerothAdmin.db.account.style.color.buttons,
+    frm = AzerothAdmin.db.account.style.color.frames,
+    linkifier = AzerothAdmin.db.account.style.color.linkifier
   }
 
   FrameLib:BuildButton({

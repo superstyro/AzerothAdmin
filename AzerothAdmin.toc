@@ -12,8 +12,8 @@
 ## OptionalDeps: AceLibrary,AceEvent-2.0,AceHook-2.1,AceDebug-2.0,AceLocale-2.2,AceConsole-2.0,AceAddon-2.0
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
-## SavedVariables: MangAdminDb
-## SavedVariablesPerCharacter: MangAdminDbPerChar
+## SavedVariables: AzerothAdminDb
+## SavedVariablesPerCharacter: AzerothAdminDbPerChar
 Libraries\AceLibrary\AceLibrary.lua
 Libraries\AceOO-2.0\AceOO-2.0.lua
 Libraries\AceEvent-2.0\AceEvent-2.0.lua
@@ -30,7 +30,7 @@ Libraries\FuBarPlugin-2.0\FuBarPlugin-2.0.lua
 Libraries\Graph-1.0\Graph-1.0.lua
 Locales\enUS.lua
 Locales\strings.lua
-models.lua
+Models.lua
 Commands\Commands_Main.lua
 Commands\Commands_Tele.lua
 Commands\Commands_Log.lua
@@ -41,7 +41,7 @@ Commands\Commands_Server.lua
 Commands\Commands_NPC.lua
 Commands\Commands_GO.lua
 Commands\Commands_Who.lua
-dbc.lua
+DBC.lua
 TeleportTable.lua
 FunctionInit.lua
 AzerothAdmin.lua

@@ -16,7 +16,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 function InitModelFrameNPC()
-  ma_npcmodelframe:SetScript("OnUpdate", function() MangAdminNpcModelOnUpdate(arg1) end)
+  ma_npcmodelframe:SetScript("OnUpdate", function() AzerothAdminNpcModelOnUpdate(arg1) end)
   ma_npcmodelframe.rotation = 0.61;
   ma_npcmodelframe:SetRotation(ma_npcmodelframe.rotation)
   ma_npcmodelframe:SetUnit("player")
@@ -35,7 +35,7 @@ function NpcModelRotateRight()
   PlaySound("igInventoryRotateCharacter")
 end
 
-function MangAdminNpcModelOnUpdate(elapsedTime)
+function AzerothAdminNpcModelOnUpdate(elapsedTime)
   if ( ma_npcmodelrotatelbutton:GetButtonState() == "PUSHED" ) then
     this.rotation = this.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
     if ( this.rotation < 0 ) then
@@ -53,7 +53,7 @@ function MangAdminNpcModelOnUpdate(elapsedTime)
 end
 
 function NpcModelChanged()
-  if not MangAdmin:Selection("none") then
+  if not AzerothAdmin:Selection("none") then
     ma_npcmodelframe:SetUnit("target")
   else
     ma_npcmodelframe:SetUnit("player")
@@ -63,131 +63,131 @@ end
 
 function NPCKillSomething()
   local target = UnitName("target") or UnitName("player")
-  MangAdmin:ChatMsg(".die")
-  MangAdmin:LogAction("Killed "..target..".")
+  AzerothAdmin:ChatMsg(".die")
+  AzerothAdmin:LogAction("Killed "..target..".")
 end
 
 function Respawn()
-  MangAdmin:ChatMsg(".respawn")
-  MangAdmin:LogAction("Respawned creatures near you.")
+  AzerothAdmin:ChatMsg(".respawn")
+  AzerothAdmin:LogAction("Respawned creatures near you.")
 end
 
 function NPCDistance()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".distance")
-    MangAdmin:LogAction("Got distance to player "..player..".")
+    AzerothAdmin:ChatMsg(".distance")
+    AzerothAdmin:LogAction("Got distance to player "..player..".")
 end
 
 function NPCShowGUID()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".guid")
-    MangAdmin:LogAction("Got GUID for player "..player..".")
+    AzerothAdmin:ChatMsg(".guid")
+    AzerothAdmin:LogAction("Got GUID for player "..player..".")
 end
 
 function NPCInfo()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc info")
-    MangAdmin:LogAction("Got NPC info for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc info")
+    AzerothAdmin:LogAction("Got NPC info for player "..player..".")
 end
 
 function NPCDemorph()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".demorph")
-    MangAdmin:LogAction("Demorphed player "..player..".")
+    AzerothAdmin:ChatMsg(".demorph")
+    AzerothAdmin:LogAction("Demorphed player "..player..".")
 end
 
 
 function NPCMove()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc move")
-    MangAdmin:LogAction("Set NPC move for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc move")
+    AzerothAdmin:LogAction("Set NPC move for player "..player..".")
 end
 
 
 
 function NPCDel()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc del")
-    MangAdmin:LogAction("Set NPC deleted for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc del")
+    AzerothAdmin:LogAction("Set NPC deleted for player "..player..".")
 end
 
 function NPC_GUID_Get()
-	MangAdmin:ID_Setting_Start_Write(1)
+	AzerothAdmin:ID_Setting_Start_Write(1)
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc info")
-    MangAdmin:LogAction("Got NPC_GUID_Get for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc info")
+    AzerothAdmin:LogAction("Got NPC_GUID_Get for player "..player..".")
 end
 
 function NPC_Add()
     local player = UnitName("target") or UnitName("player")
     local npc = ma_NPC_idbutton:GetText()
-    MangAdmin:ChatMsg(".npc add "..npc)
-    MangAdmin:LogAction("NPC Spawn mob "..npc..".")
+    AzerothAdmin:ChatMsg(".npc add "..npc)
+    AzerothAdmin:LogAction("NPC Spawn mob "..npc..".")
 end
 
 function NPCGo()
     local player = UnitName("target") or UnitName("player")
     local npc =	ma_NPC_guidbutton:GetText()
-    MangAdmin:ChatMsg(".go creature "..npc)
-    MangAdmin:LogAction("Go NPC for player "..player..".")
+    AzerothAdmin:ChatMsg(".go creature "..npc)
+    AzerothAdmin:LogAction("Go NPC for player "..player..".")
 end
 
 function NPCMorph()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".modify morph "..npccname)
-  MangAdmin:LogAction(".modify morph "..npccname..".")
+  AzerothAdmin:ChatMsg(".modify morph "..npccname)
+  AzerothAdmin:LogAction(".modify morph "..npccname..".")
 end
 
 function NPCSay()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".npc say "..npccname)
-  MangAdmin:LogAction(".npc say "..npccname..".")
+  AzerothAdmin:ChatMsg(".npc say "..npccname)
+  AzerothAdmin:LogAction(".npc say "..npccname..".")
 end
 
 function NPCYell()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".npc yell "..npccname)
-  MangAdmin:LogAction(".npc yell "..npccname..".")
+  AzerothAdmin:ChatMsg(".npc yell "..npccname)
+  AzerothAdmin:LogAction(".npc yell "..npccname..".")
 end
 
 function NPCAura()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".aura "..npccname)
-  MangAdmin:LogAction(".aura "..npccname..".")
+  AzerothAdmin:ChatMsg(".aura "..npccname)
+  AzerothAdmin:LogAction(".aura "..npccname..".")
 end
 
 function NPCUnaura()
   local cname = ma_charactertarget:GetText()
   local npccname = ma_npccharactertarget:GetText()
-  MangAdmin:ChatMsg(".unaura "..npccname)
-  MangAdmin:LogAction(".unaura "..npccname..".")
+  AzerothAdmin:ChatMsg(".unaura "..npccname)
+  AzerothAdmin:LogAction(".unaura "..npccname..".")
 end
 
 function NpcEmote(emote)
-    MangAdmin:ChatMsg(".npc playemote "..emote)
-    MangAdmin:LogAction("Played emote ("..emote..").")
+    AzerothAdmin:ChatMsg(".npc playemote "..emote)
+    AzerothAdmin:LogAction("Played emote ("..emote..").")
 end
 
 function NPCBindSight()
     local npccname = ma_npccharactertarget:GetText()
-    MangAdmin:ChatMsg(".bindsight")
-    MangAdmin:LogAction("Sight bound to "..npccname)
+    AzerothAdmin:ChatMsg(".bindsight")
+    AzerothAdmin:LogAction("Sight bound to "..npccname)
 end
 
 function NPCUnBindSight()
     local npccname = ma_npccharactertarget:GetText()
-    MangAdmin:ChatMsg(".unbindsight")
-    MangAdmin:LogAction("Sight unbound to "..npccname)
+    AzerothAdmin:ChatMsg(".unbindsight")
+    AzerothAdmin:LogAction("Sight unbound to "..npccname)
 end
 
 function NPCComeToMe()
     local npccname = ma_npccharactertarget:GetText()
-    MangAdmin:ChatMsg(".cometome 1")
-    MangAdmin:LogAction("Forced "..npccname.." using ComeToMe")
+    AzerothAdmin:ChatMsg(".cometome 1")
+    AzerothAdmin:LogAction("Forced "..npccname.." using ComeToMe")
 
 end
 
@@ -195,27 +195,27 @@ function DisplayUP()
     local currentid = ma_npcdisplayid:GetText()
     currentid = currentid + 1
     ma_npcdisplayid:SetText(currentid)
-    MangAdmin:ChatMsg(".npc set model "..currentid)
+    AzerothAdmin:ChatMsg(".npc set model "..currentid)
 end
 function DisplayDown()
     local currentid = ma_npcdisplayid:GetText()
     currentid = currentid - 1
     ma_npcdisplayid:SetText(currentid)
-    MangAdmin:ChatMsg(".npc set model "..currentid)
+    AzerothAdmin:ChatMsg(".npc set model "..currentid)
 end
 
 function ID_UP()
     local currentid = ma_NPC_idbutton:GetText()
     currentid = currentid + 1
     ma_NPC_idbutton:SetText(currentid)
---    MangAdmin:ChatMsg(".npc set model "..currentid)
+--    AzerothAdmin:ChatMsg(".npc set model "..currentid)
 end
 
 function ID_DOWN()
     local currentid = ma_NPC_idbutton:GetText()
     currentid = currentid - 1
     ma_NPC_idbutton:SetText(currentid)
---    MangAdmin:ChatMsg(".npc set model "..currentid)
+--    AzerothAdmin:ChatMsg(".npc set model "..currentid)
 end
 
 function NPCModelZoomIn()
@@ -238,94 +238,94 @@ end
 
 function NPCPossess()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".possess")
-    MangAdmin:LogAction("Possessed "..player)
+    AzerothAdmin:ChatMsg(".possess")
+    AzerothAdmin:LogAction("Possessed "..player)
 
 end
 function NPCUnPossess()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".unpossess")
-    MangAdmin:LogAction("UnPossessed "..player)
+    AzerothAdmin:ChatMsg(".unpossess")
+    AzerothAdmin:LogAction("UnPossessed "..player)
 
 end
 
 function NPCFreeze()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc set movetype stay NODEL")
-    MangAdmin:LogAction("Set NPC movement to STAY for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc set movetype stay NODEL")
+    AzerothAdmin:LogAction("Set NPC movement to STAY for player "..player..".")
 end
 
 function NPCFreezeDEL()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc set movetype stay")
-    MangAdmin:LogAction("Set NPC movement to STAY for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc set movetype stay")
+    AzerothAdmin:LogAction("Set NPC movement to STAY for player "..player..".")
 end
 
 function WayEndAdd()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".wp add")
-    MangAdmin:LogAction("WayPoint Add for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp add")
+    AzerothAdmin:LogAction("WayPoint Add for player "..player..".")
 end
 
 function NPCAdd_Way()
     local player = UnitName("target") or UnitName("player")
     local npc =	ma_NPC_guidbutton:GetText()
-    MangAdmin:ChatMsg(".wp add "..npc)
-    --MangAdmin:Way_Point_Add_Start_Write(1)
-    MangAdmin:ChatMsg(".wp show on "..npc)
-    MangAdmin:LogAction("WayPoint Add for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp add "..npc)
+    --AzerothAdmin:Way_Point_Add_Start_Write(1)
+    AzerothAdmin:ChatMsg(".wp show on "..npc)
+    AzerothAdmin:LogAction("WayPoint Add for player "..player..".")
 end
 
 function WayModifyAdd()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".wp modify add")
-    MangAdmin:LogAction("WayPoint(Modify) Add for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp modify add")
+    AzerothAdmin:LogAction("WayPoint(Modify) Add for player "..player..".")
 end
 
 function WayModifyDel()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".wp modify del")
-    MangAdmin:LogAction("WayPoint(Modify) Del for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp modify del")
+    AzerothAdmin:LogAction("WayPoint(Modify) Del for player "..player..".")
 end
 
 function NPCAdd_WayShowOn()
     local player = UnitName("target") or UnitName("player")
     local npc =	ma_NPC_guidbutton:GetText()
-    MangAdmin:ChatMsg(".wp show on "..npc)
-    MangAdmin:LogAction("WayPoint Show On for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp show on "..npc)
+    AzerothAdmin:LogAction("WayPoint Show On for player "..player..".")
 end
 
 function WayShowOn()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".wp show on")
-    MangAdmin:LogAction("WayPoint Show On for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp show on")
+    AzerothAdmin:LogAction("WayPoint Show On for player "..player..".")
 end
 
 function WayShowOff()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".wp show off")
-    MangAdmin:LogAction("WayPoint Show Off for player "..player..".")
+    AzerothAdmin:ChatMsg(".wp show off")
+    AzerothAdmin:LogAction("WayPoint Show Off for player "..player..".")
 end
 
 function NPCUnFreeze_Way()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".npc set movetype way NODEL")
-    MangAdmin:LogAction("Set NPC movement type to WAYPOINT for player "..player..".")
+    AzerothAdmin:ChatMsg(".npc set movetype way NODEL")
+    AzerothAdmin:LogAction("Set NPC movement type to WAYPOINT for player "..player..".")
 end
 
 function NPCUnFreeze_Random()
     local player = UnitName("target") or UnitName("player")
     local rdistancecname = ma_npcunfreeze_random_distancebutton:GetText()
-    MangAdmin:ChatMsg(".npc set spawndist "..rdistancecname)
-    MangAdmin:LogAction("Set NPC spawndist "..rdistancecname..".")
-    MangAdmin:ChatMsg(".npc setm ovetype random NODEL")
-    MangAdmin:LogAction("Set NPC movement type to RANDOM for player "..player..".")
-    MangAdmin:ChatMsg(".respawn")
+    AzerothAdmin:ChatMsg(".npc set spawndist "..rdistancecname)
+    AzerothAdmin:LogAction("Set NPC spawndist "..rdistancecname..".")
+    AzerothAdmin:ChatMsg(".npc setm ovetype random NODEL")
+    AzerothAdmin:LogAction("Set NPC movement type to RANDOM for player "..player..".")
+    AzerothAdmin:ChatMsg(".respawn")
 
 end
 
 function ShowMove()
     local player = UnitName("target") or UnitName("player")
-    MangAdmin:ChatMsg(".movegens")
-    MangAdmin:LogAction("Got Movement Stack for player "..player..".")
+    AzerothAdmin:ChatMsg(".movegens")
+    AzerothAdmin:LogAction("Got Movement Stack for player "..player..".")
 end

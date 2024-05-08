@@ -18,9 +18,9 @@
 
 -- Initializing dynamic frames with LUA and FrameLib
 -- This script must be listed in the .toc after all other Frames/MangFrames files!!!
--- Also some variables are globally taken from MangAdmin.lua
+-- Also some variables are globally taken from AzerothAdmin.lua
 
-function MangAdmin:CreateFrames()
+function AzerothAdmin:CreateFrames()
   -- These need to be called in TOC order
   self:CreateStartFrames()
   self:CreateTabs()

@@ -16,7 +16,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 function ShowTicketTab()
-  wipe(MangAdmin.db.account.buffer.tickets)
+  wipe(AzerothAdmin.db.account.buffer.tickets)
   ma_goticketbutton:Disable()
   ma_deleteticketbutton:Disable()
   ma_answerticketbutton:Disable()
@@ -25,16 +25,16 @@ function ShowTicketTab()
   ma_whisperticketbutton:Disable()
   ma_resetticketsbutton:Disable()
   ma_showbutton:Disable()
-  MangAdmin:InstantGroupToggle("ticket")
+  AzerothAdmin:InstantGroupToggle("ticket")
   ResetTickets()
 end
 
 function RefreshOnlineTickets()
     ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate()) end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
-    MangAdmin.db.char.requests.ticket = true
-    MangAdmin:LogAction("Getting tickets.")
-    MangAdmin:ChatMsg(".ticket onlinelist")
+    AzerothAdmin.db.char.requests.ticket = true
+    AzerothAdmin:LogAction("Getting tickets.")
+    AzerothAdmin:ChatMsg(".ticket onlinelist")
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
@@ -47,9 +47,9 @@ function RefreshTickets()
 
     ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate()) end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
-    MangAdmin.db.char.requests.ticket = true
-    MangAdmin:LogAction("Getting tickets.")
-    MangAdmin:ChatMsg(".ticket list")
+    AzerothAdmin.db.char.requests.ticket = true
+    AzerothAdmin:LogAction("Getting tickets.")
+    AzerothAdmin:ChatMsg(".ticket list")
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
@@ -59,13 +59,13 @@ function RefreshTickets()
 end
 
 function ResetTickets()
-    wipe(MangAdmin.db.account.buffer.tickets)
-    wipe(MangAdmin.db.account.buffer.tickets)
-    wipe(MangAdmin.db.account.buffer.tickets)
-    MangAdmin.db.account.buffer.tickets = {}
-    MangAdmin.db.account.buffer.tickets = {}
-    MangAdmin.db.account.buffer.tickets = {}
-    MangAdmin.db.char.requests.ticket = true
+    wipe(AzerothAdmin.db.account.buffer.tickets)
+    wipe(AzerothAdmin.db.account.buffer.tickets)
+    wipe(AzerothAdmin.db.account.buffer.tickets)
+    AzerothAdmin.db.account.buffer.tickets = {}
+    AzerothAdmin.db.account.buffer.tickets = {}
+    AzerothAdmin.db.account.buffer.tickets = {}
+    AzerothAdmin.db.char.requests.ticket = true
     for i=1,12 do
        getglobal("ma_ticketscrollframe"..i):Hide()
     end
@@ -79,7 +79,7 @@ function ResetTickets()
     ma_ticketcreatedby:SetText(nil)
     ma_tickettimecreated:SetText(nil)
     ma_ticketlastchange:SetText(nil)
-    MangAdmin:LogAction("Reset/Cleared tickets.")
+    AzerothAdmin:LogAction("Reset/Cleared tickets.")
     ma_goticketbutton:Disable()
     ma_deleteticketbutton:Disable()
     ma_answerticketbutton:Disable()
@@ -94,7 +94,7 @@ function ShowTickets()
  InlineScrollUpdate()
 end
 
---[[function MangAdmin:LoadTickets(number)
+--[[function AzerothAdmin:LoadTickets(number)
   self.db.char.newTicketQueue = {}
   --self.db.account.tickets.requested = 0
   if number then
@@ -120,7 +120,7 @@ end
   InlineScrollUpdate()
 end]]
 
---[[function MangAdmin:RequestTickets()
+--[[function AzerothAdmin:RequestTickets()
   self.db.char.requests.ticket = true
   local ticketCount = 0
   table.foreachi(self.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
@@ -139,25 +139,25 @@ end]]
 end]]
 
 function Ticket(value)
-  local ticket = MangAdmin.db.account.tickets.selected
+  local ticket = AzerothAdmin.db.account.tickets.selected
   if value == "delete" then
-    MangAdmin:ChatMsg(".ticket close "..ma_ticketid:GetText())
-    MangAdmin:LogAction("Closed ticket with number: "..ma_ticketid:GetText())
-    wipe(MangAdmin.db.account.buffer.tickets)
-    MangAdmin.db.account.buffer.tickets={}
---    MangAdmin:ChatMsg(".ticket delete"..ma_ticketid:GetText())
---    MangAdmin:LogAction("Deleted ticket with number: "..ma_ticketid:GetText())
+    AzerothAdmin:ChatMsg(".ticket close "..ma_ticketid:GetText())
+    AzerothAdmin:LogAction("Closed ticket with number: "..ma_ticketid:GetText())
+    wipe(AzerothAdmin.db.account.buffer.tickets)
+    AzerothAdmin.db.account.buffer.tickets={}
+--    AzerothAdmin:ChatMsg(".ticket delete"..ma_ticketid:GetText())
+--    AzerothAdmin:LogAction("Deleted ticket with number: "..ma_ticketid:GetText())
     ShowTicketTab()
     ResetTickets()
     --InlineScrollUpdate()
   elseif value == "gochar" then
-    MangAdmin:ChatMsg(".appear "..ma_ticketcreatedby:GetText())
+    AzerothAdmin:ChatMsg(".appear "..ma_ticketcreatedby:GetText())
   elseif value == "getchar" then
-    MangAdmin:ChatMsg(".summon "..ma_ticketcreatedby:GetText())
+    AzerothAdmin:ChatMsg(".summon "..ma_ticketcreatedby:GetText())
   elseif value == "answer" then
---    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
-    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
---    MangAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")", body = ma_ticketdetail:GetText()})
+--    AzerothAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
+    AzerothAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")"})
+--    AzerothAdmin:TogglePopup("mail", {recipient = ma_ticketcreatedby:GetText(), subject = "Ticket("..ma_ticketid:GetText()..")", body = ma_ticketdetail:GetText()})
     ma_maileditbox:SetText(ma_ticketdetail:GetText())
   elseif value == "whisper" then
 --    ChatFrameEditBox:Show()
@@ -173,20 +173,20 @@ function Ticket(value)
        end
 
   elseif value == "goticket" then
-    MangAdmin:ChatMsg(".go ticket "..ma_ticketid:GetText())
+    AzerothAdmin:ChatMsg(".go ticket "..ma_ticketid:GetText())
   end
 end
 
---[[function MangAdmin:ToggleTickets(value)
-  MangAdmin:ChatMsg(".ticket "..value)
-  MangAdmin:LogAction("Turned receiving new tickets "..value..".")
+--[[function AzerothAdmin:ToggleTickets(value)
+  AzerothAdmin:ChatMsg(".ticket "..value)
+  AzerothAdmin:LogAction("Turned receiving new tickets "..value..".")
 end]]
 
 
 function InlineScrollUpdate()
-    MangAdmin:LogAction("Showing tickets.")
+    AzerothAdmin:LogAction("Showing tickets.")
     local ticketCount = 0
-    table.foreachi(MangAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
+    table.foreachi(AzerothAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
     if ticketCount > 0 then
       ma_ticketscrollframe1:SetText("Loading")
       local lineplusoffset
@@ -196,10 +196,10 @@ function InlineScrollUpdate()
       for line = 1,12 do
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_ticketscrollframe)
         if lineplusoffset <= ticketCount then
-          local object = MangAdmin.db.account.buffer.tickets[lineplusoffset]
+          local object = AzerothAdmin.db.account.buffer.tickets[lineplusoffset]
           if object then
             getglobal("ma_ticketscrollframe"..line):SetText("Ticket:|cffffffff"..object["tNumber"].."|r Created by: |cffffffff"..object["tChar"].."|r Last change:|cffffffff"..object["tLUpdate"].."|r")
-            MangAdmin.db.account.tickets.selected = object
+            AzerothAdmin.db.account.tickets.selected = object
             getglobal("ma_ticketscrollframe"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
             getglobal("ma_ticketscrollframe"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
             getglobal("ma_ticketscrollframe"..line):SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"]) end)
@@ -211,16 +211,16 @@ function InlineScrollUpdate()
         end
       end
     else
-      --MangAdmin:NoResults("ticket")
+      --AzerothAdmin:NoResults("ticket")
     end
 --  else
 --  end
---MangAdmin.db.account.buffer.tickets = {}
---MangAdmin.db.char.requests.ticket = false
+--AzerothAdmin.db.account.buffer.tickets = {}
+--AzerothAdmin.db.char.requests.ticket = false
 end
 
 function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
-    MangAdmin.db.char.requests.ticket = false
+    AzerothAdmin.db.char.requests.ticket = false
     ma_goticketbutton:Enable()
     ma_deleteticketbutton:Enable()
     ma_answerticketbutton:Enable()
@@ -228,17 +228,17 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     ma_gocharticketbutton:Enable()
     ma_whisperticketbutton:Enable()
     tNumber = string.match(tNumber, "%d+")
-    MangAdmin:ChatMsg(".ticket viewid "..tNumber)
+    AzerothAdmin:ChatMsg(".ticket viewid "..tNumber)
     ma_ticketid:SetText(tNumber)
     ma_ticketcreatedby:SetText(tChar)
     ma_tickettimecreated:SetText(tLCreate)
     ma_ticketlastchange:SetText(tLUpdate)
-    MangAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
-    local ticketdetail = MangAdmin.db.account.buffer.ticketsfull
+    AzerothAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
+    local ticketdetail = AzerothAdmin.db.account.buffer.ticketsfull
     ma_ticketdetail:Show();
-    --MangAdmin:ChatMsg("???")
+    --AzerothAdmin:ChatMsg("???")
     --ma_ticketdetail:SetText("Hello")
-    --MangAdmin:ChatMsg(MangAdmin.db.account.buffer.ticketsfull["tMsg"])
+    --AzerothAdmin:ChatMsg(AzerothAdmin.db.account.buffer.ticketsfull["tMsg"])
     --ma_ticketdetail:SetText(ticketdetail["tMsg"])
     --getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")

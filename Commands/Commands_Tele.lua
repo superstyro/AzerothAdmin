@@ -27,7 +27,7 @@ function TeleScrollUpdate()
     end
     --AzerothAdmin.db.char.selectedCont = cont
     --self:ChatMsg("Wrote cont:" ..cont)
-    local TeleTable = {}
+    local TeleportTable = {}
     local zoneCount = 0
     for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
       zoneCount = zoneCount + 1

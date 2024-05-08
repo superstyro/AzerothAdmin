@@ -41,11 +41,11 @@ Commands\Commands_Server.lua
 Commands\Commands_NPC.lua
 Commands\Commands_GO.lua
 Commands\Commands_Who.lua
-dbc.lua
-TeleportTable.lua
+DBC.lua
+TeleTable.lua
 FunctionInit.lua
 AzerothAdmin.lua
-MangLinkifier.lua
+AzerothLinkifier.lua
 Frames\MangFrames_Start.lua
 Frames\MangFrames_Tabs.lua
 Frames\MangFrames_MiniMenu.lua
@@ -62,4 +62,4 @@ Frames\MangFrames_SectionServer.lua
 Frames\MangFrames_SectionNpc.lua
 Frames\MangFrames_SectionGO.lua
 Frames\MangFrames_SectionWho.lua
-MangFrames.lua
+AzerothFrames.lua

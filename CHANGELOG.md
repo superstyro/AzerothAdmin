@@ -1,5 +1,15 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 06 - 12/15/2024]=-
+- FIX duplicate `lfer_GOtargguid1` entry in strings.lua
+- FIX duplicate `ma_Honor` entry in Locals\enUS.lua
+- FIX parameter assignment issue in AceEvent-2.0.lua
+  - Corrected the assignment of `once` and `method` parameters to avoid potential errors
+- FIX #14 Update AzerothAdminLogOnUpdate function
+  - Added handling for log scroll buttons in AzerothAdminLogOnUpdate function
+- FIX #15 Update ticket message handling
+  - Improved the logic for adding text to ticket messages in the database
+
 ### -=[ Revision 05 - 5/04/2024]=-
 - FIX #11 Hide WHO buttons
   - Cannot use level 4 account unless manually set in server console
@@ -19,9 +29,11 @@
   - Correct GPS button function
   - Disable ListFreeze button (No command available)
   - Correct HonorUpdt button function (Output is in LOG tab)
+
 ### -=[ Revision 04 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window
+
 ### -=[ Revision 03 - 1/24/2022]=-
 - Updated Copyright year 2022
 - FIX Ticket TAB
@@ -32,6 +44,7 @@
   - Added Last Change Label
   - Lots off little things added.
   - I am bad at keeping this changelog updated.
+
 ### -=[ Revision 02 - 10/20/2019]=-
 - FIX GM tab
   - Typo in GM-mode on/off

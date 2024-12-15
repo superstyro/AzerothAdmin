@@ -50,7 +50,7 @@ function ReturnStrings_enUS()
     ["lfer_GOtargid2"] = "GUID: (%d+) ID: (%d+)",
     ["lfer_GOtargid3"] = "GUID: %1 ID: %2",
     ["lfer_GOtargguid1"] = "GUID: (%d+) ID",
-    ["lfer_GOtargguid1"] = "GUID: (%d+) ",
+    ["lfer_GOtargguid2"] = "GUID: (%d+) ",
     ["lfer_GOtargguid3"] = "GUID: %1", "%1",
     ["lfer_GOtargxyz1"] = "X: ([%p%d.%d]+) Y: ([%p%d.%d]+) Z: ([%p%d.%d]+) MapId: (%d+)",
     ["lfer_GOtargxyz2"] = "X: ([%p%d.%d]+) Y: ([%p%d.%d]+) Z: ([%p%d.%d]+) MapId: (%d+)",

@@ -1481,8 +1481,6 @@ elseif cont == "I_N" then
    },
   ["Gundrak"] = {
     ["Cave of Mamtoth"]                     = ".go xyz 1891.84 832.169 176.669 604",
-   },
-  ["Gundrak"] = {
     ["Den of Ssaratus"]                     = ".go xyz 1894.58 652.713 176.666 604",
    },
   ["Drak'Tharon Keep"] = {

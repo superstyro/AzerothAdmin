@@ -113,7 +113,7 @@ function AceEvent:RegisterEvent(event, method, once)
 	end
 	local throttleRate
 	if type(once) == "number" then
-		throttleRate, once = once
+		throttleRate, once = once, nil
 	end
 	if not method then
 		method = event

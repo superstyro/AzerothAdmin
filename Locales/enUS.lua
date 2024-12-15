@@ -396,7 +396,6 @@ function Return_enUS()
     ["ma_Drunk"]                      = "Drunk",
     ["ma_FlySpeed"]                   = "FlySpeed",
     ["ma_Gender"]                     = "Gender",
-    ["ma_Honor"]                      = "Honor",
     ["ma_MountSpeed"]                 = "MountSpeed",
     ["ma_Phase"]                      = "Phase",
     ["ma_RunicPower"]                 = "RunicPower",

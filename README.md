@@ -11,19 +11,6 @@ AzerothAdmin v3.3.5 is a general interface add-on which will help admins and GMs
   - Some Functions may work with TrinityCore
   - It may or may not work with MaNGOS, Arc, Ascent, Hearthstone, or any other emu.
 
-## TABS WITH COMPLETED LAYOUTS:
-
-- [x] GM
-- [x] CHAR
-- [x] NPC
-- [ ] GOB
-- [x] TELE
-- [x] TICKETS
-- [x] MISC
-- [x] SERVER
-- [x] LOG
-- [ ] WHO
-
 ## SCREENSHOT:
 ![image](/Textures/AA_char.jpg)
 ![image](/Textures/AA_gm.jpg)

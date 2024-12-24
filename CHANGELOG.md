@@ -1,5 +1,10 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 008 - 12/23/2024]=-
+- FIX [[#12](https://github.com/superstyro/AzerothAdmin/issues/12)]
+- REMOVE FuBarPlugin
+- Add Libs for future minimap rework
+
 ### -=[ Revision 007 - 12/23/2024]=-
 - FIX [#22](https://github.com/superstyro/AzerothAdmin/issues/22)
 - ADD BuildFontStrings for 'Mean', 'Median', and 'Percentiles' in MangFrames_SectionServer.lua

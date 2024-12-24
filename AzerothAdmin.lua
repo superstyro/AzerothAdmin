@@ -31,7 +31,7 @@ gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
 MAJOR_VERSION = "AzerothAdmin-3.3.5"
-MINOR_VERSION = "$Revision: 006 $"
+MINOR_VERSION = "$Revision: 007 $"
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
@@ -884,7 +884,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
 --     for diff in string.gmatch(text, Strings["ma_GmatchUpdateDiff"]) do
 --         ma_difftext:SetText(diff)
 --         catchedSth = true
--- --        output   = AzerothAdmin.db.account.style.showchat
 --         output     = AzerothAdmin.db.account.style.showchat
 --     end
     for difftime in string.gmatch(text, Strings["ma_GmatchUpdateDiffTime"]) do --We just want the Diff time number value
@@ -892,6 +891,25 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
+
+    -- hook Last 500 diff info from .server info
+    for mean in string.gmatch(text, Strings["ma_GmatchMean"]) do
+      ma_meantextoutput:SetText(mean .. " ms")
+      catchedSth = true
+      output = AzerothAdmin.db.account.style.showchat
+    end
+    for median in string.gmatch(text, Strings["ma_GmatchMedian"]) do
+      ma_mediantextoutput:SetText(median .. " ms")
+      catchedSth = true
+      output = AzerothAdmin.db.account.style.showchat
+    end
+    for p95, p99, pmax in string.gmatch(text, Strings["ma_GmatchPercentiles"]) do
+      --print("Matched percentiles:", p95, p99, pmax) -- Debug print
+      --ma_percentilestextoutput:SetText("95th: " .. p95 .. "ms, 99th: " .. p99 .. "ms, Max: " .. pmax .. "ms")
+      ma_percentilestextoutput:SetText("".. p95 .. " ms, " .. p99 .. " ms, " .. pmax .. " ms") -- simple output
+      catchedSth = true
+    end
+
     -- hook all new tickets
     for name in string.gmatch(text, Strings["ma_GmatchNewTicket"]) do
       self:SetIcon(ROOT_PATH.."Textures\\icon2.tga")

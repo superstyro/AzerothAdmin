@@ -1,6 +1,13 @@
 # AzerothAdmin Changelog
 
-### -=[ Revision 06 - 12/15/2024]=-
+### -=[ Revision 007 - 12/23/2024]=-
+- FIX [#22](https://github.com/superstyro/AzerothAdmin/issues/22)
+- ADD BuildFontStrings for 'Mean', 'Median', and 'Percentiles' in MangFrames_SectionServer.lua
+- FIX string pattern for matching percentiles in strings.lua
+  - ADD pattern to match '|- Percentiles (95, 99, max): 3ms, 4ms, 4ms'
+- UPDATE CHANGELOG.md to follow addon revision number
+
+### -=[ Revision 006 - 12/15/2024]=-
 - FIX duplicate `lfer_GOtargguid1` entry in strings.lua
 - FIX duplicate `ma_Honor` entry in Locals\enUS.lua
 - FIX parameter assignment issue in AceEvent-2.0.lua
@@ -10,7 +17,7 @@
 - FIX #15 Update ticket message handling
   - Improved the logic for adding text to ticket messages in the database
 
-### -=[ Revision 05 - 5/04/2024]=-
+### -=[ Revision 005 - 5/04/2024]=-
 - FIX #11 Hide WHO buttons
   - Cannot use level 4 account unless manually set in server console
 - FIX #13 Correct server update frequency to be more accurate
@@ -30,11 +37,11 @@
   - Disable ListFreeze button (No command available)
   - Correct HonorUpdt button function (Output is in LOG tab)
 
-### -=[ Revision 04 - 4/29/2024]=-
+### -=[ Revision 004 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window
 
-### -=[ Revision 03 - 1/24/2022]=-
+### -=[ Revision 003 - 1/24/2022]=-
 - Updated Copyright year 2022
 - FIX Ticket TAB
   - Ticket Message text was black and difficult to read
@@ -45,19 +52,19 @@
   - Lots off little things added.
   - I am bad at keeping this changelog updated.
 
-### -=[ Revision 02 - 10/20/2019]=-
+### -=[ Revision 002 - 10/20/2019]=-
 - FIX GM tab
   - Typo in GM-mode on/off
   - Speed Slider: Affect all speeds
 
-### -=[ Revision 01 - 10/18/2019]=-
+### -=[ Revision 001 - 10/18/2019]=-
 - FIX Server info tab
   - Updated strings to match AzerothCore
 - FIX Diff Graph LUA error
 - Update MiniMenu Icon
 - Update Logo
 
-### -=[ Revision 01 - 10/18/2019]=-
+### -=[ Revision 000 - 10/18/2019]=-
 - Initial Commit for AzerothAdmin (Ported from TrinityAdmin/MangAdmin)
 - Version specific build AzerothCore 3.3.5
 - Changed TrinityAdmin>AzerothAdmin

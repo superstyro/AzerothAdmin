@@ -31,18 +31,18 @@ gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
 MAJOR_VERSION = "AzerothAdmin-3.3.5"
-MINOR_VERSION = "$Revision: 007 $"
+MINOR_VERSION = "$Revision: 008 $"
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
 
-AzerothAdmin    = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0", "AceDB-2.0", "AceHook-2.1", "FuBarPlugin-2.0", "AceDebug-2.0", "AceEvent-2.0")
+AzerothAdmin    = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0", "AceDB-2.0", "AceHook-2.1", "AceDebug-2.0", "AceEvent-2.0")
 Locale       = AceLibrary("AceLocale-2.2"):new("AzerothAdmin")
 Strings      = AceLibrary("AceLocale-2.2"):new("TEST")
 FrameLib     = AceLibrary("FrameLib-1.0")
 Graph        = AceLibrary("Graph-1.0")
-local Tablet = AceLibrary("Tablet-2.0")
+Tablet       = AceLibrary("Tablet-2.0")
 
 AzerothAdmin:RegisterDB("AzerothAdminDb", "AzerothAdminDbPerChar")
 AzerothAdmin:RegisterDefaults("char",
@@ -224,13 +224,7 @@ function AzerothAdmin:OnInitialize()
   InitControls()
   self:SearchReset()
   AzerothAdmin.db.account.buffer.who = {}
-  -- FuBar plugin config
-  AzerothAdmin.hasNoColor = true
-  AzerothAdmin.hasNoText = false
-  AzerothAdmin.clickableTooltip = true
-  AzerothAdmin.hasIcon = true
-  AzerothAdmin.hideWithoutStandby = true
-  AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon.tga")
+
   -- make AzerothAdmin frames closable with escape key
   tinsert(UISpecialFrames,"ma_bgframe")
   tinsert(UISpecialFrames,"ma_popupframe")
@@ -372,9 +366,6 @@ function AzerothAdmin:OnClick()
   -- this toggles the AzerothAdmin frame when clicking on the mini icon
   if IsShiftKeyDown() then
     ReloadUI()
-  elseif IsAltKeyDown() then
-    self.db.char.newTicketQueue = 0
-    AzerothAdmin:UpdateTooltip()
   elseif ma_bgframe:IsVisible() and not ma_popupframe:IsVisible() then
     FrameLib:HandleGroup("bg", function(frame) frame:Hide() end)
   elseif ma_bgframe:IsVisible() and ma_popupframe:IsVisible() then
@@ -394,7 +385,7 @@ function AzerothAdmin:OnTooltipUpdate()
   if ticketCount == 0 then
     local cat = Tablet:AddCategory("columns", 1)
     cat:AddLine("text", Locale["ma_TicketsNoNew"])
-    AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon.tga")
+    AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon")
   else
     local cat = Tablet:AddCategory(
       "columns", 1,
@@ -425,7 +416,7 @@ function AzerothAdmin:OnTooltipUpdate()
         )
       end
     end
-    AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon2.tga")
+    AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon2")
   end
   Tablet:SetHint(Locale["ma_IconHint"])
 end
@@ -912,7 +903,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
 
     -- hook all new tickets
     for name in string.gmatch(text, Strings["ma_GmatchNewTicket"]) do
-      self:SetIcon(ROOT_PATH.."Textures\\icon2.tga")
       PlaySoundFile(ROOT_PATH.."Sound\\mail.wav")
       self:LogAction("Got new ticket from: "..name)
     end
@@ -2653,3 +2643,54 @@ function AzerothAdmin:CloseButton(name)
     FrameLib:HandleGroup("popup2", function(frame) frame:Hide()  end)
   end
 end
+
+function AzerothAdmin:ToggleMainScreen()
+if ma_bgframe:IsVisible() and not ma_popupframe:IsVisible() then
+    FrameLib:HandleGroup("bg", function(frame) frame:Hide() end)
+  elseif ma_bgframe:IsVisible() and ma_popupframe:IsVisible() then
+    FrameLib:HandleGroup("bg", function(frame) frame:Hide() end)
+    FrameLib:HandleGroup("popup", function(frame) frame:Hide() end)
+  elseif not ma_bgframe:IsVisible() and ma_popupframe:IsVisible() then
+    FrameLib:HandleGroup("bg", function(frame) frame:Show() end)
+  else
+    FrameLib:HandleGroup("bg", function(frame) frame:Show() end)
+  end
+end
+
+-- MINIMAP BUTTON FUNCTIONS
+-- refactor minimap button to use library that will allow for reposition of minimap button
+
+-- Create the minimap button
+local minimapButton = CreateFrame("Button", "AzerothAdminMinimapButton", Minimap)
+minimapButton:SetFrameStrata("MEDIUM")
+minimapButton:SetSize(32, 32)
+minimapButton:SetFrameLevel(8)
+minimapButton:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
+
+-- Set the minimap button icon
+local icon = minimapButton:CreateTexture(nil, "BACKGROUND")
+icon:SetTexture("Interface\\AddOns\\AzerothAdmin\\Textures\\MinimapIcon")
+icon:SetSize(20, 20)
+icon:SetPoint("CENTER")
+
+-- Set the minimap button position
+minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52 - (80 * cos(45)), (80 * sin(45)) - 52)
+
+-- Add event handlers for the minimap button
+minimapButton:SetScript("OnClick", function(self, button)
+    if button == "LeftButton" then
+      AzerothAdmin:OnClick()
+    end
+end)
+
+minimapButton:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+    GameTooltip:SetText("AzerothAdmin", 1, 1, 1)
+    GameTooltip:AddLine("Left-click to toggle the main window", nil, nil, nil, true)
+    GameTooltip:AddLine("Shift-click to reload UI", nil, nil, nil, true)
+    GameTooltip:Show()
+end)
+
+minimapButton:SetScript("OnLeave", function(self)
+    GameTooltip:Hide()
+end)

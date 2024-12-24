@@ -274,8 +274,80 @@ function AzerothAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 232, --Original 250
+      offX = 236, --Original 250
       offY = -170 --Original -170
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_meantext",
+    group = "server",
+    parent = ma_midframe,
+    text = "Mean:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 270,
+      offY = -170
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_meantextoutput",
+    group = "server",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 305,
+      offY = -170
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_mediantext",
+    group = "server",
+    parent = ma_midframe,
+    text = "Median:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 260,
+      offY = -185
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_mediantextoutput",
+    group = "server",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 305,
+      offY = -185
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_percentilestext",
+    group = "server",
+    parent = ma_midframe,
+    text = "Percentiles:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 240,
+      offY = -200
+    }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_percentilestextoutput",
+    group = "server",
+    parent = ma_midframe,
+    text = "",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 305,
+      offY = -200
     }
   })
 
@@ -296,6 +368,7 @@ function AzerothAdmin:CreateServerSection()
       if q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           AzerothAdmin:ChatMsg(".server info")
           q = 0
+          --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
           local s = tonumber(ma_difftext:GetText())
           local r = 100 -- Trinity says anything over 150 is bad
           if s > r then

@@ -75,7 +75,7 @@ function AzerothAdmin:CreateMiniMenu()
     group = "minimenu",
     parent = ma_miniframe,
     texture = {
-      file = ROOT_PATH.."Textures\\icon.tga"
+      file = ROOT_PATH.."Textures\\icon"
     },
     size = {
       width = 16,

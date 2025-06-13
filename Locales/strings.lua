@@ -21,9 +21,9 @@
 function ReturnStrings_enUS()
   return {
     ["ma_GmatchRevision"] = "AzerothCore rev. (%S*)",
-    ["ma_GmatchGPS"] = "X: (.*) Y: (.*) Z",
+    ["ma_GmatchGPS"] = "X: ([%-?%d%.]+) Y: ([%-?%d%.]+) Z",
     ["ma_GmatchItem"] = "%|cffffffff%|Hitem:(%d+).*%[(.*)%]%|h%|r",
-    ["ma_GmatchQuest"] = ".-(%d+).*%[(.*)%]%|h%|r",
+    ["ma_GmatchQuest"] = "%|c%x+%|Hquest:(%d+):%d+%|h%[(.-)%]%|h%|r",
     ["ma_GmatchItemSet"] = "|cffffffff|Hitemset:(%d+)|h%[(.-)%]|h|r",
     ["ma_GmatchSpell"] = "|cffffffff|Hspell:(%d+)|h%[(.-)%]|h|r",
     ["ma_GmatchSkill"] = "|cffffffff|Hskill:(%d+)|h%[(.-)%]|h|r",
@@ -38,14 +38,14 @@ function ReturnStrings_enUS()
     ["ma_GmatchPercentiles"] = "|%- Percentiles %(95, 99, max%): (%d+)ms, (%d+)ms, (%d+)ms",
     ["ma_GmatchNewTicket"] = "New ticket from(.+)",
     ["ma_GmatchTicketMessage"] = "Ticket Message.-:.-%[(.*).-%]",
-    ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
-    ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
-    ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",
+    ["ma_GmatchTickets"] = "Ticket[^:]*:(%S+)%s+Created by[^:]*:%|c%x+ (.-)%|r%s+Created[^:]*:(.-)%s+Last change[^:]*:(.*)",
+    ["ma_GmatchAccountInfo"] = "Player(.-) %(guid: (%d+)%) Account: (.-) %(id: (%d+)%) Email: (%S*) GMLevel: (%d+) Last IP: ([%w%.%:]+) Last login: (.-) Latency: (%d+)ms",
+    ["ma_GmatchAccountInfo2"] = "Race: (.-) Class: (.-) Played time: (.-) Level: (%d+) Money: (.*)",
     ["ma_GmatchOnlinePlayers"] = "Connected players: (%d+). Characters in world: (%d+).",
     ["ma_GmatchMaxConnections"] = "Connection peak: (%d+).",
     ["ma_GmatchUptime"] = "Server uptime: (.*)",
     ["ma_GmatchActiveConnections"] = "Active connections.*",
-    ["ma_GmatchWho"] = "%-%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]-",
+    ["ma_GmatchWho"] = "%-%[([^%]]*)%]%[([^%]]*)%]%[([^%]]*)%]%[([^%]]*)%]%[([^%]]*)%]%[([^%]]*)%]%[([^%]]*)%]-",
 
     --linkifier
     ----------====~~GO Target Command Match Text ~~====----------

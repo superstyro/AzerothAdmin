@@ -647,13 +647,13 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         end
     end
     if cWorking == 1 then
-        WorkString = string.gsub(text, '(|.........)', '') -- This removes any color formating
+        local WorkString = string.gsub(text, '(|.........)', '') -- This removes any color formating
         --SendChatMessage("Workstring:"..WorkString)
         for cMap in string.gmatch(WorkString,'Map: %d')do
             --SendChatMessage("Mapo: "..cMap)
         end
-        t = {}
-        cnt = 1
+        local t = {}
+        local cnt = 1
          for cX, cY, cZ, cO in string.gmatch(WorkString, 'X: (.*) Y: (.*) Z: (.*) .*Orientation: (.*)') do
 --[[            for w in string.gmatch(WorkString,'%s.%d*%p%d%d') do
                 t[cnt] = string.gsub(w," ","")
@@ -683,14 +683,14 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         incX = 0
         incY = 0
         incZ = 0
-        isChecked = ma_spawnonmovecheck:GetChecked()
-        isChecked2 = ma_moveonmovecheck:GetChecked()
+        local isChecked = ma_spawnonmovecheck:GetChecked()
+        local isChecked2 = ma_moveonmovecheck:GetChecked()
         if isChecked == 1 then  --AddonMove
-            ObjectN = ma_Obj_idbutton:GetText()
+            local ObjectN = ma_Obj_idbutton:GetText()
             SendChatMessage('.gob add '..ObjectN)
         elseif isChecked2 == 1 then --MoveonMove
             SendChatMessage('.gob del '..ma_Obj_guidbutton:GetText())
-            ObjectN = ma_Obj_idbutton:GetText()
+            local ObjectN = ma_Obj_idbutton:GetText()
             SendChatMessage('.gob add '..ObjectN)
         else -- Just move player
         end
@@ -709,79 +709,50 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
       end
     end
     if AzerothAdmin:ID_Setting_Start_Read() then
-        local b1,e1,pattern = string.find(text, "GUID: (%d+)%.")
-        --local b1,e1,pattern = string.find(text, "GUID:")
-        if b1 then
-            b1,e1,pattern = string.find(text, "([0-9]+)")
-            if b1 then
-                AzerothAdmin:ID_Setting_Start_Write(0)
-                AzerothAdmin:ID_Setting_Write(0,pattern)
-                ma_NPC_guidbutton:SetText(pattern)
-                self:LogAction("NPC_GUID_Get id "..pattern..".")
-            end
-        else
+        local npc_guid_capture = string.match(text, "GUID: (%d+)%.")
+        if npc_guid_capture then
+            AzerothAdmin:ID_Setting_Start_Write(0) -- Reset listening state after capturing GUID
+            AzerothAdmin:ID_Setting_Write(0, npc_guid_capture)
+            ma_NPC_guidbutton:SetText(npc_guid_capture)
+            self:LogAction("NPC_GUID_Get id "..npc_guid_capture..".")
         end
-        b1,e1,pattern = string.find(text, "Entry: (%d+)%.")
-        if b1 then
-            b1,e1,pattern = string.find(text, "([0-9]+)")
-            if b1 then
-                AzerothAdmin:ID_Setting_Write(1,pattern)
-                ma_NPC_idbutton:SetText(pattern)
-                self:LogAction("NPC_EntryID_Get id "..pattern..".")
-            end
-        else
-        end
-        b1,e1,pattern = string.find(text, "DisplayID: (%d+).*")
-        if b1 then
-            b1,e1,pattern = string.find(text, "([0-9]+)")
-            if b1 then
-                --AzerothAdmin:ID_Setting_Write(1,pattern)
-                ma_npcdisplayid:SetText(pattern)
-                self:LogAction("NPC_DisplayID_Get id "..pattern..".")
-            end
-        else
-        end
-    end
-    if AzerothAdmin:OID_Setting_Start_Read() then
-        local b1,e1,pattern = string.find(text, "GUID: (%d+) ")
-        --local b1,e1,pattern = string.find(text, "GUID:")
-        if b1 then
-            b1,e1,pattern = string.find(text, "([0-9]+)")
-            if b1 then
-                AzerothAdmin:OID_Setting_Start_Write(0)
 
-                AzerothAdmin:OID_Setting_Write(0,pattern)
-                ma_Obj_guidbutton:SetText(pattern)
-                self:LogAction("OBJECT_GUID_Get id "..pattern..".")
-            end
-        else
+        local npc_entry_capture = string.match(text, "Entry: (%d+)%.")
+        if npc_entry_capture then
+            AzerothAdmin:ID_Setting_Write(1, npc_entry_capture)
+            ma_NPC_idbutton:SetText(npc_entry_capture)
+            self:LogAction("NPC_EntryID_Get id "..npc_entry_capture..".")
         end
-        --b1,e1,pattern = string.find(text, "ID: (%d+)% ")
-        --b1,e1,pattern = string.find(text, "GUID: (%d+) ID: (%d+)")
-        b1,e1,xpattern = string.find(text, " ID: (%d+)")
-        if b1 then
-            --b1,e1,pattern = string.find(text, "([0-9]+)")
-            b1,e1,pattern = string.find(xpattern, "([0-9]+)")
-            if b1 then
-    --      		AzerothAdmin:OID_Setting_Write(1,pattern)
-                ma_Obj_idbutton:SetText(pattern)
-                self:LogAction("OBJECT_EntryID_Get id "..pattern..".")
-            end
-        else
-        end
-        b1,e1,xpattern = string.find(text, "DisplayID: (%d+)")
-        if b1 then
-            --b1,e1,pattern = string.find(text, "([0-9]+)")
-            b1,e1,pattern = string.find(xpattern, "([0-9]+)")
-            if b1 then
-    --      		AzerothAdmin:OID_Setting_Write(1,pattern)
-    --      		ma_Obj_idbutton:SetText(pattern)
-                ma_gobdisplayid:SetText(pattern)
-                self:LogAction("OBJECT DisplayID"..pattern..".")
-            end
-        else
+
+        local npc_displayid_capture = string.match(text, "DisplayID: (%d+)")
+        if npc_displayid_capture then
+            ma_npcdisplayid:SetText(npc_displayid_capture)
+            self:LogAction("NPC_DisplayID_Get id "..npc_displayid_capture..".")
         end
     end
+
+    if AzerothAdmin:OID_Setting_Start_Read() then
+        local obj_guid_capture = string.match(text, "GUID: (%d+) ")
+        if obj_guid_capture then
+            AzerothAdmin:OID_Setting_Start_Write(0) -- Reset listening state after capturing GUID
+            AzerothAdmin:OID_Setting_Write(0, obj_guid_capture)
+            ma_Obj_guidbutton:SetText(obj_guid_capture)
+            self:LogAction("OBJECT_GUID_Get id "..obj_guid_capture..".")
+        end
+
+        local obj_entry_capture = string.match(text, " ID: (%d+)")
+        if obj_entry_capture then
+            ma_Obj_idbutton:SetText(obj_entry_capture)
+            self:LogAction("OBJECT_EntryID_Get id "..obj_entry_capture..".")
+        end
+
+        local obj_displayid_capture = string.match(text, "DisplayID: (%d+)")
+        if obj_displayid_capture then
+            ma_gobdisplayid:SetText(obj_displayid_capture)
+            self:LogAction("OBJECT DisplayID"..obj_displayid_capture..".")
+        end
+    end
+
     if AzerothAdmin:Way_Point_Add_Start_Read() then
         b1,e1,pattern = string.find(text, "Waypoint (%d+)")
         if b1 then
@@ -971,9 +942,11 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.msgDeltaTime = time()
     end
     for msg in string.gmatch(text, Strings["ma_GmatchTicketMessage"]) do
-        AzerothAdmin.db.account.buffer.ticketsfull = {}
-        table.remove(AzerothAdmin.db.account.buffer.ticketsfull, 1)
-        table.insert(AzerothAdmin.db.account.buffer.ticketsfull, {tMsg = ""})
+        if self.db.char.requests.ticketbody and self.db.char.requests.ticketbody ~= 0 then
+            self:LogAction("Ticket msg for ID " .. tostring(self.db.char.requests.ticketbody) .. ": " .. msg)
+        else
+            self:LogAction("Ticket msg (no specific ID context): " .. msg)
+        end
         ma_ticketdetail:SetText("|cffffff00"..msg)  -- Change to yellow to match formatting
         catchedSth = true
         output = AzerothAdmin.db.account.style.showchat
@@ -1158,29 +1131,44 @@ function AzerothAdmin:ChangeLanguage(locale)
   ReloadUI()
 end
 
-function AzerothAdmin:SetSkill(value, skill, maxskill)
+function AzerothAdmin:SetSkill(value, skill_arg, maxskill_arg) -- Renamed skill, maxskill to avoid conflict with editbox values
   if self:Selection("player") or self:Selection("self") or self:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     local class = UnitClass("target") or UnitClass("player")
-    if not skill then
-      skill = ma_var1editbox:GetText()
-      if ma_var1editbox:GetText() == "" then
-        skill = 375
-      end
+
+    local skill_text = ma_var1editbox:GetText()
+    local maxskill_text = ma_var2editbox:GetText()
+
+    local skill_val
+    if skill_text == "" then
+        skill_val = 375
+    else
+        skill_val = tonumber(skill_text)
+        if not skill_val then
+            self:LogAction("Error: Invalid skill value '"..skill_text.."' for SetSkill. Must be a number.")
+            return
+        end
     end
-    if not maxskill then
-      maxskill = ma_var2editbox:GetText()
-      if ma_var2editbox:GetText() == "" then
-        maxskill = 375
-      end
+
+    local maxskill_val
+    if maxskill_text == "" then
+        maxskill_val = 375
+    else
+        maxskill_val = tonumber(maxskill_text)
+        if not maxskill_val then
+            self:LogAction("Error: Invalid maxskill value '"..maxskill_text.."' for SetSkill. Must be a number.")
+            return
+        end
     end
+
+    -- value here is the skill ID or table of skill IDs
     if type(value) == "string" then
-      self:ChatMsg(".setskill "..value.." "..skill.." "..maxskill)
-      self:LogAction("Set skill "..value.." of "..player.." to "..skill.." with a maximum of "..maxskill..".")
+      self:ChatMsg(".setskill "..value.." "..skill_val.." "..maxskill_val)
+      self:LogAction("Set skill "..value.." of "..player.." to "..skill_val.." with a maximum of "..maxskill_val..".")
     elseif type(value) == "table" then
-      for k,v in pairs(value) do
-        self:ChatMsg(".setskill "..v.." "..skill.." "..maxskill)
-        self:LogAction("Set skill "..v.." of "..player.." to "..skill.." with a maximum of "..maxskill..".")
+      for k,v_id in pairs(value) do -- Renamed 'v' to 'v_id'
+        self:ChatMsg(".setskill "..v_id.." "..skill_val.." "..maxskill_val)
+        self:LogAction("Set skill "..v_id.." of "..player.." to "..skill_val.." with a maximum of "..maxskill_val..".")
       end
     end
   else
@@ -1245,25 +1233,35 @@ function AzerothAdmin:AddItem(value, state)
     if state == "RightButton" then
       if amount == "" then
         self:ChatMsg(".additem "..value.." -1")
-          --self:ChatMsg(".list item "..value)
         self:LogAction("Removed item with id "..value.." from "..player..".")
-          --self:LogAction("Listed item with id "..value..".")
       else
-        local amt=tonumber(amount)
-        if amt >0 then
-           amt=amt*-1
-           amount=tostring(amt)
+        local amt_num = tonumber(amount)
+        if not amt_num then
+          self:LogAction("Error: Invalid amount '"..amount.."' for AddItem (remove). Must be a number.")
+          return
         end
-        self:ChatMsg(".additem "..value.." "..amount)
-        self:LogAction("Removed "..amount.." items with id "..value.." to "..player..".")
+        if amt_num > 0 then
+           amt_num = amt_num * -1
+        end
+        self:ChatMsg(".additem "..value.." "..tostring(amt_num))
+        self:LogAction("Removed "..tostring(amt_num).." items with id "..value.." from "..player..".")
       end
     else
       if amount == "" then
         self:ChatMsg(".additem "..value)
         self:LogAction("Added item with id "..value.." to "..player..".")
       else
-        self:ChatMsg(".additem "..value.." "..amount)
-        self:LogAction("Added "..amount.." items with id "..value.." to "..player..".")
+        local amt_num = tonumber(amount)
+        if not amt_num then
+          self:LogAction("Error: Invalid amount '"..amount.."' for AddItem (add). Must be a number.")
+          return
+        end
+        if amt_num <= 0 then
+           self:LogAction("Error: Amount must be positive for AddItem (add). Got: "..amount)
+           return
+        end
+        self:ChatMsg(".additem "..value.." "..tostring(amt_num))
+        self:LogAction("Added "..tostring(amt_num).." items with id "..value.." to "..player..".")
       end
     end
   else

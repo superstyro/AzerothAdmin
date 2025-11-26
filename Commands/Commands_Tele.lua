@@ -22,7 +22,7 @@ function TeleScrollUpdate()
     end
     local cont_temp = AzerothAdmin.db.char.selectedCont
     cont = "EK_N"
-    if cont_temp == Nil then
+    if cont_temp == nil then
     else
         cont=cont_temp
     end
@@ -81,7 +81,7 @@ end
 function SubzoneScrollUpdate()
  local cont_temp = AzerothAdmin.db.char.selectedCont
  cont = "EK_N"
- if cont_temp == Nil then
+ if cont_temp == nil then
  else
     cont=cont_temp
  end

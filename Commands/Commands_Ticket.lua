@@ -37,7 +37,7 @@ function RefreshOnlineTickets()
     AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket onlinelist")
     for i=1,12 do
-       getglobal("ma_ticketscrollframe"..i):Hide()
+       _G["ma_ticketscrollframe"..i]:Hide()
     end
     ma_loadonlineticketsbutton:Disable()
     ma_loadallticktsbutton:Hide()
@@ -52,7 +52,7 @@ function RefreshTickets()
     AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket list")
     for i=1,12 do
-       getglobal("ma_ticketscrollframe"..i):Hide()
+       _G["ma_ticketscrollframe"..i]:Hide()
     end
     ma_loadallticktsbutton:Disable()
     ma_loadonlineticketsbutton:Hide()
@@ -68,7 +68,7 @@ function ResetTickets()
     AzerothAdmin.db.account.buffer.tickets = {}
     AzerothAdmin.db.char.requests.ticket = true
     for i=1,12 do
-       getglobal("ma_ticketscrollframe"..i):Hide()
+       _G["ma_ticketscrollframe"..i]:Hide()
     end
     ma_loadallticktsbutton:Enable()
     ma_loadonlineticketsbutton:Enable()
@@ -199,13 +199,13 @@ function InlineScrollUpdate()
         if lineplusoffset <= ticketCount then
           local object = AzerothAdmin.db.account.buffer.tickets[lineplusoffset]
           if object then
-            getglobal("ma_ticketscrollframe"..line):SetText("Ticket:|cffffffff"..object["tNumber"].."|r Created by: |cffffffff"..object["tChar"].."|r Last change:|cffffffff"..object["tLUpdate"].."|r")
+            _G["ma_ticketscrollframe"..line]:SetText("Ticket:|cffffffff"..object["tNumber"].."|r Created by: |cffffffff"..object["tChar"].."|r Last change:|cffffffff"..object["tLUpdate"].."|r")
             AzerothAdmin.db.account.tickets.selected = object
-            getglobal("ma_ticketscrollframe"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-            getglobal("ma_ticketscrollframe"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-            getglobal("ma_ticketscrollframe"..line):SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"]) end)
-            getglobal("ma_ticketscrollframe"..line):Enable()
-            getglobal("ma_ticketscrollframe"..line):Show()
+            _G["ma_ticketscrollframe"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+            _G["ma_ticketscrollframe"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+            _G["ma_ticketscrollframe"..line]:SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"]) end)
+            _G["ma_ticketscrollframe"..line]:Enable()
+            _G["ma_ticketscrollframe"..line]:Show()
           end
         else
           getglobal("ma_ticketscrollframe"..line):Hide()

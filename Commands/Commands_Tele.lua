@@ -93,7 +93,7 @@ function SubzoneScrollUpdate()
   if AzerothAdmin.db.char.selectedZone then
     shownZone = AzerothAdmin.db.char.selectedZone
   end
-  ma_telesubzonetext:SetText(Locale["Zone"]..shownZone)
+  ma_telesubzonetext:SetText(Locale["Zone"]..": "..shownZone)
   for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
     if index == shownZone then
       for i, v in pairsByKeys(value) do

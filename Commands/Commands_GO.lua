@@ -199,7 +199,6 @@ function CheckToggle(action)
         ma_moveonmovecheck:SetChecked(false)
     elseif action == "move" then
         ma_spawnonmovecheck:SetChecked(false)
-    else
     end
 
 --[[    isChecked = ma_spawnonmovecheck:GetChecked()

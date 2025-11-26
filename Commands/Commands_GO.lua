@@ -115,7 +115,7 @@ function ShowGobModel()
     tVar=""
     tVar = ModelA[fu]
     if not tVar then
-        ma_gobinfoinfo="No data for this model"
+        ma_gobinfoinfo:SetText("No data for this model")
     else
         ma_gobjectmodel:SetModel(tVar)
     end

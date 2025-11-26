@@ -56,7 +56,6 @@ function UpdateChanges()
   end
   if ma_delayparam then
     AzerothAdmin.db.account.style.delayparam = ma_delayparam:GetText()
-  else
   end
   ReloadUI()
 end

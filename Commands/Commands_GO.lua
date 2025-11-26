@@ -18,35 +18,35 @@
 
 function OBJGo()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".go object "..obj)
     AzerothAdmin:LogAction("Go Object for player "..player..".")
 end
 
 function OBJAdd()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_idbutton:GetText()
+    local obj = ma_Obj_idbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject add "..obj)
     AzerothAdmin:LogAction("Object Add for player "..player..".")
 end
 
 function OBJMove()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject move "..obj)
     AzerothAdmin:LogAction("Object Move for player "..player..".")
 end
 
 function OBJTurn()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject turn "..obj)
     AzerothAdmin:LogAction("Object Turn for player "..player..".")
 end
 
 function OBJDel()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject delete "..obj)
     AzerothAdmin:LogAction("Object Delete for player "..player..".")
 end
@@ -80,7 +80,7 @@ end
 
 function OBJAddTemp()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_idbutton:GetText()
+    local obj = ma_Obj_idbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject add temp "..obj)
     AzerothAdmin:LogAction("Object Add(Temp) for player "..player..".")
 end
@@ -93,7 +93,7 @@ end
 
 function OBJSetPhase()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     local phase = ma_gobsetphaseinput:GetText()
     AzerothAdmin:ChatMsg(".gobject set phase "..obj.." "..phase)
     AzerothAdmin:LogAction("Object "..obj.." phase set to "..phase.." for player "..player..".")

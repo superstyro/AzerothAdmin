@@ -44,7 +44,7 @@ function UpdateChanges()
   ReloadUI()
 end
 
-function ShowColorPicker(t)
+function ShowColorPicker(t)  -- TODO: ShowColorPicker faults when clicking color window and it is shown (ElvUI error)
   if t == "bg" then
     local r,g,b
     if AzerothAdmin.db.account.style.color.buffer.backgrounds then

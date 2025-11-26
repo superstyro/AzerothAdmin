@@ -71,7 +71,6 @@ function ResetTickets()
     ma_loadallticktsbutton:Show()
     ma_loadonlineticketsbutton:Show()
     ma_ticketdetail:Hide();
-    local ticketdetail = nil
     ma_ticketid:SetText(nil)
     ma_ticketcreatedby:SetText(nil)
     ma_tickettimecreated:SetText(nil)

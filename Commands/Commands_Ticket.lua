@@ -31,7 +31,7 @@ function ShowTicketTab()
 end
 
 function RefreshOnlineTickets()
-    ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate()) end)
+    ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
     AzerothAdmin:LogAction("Getting tickets.")
@@ -46,7 +46,7 @@ end
 
 function RefreshTickets()
 
-    ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate()) end)
+    ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
     AzerothAdmin:LogAction("Getting tickets.")

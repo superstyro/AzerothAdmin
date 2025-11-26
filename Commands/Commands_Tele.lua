@@ -33,9 +33,6 @@ function TeleScrollUpdate()
     for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
       zoneCount = zoneCount + 1
       --AzerothAdmin:ChatMsg("Zone count:" .. zoneCount)
-      if not AzerothAdmin.db.char.selectedZone and zoneCount == 0 then
-        SubzoneScrollUpdate()
-      end
       --AzerothAdmin:LogAction("added index: "..index)
       table.insert(TeleTable, {name = index, subzones = value})
     end

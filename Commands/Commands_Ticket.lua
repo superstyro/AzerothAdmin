@@ -61,10 +61,6 @@ end
 
 function ResetTickets()
     wipe(AzerothAdmin.db.account.buffer.tickets)
-    wipe(AzerothAdmin.db.account.buffer.tickets)
-    wipe(AzerothAdmin.db.account.buffer.tickets)
-    AzerothAdmin.db.account.buffer.tickets = {}
-    AzerothAdmin.db.account.buffer.tickets = {}
     AzerothAdmin.db.account.buffer.tickets = {}
     AzerothAdmin.db.char.requests.ticket = true
     for i=1,12 do

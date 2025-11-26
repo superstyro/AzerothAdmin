@@ -40,7 +40,7 @@ function TeleScrollUpdate()
       table.insert(TeleTable, {name = index, subzones = value})
     end
 
-    if zoneCount > -1 then
+    if zoneCount > 0 then
       --AzerothAdmin:ChatMsg("Zone count:" .. zoneCount)
       if not ma_ZoneScrollBar then
         AzerothAdmin:ChatMsg("Lost ma_ZoneScrollBar")

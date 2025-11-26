@@ -319,7 +319,7 @@ function NPCUnFreeze_Random()
     local rdistancecname = ma_npcunfreeze_random_distancebutton:GetText()
     AzerothAdmin:ChatMsg(".npc set spawndist "..rdistancecname)
     AzerothAdmin:LogAction("Set NPC spawndist "..rdistancecname..".")
-    AzerothAdmin:ChatMsg(".npc setm ovetype random NODEL")
+    AzerothAdmin:ChatMsg(".npc set movetype random NODEL")
     AzerothAdmin:LogAction("Set NPC movement type to RANDOM for player "..player..".")
     AzerothAdmin:ChatMsg(".respawn")
 

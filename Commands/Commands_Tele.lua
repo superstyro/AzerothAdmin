@@ -21,10 +21,10 @@ function TeleScrollUpdate()
       AzerothAdmin:ChatMsg("Lost ma_ZoneScrollBar")
     end
     local cont_temp = AzerothAdmin.db.char.selectedCont
-    cont = "EK_N"
-    if cont_temp == nil then
+    if cont_temp ~= nil then
+        cont = cont_temp
     else
-        cont=cont_temp
+        cont = "EK_N"
     end
     --AzerothAdmin.db.char.selectedCont = cont
     --self:ChatMsg("Wrote cont:" ..cont)
@@ -80,10 +80,10 @@ end
 
 function SubzoneScrollUpdate()
  local cont_temp = AzerothAdmin.db.char.selectedCont
- cont = "EK_N"
- if cont_temp == nil then
+ if cont_temp ~= nil then
+    cont = cont_temp
  else
-    cont=cont_temp
+    cont = "EK_N"
  end
 
 --    cont = AzerothAdmin.db.char.selectedCont

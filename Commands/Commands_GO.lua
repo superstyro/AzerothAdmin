@@ -104,7 +104,6 @@ function ShowGobModel()
     local Hypotenuse = ( ( GetScreenWidth() * Scale ) ^ 2 + ( GetScreenHeight() * Scale ) ^ 2 ) ^ 0.5;
     local CoordRight = ( ma_gobjectmodel:GetRight() - ma_gobjectmodel:GetLeft() ) / Hypotenuse
     local CoordTop = ( ma_gobjectmodel:GetTop() - ma_gobjectmodel:GetBottom() ) / Hypotenuse
-    local Radian = 0.0174532925
     local gobdisplay = ma_gobdisplayid:GetText()
     local fu = tonumber(gobdisplay)
     ma_gobjectmodel:SetSequence(0)

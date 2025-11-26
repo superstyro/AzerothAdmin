@@ -245,7 +245,7 @@ end
 
 function LookupTaxi()
   local param = ma_parameter:GetText()
-  AzerothAdmin:ChatMsg(".lookup taxi  "..param)
+  AzerothAdmin:ChatMsg(".lookup taxi "..param)
   AzerothAdmin:LogAction("Looked up Taxinode "..param)
 end
 

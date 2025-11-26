@@ -183,7 +183,7 @@ function GridNavigate(x, y)
       elseif way == "south" then  --South
         newy = y
         newx = x - step
-      else  --Wast
+      else  --West
         newy = y + step
         newx = x
       end

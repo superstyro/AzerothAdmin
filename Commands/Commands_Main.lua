@@ -217,18 +217,30 @@ end
 
 function PetLearn()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet learn "..param)
   AzerothAdmin:LogAction("Taught pet spell "..param)
 end
 
 function PetUnLearn()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet unlearn "..param)
   AzerothAdmin:LogAction("Un-taught pet spell "..param)
 end
 
 function PetTP()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet tp "..param)
   AzerothAdmin:LogAction("Modified pet training points by "..param)
 end
@@ -317,42 +329,70 @@ end
 
 function AcctCreate() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account create "..param)
   AzerothAdmin:LogAction("Created account: "..param)
 end
 
 function AcctDelete() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account delete "..param)
   AzerothAdmin:LogAction("Deleted account: "..param)
 end
 
 function AcctAddon()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set addon "..param)
   AzerothAdmin:LogAction("Set account addon: "..param)
 end
 
 function AcctGMLvl()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set gmlevel "..param)
   AzerothAdmin:LogAction("Set account gmlevel: "..param)
 end
 
 function AcctPasswd()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set password "..param)
   AzerothAdmin:LogAction("Set account password: "..param)
 end
 
 function GMNotify()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".gmnotify "..param)
   AzerothAdmin:LogAction("GM Notify: "..param)
 end
 
 function TeleAddButton()
   local cname = ma_parameter:GetText()
+  if cname == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".tele add "..cname)
   AzerothAdmin:LogAction("Added .tele location: "..cname..".")
 
@@ -360,6 +400,10 @@ end
 
 function TeleDelButton() --TODO: Add confirm diaglog when attempting to perform action
   local cname = ma_parameter:GetText()
+  if cname == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".tele del "..cname)
   AzerothAdmin:LogAction("Deleted .tele location: "..cname..".")
 

@@ -28,13 +28,9 @@ function ToggleGMMode(value)
 end
 
 function ToggleFlyMode(value)
-  --if self:Selection("player") or self:Selection("self") or self:Selection("none") then
-    local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".gm fly "..value)
-    AzerothAdmin:LogAction("Turned Fly-mode "..value.." for "..player..".")
-  --[[else
-    self:Print(Locale["selectionerror1"])
-  end]]
+  local player = UnitName("target") or UnitName("player")
+  AzerothAdmin:ChatMsg(".gm fly "..value)
+  AzerothAdmin:LogAction("Turned Fly-mode "..value.." for "..player..".")
 end
 
 function ToggleHoverMode(value)
@@ -99,9 +95,6 @@ function SetSpeed()
   local value = string.format("%.1f", ma_speedslider:GetValue())
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
-    --self:ChatMsg(".modify speed "..value)
-    --self:ChatMsg(".modify fly "..value)
-    --self:ChatMsg(".modify swim "..value)
     AzerothAdmin:ChatMsg(".mod speed all "..value)
     AzerothAdmin:LogAction("Set all speed of "..player.." to "..value..".")
   else

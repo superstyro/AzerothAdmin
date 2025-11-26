@@ -144,22 +144,12 @@ end
 
 function SetJail_A()
     AzerothAdmin:ChatMsg(".tele del ma_AllianceJail")
-    local i = 1
-    while i<100 do
-        i=i+1
-        AzerothAdmin:ChatMsg(".")
-    end
     AzerothAdmin:ChatMsg(".tele add ma_AllianceJail")
     AzerothAdmin:LogAction("Set location of Alliance Jail")
 end
 
 function SetJail_H()
     AzerothAdmin:ChatMsg(".tele del ma_HordeJail")
-    local i = 1
-    while i<100 do
-        i=i+1
-        AzerothAdmin:ChatMsg(".")
-    end
     AzerothAdmin:ChatMsg(".tele add ma_HordeJail")
     AzerothAdmin:LogAction("Set location of Horde Jail")
 end

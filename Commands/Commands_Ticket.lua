@@ -187,7 +187,7 @@ end]]
 function InlineScrollUpdate()
     AzerothAdmin:LogAction("Showing tickets.")
     local ticketCount = 0
-    table.foreachi(AzerothAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
+    for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
     if ticketCount > 0 then
       ma_ticketscrollframe1:SetText("Loading")
       local lineplusoffset

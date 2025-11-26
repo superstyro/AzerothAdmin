@@ -58,15 +58,15 @@ function OBJNear()
 end
 
 function OBJTarget()
-	if gettingGOBinfo == 0 and gettingGOBinfoinfo == 0 then
-        gettingGOBinfo=1
+	if not gettingGOBinfo then
+        gettingGOBinfo = true
         --ma_gobtargetinfo:SetText("|cffffffff")
         --ma_gobinfoinfo:SetText("|cffffffff")
 
         local player =  UnitName("player")
         AzerothAdmin:ChatMsg(".gobject target")
         AzerothAdmin:LogAction("Object Target for player "..player..".")
-        --gettingGOBinfoinfo=1
+        --gettingGOBinfo = true
         AzerothAdmin:ChatMsg(".gobject info")
         --ShowGobModel()
     end

@@ -127,7 +127,7 @@ function ShowColorPicker(t)
       ma_btncolorshowbutton_texture:SetTexture(r,g,b)
     end
     ColorPickerFrame.func = function()
-      local r,g,b = ColorPickerFrame:GetColorRGB();
+      local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_btncolorshowbutton_texture:SetTexture(r,g,b)
       AzerothAdmin.db.account.style.color.buffer.buttons = {}
       AzerothAdmin.db.account.style.color.buffer.buttons.r = r
@@ -152,7 +152,7 @@ function ShowColorPicker(t)
       ma_linkifiercolorbutton_texture:SetTexture(r,g,b)
     end
     ColorPickerFrame.func = function()
-      local r,g,b = ColorPickerFrame:GetColorRGB();
+      local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_linkifiercolorbutton_texture:SetTexture(r,g,b)
       AzerothAdmin.db.account.style.color.buffer.linkifier = {}
       AzerothAdmin.db.account.style.color.buffer.linkifier.r = r

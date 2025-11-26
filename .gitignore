@@ -61,6 +61,7 @@ nbproject/
 .vscode
 .vs
 .idea
+.claude
 cmake-build-debug/*
 
 #

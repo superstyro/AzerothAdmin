@@ -207,8 +207,8 @@ AzerothAdmin.consoleOpts = {
       func = function() AzerothAdmin:ToggleTooltips() end
     },
     minimenu = {
-      name = "tooltips",
-      desc = "Toogle the toolbar/minimenu",
+      name = "minimenu",
+      desc = "Toggle the toolbar/minimenu",
       type = 'execute',
       func = function() AzerothAdmin:ToggleMinimenu() end
     }

@@ -837,7 +837,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
             output = AzerothAdmin.db.account.style.showchat
         end
         --this is to hide the message shown before the teles
-        if string.gmatch(text, Strings["ma_GmatchTeleFound"]) then
+        if string.find(text, Strings["ma_GmatchTeleFound"]) then
           catchedSth = true
           output = AzerothAdmin.db.account.style.showchat
         end
@@ -1466,36 +1466,52 @@ function AzerothAdmin:Favorites(value, searchtype)
     self:LogAction("Added some "..searchtype.."s to the favorites.")
   elseif value == "remove" then
     if searchtype == "item" then
-      for k,v in pairs(self.db.account.favorites.items) do
-        if v["checked"] then table.remove(self.db.account.favorites.items, k) end
+      for i = #self.db.account.favorites.items, 1, -1 do
+        if self.db.account.favorites.items[i]["checked"] then
+          table.remove(self.db.account.favorites.items, i)
+        end
       end
     elseif searchtype == "itemset" then
-      for k,v in pairs(self.db.account.favorites.itemsets) do
-        if v["checked"] then table.remove(self.db.account.favorites.itemsets, k) end
+      for i = #self.db.account.favorites.itemsets, 1, -1 do
+        if self.db.account.favorites.itemsets[i]["checked"] then
+          table.remove(self.db.account.favorites.itemsets, i)
+        end
       end
     elseif searchtype == "spell" then
-      for k,v in pairs(self.db.account.favorites.spells) do
-        if v["checked"] then table.remove(self.db.account.favorites.spells, k) end
+      for i = #self.db.account.favorites.spells, 1, -1 do
+        if self.db.account.favorites.spells[i]["checked"] then
+          table.remove(self.db.account.favorites.spells, i)
+        end
       end
     elseif searchtype == "skill" then
-      for k,v in pairs(self.db.account.favorites.skills) do
-        if v["checked"] then table.remove(self.db.account.favorites.skills, k) end
+      for i = #self.db.account.favorites.skills, 1, -1 do
+        if self.db.account.favorites.skills[i]["checked"] then
+          table.remove(self.db.account.favorites.skills, i)
+        end
       end
     elseif searchtype == "quest" then
-      for k,v in pairs(self.db.account.favorites.quests) do
-        if v["checked"] then table.remove(self.db.account.favorites.quests, k) end
+      for i = #self.db.account.favorites.quests, 1, -1 do
+        if self.db.account.favorites.quests[i]["checked"] then
+          table.remove(self.db.account.favorites.quests, i)
+        end
       end
     elseif searchtype == "creature" then
-      for k,v in pairs(self.db.account.favorites.creatures) do
-        if v["checked"] then table.remove(self.db.account.favorites.creatures, k) end
+      for i = #self.db.account.favorites.creatures, 1, -1 do
+        if self.db.account.favorites.creatures[i]["checked"] then
+          table.remove(self.db.account.favorites.creatures, i)
+        end
       end
     elseif searchtype == "object" then
-      for k,v in pairs(self.db.account.favorites.objects) do
-        if v["checked"] then table.remove(self.db.account.favorites.objects, k) end
+      for i = #self.db.account.favorites.objects, 1, -1 do
+        if self.db.account.favorites.objects[i]["checked"] then
+          table.remove(self.db.account.favorites.objects, i)
+        end
       end
     elseif searchtype == "tele" then
-      for k,v in pairs(self.db.account.favorites.teles) do
-        if v["checked"] then table.remove(self.db.account.favorites.teles, k) end
+      for i = #self.db.account.favorites.teles, 1, -1 do
+        if self.db.account.favorites.teles[i]["checked"] then
+          table.remove(self.db.account.favorites.teles, i)
+        end
       end
     end
     self:LogAction("Removed some favorited "..searchtype.."s from the list.")

@@ -365,7 +365,8 @@ function AzerothAdmin:CreateServerSection()
   local q = 0
   x:SetScript("OnUpdate",function()
       q = q + 1
-      if q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
+      -- Check if ma_delayparam exists before using it
+      if ma_delayparam and q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           AzerothAdmin:ChatMsg(".server info")
           q = 0
           --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value

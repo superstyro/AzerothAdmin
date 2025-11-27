@@ -320,6 +320,7 @@ function AzerothAdmin:CreateMiscSection()
     text = "Update Changes"
   })
 
+  -- Weather dropdown (initialized in AzerothAdmin.lua)
   FrameLib:BuildFrame({
     name = "ma_weatherdropdown",
     group = "misc",

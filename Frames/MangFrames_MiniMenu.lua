@@ -130,7 +130,7 @@ function AzerothAdmin:CreateMiniMenu()
     text = "Cr"
   })
 
-     FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_mm_npcbutton",
     group = "minimenu",
     parent = ma_miniframe,
@@ -285,7 +285,7 @@ function AzerothAdmin:CreateMiniMenu()
     text = "Lo"
   })
 
-    FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_mm_whobutton",
     group = "minimenu",
     parent = ma_miniframe,

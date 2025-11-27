@@ -584,27 +584,27 @@ function AzerothAdmin:CreateNpcSection()
       offY = -182 --charRowEight
     },
     text = Locale["ma_NPCMorph"]
-    })
+  })
 
-    FrameLib:BuildButton({ --Demorph
-      name = "ma_npcdemorphbutton",
-      group = "npc",
-      parent = ma_midframe,
-      texture = {
-        name = "ma_npcdemorphbutton_texture",
-        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-      },
-      size = {
-        width = 80,
-        height = 20
-      },
-      setpoint = {
-        pos = "TOPLEFT",
-        offX = 303, --charColThree
-        offY = -204 --charRowNine
-      },
-      text = Locale["ma_NPCDemorph"]
-    })
+  FrameLib:BuildButton({ --Demorph
+    name = "ma_npcdemorphbutton",
+    group = "npc",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_npcdemorphbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 303, --charColThree
+      offY = -204 --charRowNine
+    },
+    text = Locale["ma_NPCDemorph"]
+  })
 
   FrameLib:BuildButton({
     name = "ma_npcsaybutton",

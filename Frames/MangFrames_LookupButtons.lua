@@ -32,6 +32,22 @@ function AzerothAdmin:CreateLookupButtons()
     frm = AzerothAdmin.db.account.style.color.frames
   }
 
+  -- Validate Locale table exists
+  if not Locale then
+    Locale = {}
+  end
+
+  -- Set default locale strings if missing
+  Locale["ma_ItemButton"] = Locale["ma_ItemButton"] or "Item"
+  Locale["ma_ItemSetButton"] = Locale["ma_ItemSetButton"] or "Item Set"
+  Locale["ma_SpellButton"] = Locale["ma_SpellButton"] or "Spell"
+  Locale["ma_SkillButton"] = Locale["ma_SkillButton"] or "Skill"
+  Locale["ma_QuestButton"] = Locale["ma_QuestButton"] or "Quest"
+  Locale["ma_ObjectButton"] = Locale["ma_ObjectButton"] or "Object"
+  Locale["ma_CreatureButton"] = Locale["ma_CreatureButton"] or "Creature"
+  Locale["ma_TeleSearchButton"] = Locale["ma_TeleSearchButton"] or "Teleport"
+  Locale["ma_Mail"] = Locale["ma_Mail"] or "Mail"
+
   --[[Lookup Buttons]]
   FrameLib:BuildButton({
     name = "ma_itembutton",

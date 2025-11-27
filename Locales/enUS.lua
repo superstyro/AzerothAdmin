@@ -631,6 +631,8 @@ function Return_enUS()
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
     ["ma_ShutdownButton"]             = "Server Shutdown!",
+    ["ma_ReloadTableButton"]          = "Reload Table",
+    ["ma_ReloadScriptsButton"]        = "Reload Scripts",
   --[[Other]]
 
 

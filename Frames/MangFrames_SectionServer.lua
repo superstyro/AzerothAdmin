@@ -176,7 +176,7 @@ function AzerothAdmin:CreateServerSection()
       offX = -10,
       offY = -10
     },
-    text = "Reload Table"
+    text = Locale["ma_ReloadTableButton"]
   })
 
   FrameLib:BuildButton({
@@ -196,7 +196,7 @@ function AzerothAdmin:CreateServerSection()
       offX = -10,
       offY = -38
     },
-    text = "Reload Scripts"
+    text = Locale["ma_ReloadScriptsButton"]
   })
 
   FrameLib:BuildFrame({
@@ -378,7 +378,6 @@ function AzerothAdmin:CreateServerSection()
               z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
           end
           z:AddBar(s)
-          s = "0"
       end
       if x.NextUpdate>GetTime() then
         return

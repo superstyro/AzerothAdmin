@@ -1970,18 +1970,18 @@ end
 
 function AzerothAdmin:InitScrollFrames()
   cont = AzerothAdmin.db.char.selectedCont
-  ma_PopupScrollBar:SetScript("OnVerticalScroll", PopupScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 30, PopupScrollUpdate()) end)
+  ma_PopupScrollBar:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 30, PopupScrollUpdate) end)
   ma_PopupScrollBar:SetScript("OnShow", function() PopupScrollUpdate() end)
   --local zoneupdate = function() Mang:TeleScrollUpdate() end
-  ma_ZoneScrollBar:SetScript("OnVerticalScroll", TeleScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 16, TeleScrollUpdate()) end)
+  ma_ZoneScrollBar:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 16, TeleScrollUpdate) end)
   ma_ZoneScrollBar:SetScript("OnShow", function() TeleScrollUpdate() end)
-  ma_SubzoneScrollBar:SetScript("OnVerticalScroll", SubzoneScrollUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 16, SubzoneScrollUpdate()) end)
+  ma_SubzoneScrollBar:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset, 16, SubzoneScrollUpdate) end)
   ma_SubzoneScrollBar:SetScript("OnShow", function() SubzoneScrollUpdate() end)
   --ma_ticketscrollframe:SetScrollChild(ma_ticketeditbox)
   --ma_ticketscrollframe1:SetText("No Data")
 --  ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate("onlinelist"), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate("onlinelist")) end)
 --  ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate("onlinelist") end)
-  ma_whoscrollframe:SetScript("OnVerticalScroll", WhoUpdate(), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, WhoUpdate()) end)
+  ma_whoscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, WhoUpdate) end)
   ma_whoscrollframe:SetScript("OnShow", function() WhoUpdate() end)
 
   --ma_ticketeditbox:SetScript("OnTextChanged", function() ScrollingEdit_OnTextChanged(self, ma_ticketeditbox) end)

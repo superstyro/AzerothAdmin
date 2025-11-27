@@ -387,4 +387,27 @@ function AzerothAdmin:CreateMiniMenu()
   ma_mm_logoframe:SetScript("OnClick", function()
     AzerothAdmin:ToggleMiniMenu()
   end)
+
+  -- Initialize revive button (hidden by default)
+  ma_mm_revivebutton:Hide()
+
+  -- Revive button click handler
+  ma_mm_revivebutton:SetScript("OnClick", function()
+    RepopMe()
+    ma_mm_revivebutton:Hide()
+  end)
+
+  -- Event handler for player death/resurrection
+  local reviveEventFrame = CreateFrame("Frame")
+  reviveEventFrame:RegisterEvent("PLAYER_DEAD")
+  reviveEventFrame:RegisterEvent("PLAYER_ALIVE")
+  reviveEventFrame:RegisterEvent("PLAYER_UNGHOST")
+
+  reviveEventFrame:SetScript("OnEvent", function(self, event)
+    if event == "PLAYER_DEAD" then
+      ma_mm_revivebutton:Show()
+    elseif event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
+      ma_mm_revivebutton:Hide()
+    end
+  end)
 end

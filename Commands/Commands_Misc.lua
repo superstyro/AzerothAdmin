@@ -34,34 +34,17 @@ function UpdateChanges()
   else
     AzerothAdmin.db.account.style.transparency.backgrounds = 1.0
   end
-  if ma_checklocalsearchstringsbutton:GetChecked() then
-    AzerothAdmin.db.account.localesearchstring = true
-  else
-    AzerothAdmin.db.account.localesearchstring = false
-  end
-  if ma_showtooltipsbutton:GetChecked() then
-    AzerothAdmin.db.account.style.showtooltips = true
-  else
-    AzerothAdmin.db.account.style.showtooltips = false
-  end
-  if ma_showchatoutputbutton:GetChecked() then
-    AzerothAdmin.db.account.style.showchat = true
-  else
-    AzerothAdmin.db.account.style.showchat = false
-  end
-  if ma_showminimenubutton:GetChecked() then
-    AzerothAdmin.db.account.style.showminimenu = true
-  else
-    AzerothAdmin.db.account.style.showminimenu = false
-  end
+  AzerothAdmin.db.account.localesearchstring = ma_checklocalsearchstringsbutton:GetChecked()
+  AzerothAdmin.db.account.style.showtooltips = ma_showtooltipsbutton:GetChecked()
+  AzerothAdmin.db.account.style.showchat = ma_showchatoutputbutton:GetChecked()
+  AzerothAdmin.db.account.style.showminimenu = ma_showminimenubutton:GetChecked()
   if ma_delayparam then
     AzerothAdmin.db.account.style.delayparam = ma_delayparam:GetText()
-  else
   end
   ReloadUI()
 end
 
-function ShowColorPicker(t)
+function ShowColorPicker(t)  -- TODO: ShowColorPicker faults when clicking color window and it is shown (ElvUI error)
   if t == "bg" then
     local r,g,b
     if AzerothAdmin.db.account.style.color.buffer.backgrounds then
@@ -128,7 +111,7 @@ function ShowColorPicker(t)
       ma_btncolorshowbutton_texture:SetTexture(r,g,b)
     end
     ColorPickerFrame.func = function()
-      local r,g,b = ColorPickerFrame:GetColorRGB();
+      local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_btncolorshowbutton_texture:SetTexture(r,g,b)
       AzerothAdmin.db.account.style.color.buffer.buttons = {}
       AzerothAdmin.db.account.style.color.buffer.buttons.r = r
@@ -153,7 +136,7 @@ function ShowColorPicker(t)
       ma_linkifiercolorbutton_texture:SetTexture(r,g,b)
     end
     ColorPickerFrame.func = function()
-      local r,g,b = ColorPickerFrame:GetColorRGB();
+      local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_linkifiercolorbutton_texture:SetTexture(r,g,b)
       AzerothAdmin.db.account.style.color.buffer.linkifier = {}
       AzerothAdmin.db.account.style.color.buffer.linkifier.r = r

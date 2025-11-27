@@ -18,35 +18,35 @@
 
 function OBJGo()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".go object "..obj)
     AzerothAdmin:LogAction("Go Object for player "..player..".")
 end
 
 function OBJAdd()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_idbutton:GetText()
+    local obj = ma_Obj_idbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject add "..obj)
     AzerothAdmin:LogAction("Object Add for player "..player..".")
 end
 
 function OBJMove()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject move "..obj)
     AzerothAdmin:LogAction("Object Move for player "..player..".")
 end
 
 function OBJTurn()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject turn "..obj)
     AzerothAdmin:LogAction("Object Turn for player "..player..".")
 end
 
 function OBJDel()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject delete "..obj)
     AzerothAdmin:LogAction("Object Delete for player "..player..".")
 end
@@ -58,15 +58,15 @@ function OBJNear()
 end
 
 function OBJTarget()
-	if gettingGOBinfo == 0 and gettingGOBinfoinfo == 0 then
-        gettingGOBinfo=1
+	if not gettingGOBinfo then
+        gettingGOBinfo = true
         --ma_gobtargetinfo:SetText("|cffffffff")
         --ma_gobinfoinfo:SetText("|cffffffff")
 
         local player =  UnitName("player")
         AzerothAdmin:ChatMsg(".gobject target")
         AzerothAdmin:LogAction("Object Target for player "..player..".")
-        --gettingGOBinfoinfo=1
+        --gettingGOBinfo = true
         AzerothAdmin:ChatMsg(".gobject info")
         --ShowGobModel()
     end
@@ -80,7 +80,7 @@ end
 
 function OBJAddTemp()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_idbutton:GetText()
+    local obj = ma_Obj_idbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject add temp "..obj)
     AzerothAdmin:LogAction("Object Add(Temp) for player "..player..".")
 end
@@ -93,7 +93,7 @@ end
 
 function OBJSetPhase()
     local player = UnitName("target") or UnitName("player")
-    local obj =	ma_Obj_guidbutton:GetText()
+    local obj = ma_Obj_guidbutton:GetText()
     local phase = ma_gobsetphaseinput:GetText()
     AzerothAdmin:ChatMsg(".gobject set phase "..obj.." "..phase)
     AzerothAdmin:LogAction("Object "..obj.." phase set to "..phase.." for player "..player..".")
@@ -104,7 +104,6 @@ function ShowGobModel()
     local Hypotenuse = ( ( GetScreenWidth() * Scale ) ^ 2 + ( GetScreenHeight() * Scale ) ^ 2 ) ^ 0.5;
     local CoordRight = ( ma_gobjectmodel:GetRight() - ma_gobjectmodel:GetLeft() ) / Hypotenuse
     local CoordTop = ( ma_gobjectmodel:GetTop() - ma_gobjectmodel:GetBottom() ) / Hypotenuse
-    local Radian = 0.0174532925
     local gobdisplay = ma_gobdisplayid:GetText()
     local fu = tonumber(gobdisplay)
     ma_gobjectmodel:SetSequence(0)
@@ -115,7 +114,7 @@ function ShowGobModel()
     tVar=""
     tVar = ModelA[fu]
     if not tVar then
-        ma_gobinfoinfo="No data for this model"
+        ma_gobinfoinfo:SetText("No data for this model")
     else
         ma_gobjectmodel:SetModel(tVar)
     end
@@ -200,7 +199,6 @@ function CheckToggle(action)
         ma_moveonmovecheck:SetChecked(false)
     elseif action == "move" then
         ma_spawnonmovecheck:SetChecked(false)
-    else
     end
 
 --[[    isChecked = ma_spawnonmovecheck:GetChecked()

@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -42,7 +42,7 @@ function AzerothAdmin:CreateTabs()
       color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
       gradient = {
         orientation = "vertical",
-        min = {102,102,102,1},
+        min = {102,102,102,0},
         max = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
       }
     },
@@ -301,7 +301,7 @@ function AzerothAdmin:CreateTabs()
 --    group = "tabbuttons",
 --    parent = ma_topframe,
 --    texture = {
---      name = "ma_tabbutton_who_texture",
+--      name = "ma_tabbutton_changelog_texture",
 --      color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
 --      gradient = {
 --        orientation = "vertical",

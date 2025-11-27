@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -32,7 +32,7 @@ function Shutdown(value)
 end
 
 function ReloadTable(tablename)
-  if not (tablename == "") then
+  if tablename ~= "" then
     AzerothAdmin:ChatMsg(".reload "..tablename)
     if tablename == "all" then
       AzerothAdmin:LogAction("Reloaded all reloadable AzerothCore database tables.")

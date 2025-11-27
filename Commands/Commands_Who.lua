@@ -19,7 +19,7 @@
 function WhoUpdate()
     AzerothAdmin:LogAction("Getting Who.")
     local whoCount = 0
-    table.foreachi(AzerothAdmin.db.account.buffer.who, function() whoCount = whoCount + 1 end)
+    for _ in pairs(AzerothAdmin.db.account.buffer.who) do whoCount = whoCount + 1 end
     if whoCount > 0 then
       ma_whoscrollframe1:SetText("Loading")
       local lineplusoffset
@@ -31,20 +31,20 @@ function WhoUpdate()
         if lineplusoffset <= whoCount then
           local object = AzerothAdmin.db.account.buffer.who[lineplusoffset]
           if object then
-            getglobal("ma_whoscrollframe"..line):SetText("Acct: |cffffffff"..object["tAcc"].."|r Char: |cffffffff"..object["tChar"].."|r GMLvl: |cffffffff"..object["tGMLevel"].."|r Exp: |cffffffff"..object["tExp"].."|r")
+            _G["ma_whoscrollframe"..line]:SetText("Acct: |cffffffff"..object["tAcc"].."|r Char: |cffffffff"..object["tChar"].."|r GMLvl: |cffffffff"..object["tGMLevel"].."|r Exp: |cffffffff"..object["tExp"].."|r")
             ma_deletewhobutton:Enable()
             ma_answerwhobutton:Enable()
             ma_summonwhobutton:Enable()
             ma_gocharwhobutton:Enable()
             ma_whisperwhobutton:Enable()
-            getglobal("ma_whoscrollframe"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-            getglobal("ma_whoscrollframe"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-            getglobal("ma_whoscrollframe"..line):SetScript("OnClick", function() WhoDetail(object["tAcc"], object["tChar"], object["tMap"], object["tZone"]) end)
-            getglobal("ma_whoscrollframe"..line):Enable()
-            getglobal("ma_whoscrollframe"..line):Show()
+            _G["ma_whoscrollframe"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+            _G["ma_whoscrollframe"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+            _G["ma_whoscrollframe"..line]:SetScript("OnClick", function() WhoDetail(object["tAcc"], object["tChar"], object["tMap"], object["tZone"]) end)
+            _G["ma_whoscrollframe"..line]:Enable()
+            _G["ma_whoscrollframe"..line]:Show()
           end
         else
-          getglobal("ma_whoscrollframe"..line):Hide()
+          _G["ma_whoscrollframe"..line]:Hide()
         end
       end
     else

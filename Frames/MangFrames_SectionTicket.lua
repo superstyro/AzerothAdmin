@@ -408,7 +408,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -430,7 +430,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -452,7 +452,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -474,7 +474,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -496,7 +496,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -518,7 +518,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -540,7 +540,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -562,7 +562,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -584,7 +584,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -606,7 +606,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -628,7 +628,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -650,7 +650,7 @@ function AzerothAdmin:CreateTicketSection()
       width = 440,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
 end

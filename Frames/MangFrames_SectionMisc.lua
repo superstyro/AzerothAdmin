@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -107,7 +107,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_delayparamlabel2",
     group = "misc",
     parent = ma_midframe,
-    text = "Specifies update frequency of Diff graph on Server tab.\n 10000 = ~1 minute, 50000 =~5 minutes", -- FIX #13
+    text = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes", -- FIX #13
     setpoint = {
       pos = "TOPLEFT",
       offX = 165,
@@ -147,6 +147,12 @@ function AzerothAdmin:CreateMiscSection()
     },
     inherits = "OptionsSliderTemplate"
   })
+  ma_frmtrslider:SetMinMaxValues(0, 1)
+  ma_frmtrslider:SetValueStep(0.01)
+  ma_frmtrslider:SetValue(transparency.frm)
+  getglobal(ma_frmtrslider:GetName().."Low"):SetText("0%")
+  getglobal(ma_frmtrslider:GetName().."High"):SetText("100%")
+  getglobal(ma_frmtrslider:GetName().."Text"):SetText("Frame Transparency")
 
   FrameLib:BuildFrame({
     type = "Slider",
@@ -163,6 +169,12 @@ function AzerothAdmin:CreateMiscSection()
     },
     inherits = "OptionsSliderTemplate"
   })
+  ma_btntrslider:SetMinMaxValues(0, 1)
+  ma_btntrslider:SetValueStep(0.01)
+  ma_btntrslider:SetValue(transparency.btn)
+  getglobal(ma_btntrslider:GetName().."Low"):SetText("0%")
+  getglobal(ma_btntrslider:GetName().."High"):SetText("100%")
+  getglobal(ma_btntrslider:GetName().."Text"):SetText("Button Transparency")
 
   FrameLib:BuildButton({
     name = "ma_bgcolorshowbutton",
@@ -308,6 +320,7 @@ function AzerothAdmin:CreateMiscSection()
     text = "Update Changes"
   })
 
+  -- Weather dropdown (initialized in AzerothAdmin.lua)
   FrameLib:BuildFrame({
     name = "ma_weatherdropdown",
     group = "misc",

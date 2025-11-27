@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -182,7 +182,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 12,
       offY = -37
-    },
+    }
   })
 
   FrameLib:BuildFontString({
@@ -194,7 +194,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 93,
       offY = -37
-    },
+    }
   })
 
   FrameLib:BuildFrame({
@@ -334,7 +334,7 @@ function AzerothAdmin:CreateGOSection()
     inherits = "InputBoxTemplate"
   })
 
-    FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_gobmodelrotatelbutton",
     group = "go",
     parent = ma_midframe,
@@ -505,7 +505,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 42,
       offY = -82
-    },
+    }
   })
 
   FrameLib:BuildButton({
@@ -742,7 +742,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 602,
       offY = -131
-    },
+    }
   })
 
   FrameLib:BuildFontString({
@@ -754,7 +754,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 605,
       offY = -158
-    },
+    }
   })
 
   FrameLib:BuildFontString({
@@ -766,7 +766,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 605,
       offY = -184
-    },
+    }
   })
 
   FrameLib:BuildFontString({
@@ -778,7 +778,7 @@ function AzerothAdmin:CreateGOSection()
       pos = "TOPLEFT",
       offX = 605,
       offY = -210
-    },
+    }
   })
 
   FrameLib:BuildButton({

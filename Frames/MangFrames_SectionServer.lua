@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -63,8 +63,8 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  RealGraph=Graph:CreateGraphRealtime("ma_netgraph_lag",ma_netgraphframe,"CENTER","CENTER",0,0,150,150)
-  local g=RealGraph
+  local LagGraph=Graph:CreateGraphRealtime("ma_netgraph_lag",ma_netgraphframe,"CENTER","CENTER",0,0,150,150)
+  local g=LagGraph
   g:SetAutoScale(false)
   g:SetGridSpacing(1.0,10.0)
   g:SetYMax(120)
@@ -72,7 +72,7 @@ function AzerothAdmin:CreateServerSection()
   g:SetMode("RAW")
   g:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- GREEN
   --g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0}) -- RED
-  local f = CreateFrame("Frame",name,parent)
+  local f = CreateFrame("Frame", "ma_lagmeter_frame", ma_netgraphframe)
   f.frames=0
   f.NextUpdate=GetTime()
   f:SetScript("OnUpdate",function()
@@ -176,7 +176,7 @@ function AzerothAdmin:CreateServerSection()
       offX = -10,
       offY = -10
     },
-    text = "Reload Table"
+    text = Locale["ma_ReloadTableButton"]
   })
 
   FrameLib:BuildButton({
@@ -196,7 +196,7 @@ function AzerothAdmin:CreateServerSection()
       offX = -10,
       offY = -38
     },
-    text = "Reload Scripts"
+    text = Locale["ma_ReloadScriptsButton"]
   })
 
   FrameLib:BuildFrame({
@@ -351,21 +351,22 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  RealGraph=Graph:CreateGraphRealtime("ma_netgraph_diff",ma_netgraphframe2,"CENTER","CENTER",0,0,150,150)
-  local z=RealGraph
+  local DiffGraph=Graph:CreateGraphRealtime("ma_netgraph_diff",ma_netgraphframe2,"CENTER","CENTER",0,0,150,150)
+  local z=DiffGraph
   z:SetAutoScale(false)
   z:SetGridSpacing(1.0,10.0)
   z:SetYMax(300)
   z:SetXAxis(-10,0)
   z:SetMode("RAW")
   z:SetBarColors({0.2,0.0,0.0,0.4},{0.0,0.0,1.0,1.0})
-  local x = CreateFrame("Frame",name,parent)
+  local x = CreateFrame("Frame", "ma_diff_frame", ma_netgraphframe2)
   x.frames = 0
   x.NextUpdate=GetTime()
   local q = 0
   x:SetScript("OnUpdate",function()
       q = q + 1
-      if q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
+      -- Check if ma_delayparam exists before using it
+      if ma_delayparam and q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           AzerothAdmin:ChatMsg(".server info")
           q = 0
           --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
@@ -377,7 +378,6 @@ function AzerothAdmin:CreateServerSection()
               z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
           end
           z:AddBar(s)
-          s = "0"
       end
       if x.NextUpdate>GetTime() then
         return

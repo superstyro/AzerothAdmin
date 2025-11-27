@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -21,6 +21,22 @@
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateMiniMenu()
+  -- Validate dependencies
+  if not FrameLib then
+    error("AzerothAdmin: FrameLib not loaded")
+    return
+  end
+
+  if not AzerothAdmin.db or not AzerothAdmin.db.account or not AzerothAdmin.db.account.style then
+    error("AzerothAdmin: Style database not initialized")
+    return
+  end
+
+  if not ROOT_PATH then
+    error("AzerothAdmin: ROOT_PATH not defined")
+    return
+  end
+
   local transparency = {
     bg = AzerothAdmin.db.account.style.transparency.backgrounds,
     btn = AzerothAdmin.db.account.style.transparency.buttons,
@@ -130,7 +146,7 @@ function AzerothAdmin:CreateMiniMenu()
     text = "Cr"
   })
 
-     FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_mm_npcbutton",
     group = "minimenu",
     parent = ma_miniframe,
@@ -285,7 +301,7 @@ function AzerothAdmin:CreateMiniMenu()
     text = "Lo"
   })
 
-    FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_mm_whobutton",
     group = "minimenu",
     parent = ma_miniframe,
@@ -325,4 +341,73 @@ function AzerothAdmin:CreateMiniMenu()
     },
     text = "REVIVE!"
   })
+
+  -- Set up click handlers for menu buttons
+  ma_mm_mainbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("main")
+  end)
+
+  ma_mm_charbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("char")
+  end)
+
+  ma_mm_npcbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("npc")
+  end)
+
+  ma_mm_gobutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("go")
+  end)
+
+  ma_mm_telebutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("tele")
+  end)
+
+  ma_mm_ticketbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("ticket")
+  end)
+
+  ma_mm_miscbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("misc")
+  end)
+
+  ma_mm_serverbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("server")
+  end)
+
+  ma_mm_logbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("log")
+  end)
+
+  ma_mm_whobutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("who")
+  end)
+
+  -- Logo button toggles the minimenu visibility
+  ma_mm_logoframe:SetScript("OnClick", function()
+    AzerothAdmin:ToggleMiniMenu()
+  end)
+
+  -- Initialize revive button (hidden by default)
+  ma_mm_revivebutton:Hide()
+
+  -- Revive button click handler
+  ma_mm_revivebutton:SetScript("OnClick", function()
+    RepopMe()
+    ma_mm_revivebutton:Hide()
+  end)
+
+  -- Event handler for player death/resurrection
+  local reviveEventFrame = CreateFrame("Frame")
+  reviveEventFrame:RegisterEvent("PLAYER_DEAD")
+  reviveEventFrame:RegisterEvent("PLAYER_ALIVE")
+  reviveEventFrame:RegisterEvent("PLAYER_UNGHOST")
+
+  reviveEventFrame:SetScript("OnEvent", function(self, event)
+    if event == "PLAYER_DEAD" then
+      ma_mm_revivebutton:Show()
+    elseif event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
+      ma_mm_revivebutton:Hide()
+    end
+  end)
 end

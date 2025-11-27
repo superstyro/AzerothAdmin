@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -21,10 +21,10 @@ function TeleScrollUpdate()
       AzerothAdmin:ChatMsg("Lost ma_ZoneScrollBar")
     end
     local cont_temp = AzerothAdmin.db.char.selectedCont
-    cont = "EK_N"
-    if cont_temp == Nil then
+    if cont_temp ~= nil then
+        cont = cont_temp
     else
-        cont=cont_temp
+        cont = "EK_N"
     end
     --AzerothAdmin.db.char.selectedCont = cont
     --self:ChatMsg("Wrote cont:" ..cont)
@@ -33,14 +33,11 @@ function TeleScrollUpdate()
     for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
       zoneCount = zoneCount + 1
       --AzerothAdmin:ChatMsg("Zone count:" .. zoneCount)
-      if not AzerothAdmin.db.char.selectedZone and zoneCount == 0 then
-        SubzoneScrollUpdate()
-      end
       --AzerothAdmin:LogAction("added index: "..index)
       table.insert(TeleTable, {name = index, subzones = value})
     end
 
-    if zoneCount > -1 then
+    if zoneCount > 0 then
       --AzerothAdmin:ChatMsg("Zone count:" .. zoneCount)
       if not ma_ZoneScrollBar then
         AzerothAdmin:ChatMsg("Lost ma_ZoneScrollBar")
@@ -54,23 +51,23 @@ function TeleScrollUpdate()
         if lineplusoffset <= zoneCount then
           local teleobj = TeleTable[lineplusoffset]
           if AzerothAdmin.db.char.selectedZone == teleobj.name then
-            getglobal("ma_ZoneScrollBarEntry"..line):SetText("|cffff0000"..teleobj.name.."|r")
+            _G["ma_ZoneScrollBarEntry"..line]:SetText("|cffff0000"..teleobj.name.."|r")
           else
-            getglobal("ma_ZoneScrollBarEntry"..line):SetText(teleobj.name)
+            _G["ma_ZoneScrollBarEntry"..line]:SetText(teleobj.name)
           end
-          getglobal("ma_ZoneScrollBarEntry"..line):SetScript("OnClick", function()
+          _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnClick", function()
             AzerothAdmin.db.char.selectedZone = teleobj.name
             --AzerothAdmin.db.char.selectedCont = cont
             TeleScrollUpdate()
             --InlineScrollUpdate(cont)
             SubzoneScrollUpdate()
           end)
-          getglobal("ma_ZoneScrollBarEntry"..line):SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)
-          getglobal("ma_ZoneScrollBarEntry"..line):SetScript("OnLeave", function() cont = AzerothAdmin.db.char.selectedCont end)
-          getglobal("ma_ZoneScrollBarEntry"..line):Enable()
-          getglobal("ma_ZoneScrollBarEntry"..line):Show()
+          _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)
+          _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnLeave", function() cont = AzerothAdmin.db.char.selectedCont end)
+          _G["ma_ZoneScrollBarEntry"..line]:Enable()
+          _G["ma_ZoneScrollBarEntry"..line]:Show()
         else
-          getglobal("ma_ZoneScrollBarEntry"..line):Hide()
+          _G["ma_ZoneScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -80,10 +77,10 @@ end
 
 function SubzoneScrollUpdate()
  local cont_temp = AzerothAdmin.db.char.selectedCont
- cont = "EK_N"
- if cont_temp == Nil then
+ if cont_temp ~= nil then
+    cont = cont_temp
  else
-    cont=cont_temp
+    cont = "EK_N"
  end
 
 --    cont = AzerothAdmin.db.char.selectedCont
@@ -93,7 +90,7 @@ function SubzoneScrollUpdate()
   if AzerothAdmin.db.char.selectedZone then
     shownZone = AzerothAdmin.db.char.selectedZone
   end
-  ma_telesubzonetext:SetText(Locale["Zone"]..shownZone)
+  ma_telesubzonetext:SetText(Locale["Zone"]..": "..shownZone)
   for index, value in pairsByKeys(ReturnTeleportLocations(cont)) do
     if index == shownZone then
       for i, v in pairsByKeys(value) do
@@ -111,14 +108,14 @@ function SubzoneScrollUpdate()
       lineplusoffset = line + FauxScrollFrame_GetOffset(ma_SubzoneScrollBar)
       if lineplusoffset <= subzoneCount then
         local teleobj = TeleTable[lineplusoffset]
-        getglobal("ma_SubzoneScrollBarEntry"..line):SetText(teleobj.name)
-        getglobal("ma_SubzoneScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:ChatMsg(teleobj.command) end)
-        getglobal("ma_SubzoneScrollBarEntry"..line):SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)
-        getglobal("ma_SubzoneScrollBarEntry"..line):SetScript("OnLeave", function() cont = AzerothAdmin.db.char.selectedCont end)
-        getglobal("ma_SubzoneScrollBarEntry"..line):Enable()
-        getglobal("ma_SubzoneScrollBarEntry"..line):Show()
+        _G["ma_SubzoneScrollBarEntry"..line]:SetText(teleobj.name)
+        _G["ma_SubzoneScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:ChatMsg(teleobj.command) end)
+        _G["ma_SubzoneScrollBarEntry"..line]:SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)
+        _G["ma_SubzoneScrollBarEntry"..line]:SetScript("OnLeave", function() cont = AzerothAdmin.db.char.selectedCont end)
+        _G["ma_SubzoneScrollBarEntry"..line]:Enable()
+        _G["ma_SubzoneScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_SubzoneScrollBarEntry"..line):Hide()
+        _G["ma_SubzoneScrollBarEntry"..line]:Hide()
       end
     end
   else

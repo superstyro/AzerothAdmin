@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -350,7 +350,7 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     texture = {
-      name = "ma_npcemotebutton_texture",
+      name = "ma_npcemotebutton_a_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -540,10 +540,10 @@ function AzerothAdmin:CreateNpcSection()
     name = "ma_npcparameterboxtext",
     group = "npc",
     parent = ma_midframe,
-    text = Locale["ma_ParameterBox"],
+    text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
+      offX = 142, --charColOne
       offY = -231
     }
   })
@@ -555,12 +555,12 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     size = {
-      width = 120,
+      width = 240,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 180,
+      offX = 226,
       offY = -225 --charRowTen
     },
     inherits = "InputBoxTemplate"
@@ -584,27 +584,27 @@ function AzerothAdmin:CreateNpcSection()
       offY = -182 --charRowEight
     },
     text = Locale["ma_NPCMorph"]
-    })
+  })
 
-    FrameLib:BuildButton({ --Demorph
-      name = "ma_npcdemorphbutton",
-      group = "npc",
-      parent = ma_midframe,
-      texture = {
-        name = "ma_npcdemorphbutton_texture",
-        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-      },
-      size = {
-        width = 80,
-        height = 20
-      },
-      setpoint = {
-        pos = "TOPLEFT",
-        offX = 303, --charColThree
-        offY = -204 --charRowNine
-      },
-      text = Locale["ma_NPCDemorph"]
-    })
+  FrameLib:BuildButton({ --Demorph
+    name = "ma_npcdemorphbutton",
+    group = "npc",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_npcdemorphbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 303, --charColThree
+      offY = -204 --charRowNine
+    },
+    text = Locale["ma_NPCDemorph"]
+  })
 
   FrameLib:BuildButton({
     name = "ma_npcsaybutton",
@@ -855,7 +855,7 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     texture = {
-      name = "npcunfreeze_addwaybutton_texture",
+      name = "ma_npcunfreeze_addwaybutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

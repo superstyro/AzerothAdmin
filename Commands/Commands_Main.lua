@@ -28,13 +28,9 @@ function ToggleGMMode(value)
 end
 
 function ToggleFlyMode(value)
-  --if self:Selection("player") or self:Selection("self") or self:Selection("none") then
-    local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".gm fly "..value)
-    AzerothAdmin:LogAction("Turned Fly-mode "..value.." for "..player..".")
-  --[[else
-    self:Print(Locale["selectionerror1"])
-  end]]
+  local player = UnitName("target") or UnitName("player")
+  AzerothAdmin:ChatMsg(".gm fly "..value)
+  AzerothAdmin:LogAction("Turned Fly-mode "..value.." for "..player..".")
 end
 
 function ToggleHoverMode(value)
@@ -99,9 +95,6 @@ function SetSpeed()
   local value = string.format("%.1f", ma_speedslider:GetValue())
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
-    --self:ChatMsg(".modify speed "..value)
-    --self:ChatMsg(".modify fly "..value)
-    --self:ChatMsg(".modify swim "..value)
     AzerothAdmin:ChatMsg(".mod speed all "..value)
     AzerothAdmin:LogAction("Set all speed of "..player.." to "..value..".")
   else
@@ -144,22 +137,12 @@ end
 
 function SetJail_A()
     AzerothAdmin:ChatMsg(".tele del ma_AllianceJail")
-    local i = 1
-    while i<100 do
-        i=i+1
-        AzerothAdmin:ChatMsg(".")
-    end
     AzerothAdmin:ChatMsg(".tele add ma_AllianceJail")
     AzerothAdmin:LogAction("Set location of Alliance Jail")
 end
 
 function SetJail_H()
     AzerothAdmin:ChatMsg(".tele del ma_HordeJail")
-    local i = 1
-    while i<100 do
-        i=i+1
-        AzerothAdmin:ChatMsg(".")
-    end
     AzerothAdmin:ChatMsg(".tele add ma_HordeJail")
     AzerothAdmin:LogAction("Set location of Horde Jail")
 end
@@ -183,7 +166,7 @@ function GridNavigate(x, y)
       elseif way == "south" then  --South
         newy = y
         newx = x - step
-      else  --Wast
+      else  --West
         newy = y + step
         newx = x
       end
@@ -227,25 +210,37 @@ end
 
 function PetLearn()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet learn "..param)
   AzerothAdmin:LogAction("Taught pet spell "..param)
 end
 
 function PetUnLearn()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet unlearn "..param)
   AzerothAdmin:LogAction("Un-taught pet spell "..param)
 end
 
 function PetTP()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".pet tp "..param)
   AzerothAdmin:LogAction("Modified pet training points by "..param)
 end
 
 function LookupTaxi()
   local param = ma_parameter:GetText()
-  AzerothAdmin:ChatMsg(".lookup taxi  "..param)
+  AzerothAdmin:ChatMsg(".lookup taxi "..param)
   AzerothAdmin:LogAction("Looked up Taxinode "..param)
 end
 
@@ -327,42 +322,70 @@ end
 
 function AcctCreate() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account create "..param)
   AzerothAdmin:LogAction("Created account: "..param)
 end
 
 function AcctDelete() --TODO: Add confirm diaglog when attempting to perform action
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account delete "..param)
   AzerothAdmin:LogAction("Deleted account: "..param)
 end
 
 function AcctAddon()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set addon "..param)
   AzerothAdmin:LogAction("Set account addon: "..param)
 end
 
 function AcctGMLvl()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set gmlevel "..param)
   AzerothAdmin:LogAction("Set account gmlevel: "..param)
 end
 
 function AcctPasswd()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".account set password "..param)
   AzerothAdmin:LogAction("Set account password: "..param)
 end
 
 function GMNotify()
   local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".gmnotify "..param)
   AzerothAdmin:LogAction("GM Notify: "..param)
 end
 
 function TeleAddButton()
   local cname = ma_parameter:GetText()
+  if cname == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".tele add "..cname)
   AzerothAdmin:LogAction("Added .tele location: "..cname..".")
 
@@ -370,6 +393,10 @@ end
 
 function TeleDelButton() --TODO: Add confirm diaglog when attempting to perform action
   local cname = ma_parameter:GetText()
+  if cname == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
   AzerothAdmin:ChatMsg(".tele del "..cname)
   AzerothAdmin:LogAction("Deleted .tele location: "..cname..".")
 

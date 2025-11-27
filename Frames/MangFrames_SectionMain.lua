@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -18,7 +18,7 @@
 
 -- Initializing dynamic frames with LUA and FrameLib
 -- This script must be listed in the .toc after "MangFrames_PopupFrames.lua"
--- Also some variables are globally taken from AzerothAdmin.lua
+-- Global dependencies: ma_midframe, Locale, FrameLib (loaded from AzerothAdmin.lua)
 
 function AzerothAdmin:CreateMainSection()
   local transparency = {
@@ -716,7 +716,7 @@ function AzerothAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 327,
+      offX = 333,
       offY = -167
     }
   })
@@ -727,12 +727,12 @@ function AzerothAdmin:CreateMainSection()
     group = "main",
     parent = ma_midframe,
     size = {
-      width = 260,
+      width = 240,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 400,
+      offX = 420,
       offY = -163
     },
     inherits = "InputBoxTemplate"
@@ -975,7 +975,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 497,
       offY = -119
     },
-        text = Locale["ma_gozonexy"]
+    text = Locale["ma_gozonexy"]
   })
 
   FrameLib:BuildButton({
@@ -995,7 +995,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 497,
       offY = -140
     },
-        text = Locale["ma_lookupzone"]
+    text = Locale["ma_lookupzone"]
   })
 
   FrameLib:BuildButton({
@@ -1015,7 +1015,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -10
     },
-        text = Locale["ma_cast"]
+    text = Locale["ma_cast"]
   })
 
   FrameLib:BuildButton({
@@ -1035,7 +1035,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -32
     },
-        text = Locale["ma_castback"]
+    text = Locale["ma_castback"]
   })
 
   FrameLib:BuildButton({
@@ -1055,7 +1055,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -54
     },
-        text = Locale["ma_castdist"]
+    text = Locale["ma_castdist"]
   })
 
   FrameLib:BuildButton({
@@ -1075,7 +1075,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -75
     },
-        text = Locale["ma_castself"]
+    text = Locale["ma_castself"]
   })
 
   FrameLib:BuildButton({
@@ -1095,7 +1095,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -97
     },
-        text = Locale["ma_casttarget"]
+    text = Locale["ma_casttarget"]
   })
 
   FrameLib:BuildButton({
@@ -1115,7 +1115,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 415,
       offY = -119
     },
-        text = Locale["ma_listitem"]
+    text = Locale["ma_listitem"]
   })
 
   FrameLib:BuildButton({
@@ -1131,11 +1131,11 @@ function AzerothAdmin:CreateMainSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",  ---Correct This Location
+      pos = "TOPLEFT",
       offX = 578,
       offY = -140
     },
-        text = Locale["ma_GmClear"]
+    text = Locale["ma_GmClear"]
   })
 
   FrameLib:BuildButton({
@@ -1155,7 +1155,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -10
     },
-        text = Locale["ma_acctcreate"]
+    text = Locale["ma_acctcreate"]
   })
 
   FrameLib:BuildButton({
@@ -1175,7 +1175,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -32
     },
-        text = Locale["ma_acctdelete"]
+    text = Locale["ma_acctdelete"]
   })
 
   FrameLib:BuildButton({
@@ -1195,7 +1195,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -54
     },
-        text = Locale["ma_acctaddon"]
+    text = Locale["ma_acctaddon"]
   })
 
   FrameLib:BuildButton({
@@ -1215,7 +1215,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -75
     },
-        text = Locale["ma_acctgmlvl"]
+    text = Locale["ma_acctgmlvl"]
   })
 
   FrameLib:BuildButton({
@@ -1235,7 +1235,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -97
     },
-        text = Locale["ma_acctpasswd"]
+    text = Locale["ma_acctpasswd"]
   })
 
   FrameLib:BuildButton({
@@ -1255,7 +1255,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 333,
       offY = -119
     },
-        text = Locale["ma_gmnotify"]
+    text = Locale["ma_gmnotify"]
   })
 
   FrameLib:BuildButton({

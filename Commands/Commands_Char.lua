@@ -210,7 +210,7 @@ function Modify(case, value)
       AzerothAdmin:ChatMsg(".levelup "..value)
       AzerothAdmin:LogAction("Leveled up player "..player.." by "..value.." levels.")
     elseif case == "leveldown" then
-      AzerothAdmin:ChatMsg(".levelup "..value*(-1))
+      AzerothAdmin:ChatMsg(".levelup "..(-value))
       AzerothAdmin:LogAction("Leveled down player "..player.." by "..value.." levels.")
     elseif case == "energy" then
       AzerothAdmin:ChatMsg(".modify energy "..value)
@@ -226,46 +226,46 @@ function Modify(case, value)
       AzerothAdmin:LogAction("Modified mana for "..player.." to "..value.." mana")
     elseif case == "aspeed" then
       AzerothAdmin:ChatMsg(".modify aspeed "..value)
-      AzerothAdmin:LogAction("Modified AllSpeeds for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified AllSpeeds for "..player.." to "..value)
     elseif case == "arena" then
       AzerothAdmin:ChatMsg(".modify arena "..value)
-      AzerothAdmin:LogAction("Modified Arena Points for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Arena Points for "..player.." to "..value.." points")
     elseif case == "bwalk" then
       AzerothAdmin:ChatMsg(".modify bwalk "..value)
-      AzerothAdmin:LogAction("Modified BackWalk for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified BackWalk for "..player.." to "..value)
     elseif case == "drunk" then
       AzerothAdmin:ChatMsg(".modify drunk "..value)
-      AzerothAdmin:LogAction("Modified Drunk for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Drunk for "..player.." to "..value)
     elseif case == "fly" then
       AzerothAdmin:ChatMsg(".modify fly "..value)
-      AzerothAdmin:LogAction("Modified FlySpeed for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified FlySpeed for "..player.." to "..value)
     elseif case == "gender" then
       AzerothAdmin:ChatMsg(".modify gender "..value)
-      AzerothAdmin:LogAction("Modified Gender for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Gender for "..player.." to "..value)
     elseif case == "honor" then
       AzerothAdmin:ChatMsg(".modify honor "..value)
-      AzerothAdmin:LogAction("Modified Honor for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Honor for "..player.." to "..value.." points")
     elseif case == "mount" then
       AzerothAdmin:ChatMsg(".modify mount "..value)
-      AzerothAdmin:LogAction("Modified MountSpeed for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified MountSpeed for "..player.." to "..value)
     elseif case == "phase" then
       AzerothAdmin:ChatMsg(".modify phase "..value)
-      AzerothAdmin:LogAction("Modified Phase for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Phase for "..player.." to "..value)
     elseif case == "runicpower" then
       AzerothAdmin:ChatMsg(".modify runicpower "..value)
-      AzerothAdmin:LogAction("Modified RunicPower for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified RunicPower for "..player.." to "..value)
     elseif case == "speed" then
       AzerothAdmin:ChatMsg(".modify speed "..value)
-      AzerothAdmin:LogAction("Modified Speed for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified Speed for "..player.." to "..value)
     elseif case == "standstate" then
       AzerothAdmin:ChatMsg(".modify standstate "..value)
-      AzerothAdmin:LogAction("Modified StandState for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified StandState for "..player.." to "..value)
     elseif case == "swim" then
       AzerothAdmin:ChatMsg(".modify swim "..value)
-      AzerothAdmin:LogAction("Modified SwimSpeed for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified SwimSpeed for "..player.." to "..value)
     elseif case == "tp" then
       AzerothAdmin:ChatMsg(".modify tp "..value)
-      AzerothAdmin:LogAction("Modified TalentPoints for "..player.." to "..value.." mana")
+      AzerothAdmin:LogAction("Modified TalentPoints for "..player.." to "..value.." points")
     end
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
@@ -338,7 +338,7 @@ function ModifyDropDownInitialize()
       {Locale["ma_Rage"],"rage"},
       {Locale["ma_RunicPower"],"runicpower"},
       {Locale["ma_Speed"],"speed"},
-      {Locale["ma_StandSate"],"standstate"},
+      {Locale["ma_StandState"],"standstate"},
       {Locale["ma_SwimSpeed"],"swim"},
       {Locale["ma_TalentPoints"],"tp"}
     }
@@ -488,7 +488,6 @@ end
 --[[CHAR2 TAB Copy Over]]
 function BanButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".ban "..cname)
   AzerothAdmin:LogAction("Banned player: "..cname..".")
 
@@ -496,7 +495,6 @@ end
 
 function GoNameButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".appear "..cname)
   AzerothAdmin:LogAction("Teleported TO player: "..cname..".")
 
@@ -504,7 +502,6 @@ end
 
 function CreateGuildButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild create "..cname)
   AzerothAdmin:LogAction("Created Guild: "..cname..".")
 
@@ -512,7 +509,6 @@ end
 
 function BanInfoButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".baninfo "..cname)
   AzerothAdmin:LogAction("Listed .baninfo: "..cname..".")
 
@@ -520,7 +516,6 @@ end
 
 function GroupGoButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".groupsummon "..cname)
   AzerothAdmin:LogAction("Teleported "..cname.." and his/her group to me.")
 
@@ -528,7 +523,6 @@ end
 
 function GuildInviteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild invite "..cname)
   AzerothAdmin:LogAction("Guild invitation: "..cname..".")
 
@@ -536,7 +530,6 @@ end
 
 function BanlistButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".banlist "..cname)
   AzerothAdmin:LogAction("Listed bans matching: "..cname..".")
 
@@ -544,7 +537,6 @@ end
 
 function NameGoButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".summon "..cname)
   AzerothAdmin:LogAction("Teleported "..cname.." TO me.")
 
@@ -552,7 +544,6 @@ end
 
 function GuildRankButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild rank "..cname)
   AzerothAdmin:LogAction("Guild rank change: "..cname..".")
 
@@ -560,7 +551,6 @@ end
 
 function TeleGroupButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".tele group "..cname)
   AzerothAdmin:LogAction("Group teleported: "..cname..".")
 
@@ -568,7 +558,6 @@ end
 
 function UnBanButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".unban "..cname)
   AzerothAdmin:LogAction("Unbanned "..cname..".")
 
@@ -576,7 +565,6 @@ end
 
 function GuildDeleteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild delete "..cname)
   AzerothAdmin:LogAction("Deleted guild: "..cname..".")
 
@@ -584,7 +572,6 @@ end
 
 function GuildUninviteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild uninvite "..cname)
   AzerothAdmin:LogAction("Removed from guild: "..cname..".")
 
@@ -592,15 +579,13 @@ end
 
 function TeleNameButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
-    self:ChatMsg(".tele name "..cname)
-    self:LogAction("Teleported: "..cname..".")
+  AzerothAdmin:ChatMsg(".tele name "..cname)
+  AzerothAdmin:LogAction("Teleported: "..cname..".")
 
 end
 
 function MuteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".mute "..cname)
   AzerothAdmin:LogAction("Muted "..cname..".")
 
@@ -608,7 +593,6 @@ end
 
 function CharMorphButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".modify morph "..cname)
   AzerothAdmin:LogAction(".modify morph "..cname..".")
 
@@ -616,7 +600,6 @@ end
 
 function CharAuraButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".aura "..cname)
   AzerothAdmin:LogAction(".aura "..cname..".")
 
@@ -624,7 +607,6 @@ end
 
 function CharUnAuraButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".unaura "..cname)
   AzerothAdmin:LogAction(".unaura "..cname..".")
 
@@ -654,7 +636,6 @@ end
 
 function UnMuteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".unmute "..cname)
   AzerothAdmin:LogAction(".unmute "..cname..".")
 
@@ -662,7 +643,6 @@ end
 
 function QuestAddButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest add "..cname)
   AzerothAdmin:LogAction(".quest add "..cname..".")
 
@@ -670,7 +650,6 @@ end
 
 function QuestCompleteButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest complete "..cname)
   AzerothAdmin:LogAction(".quest complete "..cname..".")
 
@@ -678,7 +657,6 @@ end
 
 function QuestRemoveButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest remove "..cname)
   AzerothAdmin:LogAction(".quest remove "..cname..".")
 
@@ -686,7 +664,6 @@ end
 
 function DamageButton ()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".damage "..cname)
   AzerothAdmin:LogAction(".damage "..cname..".")
 
@@ -694,21 +671,18 @@ end
 
 function HideAreaButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".hidearea "..cname)
   AzerothAdmin:LogAction(".hidearea "..cname..".")
 end
 
 function ShowAreaButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".showarea "..cname)
   AzerothAdmin:LogAction(".showarea "..cname..".")
 end
 
 function HonorAddButton()
   local cname = ma_charactertarget:GetText()
-  local npccname = ma_npccharactertarget:GetText()
   AzerothAdmin:ChatMsg(".honor add "..cname)
   AzerothAdmin:LogAction("Honor add "..cname..".")
 end

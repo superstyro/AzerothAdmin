@@ -90,7 +90,7 @@ function Return_enUS()
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
     ["tt_LanguageButton"]             = "Reload AzerothAdmin.", --Removed locals. Updated tooltip to just reload
   --[[Control Labels]]
-    ["ma_LanguageButton"]             = "Change language",
+    ["ma_LanguageButton"]             = "Reload UI", 
     ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ", --Updated: Matched string output to AzerothAdmin
     ["info_platform"]                 = "|cFF00FF00Server Platform:|r ",
     ["info_online"]                   = "|cFF00FF00Players Online:|r ",
@@ -193,7 +193,7 @@ function Return_enUS()
     ["ma_TaxiOnButton"]               = "Cheat Taxi on",
     ["ma_ShowMapsButton"]             = "Show Maps",
     ["ma_HideMapsButton"]             = "Hide Maps",
-    ["ma_instakill"]                  = "Insta-kill enemy creatures",
+    ["ma_instakill"]                  = "Insta-kill creatures",
     ["ma_ScreenshotButton"]           = "Screenshot",
     ["ma_BankButton"]                 = "Bank",
     ["ma_DismountButton"]             = "Dismount",
@@ -400,7 +400,7 @@ function Return_enUS()
     ["ma_Phase"]                      = "Phase",
     ["ma_RunicPower"]                 = "RunicPower",
     ["ma_Speed"]                      = "Speed",
-    ["ma_StandSate"]                  = "StandState",
+    ["ma_StandState"]                 = "StandState",
     ["ma_SwimSpeed"]                  = "SwimSpeed",
     ["ma_TalentPoints"]               = "TalentPoints",
     -- languages
@@ -487,7 +487,6 @@ function Return_enUS()
     ["ma_NPCYell"]                    = "NPC Yell",
     ["ma_NPCAura"]                    = "NPC Aura",
     ["ma_NPCUnAura"]                  = "NPC Unaura",
-    ["ma_ParameterBox"]               = "Params",
     ["ma_PlayEmote1"]                 = "Emote",
     ["ma_PlayEmote2"]                 = "Emote",
     ["ma_DistanceBox"]                = "Distance",
@@ -631,6 +630,8 @@ function Return_enUS()
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
     ["ma_ShutdownButton"]             = "Server Shutdown!",
+    ["ma_ReloadTableButton"]          = "Reload Table",
+    ["ma_ReloadScriptsButton"]        = "Reload Scripts",
   --[[Other]]
 
 

@@ -42,7 +42,7 @@ function AzerothAdmin:CreateTabs()
       color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
       gradient = {
         orientation = "vertical",
-        min = {102,102,102,1},
+        min = {102,102,102,0},
         max = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
       }
     },

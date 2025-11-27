@@ -1055,7 +1055,7 @@ end
     -- getting GUID and setting db variables and logged text
     self.db.char.getValueCallHandler.calledGetGuid = true
     self.db.char.getValueCallHandler.realGuid = value
-    ma_toptext:SetText(Locale["char"]..Locale["guid"]..UnitGUID())
+    ma_toptext:SetText(Locale["char"]..Locale["guid"]..tonumber(UnitGUID("player"),16))
     return false
   elseif guid == realGuid then
     return true

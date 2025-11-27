@@ -487,7 +487,6 @@ function Return_enUS()
     ["ma_NPCYell"]                    = "NPC Yell",
     ["ma_NPCAura"]                    = "NPC Aura",
     ["ma_NPCUnAura"]                  = "NPC Unaura",
-    ["ma_ParameterBox"]               = "Params",
     ["ma_PlayEmote1"]                 = "Emote",
     ["ma_PlayEmote2"]                 = "Emote",
     ["ma_DistanceBox"]                = "Distance",

@@ -835,7 +835,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_banbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_charmorphbutton",
     group = "char",
     parent = ma_midframe,
@@ -855,7 +855,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_Morph"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_gonamebutton",
     group = "char",
     parent = ma_midframe,
@@ -875,7 +875,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_gonamebutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_createguildbutton",
     group = "char",
     parent = ma_midframe,
@@ -895,7 +895,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_createguildbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_baninfobutton",
     group = "char",
     parent = ma_midframe,
@@ -915,7 +915,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_baninfobutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_groupgobutton",
     group = "char",
     parent = ma_midframe,
@@ -935,7 +935,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_groupgobutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_guildinvitebutton",
     group = "char",
     parent = ma_midframe,
@@ -955,7 +955,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_guildinvitebutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_banlistbutton",
     group = "char",
     parent = ma_midframe,
@@ -975,7 +975,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_banlistbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_namegobutton",
     group = "char",
     parent = ma_midframe,
@@ -995,7 +995,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_namegobutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_guildrankbutton",
     group = "char",
     parent = ma_midframe,
@@ -1015,7 +1015,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_guildrankbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_telegroupbutton",
     group = "char",
     parent = ma_midframe,
@@ -1035,7 +1035,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_telegroupbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_unbanbutton",
     group = "char",
     parent = ma_midframe,
@@ -1055,7 +1055,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_unbanbutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_guilddeletebutton",
     group = "char",
     parent = ma_midframe,
@@ -1075,7 +1075,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_guilddeletebutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_guilduninvitebutton",
     group = "char",
     parent = ma_midframe,
@@ -1095,7 +1095,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_guilduninvitebutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_telenamebutton",
     group = "char",
     parent = ma_midframe,
@@ -1115,7 +1115,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_telenamebutton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_mutebutton",
     group = "char",
     parent = ma_midframe,
@@ -1135,7 +1135,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_mutebutton"]
 })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_charaurabutton",
     group = "char",
     parent = ma_midframe,
@@ -1155,7 +1155,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_Aura"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_charunaurabutton",
     group = "char",
     parent = ma_midframe,
@@ -1175,7 +1175,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_UnAura"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_jailabutton",
     group = "char",
     parent = ma_midframe,
@@ -1195,7 +1195,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_JailAButton"]
     })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_jailhbutton",
     group = "char",
     parent = ma_midframe,
@@ -1215,7 +1215,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_JailHButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_unjailbutton",
     group = "char",
     parent = ma_midframe,
@@ -1235,7 +1235,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_UnJailButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_unmutebutton",
     group = "char",
     parent = ma_midframe,
@@ -1255,7 +1255,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_UnMuteButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_questaddbutton",
     group = "char",
     parent = ma_midframe,
@@ -1275,7 +1275,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_QuestAddButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_questcompletebutton",
     group = "char",
     parent = ma_midframe,
@@ -1295,7 +1295,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_QuestCompleteButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_questremovebutton",
     group = "char",
     parent = ma_midframe,
@@ -1315,7 +1315,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_QuestRemoveButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_damagebutton",
     group = "char",
     parent = ma_midframe,
@@ -1335,7 +1335,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_DamageButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_hideareabutton",
     group = "char",
     parent = ma_midframe,
@@ -1355,7 +1355,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_HideAreaButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_showareabutton",
     group = "char",
     parent = ma_midframe,
@@ -1375,7 +1375,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_ShowAreaButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_honoraddbutton",
     group = "char",
     parent = ma_midframe,
@@ -1395,7 +1395,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_HonorAddButton"]
   })
 
- FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_honorupdatebutton",
     group = "char",
     parent = ma_midframe,

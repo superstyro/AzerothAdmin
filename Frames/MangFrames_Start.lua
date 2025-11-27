@@ -282,10 +282,6 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_languagedropdown",
     group = "bg",
     parent = ma_topframe,
-    size = {
-      width = 80,
-      height = 20
-    },
     setpoint = {
       pos = "TOPRIGHT",
       offX = -115,

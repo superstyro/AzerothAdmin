@@ -341,4 +341,50 @@ function AzerothAdmin:CreateMiniMenu()
     },
     text = "REVIVE!"
   })
+
+  -- Set up click handlers for menu buttons
+  ma_mm_mainbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("main")
+  end)
+
+  ma_mm_charbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("char")
+  end)
+
+  ma_mm_npcbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("npc")
+  end)
+
+  ma_mm_gobutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("go")
+  end)
+
+  ma_mm_telebutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("tele")
+  end)
+
+  ma_mm_ticketbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("ticket")
+  end)
+
+  ma_mm_miscbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("misc")
+  end)
+
+  ma_mm_serverbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("server")
+  end)
+
+  ma_mm_logbutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("log")
+  end)
+
+  ma_mm_whobutton:SetScript("OnClick", function()
+    AzerothAdmin:ShowSection("who")
+  end)
+
+  -- Logo button toggles the minimenu visibility
+  ma_mm_logoframe:SetScript("OnClick", function()
+    AzerothAdmin:ToggleMiniMenu()
+  end)
 end

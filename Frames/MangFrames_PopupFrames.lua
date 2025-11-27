@@ -183,7 +183,7 @@ function AzerothAdmin:CreatePopupFrames()
       color = {color.frm.r, color.frm.g, color.frm.b, transparency.frm},
       gradient = {
         orientation = "vertical",
-        min = {102,102,102,0},
+        min = {102,102,102,1},
         max = {color.frm.r, color.frm.g, color.frm.b, transparency.frm}
       }
     },

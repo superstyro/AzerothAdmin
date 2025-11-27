@@ -63,8 +63,8 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  RealGraph=Graph:CreateGraphRealtime("ma_netgraph_lag",ma_netgraphframe,"CENTER","CENTER",0,0,150,150)
-  local g=RealGraph
+  local LagGraph=Graph:CreateGraphRealtime("ma_netgraph_lag",ma_netgraphframe,"CENTER","CENTER",0,0,150,150)
+  local g=LagGraph
   g:SetAutoScale(false)
   g:SetGridSpacing(1.0,10.0)
   g:SetYMax(120)
@@ -351,8 +351,8 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  RealGraph=Graph:CreateGraphRealtime("ma_netgraph_diff",ma_netgraphframe2,"CENTER","CENTER",0,0,150,150)
-  local z=RealGraph
+  local DiffGraph=Graph:CreateGraphRealtime("ma_netgraph_diff",ma_netgraphframe2,"CENTER","CENTER",0,0,150,150)
+  local z=DiffGraph
   z:SetAutoScale(false)
   z:SetGridSpacing(1.0,10.0)
   z:SetYMax(300)

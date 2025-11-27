@@ -231,7 +231,7 @@ function AzerothAdmin:OnInitialize()
   -- those all hook the AddMessage method of the chat frames.
   -- They will be redirected to AzerothAdmin:AddMessage(...)
   for i=1,NUM_CHAT_WINDOWS do
-    local cf = getglobal("ChatFrame"..i)
+    local cf = _G["ChatFrame"..i]
     self:Hook(cf, "AddMessage", true)
   end
   -- initializing Frames, like DropDowns, Sliders, aso
@@ -426,9 +426,9 @@ function AzerothAdmin:ToggleTabButton(group)
   FrameLib:HandleGroup("tabbuttons",
   function(button)
     if button:GetName() == "ma_tabbutton_"..group then
-      getglobal(button:GetName().."_texture"):SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+      _G[button:GetName().."_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     else
-      getglobal(button:GetName().."_texture"):SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+      _G[button:GetName().."_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
     end
   end)
 end
@@ -459,8 +459,8 @@ function AzerothAdmin:TogglePopup(value, param)
   else]]
   if value == "search" then
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
-    getglobal("ma_ptabbutton_1_texture"):SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
-    getglobal("ma_ptabbutton_2_texture"):SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
     ma_mailscrollframe:Hide()
     ma_maileditbox:Hide()
     ma_var1editbox:Hide()
@@ -527,18 +527,18 @@ function AzerothAdmin:TogglePopup(value, param)
     end
   elseif value == "favorites" then
     self:SearchReset()
-    getglobal("ma_ptabbutton_2_texture"):SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
-    getglobal("ma_ptabbutton_1_texture"):SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
     ma_modfavsbutton:SetScript("OnClick", function() self:Favorites("remove", param.type) end)
     ma_modfavsbutton:SetText(Locale["ma_FavRemove"])
     ma_modfavsbutton:Enable()
     self:Favorites("show", param.type)
   elseif value == "mail" then
-    getglobal("ma_ptabbutton_1_texture"):SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
-    getglobal("ma_ptabbutton_2_texture"):SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
     for n = 1,7 do
-      getglobal("ma_PopupScrollBarEntry"..n):Hide()
+      _G["ma_PopupScrollBarEntry"..n]:Hide()
     end
     ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."246")
     ma_lookupresulttext:Show()
@@ -2017,64 +2017,64 @@ function AzerothAdmin:NoResults(var)
     --ma_ticketeditbox:SetText(Locale["ma_TicketsNoTickets"])
     FauxScrollFrame_Update(ma_ZoneScrollBar,12,12,30);
     for line = 1,12 do
-      getglobal("ma_ZoneScrollBarEntry"..line):Disable()
+      _G["ma_ZoneScrollBarEntry"..line]:Disable()
       if line == 1 then
-        getglobal("ma_ZoneScrollBarEntry"..line):SetText(Locale["ma_TicketsNoTickets"])
-        getglobal("ma_ZoneScrollBarEntry"..line):Show()
+        _G["ma_ZoneScrollBarEntry"..line]:SetText(Locale["ma_TicketsNoTickets"])
+        _G["ma_ZoneScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_ZoneScrollBarEntry"..line):Hide()
+        _G["ma_ZoneScrollBarEntry"..line]:Hide()
       end
     end
   elseif var == "search" then
     ma_lookupresulttext:SetText(Locale["searchResults"].."0")
     FauxScrollFrame_Update(ma_PopupScrollBar,7,7,30);
     for line = 1,7 do
-      getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
-      getglobal("ma_PopupScrollBarEntry"..line):Disable()
-      getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Disable()
-      getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
+      _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+      _G["ma_PopupScrollBarEntry"..line]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
       if line == 1 then
-        getglobal("ma_PopupScrollBarEntry"..line):SetText(Locale["tt_SearchDefault"])
-        getglobal("ma_PopupScrollBarEntry"..line):Show()
+        _G["ma_PopupScrollBarEntry"..line]:SetText(Locale["tt_SearchDefault"])
+        _G["ma_PopupScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_PopupScrollBarEntry"..line):Hide()
+        _G["ma_PopupScrollBarEntry"..line]:Hide()
       end
     end
   elseif var == "favorites" then
     ma_lookupresulttext:SetText(Locale["favoriteResults"].."0")
     FauxScrollFrame_Update(ma_PopupScrollBar,7,7,30);
     for line = 1,7 do
-      getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
-      getglobal("ma_PopupScrollBarEntry"..line):Disable()
-      getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Disable()
-      getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
+      _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+      _G["ma_PopupScrollBarEntry"..line]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
       if line == 1 then
-        getglobal("ma_PopupScrollBarEntry"..line):SetText(Locale["ma_NoFavorites"])
-        getglobal("ma_PopupScrollBarEntry"..line):Show()
+        _G["ma_PopupScrollBarEntry"..line]:SetText(Locale["ma_NoFavorites"])
+        _G["ma_PopupScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_PopupScrollBarEntry"..line):Hide()
+        _G["ma_PopupScrollBarEntry"..line]:Hide()
       end
     end
   elseif var == "zones" then
     FauxScrollFrame_Update(ma_ZoneScrollBar,12,12,16);
     for line = 1,12 do
-      getglobal("ma_ZoneScrollBarEntry"..line):Disable()
+      _G["ma_ZoneScrollBarEntry"..line]:Disable()
       if line == 1 then
-        getglobal("ma_ZoneScrollBarEntry"..line):SetText(Locale["ma_NoZones"])
-        getglobal("ma_ZoneScrollBarEntry"..line):Show()
+        _G["ma_ZoneScrollBarEntry"..line]:SetText(Locale["ma_NoZones"])
+        _G["ma_ZoneScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_ZoneScrollBarEntry"..line):Hide()
+        _G["ma_ZoneScrollBarEntry"..line]:Hide()
       end
     end
   elseif var == "subzones" then
     FauxScrollFrame_Update(ma_SubzoneScrollBar,12,12,16);
     for line = 1,12 do
-      getglobal("ma_SubzoneScrollBarEntry"..line):Disable()
+      _G["ma_SubzoneScrollBarEntry"..line]:Disable()
       if line == 1 then
-        getglobal("ma_SubzoneScrollBarEntry"..line):SetText(Locale["ma_NoSubZones"])
-        getglobal("ma_SubzoneScrollBarEntry"..line):Show()
+        _G["ma_SubzoneScrollBarEntry"..line]:SetText(Locale["ma_NoSubZones"])
+        _G["ma_SubzoneScrollBarEntry"..line]:Show()
       else
-        getglobal("ma_SubzoneScrollBarEntry"..line):Hide()
+        _G["ma_SubzoneScrollBarEntry"..line]:Hide()
       end
     end
   end
@@ -2104,38 +2104,38 @@ function PopupScrollUpdate()
           end
           local key = lineplusoffset
           --item icons
-          getglobal("ma_PopupScrollBarEntryIcon"..line.."IconTexture"):SetTexture(GetItemIcon(item["itId"]))
-          getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
-          getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
-          getglobal("ma_PopupScrollBarEntryIcon"..line):SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntryIcon"..line):Show()
+          _G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetItemIcon(item["itId"]))
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:Show()
           --item description
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..item["itId"].."|r Name: |cffffffff"..item["itName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..item["itId"].."|r Name: |cffffffff"..item["itName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.item then
             if item["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.items[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.items[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.items[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.items[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favitem then
             if item["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.items[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.items[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.items[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.items[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(item["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(item["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2157,7 +2157,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local itemset
@@ -2167,31 +2167,31 @@ function PopupScrollUpdate()
             itemset = AzerothAdmin.db.account.favorites.itemsets[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..itemset["isId"].."|r Name: |cffffffff"..itemset["isName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:AddItemSet(itemset["isId"]) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..itemset["isId"].."|r Name: |cffffffff"..itemset["isName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddItemSet(itemset["isId"]) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.itemset then
             if itemset["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.itemsets[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.itemsets[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favitemset then
             if itemset["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.itemsets[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.itemsets[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(itemset["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(itemset["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2213,7 +2213,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local quest
@@ -2223,31 +2223,31 @@ function PopupScrollUpdate()
             quest = AzerothAdmin.db.account.favorites.quests[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:Quest(quest["qsId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:Quest(quest["qsId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.quest then
             if quest["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.quests[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.quests[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.quests[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.quests[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favquest then
             if quest["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.quests[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.quests[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.quests[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.quests[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(quest["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(quest["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2269,7 +2269,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local creature
@@ -2279,31 +2279,31 @@ function PopupScrollUpdate()
             creature = AzerothAdmin.db.account.favorites.creatures[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..creature["crId"].."|r Name: |cffffffff"..creature["crName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:Creature(creature["crId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..creature["crId"].."|r Name: |cffffffff"..creature["crName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:Creature(creature["crId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.creature then
             if creature["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.creatures[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.creatures[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.creatures[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.creatures[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favcreature then
             if creature["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.creatures[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.creatures[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.creatures[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.creatures[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(creature["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(creature["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2325,7 +2325,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local spell
@@ -2336,33 +2336,33 @@ function PopupScrollUpdate()
           end
           local key = lineplusoffset
           --spell icon
-          --getglobal("ma_PopupScrollBarEntryIcon"..line.."IconTexture"):SetTexture(GetSpellTexture(spell["spId"],BOOKTYPE_SPELL))
+          --_G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetSpellTexture(spell["spId"],BOOKTYPE_SPELL))
           --spell info
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..spell["spId"].."|r Name: |cffffffff"..spell["spName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() LearnSpell(spell["spId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..spell["spId"].."|r Name: |cffffffff"..spell["spName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() LearnSpell(spell["spId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.spell then
             if spell["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.spells[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.spells[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.spells[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.spells[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favspell then
             if spell["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.spells[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.spells[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.spells[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.spells[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(spell["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(spell["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2384,7 +2384,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local skill
@@ -2394,31 +2394,31 @@ function PopupScrollUpdate()
             skill = AzerothAdmin.db.account.favorites.skills[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..skill["skId"].."|r Name: |cffffffff"..skill["skName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:SetSkill(skill["skId"], nil, nil) end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..skill["skId"].."|r Name: |cffffffff"..skill["skName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:SetSkill(skill["skId"], nil, nil) end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.skill then
             if skill["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.skills[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.skills[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.skills[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.skills[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favskill then
             if skill["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.skills[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.skills[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.skills[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.skills[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(skill["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(skill["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2440,7 +2440,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local object
@@ -2450,31 +2450,31 @@ function PopupScrollUpdate()
             object = AzerothAdmin.db.account.favorites.objects[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Id: |cffffffff"..object["objId"].."|r Name: |cffffffff"..object["objName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:AddObject(object["objId"], arg1) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..object["objId"].."|r Name: |cffffffff"..object["objName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddObject(object["objId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.object then
             if object["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.objects[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.objects[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.objects[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.objects[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favobject then
             if object["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.objects[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.objects[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.objects[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.objects[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(object["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(object["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else
@@ -2496,7 +2496,7 @@ function PopupScrollUpdate()
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
-        getglobal("ma_PopupScrollBarEntryIcon"..line):Hide()
+        _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
           local tele
@@ -2506,31 +2506,31 @@ function PopupScrollUpdate()
             tele = AzerothAdmin.db.account.favorites.teles[lineplusoffset]
           end
           local key = lineplusoffset
-          getglobal("ma_PopupScrollBarEntry"..line):SetText("Name: |cffffffff"..tele["tName"].."|r")
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnClick", function() AzerothAdmin:ChatMsg(".tele "..tele["tName"]) end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnEnter", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):SetScript("OnLeave", function() --[[Do nothing]] end)
-          getglobal("ma_PopupScrollBarEntry"..line):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line):Show()
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Name: |cffffffff"..tele["tName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:ChatMsg(".tele "..tele["tName"]) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:Enable()
+          _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.tele then
             if tele["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.teles[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.teles[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.buffer.teles[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.buffer.teles[key]["checked"] = true; PopupScrollUpdate() end)
             end
           elseif AzerothAdmin.db.char.requests.favtele then
             if tele["checked"] then
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.teles[key]["checked"] = false; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.teles[key]["checked"] = false; PopupScrollUpdate() end)
             else
-              getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetScript("OnClick", function() AzerothAdmin.db.account.favorites.teles[key]["checked"] = true; PopupScrollUpdate() end)
+              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.account.favorites.teles[key]["checked"] = true; PopupScrollUpdate() end)
             end
           end
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):SetChecked(tele["checked"])
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Enable()
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Show()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(tele["checked"])
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
         else
-          getglobal("ma_PopupScrollBarEntry"..line.."ChkBtn"):Hide()
-          getglobal("ma_PopupScrollBarEntry"..line):Hide()
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          _G["ma_PopupScrollBarEntry"..line]:Hide()
         end
       end
     else

@@ -209,7 +209,7 @@ function FrameLib:BuildButton(def)
   local t = def.text
   if t then
     if def.type == "CheckButton" and def.inherits == "OptionsCheckButtonTemplate" then
-      getglobal(button:GetName().."Text"):SetText(t)
+      _G[button:GetName().."Text"]:SetText(t)
     else
       button:SetText(t)
     end

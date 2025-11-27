@@ -203,7 +203,7 @@ function InlineScrollUpdate()
             _G["ma_ticketscrollframe"..line]:Show()
           end
         else
-          getglobal("ma_ticketscrollframe"..line):Hide()
+          _G["ma_ticketscrollframe"..line]:Hide()
         end
       end
     else
@@ -236,7 +236,7 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     --ma_ticketdetail:SetText("Hello")
     --AzerothAdmin:ChatMsg(AzerothAdmin.db.account.buffer.ticketsfull["tMsg"])
     --ma_ticketdetail:SetText(ticketdetail["tMsg"])
-    --getglobal("ma_ticketdetail"):SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
+    --_G["ma_ticketdetail"]:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText(ticketdetail["tMsg"].."|r")
     --ma_ticketdetail:SetText("Hello")

@@ -855,7 +855,7 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     texture = {
-      name = "npcunfreeze_addwaybutton_texture",
+      name = "ma_npcunfreeze_addwaybutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

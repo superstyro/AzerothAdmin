@@ -368,7 +368,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -416,7 +416,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -464,7 +464,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -512,7 +512,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -560,7 +560,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -608,7 +608,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -656,7 +656,7 @@ function AzerothAdmin:CreatePopupFrames()
       width = 380,
       height = 30
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({

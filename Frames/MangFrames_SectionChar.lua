@@ -799,7 +799,7 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     texture = {
-      name = "ma_charreppairitemsbutton_texture",
+      name = "ma_charrepairitemsbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

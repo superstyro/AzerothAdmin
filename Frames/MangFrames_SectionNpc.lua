@@ -540,10 +540,10 @@ function AzerothAdmin:CreateNpcSection()
     name = "ma_npcparameterboxtext",
     group = "npc",
     parent = ma_midframe,
-    text = Locale["ma_ParameterBox"],
+    text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
+      offX = 142, --charColOne
       offY = -231
     }
   })
@@ -555,12 +555,12 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     size = {
-      width = 120,
+      width = 240,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 180,
+      offX = 226,
       offY = -225 --charRowTen
     },
     inherits = "InputBoxTemplate"

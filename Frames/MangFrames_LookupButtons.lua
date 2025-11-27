@@ -218,7 +218,7 @@ function AzerothAdmin:CreateLookupButtons()
     group = "bg",
     parent = ma_rightframe,
     texture = {
-      name = "ma_languagebutton_texture",
+      name = "ma_closebutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

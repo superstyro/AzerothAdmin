@@ -381,7 +381,7 @@ end
 function AzerothAdmin:OnTooltipUpdate()
   local tickets = self.db.char.newTicketQueue
   local ticketCount = 0
-  table.foreachi(tickets, function() ticketCount = ticketCount + 1 end)
+  for _ in pairs(tickets) do ticketCount = ticketCount + 1 end
   if ticketCount == 0 then
     local cat = Tablet:AddCategory("columns", 1)
     cat:AddLine("text", Locale["ma_TicketsNoNew"])
@@ -934,7 +934,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
     for id, char, create, update in string.gmatch(text, Strings["ma_GmatchTickets"]) do
         table.insert(AzerothAdmin.db.account.buffer.tickets, {tNumber = id, tChar = char, tLCreate = create, tLUpdate = update, tMsg = ""})
         local ticketCount = 0
-        table.foreachi(AzerothAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
+        for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
         ticketCount = 0
         catchedSth = true
         output = AzerothAdmin.db.account.style.showchat
@@ -1006,7 +1006,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
           if not catchedSth then
             --self:LogAction(text)
             local ticketCount = 0
-            table.foreachi(AzerothAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
+            for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
             --self:LogAction("Prepare to add text to DB ticket: "..ticketCount)
             for k,v in ipairs(self.db.account.buffer.tickets) do
               if k == ticketCount then
@@ -1447,21 +1447,21 @@ end
 function AzerothAdmin:Favorites(value, searchtype)
   if value == "add" then
     if searchtype == "item" then
-      table.foreachi(self.db.account.buffer.items, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.items, {itId = v["itId"], itName = v["itName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.items) do if v["checked"] then table.insert(self.db.account.favorites.items, {itId = v["itId"], itName = v["itName"], checked = false}) end end
     elseif searchtype == "itemset" then
-      table.foreachi(self.db.account.buffer.itemsets, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.itemsets, {isId = v["isId"], isName = v["isName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.itemsets) do if v["checked"] then table.insert(self.db.account.favorites.itemsets, {isId = v["isId"], isName = v["isName"], checked = false}) end end
     elseif searchtype == "spell" then
-      table.foreachi(self.db.account.buffer.spells, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.spells, {spId = v["spId"], spName = v["spName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.spells) do if v["checked"] then table.insert(self.db.account.favorites.spells, {spId = v["spId"], spName = v["spName"], checked = false}) end end
     elseif searchtype == "skill" then
-      table.foreachi(self.db.account.buffer.skills, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.skills, {skId = v["skId"], skName = v["skName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.skills) do if v["checked"] then table.insert(self.db.account.favorites.skills, {skId = v["skId"], skName = v["skName"], checked = false}) end end
     elseif searchtype == "quest" then
-      table.foreachi(self.db.account.buffer.quests, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.quests, {qsId = v["qsId"], qsName = v["qsName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.quests) do if v["checked"] then table.insert(self.db.account.favorites.quests, {qsId = v["qsId"], qsName = v["qsName"], checked = false}) end end
     elseif searchtype == "creature" then
-      table.foreachi(self.db.account.buffer.creatures, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.creatures, {crId = v["crId"], crName = v["crName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.creatures) do if v["checked"] then table.insert(self.db.account.favorites.creatures, {crId = v["crId"], crName = v["crName"], checked = false}) end end
     elseif searchtype == "object" then
-      table.foreachi(self.db.account.buffer.objects, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.objects, {objId = v["objId"], objName = v["objName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.objects) do if v["checked"] then table.insert(self.db.account.favorites.objects, {objId = v["objId"], objName = v["objName"], checked = false}) end end
     elseif searchtype == "tele" then
-      table.foreachi(self.db.account.buffer.teles, function(k,v) if v["checked"] then table.insert(self.db.account.favorites.teles, {tName = v["tName"], checked = false}) end end)
+      for k,v in pairs(self.db.account.buffer.teles) do if v["checked"] then table.insert(self.db.account.favorites.teles, {tName = v["tName"], checked = false}) end end
     end
     self:LogAction("Added some "..searchtype.."s to the favorites.")
   elseif value == "remove" then
@@ -1526,51 +1526,51 @@ function AzerothAdmin:Favorites(value, searchtype)
     end
     if searchtype == "item" then
       if AzerothAdmin.db.char.requests.item then
-        table.foreachi(self.db.account.buffer.items, function(k,v) self.db.account.buffer.items[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.items) do self.db.account.buffer.items[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favitem then
-        table.foreachi(self.db.account.favorites.items, function(k,v) self.db.account.favorites.items[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.items) do self.db.account.favorites.items[k].checked = selected end
       end
     elseif searchtype == "itemset" then
       if AzerothAdmin.db.char.requests.itemset then
-        table.foreachi(self.db.account.buffer.itemsets, function(k,v) self.db.account.buffer.itemsets[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.itemsets) do self.db.account.buffer.itemsets[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favitemset then
-        table.foreachi(self.db.account.favorites.itemsets, function(k,v) self.db.account.favorites.itemsets[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.itemsets) do self.db.account.favorites.itemsets[k].checked = selected end
       end
     elseif searchtype == "spell" then
       if AzerothAdmin.db.char.requests.spell then
-        table.foreachi(self.db.account.buffer.spells, function(k,v) self.db.account.buffer.spells[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.spells) do self.db.account.buffer.spells[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favspell then
-        table.foreachi(self.db.account.favorites.spells, function(k,v) self.db.account.favorites.spells[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.spells) do self.db.account.favorites.spells[k].checked = selected end
       end
     elseif searchtype == "skill" then
       if AzerothAdmin.db.char.requests.skill then
-        table.foreachi(self.db.account.buffer.skills, function(k,v) self.db.account.buffer.skills[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.skills) do self.db.account.buffer.skills[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favskill then
-        table.foreachi(self.db.account.favorites.skills, function(k,v) self.db.account.favorites.skills[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.skills) do self.db.account.favorites.skills[k].checked = selected end
       end
     elseif searchtype == "quest" then
       if AzerothAdmin.db.char.requests.quest then
-        table.foreachi(self.db.account.buffer.quests, function(k,v) self.db.account.buffer.quests[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.quests) do self.db.account.buffer.quests[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favquest then
-        table.foreachi(self.db.account.favorites.quests, function(k,v) self.db.account.favorites.quests[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.quests) do self.db.account.favorites.quests[k].checked = selected end
       end
     elseif searchtype == "creature" then
       if AzerothAdmin.db.char.requests.creature then
-        table.foreachi(self.db.account.buffer.creatures, function(k,v) self.db.account.buffer.creatures[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.creatures) do self.db.account.buffer.creatures[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favcreature then
-        table.foreachi(self.db.account.favorites.creatures, function(k,v) self.db.account.favorites.creatures[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.creatures) do self.db.account.favorites.creatures[k].checked = selected end
       end
     elseif searchtype == "object" then
       if AzerothAdmin.db.char.requests.object then
-        table.foreachi(self.db.account.buffer.objects, function(k,v) self.db.account.buffer.objects[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.objects) do self.db.account.buffer.objects[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favobject then
-        table.foreachi(self.db.account.favorites.objects, function(k,v) self.db.account.favorites.objects[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.objects) do self.db.account.favorites.objects[k].checked = selected end
       end
     elseif searchtype == "tele" then
       if AzerothAdmin.db.char.requests.tele then
-        table.foreachi(self.db.account.buffer.teles, function(k,v) self.db.account.buffer.teles[k].checked = selected end)
+        for k,v in pairs(self.db.account.buffer.teles) do self.db.account.buffer.teles[k].checked = selected end
       elseif AzerothAdmin.db.char.requests.favtele then
-        table.foreachi(self.db.account.favorites.teles, function(k,v) self.db.account.favorites.teles[k].checked = selected end)
+        for k,v in pairs(self.db.account.favorites.teles) do self.db.account.favorites.teles[k].checked = selected end
       end
     end
     PopupScrollUpdate()
@@ -2086,9 +2086,9 @@ function PopupScrollUpdate()
   if AzerothAdmin.db.char.requests.item or AzerothAdmin.db.char.requests.favitem then --get items
     local count = 0
     if AzerothAdmin.db.char.requests.item then
-      table.foreachi(AzerothAdmin.db.account.buffer.items, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.items) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favitem then
-      table.foreachi(AzerothAdmin.db.account.favorites.items, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.items) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2149,9 +2149,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.itemset or AzerothAdmin.db.char.requests.favitemset then --get itemsets
     local count = 0
     if AzerothAdmin.db.char.requests.itemset then
-      table.foreachi(AzerothAdmin.db.account.buffer.itemsets, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.itemsets) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favitemset then
-      table.foreachi(AzerothAdmin.db.account.favorites.itemsets, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.itemsets) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2205,9 +2205,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.quest or AzerothAdmin.db.char.requests.favquest then --get quests
     local count = 0
     if AzerothAdmin.db.char.requests.quest then
-      table.foreachi(AzerothAdmin.db.account.buffer.quests, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.quests) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favquest then
-      table.foreachi(AzerothAdmin.db.account.favorites.quests, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.quests) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2261,9 +2261,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.creature or AzerothAdmin.db.char.requests.favcreature then --get creatures
     local count = 0
     if AzerothAdmin.db.char.requests.creature then
-      table.foreachi(AzerothAdmin.db.account.buffer.creatures, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.creatures) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favcreature then
-      table.foreachi(AzerothAdmin.db.account.favorites.creatures, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.creatures) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2317,9 +2317,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.spell or AzerothAdmin.db.char.requests.favspell then --get spells
     local count = 0
     if AzerothAdmin.db.char.requests.spell then
-      table.foreachi(AzerothAdmin.db.account.buffer.spells, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.spells) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favspell then
-      table.foreachi(AzerothAdmin.db.account.favorites.spells, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.spells) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2376,9 +2376,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.skill or AzerothAdmin.db.char.requests.favskill then --get skills
     local count = 0
     if AzerothAdmin.db.char.requests.skill then
-      table.foreachi(AzerothAdmin.db.account.buffer.skills, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.skills) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favskill then
-      table.foreachi(AzerothAdmin.db.account.favorites.skills, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.skills) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2432,9 +2432,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.object or AzerothAdmin.db.char.requests.favobject then --get objects
     local count = 0
     if AzerothAdmin.db.char.requests.object then
-      table.foreachi(AzerothAdmin.db.account.buffer.objects, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.objects) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favobject then
-      table.foreachi(AzerothAdmin.db.account.favorites.objects, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.objects) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2488,9 +2488,9 @@ function PopupScrollUpdate()
   elseif AzerothAdmin.db.char.requests.tele or AzerothAdmin.db.char.requests.favtele then --get teles
     local count = 0
     if AzerothAdmin.db.char.requests.tele then
-      table.foreachi(AzerothAdmin.db.account.buffer.teles, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.buffer.teles) do count = count + 1 end
     elseif AzerothAdmin.db.char.requests.favtele then
-      table.foreachi(AzerothAdmin.db.account.favorites.teles, function() count = count + 1 end)
+      for _ in pairs(AzerothAdmin.db.account.favorites.teles) do count = count + 1 end
     end
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
@@ -2550,7 +2550,7 @@ function AzerothAdmin:InlineScrollUpdate_temp()
     ma_ticketscrollframe:Hide()
     AzerothAdmin:ChatMsg(".ticket list")
     local ticketCount = 0
-    table.foreachi(AzerothAdmin.db.account.buffer.tickets, function() ticketCount = ticketCount + 1 end)
+    for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
     if ticketCount > 0 then
         AzerothAdmin:ChatMsg("TickCount"..ticketCount)
         ma_ticketscrollframe1:SetText("Loading")

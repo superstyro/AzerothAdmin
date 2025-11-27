@@ -19,7 +19,7 @@
 function WhoUpdate()
     AzerothAdmin:LogAction("Getting Who.")
     local whoCount = 0
-    table.foreachi(AzerothAdmin.db.account.buffer.who, function() whoCount = whoCount + 1 end)
+    for _ in pairs(AzerothAdmin.db.account.buffer.who) do whoCount = whoCount + 1 end
     if whoCount > 0 then
       ma_whoscrollframe1:SetText("Loading")
       local lineplusoffset

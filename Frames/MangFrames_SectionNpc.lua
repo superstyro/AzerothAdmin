@@ -350,7 +350,7 @@ function AzerothAdmin:CreateNpcSection()
     group = "npc",
     parent = ma_midframe,
     texture = {
-      name = "ma_npcemotebutton_texture",
+      name = "ma_npcemotebutton_a_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

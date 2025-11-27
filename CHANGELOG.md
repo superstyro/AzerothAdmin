@@ -1,5 +1,26 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 009 - 11/27/2024]=-
+- FIX WoW 3.3.5 compatibility issues across multiple files
+  - Replace deprecated `getglobal()` with `_G[]` notation
+  - Replace deprecated `table.foreachi()` with `pairs()`
+  - Replace deprecated `this` with `self` in OnShow scripts
+  - Fix invalid SetScript OnVerticalScroll syntax
+  - Fix `UnitGUID()` missing parameter
+- REMOVE UTF-8 BOM characters from all Lua files
+- ADD Commands_Confirmation.lua for confirmation dialog infrastructure
+- ADD automated version management by reading from TOC file
+- FIX texture name typos and inconsistencies across UI frames
+- FIX gradient alpha inconsistencies in tab buttons
+- FIX MiniMenu functionality with proper event handlers and click handlers
+- FIX locale handling and parameter positioning in UI
+- FIX teleport zone display with proper separator and improved logic
+- FIX multiple typos in commands (StandState, NPC movement, taxi lookup)
+- IMPROVE code quality with validation, error handling, and refactoring
+- IMPROVE indentation consistency and remove redundant code
+- UPDATE TOC file metadata for WoW 3.3.5 compatibility
+- UPDATE locale strings for server reload buttons
+
 ### -=[ Revision 008 - 12/23/2024]=-
 - FIX [[#12](https://github.com/superstyro/AzerothAdmin/issues/12)]
 - REMOVE FuBarPlugin

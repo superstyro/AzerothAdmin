@@ -359,7 +359,7 @@ function AzerothAdmin:CreateServerSection()
   z:SetXAxis(-10,0)
   z:SetMode("RAW")
   z:SetBarColors({0.2,0.0,0.0,0.4},{0.0,0.0,1.0,1.0})
-  local x = CreateFrame("Frame",name,parent)
+  local x = CreateFrame("Frame", "ma_diff_frame", ma_netgraphframe2)
   x.frames = 0
   x.NextUpdate=GetTime()
   local q = 0

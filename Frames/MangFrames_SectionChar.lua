@@ -1422,7 +1422,7 @@ function AzerothAdmin:CreateCharSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "BOTTOMLEFT",
-      offX = 218, --charColTwo
+      offX = 223, --charColTwo
       offY = 8
     }
   })
@@ -1433,12 +1433,12 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 260,
+      width = 240,
       height = 20
     },
     setpoint = {
       pos = "BOTTOMLEFT",
-      offX = 292,
+      offX = 309,
       offY = 4
     },
     inherits = "InputBoxTemplate"

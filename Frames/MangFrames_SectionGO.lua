@@ -334,7 +334,7 @@ function AzerothAdmin:CreateGOSection()
     inherits = "InputBoxTemplate"
   })
 
-    FrameLib:BuildButton({
+  FrameLib:BuildButton({
     name = "ma_gobmodelrotatelbutton",
     group = "go",
     parent = ma_midframe,

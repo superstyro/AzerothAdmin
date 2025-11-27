@@ -1,0 +1,58 @@
+name: Package and Release Addon
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.0.0, v2.1.0, etc.
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create addon package
+        run: |
+          # Create a directory with the addon name
+          mkdir -p AzerothAdmin
+
+          # Copy all necessary files except git/github/docs/raw assets
+          rsync -av --progress . AzerothAdmin/ \
+            --exclude .git \
+            --exclude .github \
+            --exclude .gitignore \
+            --exclude .claude \
+            --exclude Docs \
+            --exclude 'README.md' \
+            --exclude 'CREDITS.md' \
+            --exclude 'logo_raw.psd' \
+            --exclude 'icon_raw.psd' \
+            --exclude 'AA_char.jpg' \
+            --exclude 'AA_gm.jpg' \
+            --exclude 'AA_server.jpg' \
+            --exclude 'logo.png'
+
+          # Create the zip file
+          zip -r AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip AzerothAdmin/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip
+          body: |
+            ## Installation
+            1. Download `AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip`
+            2. Extract to your `World of Warcraft/Interface/AddOns/` folder
+            3. The addon folder will be created automatically as `AzerothAdmin`
+
+            See [CHANGELOG.md](CHANGELOG.md) for details.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

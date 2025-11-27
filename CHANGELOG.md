@@ -1,6 +1,6 @@
 # AzerothAdmin Changelog
 
-### -=[ Revision 009 - 11/27/2024]=-
+### -=[ Revision 009 - 11/27/2025]=-
 - FIX WoW 3.3.5 compatibility issues across multiple files
   - Replace deprecated `getglobal()` with `_G[]` notation
   - Replace deprecated `table.foreachi()` with `pairs()`

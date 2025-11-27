@@ -2614,6 +2614,22 @@ function AzerothAdmin:ToggleMinimenu()
   ReloadUI()
 end
 
+function AzerothAdmin:ToggleMiniMenu()
+  if ma_minibgframe and ma_miniframe then
+    if ma_minibgframe:IsVisible() then
+      FrameLib:HandleGroup("minimenu", function(frame) frame:Hide() end)
+    else
+      FrameLib:HandleGroup("minimenu", function(frame) frame:Show() end)
+    end
+  end
+end
+
+function AzerothAdmin:ShowSection(section)
+  if section and ma_bgframe then
+    self:ShowMainScreen(section)
+  end
+end
+
 function AzerothAdmin:InitCheckButtons()
   if self.db.account.style.transparency.backgrounds < 1.0 then
     ma_checktransparencybutton:SetChecked(true)

@@ -18,7 +18,7 @@
 
 -- Initializing dynamic frames with LUA and FrameLib
 -- This script must be listed in the .toc after "MangFrames_PopupFrames.lua"
--- Also some variables are globally taken from AzerothAdmin.lua
+-- Global dependencies: ma_midframe, Locale, FrameLib (loaded from AzerothAdmin.lua)
 
 function AzerothAdmin:CreateMainSection()
   local transparency = {

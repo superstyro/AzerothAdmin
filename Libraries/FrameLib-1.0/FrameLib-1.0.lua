@@ -62,16 +62,16 @@ function FrameLib:BuildFrame(def)
   end
   
   if def.hidden then frame:Hide() end
-  
-  t = def.hitRectInsets
-  if t then frame:SetHitRectInsets(t[1] or t.minX or t.left,t[2] or t.maxX or t.right, t[3] or t.maxY or t.top, t[4] or t.minY or t.bottom) end	
-  
+
+  local t = def.hitRectInsets
+  if t then frame:SetHitRectInsets(t[1] or t.minX or t.left,t[2] or t.maxX or t.right, t[3] or t.maxY or t.top, t[4] or t.minY or t.bottom) end
+
   t = def.backdrop
-  if t then frame:SetBackdrop(t) end	
-  
+  if t then frame:SetBackdrop(t) end
+
   t = def.backdropColor
-  if t then frame:SetBackdropColor(t[1] or t.r,t[2] or t.g, t[3] or t.b,t[4] or t.a) end	
-  
+  if t then frame:SetBackdropColor(t[1] or t.r,t[2] or t.g, t[3] or t.b,t[4] or t.a) end
+
   t = def.backdropBorderColor
   if t then frame:SetBackdropBorderColor(t[1] or t.r,t[2] or t.g, t[3] or t.b,t[4] or t.a) end	
   
@@ -82,7 +82,7 @@ function FrameLib:BuildFrame(def)
   if t then
     local texture = frame:CreateTexture(nil, "BACKGROUND")
     if t.color then
-      texture:SetTexture(t.color[1] or t.color.r, t.color[2] or t.color.g, t.color[3] or t.color.g, t.color[4] or t.color.a)
+      texture:SetTexture(t.color[1] or t.color.r, t.color[2] or t.color.g, t.color[3] or t.color.b, t.color[4] or t.color.a)
     elseif t.file then
       texture:SetTexture(t.file)
     end
@@ -119,15 +119,15 @@ function FrameLib:BuildFrame(def)
     frame:EnableMouse(true)
     frame:SetMovable(true)
     frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnDragStart", function() this:StartMoving() end)
-    frame:SetScript("OnDragStop", function() this:StopMovingOrSizing() end)
+    frame:SetScript("OnDragStart", function(self) self:StartMoving() end)
+    frame:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
   end	
   
   if def.clickable then
     frame:EnableMouse(true)
   end
   
-  t = def.resizable
+  local t = def.resizable
   if t then
     frame:SetResizable(true)
     t = def.resizableMinBounds
@@ -135,17 +135,17 @@ function FrameLib:BuildFrame(def)
     t = def.resizableMaxBounds
     if t then frame:SetMaxResizeBounds(t[1] or t.width,t[2] or t.height) end
   end
-  
+
   t = def.frameStrata
-  if t then frame:SetFrameStrata(t) end	
-  
+  if t then frame:SetFrameStrata(t) end
+
   t = def.frameLevel
   if t then frame:SetFrameLevel(t) end	
 
   if def.id then frame:SetID(def.id) end	
   
   if def.type == "ScrollingMessageFrame" then
-    if def.fading then 
+    if def.fading then
       frame:SetFading(true)
       frame:SetFadeDuration(def.fading.duration)
       frame:SetTimeVisible(def.fading.seconds)
@@ -153,8 +153,13 @@ function FrameLib:BuildFrame(def)
       frame:SetFading(nil)
     end
     frame:SetFontObject(def.font or ChatFontNormal)
-    frame:SetJustifyH(def.justify.h or "LEFT")
-    frame:SetJustifyV(def.justify.v or "TOP")
+    if def.justify then
+      frame:SetJustifyH(def.justify.h or "LEFT")
+      frame:SetJustifyV(def.justify.v or "TOP")
+    else
+      frame:SetJustifyH("LEFT")
+      frame:SetJustifyV("TOP")
+    end
     frame:SetMaxLines(def.maxLines or 1000000)
   end
   
@@ -199,14 +204,14 @@ function FrameLib:BuildButton(def)
   button:SetDisabledFontObject(def.DisabledFontObject or GameFontDisable)	
   button:ClearAllPoints()
   button:SetPoint(def.setpoint.pos or "CENTER", def.setpoint.relTo or button:GetParent() or UIParent, def.setpoint.relPos or def.setpoint.pos or "CENTER", def.setpoint.offX or 0, def.setpoint.offY or 0)
-  t = def.pushedTextOffset 
+  local t = def.pushedTextOffset
   if type(t) == "table" then
     button:SetPushedTextOffset(t[1] or t.x or t.xOffset,t[2] or t.y or t.yOffset)
   elseif type(t) == "number" then
     button:SetPushedTextOffset(0,t)
   end
   if def.clicks then button:RegisterForClicks(def.clicks) end
-  local t = def.text
+  t = def.text
   if t then
     if def.type == "CheckButton" and def.inherits == "OptionsCheckButtonTemplate" then
       _G[button:GetName().."Text"]:SetText(t)
@@ -218,7 +223,7 @@ function FrameLib:BuildButton(def)
   if t then
     local texture = button:CreateTexture(t.name or nil, "BACKGROUND")
     if t.color then
-      texture:SetTexture(t.color[1] or t.color.r, t.color[2] or t.color.g, t.color[3] or t.color.g, t.color[4] or t.color.a)
+      texture:SetTexture(t.color[1] or t.color.r, t.color[2] or t.color.g, t.color[3] or t.color.b, t.color[4] or t.color.a)
     elseif t.file then
       texture:SetTexture(t.file)
     end
@@ -242,7 +247,7 @@ function FrameLib:BuildButton(def)
     end
   end 
   if def.disabled then button:Disable() end
-  t = def.script
+  local t = def.script
   if type(t) == "function" then
     button:SetScript("OnClick", t)
   elseif type(t) == "table" then
@@ -259,10 +264,10 @@ end
 function FrameLib:BuildFontString(def)
   local fontstr = def.parent:CreateFontString(def.name, def.level or "ARTWORK", def.object or "GameFontNormal")
   self:AddGroupFrame(def.group, fontstr)
-  local t = def.color	
-  if t then 
-    fontstr:SetTextColor(t.r or t[1], t.g or t[2], t.b or t[3], t.a or t[4] or 1) 
-  end	
+  local t = def.color
+  if t then
+    fontstr:SetTextColor(t.r or t[1], t.g or t[2], t.b or t[3], t.a or t[4] or 1)
+  end
   if def.setpoint then
     fontstr:ClearAllPoints()
     fontstr:SetPoint(def.setpoint.pos or "CENTER", def.setpoint.relTo or fontstr:GetParent() or UIParent, def.setpoint.relPos or def.setpoint.pos or "CENTER", def.setpoint.offX or 0, def.setpoint.offY or 0)
@@ -276,8 +281,8 @@ function FrameLib:BuildFontString(def)
   t = def.justifyH
   if t then fontstr:SetJustifyH(def.justifyH) end
   t = def.justifyV
-  if t then fontstr:SetJustifyV(def.justfyV) end
-  fontstr:SetNonSpaceWrap(def.nonSpaceWrap)	
+  if t then fontstr:SetJustifyV(def.justifyV) end
+  fontstr:SetNonSpaceWrap(def.nonSpaceWrap)
   t = def.alphaGradient
   if t then fontstr:SetAlphaGradient(def.alphaGradient.start,def.alphaGradient.length) end
   if def.text then fontstr:SetText(def.text) end
@@ -295,8 +300,8 @@ function FrameLib:BuildTexture(def)
   if t then texture:SetTexture(t) end
   t = def.blendMode
   if t then texture:SetBlendMode(t) end
-  t = def.color	
-  if t then texture:SetTexture(t[1] or t.r, t[2] or t.g, t[3] or t.g, t[4] or t.a) end
+  t = def.color
+  if t then texture:SetTexture(t[1] or t.r, t[2] or t.g, t[3] or t.b, t[4] or t.a) end
   local t = def.size
   if t then
     texture:SetWidth(t.width or 100)

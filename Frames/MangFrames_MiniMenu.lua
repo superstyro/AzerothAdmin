@@ -21,6 +21,22 @@
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateMiniMenu()
+  -- Validate dependencies
+  if not FrameLib then
+    error("AzerothAdmin: FrameLib not loaded")
+    return
+  end
+
+  if not AzerothAdmin.db or not AzerothAdmin.db.account or not AzerothAdmin.db.account.style then
+    error("AzerothAdmin: Style database not initialized")
+    return
+  end
+
+  if not ROOT_PATH then
+    error("AzerothAdmin: ROOT_PATH not defined")
+    return
+  end
+
   local transparency = {
     bg = AzerothAdmin.db.account.style.transparency.backgrounds,
     btn = AzerothAdmin.db.account.style.transparency.buttons,

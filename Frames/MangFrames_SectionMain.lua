@@ -1131,7 +1131,7 @@ function AzerothAdmin:CreateMainSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",  ---Correct This Location
+      pos = "TOPLEFT",
       offX = 578,
       offY = -140
     },

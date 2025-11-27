@@ -301,7 +301,7 @@ function AzerothAdmin:CreateTabs()
 --    group = "tabbuttons",
 --    parent = ma_topframe,
 --    texture = {
---      name = "ma_tabbutton_who_texture",
+--      name = "ma_tabbutton_changelog_texture",
 --      color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
 --      gradient = {
 --        orientation = "vertical",

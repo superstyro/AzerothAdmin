@@ -716,7 +716,7 @@ function AzerothAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 327,
+      offX = 333,
       offY = -167
     }
   })
@@ -727,12 +727,12 @@ function AzerothAdmin:CreateMainSection()
     group = "main",
     parent = ma_midframe,
     size = {
-      width = 260,
+      width = 240,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 400,
+      offX = 420,
       offY = -163
     },
     inherits = "InputBoxTemplate"

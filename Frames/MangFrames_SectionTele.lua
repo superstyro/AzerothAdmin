@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -84,7 +84,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -106,7 +106,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -128,7 +128,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -150,7 +150,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -172,7 +172,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -194,7 +194,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -216,7 +216,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -238,7 +238,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -260,7 +260,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -282,7 +282,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -304,7 +304,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -326,7 +326,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 181,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildFontString({
@@ -380,7 +380,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -401,7 +401,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -422,7 +422,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -443,7 +443,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -464,7 +464,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -485,7 +485,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -506,7 +506,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -527,7 +527,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -548,7 +548,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -569,7 +569,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -590,7 +590,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -611,7 +611,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 170,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildFontString({
@@ -665,7 +665,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -686,7 +686,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -707,7 +707,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -728,7 +728,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -749,7 +749,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -770,7 +770,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -791,7 +791,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -812,7 +812,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -833,7 +833,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -854,7 +854,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -875,7 +875,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
   FrameLib:BuildButton({
@@ -896,7 +896,7 @@ function AzerothAdmin:CreateTeleSection()
       width = 220,
       height = 16
     },
-    script = {{"OnShow", function() this:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
+    script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
 end

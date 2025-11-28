@@ -1,5 +1,26 @@
 # AzerothAdmin Changelog
 
+### -=[ Revision 010 - 11/27/2025]=-
+- RESTRUCTURE addon to modular directory organization
+  - Created new directory structure (Core, Data, Modules, Frames folders)
+  - Moved data files (DBC.lua, Models.lua, TeleportTable.lua) to Data/
+  - Moved core files to Core/ (AzerothAdmin.lua, Init.lua)
+  - Moved MangLinkifier.lua to Modules/Linkifier.lua
+  - Moved MangFrames.lua to Frames/
+  - Renamed all Commands files to remove "Commands_" prefix
+  - Updated AzerothAdmin.toc with new file paths and version 10
+  - Removed reference to non-existent Commands_Log.lua from .toc
+- FIX critical nil comparison crashes in server info OnUpdate handler
+  - Added nil check for delayParam before comparison
+  - Added nil check for diff value before using in graph
+  - Prevents "attempt to compare number with nil" error spam
+- FIX table iteration bug in favorites removal (Core/AzerothAdmin.lua)
+  - Changed from pairs() with table.remove() to reverse iteration
+  - Affects all 8 favorite categories (items, itemsets, spells, skills, quests, creatures, objects, teles)
+- FIX incorrect string.gmatch usage in teleport filtering
+  - Changed to string.find() which correctly returns nil when pattern not found
+  - Fixes broken teleport message hiding logic
+
 ### -=[ Revision 009 - 11/27/2025]=-
 - FIX WoW 3.3.5 compatibility issues across multiple files
   - Replace deprecated `getglobal()` with `_G[]` notation

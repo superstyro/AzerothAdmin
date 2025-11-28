@@ -366,18 +366,21 @@ function AzerothAdmin:CreateServerSection()
   x:SetScript("OnUpdate",function()
       q = q + 1
       -- Check if ma_delayparam exists before using it
-      if ma_delayparam and q > tonumber(ma_delayparam:GetText()) then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
+      local delayParam = ma_delayparam and tonumber(ma_delayparam:GetText())
+      if delayParam and q > delayParam then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           AzerothAdmin:ChatMsg(".server info")
           q = 0
           --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
           local s = tonumber(ma_difftext:GetText())
-          local r = 100 -- Trinity says anything over 150 is bad
-          if s > r then
-              z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red
-          else
-              z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
+          if s then
+              local r = 100 -- Trinity says anything over 150 is bad
+              if s > r then
+                  z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red
+              else
+                  z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
+              end
+              z:AddBar(s)
           end
-          z:AddBar(s)
       end
       if x.NextUpdate>GetTime() then
         return

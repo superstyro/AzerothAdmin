@@ -280,7 +280,7 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_whisperticketbutton             , nil                                     , function() Ticket("whisper") end)
   AzerothAdmin:PrepareScript(ma_goticketbutton                  , nil                                     , function() Ticket("goticket") end)
   AzerothAdmin:PrepareScript(ma_showbutton                      , "Show loaded tickets"                   , function() ShowTickets() end)
-  --ma_showticketsbutton
+
 --[[Misc Tab]]
   AzerothAdmin:PrepareScript(ma_bgcolorshowbutton               , nil                                     , function() ShowColorPicker("bg") end)
   AzerothAdmin:PrepareScript(ma_frmcolorshowbutton              , nil                                     , function() ShowColorPicker("frm") end)

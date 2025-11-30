@@ -470,6 +470,7 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_var1text:Hide()
     ma_var2text:Hide()
     ma_searchbutton:SetScript("OnClick", function() self:SearchStart(param.type, ma_searcheditbox:GetText()) end)
+    ma_searcheditbox:SetScript("OnEnterPressed", function() self:SearchStart(param.type, ma_searcheditbox:GetText()) end)
     ma_searchbutton:SetText(Locale["ma_SearchButton"])
     ma_resetsearchbutton:SetScript("OnClick", function() AzerothAdmin:SearchReset() end)
     ma_resetsearchbutton:SetText(Locale["ma_ResetButton"])
@@ -1235,7 +1236,7 @@ end
 function AzerothAdmin:AddItemSet(value)
   if self:Selection("player") or self:Selection("self") or self:Selection("none") then
     local player = UnitName("target") or UnitName("player")
-    self:ChatMsg(".additemset "..value)
+    self:ChatMsg(".additem set "..value)
     self:LogAction("Added itemset with id "..value.." to "..player..".")
   else
     self:Print(Locale["selectionerror1"])
@@ -1565,7 +1566,7 @@ function AzerothAdmin:SearchStart(var, value)
   elseif var == "itemset" then
     self.db.char.requests.itemset = true
     self.db.account.buffer.itemsets = {}
-    self:ChatMsg(".lookup itemset "..value)
+    self:ChatMsg(".lookup item set "..value)
   elseif var == "spell" then
     self.db.char.requests.spell = true
     self.db.account.buffer.spells = {}

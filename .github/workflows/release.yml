@@ -26,7 +26,7 @@ jobs:
           # Read changelog and extract the matching section
           CHANGELOG=$(awk -v version="$VERSION" '
             BEGIN { in_section=0; found=0 }
-            /^### -=\[ Revision/ {
+            /^### -=\[ Version/ {
               if (in_section) exit
               if ($0 ~ version) {
                 in_section=1
@@ -34,7 +34,7 @@ jobs:
                 next
               }
             }
-            in_section && /^### -=\[ Revision/ { exit }
+            in_section && /^### -=\[ Version/ { exit }
             in_section { print }
             END { if (!found) print "No changelog entry found for version " version }
           ' CHANGELOG.md)

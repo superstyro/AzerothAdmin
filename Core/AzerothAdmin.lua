@@ -2730,39 +2730,100 @@ if ma_bgframe:IsVisible() and not ma_popupframe:IsVisible() then
 end
 
 -- MINIMAP BUTTON FUNCTIONS
--- refactor minimap button to use library that will allow for reposition of minimap button
 
--- Create the minimap button
-local minimapButton = CreateFrame("Button", "AzerothAdminMinimapButton", Minimap)
-minimapButton:SetFrameStrata("MEDIUM")
-minimapButton:SetSize(32, 32)
-minimapButton:SetFrameLevel(8)
-minimapButton:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
+-- Initialize saved variables
+if not AzerothAdminDb then
+    AzerothAdminDb = {}
+end
 
--- Set the minimap button icon
-local icon = minimapButton:CreateTexture(nil, "BACKGROUND")
-icon:SetTexture("Interface\\AddOns\\AzerothAdmin\\Textures\\MinimapIcon")
-icon:SetSize(20, 20)
-icon:SetPoint("CENTER")
+-- Delay minimap button creation until PLAYER_LOGIN to ensure all libraries are loaded
+local function CreateMinimapButton()
+    -- Try to use LibDBIcon if available (provided by other addons like ElvUI or our own libraries)
+    local ldb = LibStub and LibStub("LibDataBroker-1.1", true)
+    local icon = LibStub and LibStub("LibDBIcon-1.0", true)
 
--- Set the minimap button position
-minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52 - (80 * cos(45)), (80 * sin(45)) - 52)
-
--- Add event handlers for the minimap button
-minimapButton:SetScript("OnClick", function(self, button)
-    if button == "LeftButton" then
-      AzerothAdmin:OnClick()
+    if ldb and icon then
+    -- Using LibDBIcon for minimap button management
+    if not AzerothAdminDb.minimap then
+        AzerothAdminDb.minimap = { hide = false }
     end
-end)
 
-minimapButton:SetScript("OnEnter", function(self)
-    GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-    GameTooltip:SetText("AzerothAdmin", 1, 1, 1)
-    GameTooltip:AddLine("Left-click to toggle the main window", nil, nil, nil, true)
-    GameTooltip:AddLine("Shift-click to reload UI", nil, nil, nil, true)
-    GameTooltip:Show()
-end)
+    -- Create LibDataBroker data object
+    local AzerothAdminLDB = ldb:NewDataObject("AzerothAdmin", {
+        type = "launcher",
+        text = "AzerothAdmin",
+        icon = "Interface\\AddOns\\AzerothAdmin\\Textures\\MinimapIcon",
+        OnClick = function(self, button)
+            if button == "LeftButton" then
+                if IsShiftKeyDown() then
+                    ReloadUI()
+                else
+                    AzerothAdmin:OnClick()
+                end
+            elseif button == "RightButton" then
+                AzerothAdmin:ToggleMiniMenu()
+            end
+        end,
+        OnTooltipShow = function(tooltip)
+            tooltip:SetText("AzerothAdmin", 1, 1, 1)
+            tooltip:AddLine("Left-click to toggle the main window", nil, nil, nil, true)
+            tooltip:AddLine("Right-click to toggle the mini menu", nil, nil, nil, true)
+            tooltip:AddLine("Shift-click to reload UI", nil, nil, nil, true)
+            tooltip:AddLine("Drag to move the button", nil, nil, nil, true)
+        end,
+    })
 
-minimapButton:SetScript("OnLeave", function(self)
-    GameTooltip:Hide()
+    -- Register with LibDBIcon
+    icon:Register("AzerothAdmin", AzerothAdminLDB, AzerothAdminDb.minimap)
+else
+    -- Fallback: Create manual minimap button
+    local minimapButton = CreateFrame("Button", "AzerothAdminMinimapButton", Minimap)
+    minimapButton:SetFrameStrata("MEDIUM")
+    minimapButton:SetSize(32, 32)
+    minimapButton:SetFrameLevel(8)
+    minimapButton:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
+    minimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+
+    -- Set the minimap button icon
+    local buttonIcon = minimapButton:CreateTexture(nil, "BACKGROUND")
+    buttonIcon:SetTexture("Interface\\AddOns\\AzerothAdmin\\Textures\\MinimapIcon")
+    buttonIcon:SetSize(20, 20)
+    buttonIcon:SetPoint("CENTER")
+
+    -- Set the minimap button position (fixed)
+    minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52 - (80 * cos(45)), (80 * sin(45)) - 52)
+
+    -- Add event handlers for the minimap button
+    minimapButton:SetScript("OnClick", function(self, button)
+        if button == "LeftButton" then
+            if IsShiftKeyDown() then
+                ReloadUI()
+            else
+                AzerothAdmin:OnClick()
+            end
+        elseif button == "RightButton" then
+            AzerothAdmin:ToggleMiniMenu()
+        end
+    end)
+
+    minimapButton:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+        GameTooltip:SetText("AzerothAdmin", 1, 1, 1)
+        GameTooltip:AddLine("Left-click to toggle the main window", nil, nil, nil, true)
+        GameTooltip:AddLine("Right-click to toggle the mini menu", nil, nil, nil, true)
+        GameTooltip:AddLine("Shift-click to reload UI", nil, nil, nil, true)
+        GameTooltip:Show()
+    end)
+
+    minimapButton:SetScript("OnLeave", function(self)
+        GameTooltip:Hide()
+    end)
+    end
+end
+
+-- Register event to create minimap button after all addons are loaded
+local minimapFrame = CreateFrame("Frame")
+minimapFrame:RegisterEvent("PLAYER_LOGIN")
+minimapFrame:SetScript("OnEvent", function()
+    CreateMinimapButton()
 end)

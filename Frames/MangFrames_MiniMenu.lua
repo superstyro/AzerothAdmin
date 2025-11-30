@@ -67,6 +67,49 @@ function AzerothAdmin:CreateMiniMenu()
     inherits = nil
   })
 
+  -- Make mini menu draggable with left control modifier
+  ma_minibgframe:SetMovable(true)
+  ma_minibgframe:EnableMouse(true)
+  ma_minibgframe:RegisterForDrag("LeftButton")
+  ma_minibgframe:SetClampedToScreen(true)
+
+  ma_minibgframe:SetScript("OnDragStart", function(self)
+    if IsLeftControlKeyDown() then
+      self:StartMoving()
+    end
+  end)
+
+  ma_minibgframe:SetScript("OnDragStop", function(self)
+    self:StopMovingOrSizing()
+
+    -- Determine if we should position on left or right
+    local screenWidth = UIParent:GetWidth()
+    local screenHeight = UIParent:GetHeight()
+    local x, y = self:GetCenter()
+    local side
+
+    if x < screenWidth / 2 then
+      -- Snap to left side
+      side = "LEFT"
+    else
+      -- Snap to right side
+      side = "RIGHT"
+    end
+
+    -- Calculate offset from center
+    local yOffset = y - (screenHeight / 2)
+
+    -- Snap to the edge and save position
+    self:ClearAllPoints()
+    self:SetPoint(side, UIParent, side, 0, yOffset)
+
+    -- Save position to database (create new table or replace old string)
+    AzerothAdmin.db.account.minimenuPosition = {
+      side = side,
+      yOffset = yOffset
+    }
+  end)
+
   FrameLib:BuildFrame({
     name = "ma_miniframe",
     group = "minimenu",
@@ -383,9 +426,65 @@ function AzerothAdmin:CreateMiniMenu()
     AzerothAdmin:ShowSection("who")
   end)
 
+  -- Make logo button draggable (propagates to parent)
+  ma_mm_logoframe:RegisterForDrag("LeftButton")
+
+  ma_mm_logoframe:SetScript("OnDragStart", function(self)
+    if IsLeftControlKeyDown() then
+      ma_minibgframe:StartMoving()
+    end
+  end)
+
+  ma_mm_logoframe:SetScript("OnDragStop", function(self)
+    ma_minibgframe:StopMovingOrSizing()
+
+    -- Determine if we should position on left or right
+    local screenWidth = UIParent:GetWidth()
+    local screenHeight = UIParent:GetHeight()
+    local x, y = ma_minibgframe:GetCenter()
+    local side
+
+    if x < screenWidth / 2 then
+      side = "LEFT"
+    else
+      side = "RIGHT"
+    end
+
+    -- Calculate offset from center
+    local yOffset = y - (screenHeight / 2)
+
+    -- Snap to the edge and save position
+    ma_minibgframe:ClearAllPoints()
+    ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
+
+    -- Save position to database
+    AzerothAdmin.db.account.minimenuPosition = {
+      side = side,
+      yOffset = yOffset
+    }
+  end)
+
   -- Logo button toggles the minimenu visibility
   ma_mm_logoframe:SetScript("OnClick", function()
-    AzerothAdmin:ToggleMiniMenu()
+    if IsShiftKeyDown() then
+      ReloadUI()
+    else
+      AzerothAdmin:ToggleMiniMenu()
+    end
+  end)
+
+  -- Add tooltip to logo button
+  ma_mm_logoframe:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+    GameTooltip:SetText("AzerothAdmin Mini Menu", 1, 1, 1)
+    GameTooltip:AddLine("Left-click to toggle main menu", nil, nil, nil, true)
+    GameTooltip:AddLine("Shift-click to reload UI", nil, nil, nil, true)
+    GameTooltip:AddLine("Ctrl+drag to move menu", nil, nil, nil, true)
+    GameTooltip:Show()
+  end)
+
+  ma_mm_logoframe:SetScript("OnLeave", function(self)
+    GameTooltip:Hide()
   end)
 
   -- Initialize revive button (hidden by default)
@@ -410,4 +509,24 @@ function AzerothAdmin:CreateMiniMenu()
       ma_mm_revivebutton:Hide()
     end
   end)
+
+  -- Restore saved position
+  if AzerothAdmin.db.account.minimenuPosition then
+    ma_minibgframe:ClearAllPoints()
+    -- Handle both old (string) and new (table) format
+    if type(AzerothAdmin.db.account.minimenuPosition) == "string" then
+      -- Old format: just "LEFT" or "RIGHT"
+      ma_minibgframe:SetPoint(AzerothAdmin.db.account.minimenuPosition, UIParent, AzerothAdmin.db.account.minimenuPosition, 0, 0)
+    else
+      -- New format: table with side and yOffset
+      local side = AzerothAdmin.db.account.minimenuPosition.side or "RIGHT"
+      local yOffset = AzerothAdmin.db.account.minimenuPosition.yOffset or 0
+      ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
+    end
+  end
+
+  -- Apply visibility based on showminimenu setting
+  if AzerothAdmin.db.account.style.showminimenu == false then
+    FrameLib:HandleGroup("minimenu", function(frame) frame:Hide() end)
+  end
 end

@@ -1,6 +1,36 @@
 # AzerothAdmin Changelog
 
-### -=[ Version 011 - 11/29/2025]=-
+## -=[ Version 12 - 11/30/2025]=-
+
+- ADD draggable mini menu functionality
+  - Ctrl+drag to reposition mini menu anywhere on screen
+  - Automatically snaps to left or right side of screen
+  - Saves position to account settings
+  - Position persists across sessions
+- IMPROVE minimap button with LibDBIcon support
+  - Added LibDBIcon-1.0 library integration for better minimap button management
+  - Draggable minimap button (when using LibDBIcon)
+  - Right-click minimap button to toggle mini menu
+  - Shift-click minimap button to reload UI
+  - Fallback to manual button if LibDBIcon not available
+- ADD new UI settings checkboxes in MISC tab
+  - Toggle transparency on/off with immediate visual feedback
+  - Toggle localized search strings
+  - Toggle mini menu visibility with instant show/hide
+  - Toggle tooltips on/off
+  - Toggle chat output on/off
+  - All settings save immediately with user feedback messages
+- ADD enhanced mini menu logo button functionality
+  - Shift-click logo to reload UI
+  - Ctrl+drag logo to move entire mini menu
+  - Added tooltip with usage instructions
+- ADD LibStub library to support future library integrations
+- IMPROVE CHANGELOG formatting
+  - Converted version headers to proper markdown (## format)
+  - Better readability and parsing for automated tools
+
+## -=[ Version 11 - 11/29/2025]=-
+
 - ADD frame strata level configuration feature
   - New dropdown in MISC tab to control window layering (Background to Fullscreen Dialog)
   - Saved to account settings with default "MEDIUM" strata
@@ -19,7 +49,8 @@
   - Repositioned "Apply Weather" button to top-right corner
 - CHANGE Revision to Version in CHANGELOG to follow new versioning
 
-### -=[ Version 10 - 11/27/2025]=-
+## -=[ Version 10 - 11/27/2025]=-
+
 - RESTRUCTURE addon to modular directory organization
   - Created new directory structure (Core, Data, Modules, Frames folders)
   - Moved data files (DBC.lua, Models.lua, TeleportTable.lua) to Data/
@@ -40,7 +71,8 @@
   - Changed to string.find() which correctly returns nil when pattern not found
   - Fixes broken teleport message hiding logic
 
-### -=[ Version 9 - 11/27/2025]=-
+## -=[ Version 9 - 11/27/2025]=-
+
 - FIX WoW 3.3.5 compatibility issues across multiple files
   - Replace deprecated `getglobal()` with `_G[]` notation
   - Replace deprecated `table.foreachi()` with `pairs()`
@@ -61,19 +93,22 @@
 - UPDATE TOC file metadata for WoW 3.3.5 compatibility
 - UPDATE locale strings for server reload buttons
 
-### -=[ Version 8 - 12/23/2024]=-
+## -=[ Version 8 - 12/23/2024]=-
+
 - FIX [[#12](https://github.com/superstyro/AzerothAdmin/issues/12)]
 - REMOVE FuBarPlugin
 - Add Libs for future minimap rework
 
-### -=[ Version 7 - 12/23/2024]=-
+## -=[ Version 7 - 12/23/2024]=-
+
 - FIX [#22](https://github.com/superstyro/AzerothAdmin/issues/22)
 - ADD BuildFontStrings for 'Mean', 'Median', and 'Percentiles' in MangFrames_SectionServer.lua
 - FIX string pattern for matching percentiles in strings.lua
   - ADD pattern to match '|- Percentiles (95, 99, max): 3ms, 4ms, 4ms'
 - UPDATE CHANGELOG.md to follow addon Version number
 
-### -=[ Version 6 - 12/15/2024]=-
+## -=[ Version 6 - 12/15/2024]=-
+
 - FIX duplicate `lfer_GOtargguid1` entry in strings.lua
 - FIX duplicate `ma_Honor` entry in Locals\enUS.lua
 - FIX parameter assignment issue in AceEvent-2.0.lua
@@ -83,7 +118,8 @@
 - FIX #15 Update ticket message handling
   - Improved the logic for adding text to ticket messages in the database
 
-### -=[ Version 5 - 5/04/2024]=-
+## -=[ Version 5 - 5/04/2024]=-
+
 - FIX #11 Hide WHO buttons
   - Cannot use level 4 account unless manually set in server console
 - FIX #13 Correct server update frequency to be more accurate
@@ -103,11 +139,13 @@
   - Disable ListFreeze button (No command available)
   - Correct HonorUpdt button function (Output is in LOG tab)
 
-### -=[ Version 4 - 4/29/2024]=-
+## -=[ Version 4 - 4/29/2024]=-
+
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window
 
-### -=[ Version 3 - 1/24/2022]=-
+## -=[ Version 3 - 1/24/2022]=-
+
 - Updated Copyright year 2022
 - FIX Ticket TAB
   - Ticket Message text was black and difficult to read
@@ -118,19 +156,22 @@
   - Lots off little things added.
   - I am bad at keeping this changelog updated.
 
-### -=[ Version 2 - 10/20/2019]=-
+## -=[ Version 2 - 10/20/2019]=-
+
 - FIX GM tab
   - Typo in GM-mode on/off
   - Speed Slider: Affect all speeds
 
-### -=[ Version 1 - 10/18/2019]=-
+## -=[ Version 1 - 10/18/2019]=-
+
 - FIX Server info tab
   - Updated strings to match AzerothCore
 - FIX Diff Graph LUA error
 - Update MiniMenu Icon
 - Update Logo
 
-### -=[ Version 0 - 10/18/2019]=-
+## -=[ Version 0 - 10/18/2019]=-
+
 - Initial Commit for AzerothAdmin (Ported from TrinityAdmin/MangAdmin)
 - Version specific build AzerothCore 3.3.5
 - Changed TrinityAdmin>AzerothAdmin

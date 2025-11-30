@@ -1,6 +1,7 @@
 # AzerothAdmin v3.3.5
 
 ![GitHub Logo](/Textures/logo.png)
+
 AzerothAdmin is a general interface add-on which will help admins and GMs in-game for AzerothCore.
 
 ## INSTRUCTIONS

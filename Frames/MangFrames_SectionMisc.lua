@@ -104,6 +104,30 @@ function AzerothAdmin:CreateMiscSection()
   })
 
   FrameLib:BuildFontString({
+    name = "ma_framestratalabel",
+    group = "misc",
+    parent = ma_midframe,
+    text = "Frame Strata Level:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 165,
+      offY = -125
+    }
+  })
+
+  FrameLib:BuildFrame({
+    name = "ma_framestratadropdown",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 327,
+      offY = -140
+    },
+    inherits = "UIDropDownMenuTemplate"
+  })
+
+  FrameLib:BuildFontString({
     name = "ma_delayparamlabel2",
     group = "misc",
     parent = ma_midframe,
@@ -330,9 +354,9 @@ function AzerothAdmin:CreateMiscSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 495,
-      offY = -6
+      pos = "TOPRIGHT",
+      offX = -135,
+      offY = -7
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -346,12 +370,12 @@ function AzerothAdmin:CreateMiscSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 110,
+      width = 100,
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 630,
+      pos = "TOPRIGHT",
+      offX = -10,
       offY = -10
     },
     text = "Apply Weather"

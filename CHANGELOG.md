@@ -1,6 +1,25 @@
 # AzerothAdmin Changelog
 
-### -=[ Revision 010 - 11/27/2025]=-
+### -=[ Version 011 - 11/29/2025]=-
+- ADD frame strata level configuration feature
+  - New dropdown in MISC tab to control window layering (Background to Fullscreen Dialog)
+  - Saved to account settings with default "MEDIUM" strata
+  - Allows users to control whether addon windows appear above/below other UI elements
+- ADD ElvUI-style dropdown styling system (Core/DropDownStyle.lua)
+  - Modernized appearance for all dropdown menus
+  - Consistent visual style across the addon
+- IMPROVE dropdown positioning and sizing across all tabs
+  - Adjusted widths for better text visibility
+  - Fixed alignment issues in CHAR, NPC, MISC, and SERVER tabs
+  - Repositioned elements to prevent overlapping
+- FIX NPC emote dropdown initialization
+  - Changed default selection from locale string to "0" (proper emote ID)
+- UPDATE layout improvements in weather and language controls
+  - Better spacing and alignment for cleaner UI
+  - Repositioned "Apply Weather" button to top-right corner
+- CHANGE Revision to Version in CHANGELOG to follow new versioning
+
+### -=[ Version 10 - 11/27/2025]=-
 - RESTRUCTURE addon to modular directory organization
   - Created new directory structure (Core, Data, Modules, Frames folders)
   - Moved data files (DBC.lua, Models.lua, TeleportTable.lua) to Data/
@@ -21,7 +40,7 @@
   - Changed to string.find() which correctly returns nil when pattern not found
   - Fixes broken teleport message hiding logic
 
-### -=[ Revision 009 - 11/27/2025]=-
+### -=[ Version 9 - 11/27/2025]=-
 - FIX WoW 3.3.5 compatibility issues across multiple files
   - Replace deprecated `getglobal()` with `_G[]` notation
   - Replace deprecated `table.foreachi()` with `pairs()`
@@ -42,19 +61,19 @@
 - UPDATE TOC file metadata for WoW 3.3.5 compatibility
 - UPDATE locale strings for server reload buttons
 
-### -=[ Revision 008 - 12/23/2024]=-
+### -=[ Version 8 - 12/23/2024]=-
 - FIX [[#12](https://github.com/superstyro/AzerothAdmin/issues/12)]
 - REMOVE FuBarPlugin
 - Add Libs for future minimap rework
 
-### -=[ Revision 007 - 12/23/2024]=-
+### -=[ Version 7 - 12/23/2024]=-
 - FIX [#22](https://github.com/superstyro/AzerothAdmin/issues/22)
 - ADD BuildFontStrings for 'Mean', 'Median', and 'Percentiles' in MangFrames_SectionServer.lua
 - FIX string pattern for matching percentiles in strings.lua
   - ADD pattern to match '|- Percentiles (95, 99, max): 3ms, 4ms, 4ms'
-- UPDATE CHANGELOG.md to follow addon revision number
+- UPDATE CHANGELOG.md to follow addon Version number
 
-### -=[ Revision 006 - 12/15/2024]=-
+### -=[ Version 6 - 12/15/2024]=-
 - FIX duplicate `lfer_GOtargguid1` entry in strings.lua
 - FIX duplicate `ma_Honor` entry in Locals\enUS.lua
 - FIX parameter assignment issue in AceEvent-2.0.lua
@@ -64,7 +83,7 @@
 - FIX #15 Update ticket message handling
   - Improved the logic for adding text to ticket messages in the database
 
-### -=[ Revision 005 - 5/04/2024]=-
+### -=[ Version 5 - 5/04/2024]=-
 - FIX #11 Hide WHO buttons
   - Cannot use level 4 account unless manually set in server console
 - FIX #13 Correct server update frequency to be more accurate
@@ -84,11 +103,11 @@
   - Disable ListFreeze button (No command available)
   - Correct HonorUpdt button function (Output is in LOG tab)
 
-### -=[ Revision 004 - 4/29/2024]=-
+### -=[ Version 4 - 4/29/2024]=-
 - FIX [ADD] [ITEM] buttons
   - TODO: Correct [ADD] item count default to 1 in chat window
 
-### -=[ Revision 003 - 1/24/2022]=-
+### -=[ Version 3 - 1/24/2022]=-
 - Updated Copyright year 2022
 - FIX Ticket TAB
   - Ticket Message text was black and difficult to read
@@ -99,19 +118,19 @@
   - Lots off little things added.
   - I am bad at keeping this changelog updated.
 
-### -=[ Revision 002 - 10/20/2019]=-
+### -=[ Version 2 - 10/20/2019]=-
 - FIX GM tab
   - Typo in GM-mode on/off
   - Speed Slider: Affect all speeds
 
-### -=[ Revision 001 - 10/18/2019]=-
+### -=[ Version 1 - 10/18/2019]=-
 - FIX Server info tab
   - Updated strings to match AzerothCore
 - FIX Diff Graph LUA error
 - Update MiniMenu Icon
 - Update Logo
 
-### -=[ Revision 000 - 10/18/2019]=-
+### -=[ Version 0 - 10/18/2019]=-
 - Initial Commit for AzerothAdmin (Ported from TrinityAdmin/MangAdmin)
 - Version specific build AzerothCore 3.3.5
 - Changed TrinityAdmin>AzerothAdmin

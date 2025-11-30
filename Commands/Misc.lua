@@ -115,7 +115,37 @@ function UpdateChanges()
   ReloadUI()
 end
 
-function ShowColorPicker(t)  -- TODO: ShowColorPicker faults when clicking color window and it is shown (ElvUI error)
+-- Protection function that wraps color picker child elements
+local function ProtectColorPickerFromElvUI()
+  local boxes = {"ColorPPBoxR", "ColorPPBoxG", "ColorPPBoxB", "ColorPPBoxA", "ColorPPBoxH"}
+
+  for _, boxName in ipairs(boxes) do
+    local box = _G[boxName]
+    if box and not box.SetFormattedText then
+      -- Create a working SetFormattedText that delegates to SetText
+      box.SetFormattedText = function(self, formatString, ...)
+        if self.SetText then
+          -- Format the string and pass it to SetText
+          local text = string.format(formatString, ...)
+          self:SetText(text)
+        end
+      end
+    end
+  end
+end
+
+function ShowColorPicker(t)
+  -- Hook the ColorPickerFrame's OnShow to protect against ElvUI
+  if not ColorPickerFrame.elvUIProtectionHooked then
+    ColorPickerFrame:HookScript("OnShow", function()
+      ProtectColorPickerFromElvUI()
+    end)
+    ColorPickerFrame.elvUIProtectionHooked = true
+  end
+
+  -- Also protect immediately in case boxes already exist
+  ProtectColorPickerFromElvUI()
+
   if t == "bg" then
     local r,g,b
     if AzerothAdmin.db.account.style.color.buffer.backgrounds then

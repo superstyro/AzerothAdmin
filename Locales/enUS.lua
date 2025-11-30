@@ -618,6 +618,11 @@ function Return_enUS()
     ["ma_WeatherRain"]                = "Rain",
     ["ma_WeatherSnow"]                = "Snow",
     ["ma_WeatherSand"]                = "Sand",
+    ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Transparency setting saved. Update Changes or Reload UI to apply.",
+    ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Localized search strings setting saved. Update Changes or Reload UI to apply.",
+    ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Minimenu setting saved.",
+    ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Tooltip setting saved. Update Changes or Reload UI to apply.",
+    ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Chat output setting saved.",
 
 
 

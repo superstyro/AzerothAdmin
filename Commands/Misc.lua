@@ -16,6 +16,77 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
+function ToggleTransparencyCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_checktransparencybutton:GetChecked() and true or false
+
+  -- Save the setting
+  if isChecked then
+    AzerothAdmin.db.account.style.transparency.backgrounds = 0.5
+  else
+    AzerothAdmin.db.account.style.transparency.backgrounds = 1.0
+  end
+
+  -- Apply immediately to background frames
+  FrameLib:HandleGroup("bg", function(frame)
+    if frame.texture then
+      frame.texture:SetAlpha(AzerothAdmin.db.account.style.transparency.backgrounds)
+    end
+  end)
+
+  -- Inform user that a UI reload is needed
+  print(Locale["msg_transparency_saved"])
+end
+
+function ToggleLocalSearchStringsCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_checklocalsearchstringsbutton:GetChecked() and true or false
+
+  -- Save the setting immediately
+  AzerothAdmin.db.account.localesearchstring = isChecked
+
+  -- Inform user that a UI reload is needed
+  print(Locale["msg_localsearch_saved"])
+end
+
+function ToggleMinimenuCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_showminimenubutton:GetChecked() and true or false
+
+  -- Save the setting
+  AzerothAdmin.db.account.style.showminimenu = isChecked
+
+  -- Toggle visibility immediately
+  if isChecked then
+    FrameLib:HandleGroup("minimenu", function(frame) frame:Show() end)
+  else
+    FrameLib:HandleGroup("minimenu", function(frame) frame:Hide() end)
+  end
+
+  print(Locale["msg_minimenu_saved"])
+end
+
+function ToggleTooltipsCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_showtooltipsbutton:GetChecked() and true or false
+
+  -- Save the setting immediately
+  AzerothAdmin.db.account.style.showtooltips = isChecked
+
+  -- Inform user that a UI reload is needed
+  print(Locale["msg_tooltip_saved"])
+end
+
+function ToggleShowChatOutputCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_showchatoutputbutton:GetChecked() and true or false
+
+  -- Save the setting immediately
+  AzerothAdmin.db.account.style.showchat = isChecked
+
+  print(Locale["msg_chatoutput_saved"])
+end
+
 function UpdateChanges()
   if AzerothAdmin.db.account.style.color.buffer.backgrounds then
     AzerothAdmin.db.account.style.color.backgrounds = AzerothAdmin.db.account.style.color.buffer.backgrounds

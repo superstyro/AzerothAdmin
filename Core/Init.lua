@@ -282,11 +282,16 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_showbutton                      , "Show loaded tickets"                   , function() ShowTickets() end)
 
 --[[Misc Tab]]
+  AzerothAdmin:PrepareScript(ma_checktransparencybutton         , nil                                     , function() ToggleTransparencyCheckbox() end)
+  AzerothAdmin:PrepareScript(ma_checklocalsearchstringsbutton   , nil                                     , function() ToggleLocalSearchStringsCheckbox() end)
+  AzerothAdmin:PrepareScript(ma_showchatoutputbutton            , nil                                     , function() ToggleShowChatOutputCheckbox() end)
   AzerothAdmin:PrepareScript(ma_bgcolorshowbutton               , nil                                     , function() ShowColorPicker("bg") end)
   AzerothAdmin:PrepareScript(ma_frmcolorshowbutton              , nil                                     , function() ShowColorPicker("frm") end)
   AzerothAdmin:PrepareScript(ma_btncolorshowbutton              , nil                                     , function() ShowColorPicker("btn") end)
   AzerothAdmin:PrepareScript(ma_linkifiercolorbutton            , nil                                     , function() ShowColorPicker("linkifier") end)
   AzerothAdmin:PrepareScript(ma_updatechangesbutton             , Locale["tt_updatechanges"]              , function() UpdateChanges() end)
+  AzerothAdmin:PrepareScript(ma_showminimenubutton              , nil                                     , function() ToggleMinimenuCheckbox() end)
+  AzerothAdmin:PrepareScript(ma_showtooltipsbutton              , nil                                     , function() ToggleTooltipsCheckbox() end)
   --AzerothAdmin:PrepareScript(ma_windowismovable                 , nil                                     , function() AllowMovableWindow() end)
   AzerothAdmin:PrepareScript(ma_changeweatherbutton             , nil                                     , function() ChangeWeather(UIDropDownMenu_GetSelectedValue(ma_weatherdropdown)) end)
 

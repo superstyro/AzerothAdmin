@@ -2670,6 +2670,29 @@ function AzerothAdmin:ChangeFrameStrata(strata)
   if ma_bgframe then
     ma_bgframe:SetFrameStrata(strata)
   end
+
+  -- Update popup frame strata to always be one level above main frame
+  if ma_popupframe then
+    local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG"}
+    local popupStrata = "DIALOG" -- Default fallback
+
+    for i, strataLevel in ipairs(strataOrder) do
+      if strataLevel == strata then
+        -- Set popup to next level up
+        if i < #strataOrder then
+          popupStrata = strataOrder[i + 1]
+        else
+          -- If main frame is already at max strata (FULLSCREEN_DIALOG),
+          -- use same strata but higher frame level to ensure popup stays on top
+          popupStrata = "FULLSCREEN_DIALOG"
+          ma_popupframe:SetFrameLevel(100) -- Higher frame level within same strata
+        end
+        break
+      end
+    end
+
+    ma_popupframe:SetFrameStrata(popupStrata)
+  end
 end
 
 function AzerothAdmin:ToggleMiniMenu()

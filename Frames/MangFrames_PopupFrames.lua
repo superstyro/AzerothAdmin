@@ -33,6 +33,27 @@ function AzerothAdmin:CreatePopupFrames()
   }
 
   -- [[Popup Frame]]
+  -- Calculate popup strata to be one level above main frame
+  local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG"}
+  local mainStrata = AzerothAdmin.db.account.style.framestrata or "MEDIUM"
+  local popupStrata = "DIALOG" -- Default fallback
+  local popupFrameLevel = nil
+
+  for i, strata in ipairs(strataOrder) do
+    if strata == mainStrata then
+      -- Set popup to next level up
+      if i < #strataOrder then
+        popupStrata = strataOrder[i + 1]
+      else
+        -- If main frame is already at max strata (FULLSCREEN_DIALOG),
+        -- use same strata but higher frame level to ensure popup stays on top
+        popupStrata = "FULLSCREEN_DIALOG"
+        popupFrameLevel = 100 -- Higher frame level within same strata
+      end
+      break
+    end
+  end
+
   FrameLib:BuildFrame({
     name = "ma_popupframe",
     group = "popup",
@@ -48,7 +69,8 @@ function AzerothAdmin:CreatePopupFrames()
     setpoint = {
       pos = "CENTER"
     },
-    frameStrata = "HIGH",
+    frameStrata = popupStrata,
+    frameLevel = popupFrameLevel,
     inherits = nil
   })
 

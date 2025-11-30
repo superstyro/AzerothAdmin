@@ -33,6 +33,27 @@ function AzerothAdmin:CreatePopupFrames()
   }
 
   -- [[Popup Frame]]
+  -- Calculate popup strata to be one level above main frame
+  local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG"}
+  local mainStrata = AzerothAdmin.db.account.style.framestrata or "MEDIUM"
+  local popupStrata = "DIALOG" -- Default fallback
+  local popupFrameLevel = nil
+
+  for i, strata in ipairs(strataOrder) do
+    if strata == mainStrata then
+      -- Set popup to next level up
+      if i < #strataOrder then
+        popupStrata = strataOrder[i + 1]
+      else
+        -- If main frame is already at max strata (FULLSCREEN_DIALOG),
+        -- use same strata but higher frame level to ensure popup stays on top
+        popupStrata = "FULLSCREEN_DIALOG"
+        popupFrameLevel = 100 -- Higher frame level within same strata
+      end
+      break
+    end
+  end
+
   FrameLib:BuildFrame({
     name = "ma_popupframe",
     group = "popup",
@@ -48,7 +69,8 @@ function AzerothAdmin:CreatePopupFrames()
     setpoint = {
       pos = "CENTER"
     },
-    frameStrata = "HIGH",
+    frameStrata = popupStrata,
+    frameLevel = popupFrameLevel,
     inherits = nil
   })
 
@@ -219,7 +241,7 @@ function AzerothAdmin:CreatePopupFrames()
     group = "popup",
     parent = ma_popuptopframe,
     size = {
-      width = 80,
+      width = 250,
       height = 20
     },
     setpoint = {
@@ -230,8 +252,11 @@ function AzerothAdmin:CreatePopupFrames()
     inherits = "InputBoxTemplate"
   })
 
+  -- Multi-purpose action button
+  -- Search mode: "Search" button - triggers search functionality
+  -- Mail mode: "Send" button - sends mail and closes popup
   FrameLib:BuildButton({
-    name = "ma_searchbutton",
+    name = "ma_searchbutton",  -- mail 'Send' button
     group = "popup",
     parent = ma_popuptopframe,
     texture = {
@@ -243,8 +268,8 @@ function AzerothAdmin:CreatePopupFrames()
       height = 20
     },
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 94,
+      pos = "BOTTOMRIGHT",
+      offX = -5,
       offY = 28
     },
     text = Locale["ma_SearchButton"]
@@ -263,23 +288,11 @@ function AzerothAdmin:CreatePopupFrames()
       height = 20
     },
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 178,
+      pos = "BOTTOMRIGHT",
+      offX = -90,
       offY = 28
     },
     text = Locale["ma_ResetButton"]
-  })
-
-  FrameLib:BuildFontString({
-    name = "ma_var1text",
-    group = "popup",
-    parent = ma_popuptopframe,
-    text = "You should not see this text!",
-    setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 10,
-      offY = 8
-    }
   })
 
   FrameLib:BuildFrame({
@@ -300,13 +313,28 @@ function AzerothAdmin:CreatePopupFrames()
   })
 
   FrameLib:BuildFontString({
-    name = "ma_var2text",
+    name = "ma_var1text",  -- Left text label
     group = "popup",
     parent = ma_popuptopframe,
     text = "You should not see this text!",
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 200,
+      pos = "BOTTOMRIGHT",
+      relTo = "ma_var1editbox",
+      relPos = "BOTTOMLEFT",
+      offX = -10,
+      offY = 4
+    },
+    justifyH = "RIGHT"
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_var2text", -- Right text label
+    group = "popup",
+    parent = ma_popuptopframe,
+    text = "You should not see this text!",
+    setpoint = {
+      pos = "BOTTOMRIGHT",
+      offX = -160,
       offY = 8
     }
   })
@@ -792,4 +820,67 @@ function AzerothAdmin:CreatePopupFrames()
     },
     text = Locale["ma_DeselectAllButton"]
   })
+end
+
+-- Setup Mail Popup UI
+function AzerothAdmin:SetupMailPopup(param)
+  _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+  _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+  FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
+
+  -- Hide search entries
+  for n = 1,7 do
+    _G["ma_PopupScrollBarEntry"..n]:Hide()
+  end
+
+  -- Show/hide relevant elements
+  ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."246")
+  ma_lookupresulttext:Show()
+  ma_resetsearchbutton:Hide()
+  ma_PopupScrollBar:Hide()
+  ma_modfavsbutton:Hide()
+  ma_selectallbutton:Hide()
+  ma_deselectallbutton:Hide()
+  ma_ptabbutton_2:Hide()
+  ma_var2editbox:Hide()
+  ma_var2text:Hide()
+
+  -- Setup text change handlers for byte count
+  ma_searcheditbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+  ma_var1editbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+
+  -- Setup recipient field
+  if param.recipient then
+    ma_searcheditbox:SetText(param.recipient)
+  else
+    ma_searcheditbox:SetText(Locale["ma_MailRecipient"])
+  end
+
+  -- Setup body field
+  if param.body then
+    ma_maileditbox:SetText(param.body)
+  else
+    ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
+  end
+
+  -- Setup subject field
+  if param.subject then
+    ma_var1editbox:SetText(param.subject)
+  else
+    ma_var1editbox:SetText(Locale["ma_MailSubject"])
+  end
+  ma_var1editbox:Show()
+  ma_var1text:SetText(Locale["ma_MailSubject"])
+  ma_var1text:Show()
+
+  -- Setup buttons
+  ma_ptabbutton_1:SetText(Locale["ma_Mail"])
+  ma_searchbutton:SetText(Locale["ma_Send"])
+  ma_searchbutton:SetScript("OnClick", function()
+    self:SendMail(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), ma_maileditbox:GetText())
+    ma_popupframe:Hide()
+  end)
+
+  -- Show mail editbox
+  ma_maileditbox:Show()
 end

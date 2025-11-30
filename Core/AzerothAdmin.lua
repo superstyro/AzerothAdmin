@@ -536,46 +536,7 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_modfavsbutton:Enable()
     self:Favorites("show", param.type)
   elseif value == "mail" then
-    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
-    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
-    FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
-    for n = 1,7 do
-      _G["ma_PopupScrollBarEntry"..n]:Hide()
-    end
-    ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."246")
-    ma_lookupresulttext:Show()
-    ma_resetsearchbutton:Hide()
-    ma_PopupScrollBar:Hide()
-    ma_searcheditbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
-    ma_var1editbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
-    ma_modfavsbutton:Hide()
-    ma_selectallbutton:Hide()
-    ma_deselectallbutton:Hide()
-    if param.recipient then
-      ma_searcheditbox:SetText(param.recipient)
-    else
-      ma_searcheditbox:SetText(Locale["ma_MailRecipient"])
-    end
-    if param.body then
-      ma_maileditbox:SetText(param.body)
-    else
-      ma_maileditbox:SetText(Locale["ma_MailRecipient"])
-    end
-    ma_ptabbutton_1:SetText(Locale["ma_Mail"])
-    ma_ptabbutton_2:Hide()
-    ma_searchbutton:SetText(Locale["ma_Send"])
-    ma_searchbutton:SetScript("OnClick", function() self:SendMail(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), ma_maileditbox:GetText()); ma_popupframe:Hide() end)
-    ma_var2editbox:Hide()
-    ma_var2text:Hide()
-    if param.subject then
-      ma_var1editbox:SetText(param.subject)
-    else
-      ma_var1editbox:SetText(Locale["ma_MailSubject"])
-    end
-    ma_var1editbox:Show()
-    ma_var1text:SetText(Locale["ma_MailSubject"])
-    ma_var1text:Show()
-    ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
+    self:SetupMailPopup(param)
   end
 end
 

@@ -300,8 +300,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = -15,
-      offY = 0
+      offX = 5,
+      offY = -1
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -321,7 +321,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 120,
+      offX = 124,
       offY = -4
     },
     text = Locale["ma_PlayEmote1"]
@@ -338,8 +338,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 150,
-      offY = 0
+      offX = 210,
+      offY = -1
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -359,7 +359,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 285,
+      offX = 299,
       offY = -4
     },
     text = Locale["ma_PlayEmote2"]

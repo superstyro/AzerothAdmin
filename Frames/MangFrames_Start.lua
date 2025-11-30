@@ -51,6 +51,9 @@ function AzerothAdmin:CreateStartFrames()
     inherits = nil
   })
 
+  -- Set the frame strata for the main frame
+  ma_bgframe:SetFrameStrata(AzerothAdmin.db.account.style.framestrata)
+
   FrameLib:BuildFrame({ --Main Window Menu Frame
     name = "ma_menubgframe",
     group = "bg",
@@ -284,7 +287,7 @@ function AzerothAdmin:CreateStartFrames()
     parent = ma_topframe,
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -115,
+      offX = -147,
       offY = -10
     },
     inherits = "UIDropDownMenuTemplate"
@@ -299,13 +302,13 @@ function AzerothAdmin:CreateStartFrames()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 120,
-      height = 20
+      width = 110,
+      height = 25
     },
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -14
+      offY = -10
     },
     text = Locale["ma_LanguageButton"]
   })

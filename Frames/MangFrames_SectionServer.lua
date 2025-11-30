@@ -153,8 +153,8 @@ function AzerothAdmin:CreateServerSection()
     },
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -95,
-      offY = -6
+      offX = -135,
+      offY = -7
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -210,7 +210,7 @@ function AzerothAdmin:CreateServerSection()
     },
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -112,
+      offX = -115,
       offY = -65
     },
     inherits = "InputBoxTemplate"

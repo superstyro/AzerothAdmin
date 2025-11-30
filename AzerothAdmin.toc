@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 10
+## Version: 11
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3
@@ -40,6 +40,7 @@ Data\DBC.lua
 Data\TeleportTable.lua
 Core\Init.lua
 Core\AzerothAdmin.lua
+Core\DropDownStyle.lua
 Modules\Linkifier.lua
 Frames\MangFrames_Start.lua
 Frames\MangFrames_Tabs.lua

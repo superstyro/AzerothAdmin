@@ -109,6 +109,7 @@ AzerothAdmin:RegisterDefaults("account",
       showtooltips = true,
       showchat = false,
       showminimenu = true,
+      framestrata = "MEDIUM", -- Frame strata level: BACKGROUND, LOW, MEDIUM, HIGH, DIALOG, FULLSCREEN, FULLSCREEN_DIALOG (TOOLTIP not recommended)
       transparency = {
         buttons = 1.0,
         frames = 0.7,
@@ -236,6 +237,7 @@ function AzerothAdmin:OnInitialize()
   end
   -- initializing Frames, like DropDowns, Sliders, aso
   self:InitDropDowns()
+  self:InitDropDownStyling()  -- Apply ElvUI-style dropdown styling
   self:InitSliders()
   self:InitScrollFrames()
   self:InitCheckButtons()
@@ -1788,7 +1790,7 @@ function AzerothAdmin:InitDropDowns()
     UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, "all")
   end
   UIDropDownMenu_Initialize(ma_reloadtabledropdown, ReloadTableDropDownInitialize)
-  UIDropDownMenu_SetWidth(ma_reloadtabledropdown,100)
+  UIDropDownMenu_SetWidth(ma_reloadtabledropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_reloadtabledropdown, 20)
 
   -- WEATHER
@@ -1815,7 +1817,7 @@ function AzerothAdmin:InitDropDowns()
     UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, "0 0")
   end
   UIDropDownMenu_Initialize(ma_weatherdropdown, WeatherDropDownInitialize)
-  UIDropDownMenu_SetWidth(ma_weatherdropdown, 100)
+  UIDropDownMenu_SetWidth(ma_weatherdropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_weatherdropdown, 20)
 
   --NPC EMOTE
@@ -1867,10 +1869,10 @@ function AzerothAdmin:InitDropDowns()
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, Locale:GetLocale())
+    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, "0")
   end
   UIDropDownMenu_Initialize(ma_npcemotedropdown, NpcEmoteDropDownInitialize)
-  UIDropDownMenu_SetWidth(ma_npcemotedropdown, 100)
+  UIDropDownMenu_SetWidth(ma_npcemotedropdown, 85)
   UIDropDownMenu_SetButtonWidth(ma_npcemotedropdown, 20)
 
   --NPC EMOTE
@@ -1922,10 +1924,10 @@ function AzerothAdmin:InitDropDowns()
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, Locale:GetLocale())
+    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, "0")
   end
   UIDropDownMenu_Initialize(ma_npcemotedropdown_a, NpcEmoteDropDownInitialize)
-  UIDropDownMenu_SetWidth(ma_npcemotedropdown_a, 100)
+  UIDropDownMenu_SetWidth(ma_npcemotedropdown_a, 85)
   UIDropDownMenu_SetButtonWidth(ma_npcemotedropdown_a, 20)
 
   --LANGUAGE
@@ -1964,8 +1966,39 @@ function AzerothAdmin:InitDropDowns()
     UIDropDownMenu_SetSelectedValue(ma_languagedropdown, Locale:GetLocale())
   end
   UIDropDownMenu_Initialize(ma_languagedropdown, LangDropDownInitialize)
-  UIDropDownMenu_SetWidth(ma_languagedropdown, 100)
+  UIDropDownMenu_SetWidth(ma_languagedropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_languagedropdown, 20)
+
+  -- FRAME STRATA DROPDOWN
+  local function FrameStrataDropDownInitialize()
+    local level = 1
+    local info = {}
+    local strataLevels = {
+      {value = "BACKGROUND", text = "Background"},
+      {value = "LOW", text = "Low"},
+      {value = "MEDIUM", text = "Medium (Default)"},
+      {value = "HIGH", text = "High"},
+      {value = "DIALOG", text = "Dialog"},
+      {value = "FULLSCREEN", text = "Fullscreen"},
+      {value = "FULLSCREEN_DIALOG", text = "Fullscreen Dialog"}
+    }
+    for _, strata in ipairs(strataLevels) do
+      info.text = strata.text
+      info.value = strata.value
+      info.func = function()
+        AzerothAdmin:ChangeFrameStrata(strata.value)
+        UIDropDownMenu_SetSelectedValue(ma_framestratadropdown, strata.value)
+      end
+      info.checked = (AzerothAdmin.db.account.style.framestrata == strata.value)
+      info.icon = nil
+      info.keepShownOnClick = nil
+      UIDropDownMenu_AddButton(info, level)
+    end
+    UIDropDownMenu_SetSelectedValue(ma_framestratadropdown, AzerothAdmin.db.account.style.framestrata)
+  end
+  UIDropDownMenu_Initialize(ma_framestratadropdown, FrameStrataDropDownInitialize)
+  UIDropDownMenu_SetWidth(ma_framestratadropdown, 100)
+  UIDropDownMenu_SetButtonWidth(ma_framestratadropdown, 20)
 
 end
 
@@ -2628,6 +2661,15 @@ function AzerothAdmin:ToggleMinimenu()
     self.db.account.style.showminimenu = true
   end
   ReloadUI()
+end
+
+function AzerothAdmin:ChangeFrameStrata(strata)
+  -- Save the new frame strata setting
+  self.db.account.style.framestrata = strata
+  -- Apply it immediately to the main frame
+  if ma_bgframe then
+    ma_bgframe:SetFrameStrata(strata)
+  end
 end
 
 function AzerothAdmin:ToggleMiniMenu()

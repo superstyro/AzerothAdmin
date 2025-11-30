@@ -394,13 +394,12 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 80,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = -15,
-      offY = 0
+      offX = 5,
+      offY = -1
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -430,13 +429,12 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 80,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 315,
-      offY = 0
+      offX = 395,
+      offY = -1
     },
     inherits = "UIDropDownMenuTemplate"
   })
@@ -483,13 +481,12 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 40,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 150,
-      offY = 0
+      offX = 200,
+      offY = -1
     },
     inherits = "UIDropDownMenuTemplate"
   })

@@ -1,5 +1,17 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 13 - 11/30/2025]=-
+
+- FIX [[#36](https://github.com/superstyro/AzerothAdmin/issues/36)] Item set search and add commands
+  - Changed item set lookup command from `.lookup itemset` to `.lookup item set`
+  - Changed item set add command from `.additemset` to `.additem set`
+  - Added Enter key press handler to search editbox to trigger search automatically
+- FIX [[#34](https://github.com/superstyro/AzerothAdmin/issues/34)] ElvUI color picker compatibility
+  - Added compatibility layer for ElvUI's ColorPickerFrame hooks
+  - Created SetFormattedText method for ColorPicker child elements (ColorPPBoxR, ColorPPBoxG, ColorPPBoxB, etc.)
+  - Color picker now works seamlessly with ElvUI without errors
+  - RGB values display correctly and all sliders function properly
+
 ## -=[ Version 12 - 11/30/2025]=-
 
 - ADD draggable mini menu functionality

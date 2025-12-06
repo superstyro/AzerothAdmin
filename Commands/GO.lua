@@ -99,7 +99,42 @@ function OBJSetPhase()
     AzerothAdmin:LogAction("Object "..obj.." phase set to "..phase.." for player "..player..".")
 end
 
+-- MEMORY OPTIMIZATION: Load Models addon on-demand (saves ~5.6 MB!)
+local function EnsureModelsLoaded()
+    if not IsAddOnLoaded("AzerothAdmin_Models") then
+        local loaded, reason = LoadAddOn("AzerothAdmin_Models")
+        if loaded then
+            AzerothAdmin:Print("Loaded model database (~5.6 MB)")
+        else
+            local reasons = {
+                [0] = "Unknown error",
+                [1] = "Addon disabled",
+                [2] = "Addon missing",
+                [3] = "Addon too old/new",
+                [4] = "Addon dependency missing",
+                [5] = "Addon insecure"
+            }
+            AzerothAdmin:Print("ERROR: Could not load Models addon - " .. (reasons[reason] or "Unknown"))
+        end
+    end
+end
+
+function UnloadModels()
+    if IsAddOnLoaded("AzerothAdmin_Models") then
+        -- Clear the global ModelA table to free memory
+        ModelA = nil
+        -- Force garbage collection
+        collectgarbage("collect")
+        AzerothAdmin:Print("Model database unloaded. Use /reload to fully free memory (~5.6 MB)")
+    else
+        AzerothAdmin:Print("Model database is not currently loaded")
+    end
+end
+
 function ShowGobModel()
+    -- Load models database if not already loaded
+    EnsureModelsLoaded()
+
     local Scale = UIParent:GetEffectiveScale();
     local Hypotenuse = ( ( GetScreenWidth() * Scale ) ^ 2 + ( GetScreenHeight() * Scale ) ^ 2 ) ^ 0.5;
     local CoordRight = ( ma_gobjectmodel:GetRight() - ma_gobjectmodel:GetLeft() ) / Hypotenuse

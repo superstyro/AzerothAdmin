@@ -16,6 +16,10 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
+-- MEMORY OPTIMIZATION: This file is NOT loaded at startup (commented out in .toc)
+-- It's loaded on-demand via loadfile() when ShowGobModel() is first called in Commands/GO.lua
+-- This saves ~3-4 MB of memory at startup for users who don't use the GO model viewer
+
 ModelA = {}
     ModelA[1] = 'World\\Generic\\ActiveDoodads\\Chest02\\Chest02.mdx'
     ModelA[2] = 'World\\Generic\\Orc\\Passive Doodads\\WantedPosters\\WantedPosterStuck01.mdx'

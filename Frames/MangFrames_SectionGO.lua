@@ -801,6 +801,27 @@ function AzerothAdmin:CreateGOSection()
     text = "Show"
   })
 
+  -- MEMORY OPTIMIZATION: Unload Models button (frees ~5.6 MB)
+  FrameLib:BuildButton({
+    name = "ma_gobunloadmodel",
+    group = "go",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_gobunloadmodel_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 60,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 368,
+      offY = -12
+    },
+    text = "Unload"
+  })
+
  --[[ FrameLib:BuildFrame({
     type = "Slider",
     name = "ma_cameraleftrightslider",

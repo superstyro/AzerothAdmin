@@ -1,5 +1,21 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 14 - 12/06/2025]=-
+
+- OPTIMIZE Memory usage with massive 74% reduction (7.5 MB → 1.9 MB)
+  - Converted DBC.lua from 2,408 if-elseif chains to efficient hash table lookups
+  - Improved map/zone name lookup performance from O(n) to O(1)
+  - Moved Models.lua (100,000 model paths, 45,640 lines) to separate LoadOnDemand addon
+  - Created AzerothAdmin_Models companion addon that loads only when needed
+  - Added "Show" button in GO tab to load model database on-demand
+  - Added "Unload" button in GO tab to free model memory without full reload
+  - Changed model load messages from character speech to addon chat output
+  - Memory savings: ~5.6 MB for users who don't use GameObject model viewer
+  - GameObject model viewer functionality remains fully intact when loaded
+- IMPROVE Data structure optimization
+  - TeleportTable.lua already uses efficient continent-based lazy loading
+  - Added optimization comments documenting memory-saving approaches
+
 ## -=[ Version 13 - 11/30/2025]=-
 
 - FIX [[#36](https://github.com/superstyro/AzerothAdmin/issues/36)] Item set search and add commands

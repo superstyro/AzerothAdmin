@@ -19,7 +19,7 @@
 function OBJGo()
     local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_guidbutton:GetText()
-    AzerothAdmin:ChatMsg(".go object "..obj)
+    AzerothAdmin:ChatMsg(".go gameobject "..obj)
     AzerothAdmin:LogAction("Go Object for player "..player..".")
 end
 
@@ -53,23 +53,17 @@ end
 
 function OBJNear()
     local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".gobject near")
+    local objguid = ma_Obj_guidbutton:GetText()
+    local objid = ma_Obj_idbutton:GetText()
+    local range = ma_gobnearrange:GetText()
+    AzerothAdmin:ChatMsg(".gobject near "..range)
     AzerothAdmin:LogAction("Object Near for player "..player..".")
 end
 
 function OBJTarget()
-	if not gettingGOBinfo then
-        gettingGOBinfo = true
-        --ma_gobtargetinfo:SetText("|cffffffff")
-        --ma_gobinfoinfo:SetText("|cffffffff")
-
-        local player =  UnitName("player")
-        AzerothAdmin:ChatMsg(".gobject target")
-        AzerothAdmin:LogAction("Object Target for player "..player..".")
-        --gettingGOBinfo = true
-        AzerothAdmin:ChatMsg(".gobject info")
-        --ShowGobModel()
-    end
+    local player = UnitName("target") or UnitName("player")
+    AzerothAdmin:ChatMsg(".gobject target")
+    AzerothAdmin:LogAction("Object Near for player "..player..".")
 end
 
 function OBJActivate()
@@ -87,8 +81,9 @@ end
 
 function OBJInfo()
     local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".gobject info")
-    AzerothAdmin:LogAction("Object "..ma_Obj_guidbutton:GetText().." info obtained for player "..player..".")
+    local obj = ma_Obj_idbutton:GetText()
+    AzerothAdmin:ChatMsg(".gobject info "..obj)
+    AzerothAdmin:LogAction("Object "..ma_Obj_idbutton:GetText().." info obtained for player "..player..".")
 end
 
 function OBJSetPhase()
@@ -193,63 +188,13 @@ function GobModelZoomOut()
     --ma_modelframe:RefreshUnit()
 end
 
---[[function CHAT_MSG_SYSTEM()
-
-    if string.find(arg1,"Selected object") ~= nil then
-        if fID == 1 then
-            SendChatMessage('.gob info')
-            fID = 2
-        end
-    end
-    if string.find(arg1,"GUID:") ~= nil then
-        if fID == 2 then
-            WorkString = string.gsub(arg1, '(|.........)', '')
-            WorkString = string.gsub(WorkString, 'GUID:', '')
-            ObjectIDTxT:SetText(WorkString)
-            fID = 3
-        end
-    end
-    if string.find(arg1,"Model:") ~= nil then
-        if fID == 3 then
-            WorkString = string.gsub(arg1, '(|.........)', '')
-            WorkString = string.gsub(WorkString, 'Model:', '')
-            ObjectMTxt:SetText(WorkString)
-            fID = 0
-        end
-    end
-    if string.find(arg1,"Model:") ~= nil then
-        WorkString = string.gsub(arg1, '(|.........)', '')
-        WorkString = string.match(WorkString, '%d*%d')
-        --ObjectPlay:LoadModel(WorkString)
-    end
-    if string.find(arg1,"No inrange GameObject") ~= nil then
-        if fID == 1 then
-            fID = 0
-        end
-    end
-end ]]
-
 function CheckToggle(action)
     if action == "spawn" then
         ma_moveonmovecheck:SetChecked(false)
     elseif action == "move" then
         ma_spawnonmovecheck:SetChecked(false)
     end
-
---[[    isChecked = ma_spawnonmovecheck:GetChecked()
-    if isChecked == 1 then
-        ma_spawnonmovecheck:SetChecked(false)
-    else
-        ma_spawnonmovecheck:SetChecked(true)
-    end]]
 end
-
---[[function GetOID()
-    if fID == 0 then
-        fID = 1
-        SendChatMessage('.gob near')
-    end
-end]]
 
 function DMUP()
     if cWorking == 0 then

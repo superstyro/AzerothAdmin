@@ -289,7 +289,7 @@ function AzerothAdmin:OnEnable()
   ma_mapsoffbutton:Disable()
   ma_showmapsbutton:Disable()
   ma_hidemapsbutton:Disable()
-  ma_charlistfreezebutton:Disable()
+  --ma_charlistdeletedbutton:Disable()
 end
 
 --events

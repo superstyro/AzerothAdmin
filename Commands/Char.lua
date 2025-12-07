@@ -456,9 +456,9 @@ function CharUnFreeze()
     AzerothAdmin:LogAction("UnFroze "..player)
 end
 
-function CharListFreeze()
-    AzerothAdmin:ChatMsg(".listfreeze")
-    AzerothAdmin:LogAction("Listed Frozen players")
+function CharListDeleted()
+    AzerothAdmin:ChatMsg(".char del list")
+    AzerothAdmin:LogAction("Listed deleted characters")
 end
 
 function CharPossess()

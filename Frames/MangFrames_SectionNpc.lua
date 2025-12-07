@@ -202,8 +202,8 @@ function AzerothAdmin:CreateNpcSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCGUIDButton"]
@@ -224,7 +224,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -52 --charRowTwo
+      offY = -30 --charRowOne
     },
     text = Locale["ma_NPCInfoButton"]
   })
@@ -379,7 +379,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
+      offX = 498, --charColFive
       offY = -204 --charRowNine
     },
     text = "<<"
@@ -396,7 +396,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -204 --charRowNine
     },
     inherits = "InputBoxTemplate"
@@ -415,8 +415,8 @@ function AzerothAdmin:CreateNpcSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -204 --charRowNine
     },
     text = ">>"
@@ -433,7 +433,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -182 --charRowEight
     },
     inherits = "InputBoxTemplate"
@@ -448,12 +448,12 @@ function AzerothAdmin:CreateNpcSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 39,
+      width = 80,
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 589,
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -182 --charRowEight
     },
     text = ">>"
@@ -468,12 +468,12 @@ function AzerothAdmin:CreateNpcSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 40,
+      width = 80,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548,
+      offX = 498, --charColFive
       offY = -182 --charRowEight
     },
     text = "<<"
@@ -493,8 +493,10 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -182 --charRowEight
+      offX = 303, --charColThree
+      offY = -52 --charRowTwo
+      --offX = 385, --charColFour
+      --offY = -182 --charRowEight
     },
     text = Locale["ma_NPCAdd"]
   })
@@ -513,7 +515,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
+      offX = 498, --charColFive
       offY = -160 --charRowSeven
     },
     text = Locale["ma_getguid"]
@@ -530,7 +532,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -160 --charRowSeven
     },
     inherits = "InputBoxTemplate"
@@ -965,7 +967,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -74  --charRowThree
+      offY = -30 --charRowOne
     },
     text = Locale["ma_WayShow"]
   })
@@ -985,7 +987,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -95 --charRowFour
+      offY = -52 --charRowTwo
     },
     text = Locale["ma_NPCUnFreeze_WayButton"]
   })
@@ -1005,7 +1007,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -139 --charRowSix
+      offY = -95 --charRowFour
     },
     text = Locale["ma_NPCUnFreeze_RandomButton"]
   })
@@ -1021,7 +1023,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -139 --charRowSix
     },
     inherits = "InputBoxTemplate"
@@ -1042,7 +1044,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -117 --charRowFive
+      offY = -74 --charRowThree
     },
     text = Locale["ma_MoveStackButton"]
   })
@@ -1053,8 +1055,8 @@ function AzerothAdmin:CreateNpcSection()
     parent = ma_midframe,
     text = Locale["ma_DistanceBox"],
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
+      pos = "TOPRIGHT",
+      offX = -35, --charColSix
       offY = -144
     }
   })

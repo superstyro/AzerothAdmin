@@ -169,7 +169,7 @@ function AzerothAdmin:CreateNpcSection()
     text = Locale["ma_Respawn"]
   })
 
-  FrameLib:BuildButton({
+    FrameLib:BuildButton({
     name = "ma_npcdistancebutton",
     group = "npc",
     parent = ma_midframe,
@@ -183,8 +183,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
-      offY = -160 --charRowSeven
+      offX = 498, --charColFive
+      offY = -139 --charRowSix
     },
     text = Locale["ma_NPCDistanceButton"]
   })
@@ -582,8 +582,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -182 --charRowEight
+      offX = 140, --charColOne
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCMorph"]
   })
@@ -602,8 +602,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -204 --charRowNine
+      offX = 222, --charColTwo
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCDemorph"]
   })
@@ -742,8 +742,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -160 --charRowSeven
+      offX = 303, --charColThree
+      offY = -204 --charRowNine
     },
     text = Locale["ma_NPCComeToMe"]
   })

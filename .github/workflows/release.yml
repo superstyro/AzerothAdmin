@@ -48,16 +48,18 @@ jobs:
 
       - name: Create addon package
         run: |
-          # Create a directory with the addon name
-          mkdir -p AzerothAdmin
+          # Create package directory structure
+          mkdir -p package/AzerothAdmin
+          mkdir -p package/AzerothAdmin_Models
 
-          # Copy all necessary files except git/github/docs/raw assets
-          rsync -av --progress . AzerothAdmin/ \
+          # Copy main addon files
+          rsync -av --progress . package/AzerothAdmin/ \
             --exclude .git \
             --exclude .github \
             --exclude .gitignore \
             --exclude .claude \
             --exclude Docs \
+            --exclude _build \
             --exclude 'README.md' \
             --exclude 'CREDITS.md' \
             --exclude 'logo_raw.psd' \
@@ -67,8 +69,19 @@ jobs:
             --exclude 'AA_server.jpg' \
             --exclude 'logo.png'
 
-          # Create the zip file
-          zip -r AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip AzerothAdmin/
+          # Copy AzerothAdmin_Models from _build directory
+          if [ -d "_build/AzerothAdmin_Models" ]; then
+            cp -r _build/AzerothAdmin_Models/* package/AzerothAdmin_Models/
+            echo "✓ Included AzerothAdmin_Models addon (5.6 MB)"
+          else
+            echo "❌ ERROR: _build/AzerothAdmin_Models not found!"
+            exit 1
+          fi
+
+          # Create the zip file with both addons
+          cd package
+          zip -r ../AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip AzerothAdmin/ AzerothAdmin_Models/
+          cd ..
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -81,7 +94,11 @@ jobs:
             ## Installation
             1. Download `AzerothAdmin-${{ steps.get_version.outputs.VERSION }}.zip`
             2. Extract to your `World of Warcraft/Interface/AddOns/` folder
-            3. The addon folder will be created automatically as `AzerothAdmin`
+            3. Two addon folders will be created:
+               - `AzerothAdmin` - Main addon (1.9 MB)
+               - `AzerothAdmin_Models` - GameObject model database (5.6 MB, loads on-demand)
+
+            **Note:** Both addons are required. AzerothAdmin_Models loads automatically when you use the GameObject model viewer.
 
             See [CHANGELOG.md](CHANGELOG.md) for full changelog.
           draft: false

@@ -16,9 +16,9 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
--- MEMORY OPTIMIZATION: This file is NOT loaded at startup (commented out in .toc)
--- It's loaded on-demand via loadfile() when ShowGobModel() is first called in Commands/GO.lua
--- This saves ~3-4 MB of memory at startup for users who don't use the GO model viewer
+-- MEMORY OPTIMIZATION: This file is in a separate LoadOnDemand addon
+-- It's loaded via LoadAddOn() when ShowGobModel() is first called in AzerothAdmin\Commands\GO.lua
+-- This saves ~5.6 MB of memory at startup for users who don't use the GO model viewer
 
 ModelA = {}
     ModelA[1] = 'World\\Generic\\ActiveDoodads\\Chest02\\Chest02.mdx'

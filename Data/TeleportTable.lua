@@ -16,6 +16,8 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
+-- MEMORY OPTIMIZATION NOTE: This function is kept global as it's called from Commands/Tele.lua
+-- The teleport data is contained within function scope to minimize global namespace pollution
 function ReturnTeleportLocations(cont)
 if cont  == "EK_N" then
   return {

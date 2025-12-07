@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 13
+## Version: 14
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3
@@ -27,7 +27,7 @@ Libraries\Graph-1.0\Graph-1.0.lua
 Libraries\LibStub\LibStub.lua
 Locales\enUS.lua
 Locales\strings.lua
-Data\Models.lua
+# Data\Models.lua moved to separate AzerothAdmin_Models addon (LoadOnDemand) - saves 5.6 MB
 Commands\Main.lua
 Commands\Tele.lua
 Commands\Char.lua

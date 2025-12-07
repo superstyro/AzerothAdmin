@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin Models
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 13
+## Version: 1
 ## Notes: GameObject model data for AzerothAdmin (loads on-demand)
 ## Dependencies: AzerothAdmin
 ## LoadOnDemand: 1

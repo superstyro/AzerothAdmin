@@ -104,7 +104,7 @@ local function EnsureModelsLoaded()
     if not IsAddOnLoaded("AzerothAdmin_Models") then
         local loaded, reason = LoadAddOn("AzerothAdmin_Models")
         if loaded then
-            AzerothAdmin:Print("Loaded model database (~5.6 MB)")
+            AzerothAdmin:Print("Loaded model database")
         else
             local reasons = {
                 [0] = "Unknown error",
@@ -125,7 +125,7 @@ function UnloadModels()
         ModelA = nil
         -- Force garbage collection
         collectgarbage("collect")
-        AzerothAdmin:Print("Model database unloaded. Use /reload to fully free memory (~5.6 MB)")
+        AzerothAdmin:Print("Model database unloaded. Use /reload to fully free memory")
     else
         AzerothAdmin:Print("Model database is not currently loaded")
     end

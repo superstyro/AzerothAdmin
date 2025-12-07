@@ -714,6 +714,12 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
             ma_gobdisplayid:SetText(obj_displayid_capture)
             self:LogAction("OBJECT DisplayID"..obj_displayid_capture..".")
         end
+
+        local obj_phasemask_capture = string.match(text, "Phasemask (%d+)")
+        if obj_phasemask_capture then
+            ma_gobsetphaseinput:SetText(obj_phasemask_capture)
+            self:LogAction("OBJECT Phasemask "..obj_phasemask_capture..".")
+        end
     end
 
     if AzerothAdmin:Way_Point_Add_Start_Read() then

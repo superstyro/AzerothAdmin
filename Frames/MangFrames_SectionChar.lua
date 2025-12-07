@@ -772,11 +772,11 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_charrecallbutton",
+    name = "ma_chardeletedrestorebutton",
     group = "char",
     parent = ma_midframe,
     texture = {
-      name = "ma_charrecallbutton_texture",
+      name = "ma_chardeletedrestorebutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -788,7 +788,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 303, --charColThree
       offY = -204 --charRowNine
     },
-    text = Locale["ma_charrecall"]
+    text = Locale["ma_chardeletedrestore"]
   })
 
   FrameLib:BuildButton({

@@ -15,6 +15,10 @@
 - IMPROVE Data structure optimization
   - TeleportTable.lua already uses efficient continent-based lazy loading
   - Added optimization comments documenting memory-saving approaches
+- IMPROVE Internationalization support
+  - Refactored hardcoded tooltip strings to use locale system
+  - Added 19 new locale entries for GameObject and Ticket tooltips
+  - Standardized tooltip approach for better translation support
 
 ## -=[ Version 13 - 11/30/2025]=-
 

@@ -716,11 +716,12 @@ function AzerothAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 333,
-      offY = -167
+      offX = 142, --charColOne
+      offY = -232
     }
   })
 
+  --[[Parameter Box Input]]
   FrameLib:BuildFrame({
     type = "EditBox",
     name = "ma_parameter",
@@ -732,8 +733,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 420,
-      offY = -163
+      offX = 226,
+      offY = -231 --charRowTen
     },
     inherits = "InputBoxTemplate"
   })

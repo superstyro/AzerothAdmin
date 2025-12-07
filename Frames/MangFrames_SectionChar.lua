@@ -1418,12 +1418,13 @@ function AzerothAdmin:CreateCharSection()
     parent = ma_midframe,
     text = Locale["ma_parameters"],
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 223, --charColTwo
-      offY = 8
+      pos = "TOPLEFT",
+      offX = 142, --charColOne
+      offY = -232
     }
   })
 
+  --[[Parameter Box Input]]
   FrameLib:BuildFrame({
     type = "EditBox",
     name = "ma_charactertarget",
@@ -1434,9 +1435,9 @@ function AzerothAdmin:CreateCharSection()
       height = 20
     },
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 309,
-      offY = 4
+      pos = "TOPLEFT",
+      offX = 226,
+      offY = -231 --charRowTen
     },
     inherits = "InputBoxTemplate"
   })

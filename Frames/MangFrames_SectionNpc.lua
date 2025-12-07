@@ -544,7 +544,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 142, --charColOne
-      offY = -231
+      offY = -232
     }
   })
 
@@ -561,7 +561,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 226,
-      offY = -225 --charRowTen
+      offY = -231 --charRowTen
     },
     inherits = "InputBoxTemplate"
   })

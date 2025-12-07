@@ -19,7 +19,7 @@
 function OBJGo()
     local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_guidbutton:GetText()
-    AzerothAdmin:ChatMsg(".go object "..obj)
+    AzerothAdmin:ChatMsg(".goobject "..obj)
     AzerothAdmin:LogAction("Go Object for player "..player..".")
 end
 

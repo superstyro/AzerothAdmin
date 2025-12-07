@@ -47,8 +47,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -102
+      offX = 5,
+      offY = -130
     },
     text = Locale["ma_OBJGo"]
   })
@@ -67,8 +67,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -102
+      offX = 90,
+      offY = -130
     },
     text = Locale["ma_OBJAdd"]
   })
@@ -87,8 +87,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -128
+      offX = 5,
+      offY = -155
     },
     text = Locale["ma_OBJMove"]
   })
@@ -107,8 +107,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -128
+      offX = 90,
+      offY = -155
     },
     text = Locale["ma_OBJTurn"]
   })
@@ -127,8 +127,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -154
+      offX = 5,
+      offY = -180
     },
     text = Locale["ma_OBJDel"]
   })
@@ -147,8 +147,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -12
+      offX = 5,
+      offY = -5
     },
     text = Locale["ma_OBJNear"]
   })
@@ -167,8 +167,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -12
+      offX = 90,
+      offY = -5
     },
     text = Locale["ma_OBJTarget"]
   })
@@ -177,11 +177,11 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobguidlabel",
     group = "go",
     parent = ma_midframe,
-    text = "GOb GUID",
+    text = "GUID",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -37
+      offX = 30,
+      offY = -57
     }
   })
 
@@ -189,11 +189,11 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobentrylabel",
     group = "go",
     parent = ma_midframe,
-    text = "GOb EntryID",
+    text = "EntryID",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 93,
-      offY = -37
+      offX = 105,
+      offY = -57
     }
   })
 
@@ -203,13 +203,13 @@ function AzerothAdmin:CreateGOSection()
     group = "go",
     parent = ma_midframe,
     size = {
-      width = 80,
+      width = 75,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -53
+      offX = 10,
+      offY = -70
     },
     maxLetters = 10,
     multiline = false,
@@ -222,13 +222,13 @@ function AzerothAdmin:CreateGOSection()
     group = "go",
     parent = ma_midframe,
     size = {
-      width = 80,
+      width = 75,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -53
+      offX = 95,
+      offY = -70
     },
     maxLetters = 10,
     multiline = false,
@@ -249,8 +249,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -154
+      offX = 90,
+      offY = -180
     },
     text = Locale["ma_OBJActivate"]
   })
@@ -269,8 +269,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -180
+      offX = 5,
+      offY = -205
     },
     text = Locale["ma_OBJAddTemp"]
   })
@@ -289,8 +289,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 96,
-      offY = -180
+      offX = 90,
+      offY = -205
     },
     text = Locale["ma_OBJInfo"]
   })
@@ -309,8 +309,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 12,
-      offY = -206
+      offX = 5,
+      offY = -230
     },
     text = Locale["ma_OBJSetPhase"]
   })
@@ -321,13 +321,13 @@ function AzerothAdmin:CreateGOSection()
     group = "go",
     parent = ma_midframe,
     size = {
-      width = 40,
+      width = 75,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 98,
-      offY = -207
+      offX = 95,
+      offY = -230
     },
     maxLetters = 5,
     multiline = false,
@@ -343,13 +343,13 @@ function AzerothAdmin:CreateGOSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 30,
+      width = 28,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 191,
-      offY = -12
+      offX = 183,
+      offY = -5
     },
     text = "<<"
   })
@@ -363,13 +363,13 @@ function AzerothAdmin:CreateGOSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 30,
+      width = 28,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 227,
-      offY = -12
+      offX = 213,
+      offY = -5
     },
     text = ">>"
   })
@@ -388,8 +388,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 261,
-      offY = -12
+      offX = 245,
+      offY = -5
     },
     text = "+"
   })
@@ -408,8 +408,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 282,
-      offY = -12
+      offX = 262,
+      offY = -5
     },
     text = "-"
   })
@@ -420,13 +420,13 @@ function AzerothAdmin:CreateGOSection()
     group = "go",
     parent = ma_midframe,
     size = {
-      width = 210,
-      height = 210
+      width = 220,
+      height = 220
     },
     setpoint = {
       pos = "TOPLEFT",
       offX = 182,
-      offY = -38
+      offY = -30
     },
     inherits = nil
   })
@@ -441,13 +441,13 @@ function AzerothAdmin:CreateGOSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 180,
+      width = 165,
       height = 80
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 398,
-      offY = 0
+      offX = 410,
+      offY = -5
     },
     maxLetters = 1000,
     multiline = true,
@@ -464,17 +464,29 @@ function AzerothAdmin:CreateGOSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 180,
+      width = 165,
       height = 80
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 398,
+      offX = 410,
       offY = -145
     },
     maxLetters = 1000,
     multiline = true,
     textcolor = {1, 1, 1, 1.0}
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_gobdisplayidlabel",
+    group = "go",
+    parent = ma_midframe,
+    text = "DisplayID",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 103,
+      offY = -92
+    }
   })
 
   FrameLib:BuildFrame({
@@ -483,13 +495,32 @@ function AzerothAdmin:CreateGOSection()
     group = "go",
     parent = ma_midframe,
     size = {
-      width = 60,
+      width = 75,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 116,
-      offY = -79
+      offX = 95,
+      offY = -106
+    },
+    maxLetters = 10,
+    multiline = false,
+    inherits = "InputBoxTemplate"
+  })
+
+    FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_gobnearrange",
+    group = "go",
+    parent = ma_midframe,
+    size = {
+      width = 75,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -106
     },
     maxLetters = 10,
     multiline = false,
@@ -497,14 +528,14 @@ function AzerothAdmin:CreateGOSection()
   })
 
   FrameLib:BuildFontString({
-    name = "ma_gobdisplayidlabel",
+    name = "ma_gobrangelabel",
     group = "go",
     parent = ma_midframe,
-    text = "DisplayID:",
+    text = "Range",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 42,
-      offY = -82
+      offX = 25,
+      offY = -92
     }
   })
 
@@ -523,7 +554,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 640,
-      offY = -12
+      offY = -5
     },
     text = "FWD"
   })
@@ -543,7 +574,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 584,
-      offY = -38
+      offY = -31
     },
     text = "LEFT"
   })
@@ -563,7 +594,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 696,
-      offY = -38
+      offY = -31
     },
     text = "RIGHT"
   })
@@ -583,7 +614,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 640,
-      offY = -64
+      offY = -57
     },
     text = "BACK"
   })
@@ -603,7 +634,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 640,
-      offY = -38
+      offY = -31
     },
     text = "HERE"
   })
@@ -623,7 +654,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 706,
-      offY = -12
+      offY = -5
     },
     text = "UP"
   })
@@ -643,7 +674,7 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 706,
-      offY = -64
+      offY = -57
     },
     text = "DOWN"
   })
@@ -739,9 +770,9 @@ function AzerothAdmin:CreateGOSection()
     parent = ma_midframe,
     text = "Move Distances",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 602,
-      offY = -131
+      pos = "TOPRIGHT",
+      offX = -20,
+      offY = -140
     }
   })
 
@@ -751,8 +782,8 @@ function AzerothAdmin:CreateGOSection()
     parent = ma_midframe,
     text = "Fwd/Back:",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 605,
+      pos = "TOPRIGHT",
+      offX = -65,
       offY = -158
     }
   })
@@ -763,8 +794,8 @@ function AzerothAdmin:CreateGOSection()
     parent = ma_midframe,
     text = "Left/Right:",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 605,
+      pos = "TOPRIGHT",
+      offX = -65,
       offY = -184
     }
   })
@@ -775,8 +806,8 @@ function AzerothAdmin:CreateGOSection()
     parent = ma_midframe,
     text = "Up/Down:",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 605,
+      pos = "TOPRIGHT",
+      offX = -65,
       offY = -210
     }
   })
@@ -795,8 +826,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303,
-      offY = -12
+      offX = 280,
+      offY = -5
     },
     text = "Show"
   })
@@ -816,46 +847,10 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 368,
-      offY = -12
+      offX = 342,
+      offY = -5
     },
     text = "Unload"
   })
-
- --[[ FrameLib:BuildFrame({
-    type = "Slider",
-    name = "ma_cameraleftrightslider",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 190,
-      height = 10
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 182,
-      offY = -223
-    },
-    inherits = "OptionsSliderTemplate",
-    orientation="HORIZONTAL"
-  })
-
-  FrameLib:BuildFrame({
-    type = "Slider",
-    name = "ma_cameraupdownslider",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 10,
-      height = 190
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 376,
-      offY = -37
-    },
-    inherits = "OptionsSliderTemplate",
-    orientation="VERTICAL"
-  })]]
 
 end

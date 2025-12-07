@@ -445,7 +445,7 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 30,
+      width = 90,
       height = 20
     },
     setpoint = {
@@ -470,7 +470,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 485,
+      offX = 550,
       offY = -4
     },
     text = Locale["ma_Modify"]

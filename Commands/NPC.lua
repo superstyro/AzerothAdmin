@@ -314,17 +314,6 @@ function NPCUnFreeze_Way()
     AzerothAdmin:LogAction("Set NPC movement type to WAYPOINT for player "..player..".")
 end
 
-function NPCUnFreeze_Random()
-    local player = UnitName("target") or UnitName("player")
-    local rdistancecname = ma_npcunfreeze_random_distancebutton:GetText()
-    AzerothAdmin:ChatMsg(".npc set spawndist "..rdistancecname)
-    AzerothAdmin:LogAction("Set NPC spawndist "..rdistancecname..".")
-    AzerothAdmin:ChatMsg(".npc set movetype random NODEL")
-    AzerothAdmin:LogAction("Set NPC movement type to RANDOM for player "..player..".")
-    AzerothAdmin:ChatMsg(".respawn")
-
-end
-
 function ShowMove()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".movegens")

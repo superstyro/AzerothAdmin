@@ -385,6 +385,18 @@ function AzerothAdmin:CreateNpcSection()
     text = "<<"
     })
 
+  FrameLib:BuildFontString({
+    name = "ma_npcdisplayidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "Display ID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -208 --charRowNine
+    }
+  })
+
   FrameLib:BuildFrame({
     type = "EditBox",
     name = "ma_npcdisplayid",
@@ -421,6 +433,18 @@ function AzerothAdmin:CreateNpcSection()
     },
     text = ">>"
     })
+
+  FrameLib:BuildFontString({
+    name = "ma_npcidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "NPC ID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -186 --charRowEight
+    }
+  })
 
   FrameLib:BuildFrame({
     type = "EditBox",
@@ -519,6 +543,18 @@ function AzerothAdmin:CreateNpcSection()
       offY = -160 --charRowSeven
     },
     text = Locale["ma_getguid"]
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_npcguidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "GUID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -164 --charRowSeven
+    }
   })
 
   FrameLib:BuildFrame({
@@ -1014,7 +1050,7 @@ function AzerothAdmin:CreateNpcSection()
 
   FrameLib:BuildFrame({
     type = "EditBox",
-    name = "ma_npcunfreeze_random_distancebutton",	-- ma_npccharactertarget
+    name = "ma_npc_distance_box",
     group = "npc",
     parent = ma_midframe,
     size = {
@@ -1049,16 +1085,41 @@ function AzerothAdmin:CreateNpcSection()
     text = Locale["ma_MoveStackButton"]
   })
 
-  FrameLib:BuildFontString({
-    name = "ma_npcdistanceboxtext",
+  FrameLib:BuildButton({
+    name = "ma_npcclearbutton",
     group = "npc",
     parent = ma_midframe,
-    text = Locale["ma_DistanceBox"],
+    texture = {
+      name = "ma_npcclearbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -35, --charColSix
-      offY = -144
-    }
+      offX = -5, --charColSeven
+      offY = -139 --charRowSix
+    },
+    text = "Clear"
   })
+
+  -- Make boxes read-only (display only)
+  ma_NPC_guidbutton:EnableMouse(false)
+  ma_NPC_guidbutton:EnableKeyboard(false)
+  ma_NPC_guidbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_NPC_idbutton:EnableMouse(false)
+  ma_NPC_idbutton:EnableKeyboard(false)
+  ma_NPC_idbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_npcdisplayid:EnableMouse(false)
+  ma_npcdisplayid:EnableKeyboard(false)
+  ma_npcdisplayid:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_npc_distance_box:EnableMouse(false)
+  ma_npc_distance_box:EnableKeyboard(false)
+  ma_npc_distance_box:SetTextColor(1, 1, 1, 1) -- White text for visibility
 
 end

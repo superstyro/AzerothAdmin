@@ -439,6 +439,7 @@ function Return_enUS()
     ["tt_NPCMove"]                    = "Move the selected creature to your location",
     ["tt_NPCDel"]                     = "Deletes the selected creature",
     ["tt_getguid"]                    = "Gets the selected creatures GUID and ID",
+    ["tt_NPCClear"]                   = "Clears all NPC info fields (GUID, NPC ID, Display ID, Distance)",
     ["tt_NPCAdd"]                     = "Adds a copy of this NPC at your current location.",
     ["tt_NPCGo"]                      = "Teleports you to the NPC in the GUID box",
     ["tt_NPCMorph"]                   = "Parameters = #DisplayID [[Enter the DisplayID of the morph you want to apply]]",

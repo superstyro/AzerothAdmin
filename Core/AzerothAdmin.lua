@@ -672,25 +672,38 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
       end
     end
     if AzerothAdmin:ID_Setting_Start_Read() then
-        local npc_guid_capture = string.match(text, "GUID: (%d+)%.")
+        -- Match GUID Low value from "Low: 544."
+        local npc_guid_capture = string.match(text, "Low: (%d+)%.")
         if npc_guid_capture then
-            AzerothAdmin:ID_Setting_Start_Write(0) -- Reset listening state after capturing GUID
             AzerothAdmin:ID_Setting_Write(0, npc_guid_capture)
             ma_NPC_guidbutton:SetText(npc_guid_capture)
             self:LogAction("NPC_GUID_Get id "..npc_guid_capture..".")
         end
 
-        local npc_entry_capture = string.match(text, "Entry: (%d+)%.")
+        -- Match Entry ID from "Current Entry: 2470" or "Entry: 2470"
+        local npc_entry_capture = string.match(text, "Entry: (%d+)")
         if npc_entry_capture then
             AzerothAdmin:ID_Setting_Write(1, npc_entry_capture)
             ma_NPC_idbutton:SetText(npc_entry_capture)
             self:LogAction("NPC_EntryID_Get id "..npc_entry_capture..".")
         end
 
+        -- Match DisplayID from "DisplayID: 9232."
         local npc_displayid_capture = string.match(text, "DisplayID: (%d+)")
         if npc_displayid_capture then
             ma_npcdisplayid:SetText(npc_displayid_capture)
             self:LogAction("NPC_DisplayID_Get id "..npc_displayid_capture..".")
+        end
+
+        local npc_distance_capture = string.match(text, "%(Exact 3D%) ([%d%.]+)")
+        if npc_distance_capture then
+            ma_npc_distance_box:SetText(npc_distance_capture)
+            self:LogAction("NPC_Distance_Get distance "..npc_distance_capture..".")
+        end
+
+        -- Reset listening state after processing all NPC info fields
+        if npc_guid_capture or npc_entry_capture or npc_displayid_capture then
+            AzerothAdmin:ID_Setting_Start_Write(0)
         end
     end
 

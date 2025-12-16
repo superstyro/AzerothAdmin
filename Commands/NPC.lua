@@ -74,9 +74,16 @@ function Respawn()
 end
 
 function NPCDistance()
-    local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".distance")
-    AzerothAdmin:LogAction("Got distance to player "..player..".")
+    -- Check if a target exists
+    if UnitExists("target") then
+        AzerothAdmin:ID_Setting_Start_Write(1)
+        local player = UnitName("target") or UnitName("player")
+        AzerothAdmin:ChatMsg(".distance")
+        AzerothAdmin:LogAction("Got distance to player "..player..".")
+    else
+        AzerothAdmin:LogAction("Target NPC to use distance command")
+        print("Target NPC to use distance command")
+    end
 end
 
 function NPCShowGUID()
@@ -193,30 +200,74 @@ function NPCComeToMe()
 end
 
 function DisplayUP()
-    local currentid = ma_npcdisplayid:GetText()
-    currentid = currentid + 1
-    ma_npcdisplayid:SetText(currentid)
-    AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    -- Check if display ID exists
+    local guid = ma_NPC_guidbutton:GetText()
+    local displayid = ma_npcdisplayid:GetText()
+
+    if UnitExists("target") and guid ~= "" and displayid ~= "" then
+        local currentid = ma_npcdisplayid:GetText()
+        currentid = currentid + 1
+        ma_npcdisplayid:SetText(currentid)
+        AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    else
+        AzerothAdmin:LogAction("Target NPC and use 'Get GUID' first")
+        print("Target NPC and use 'Get GUID' first")
+    end
 end
+
 function DisplayDown()
-    local currentid = ma_npcdisplayid:GetText()
-    currentid = currentid - 1
-    ma_npcdisplayid:SetText(currentid)
-    AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    -- Check if display ID exists
+    local guid = ma_NPC_guidbutton:GetText()
+    local displayid = ma_npcdisplayid:GetText()
+
+    if UnitExists("target") and guid ~= "" and displayid ~= "" then
+        local currentid = ma_npcdisplayid:GetText()
+        currentid = currentid - 1
+        ma_npcdisplayid:SetText(currentid)
+        AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    else
+        AzerothAdmin:LogAction("Target NPC and use 'Get GUID' first")
+        print("Target NPC and use 'Get GUID' first")
+    end
 end
 
 function ID_UP()
-    local currentid = ma_NPC_idbutton:GetText()
-    currentid = currentid + 1
-    ma_NPC_idbutton:SetText(currentid)
---    AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    -- Check if ID exists
+    local guid = ma_NPC_guidbutton:GetText()
+    local npcid = ma_NPC_idbutton:GetText()
+
+    if UnitExists("target") and guid ~= "" and npcid ~= "" then
+        local currentid = ma_NPC_idbutton:GetText()
+        currentid = currentid + 1
+        ma_NPC_idbutton:SetText(currentid)
+    else
+        AzerothAdmin:LogAction("Target NPC and use 'Get GUID' first")
+        print("Target NPC and use 'Get GUID' first")
+    end
 end
 
 function ID_DOWN()
-    local currentid = ma_NPC_idbutton:GetText()
-    currentid = currentid - 1
-    ma_NPC_idbutton:SetText(currentid)
---    AzerothAdmin:ChatMsg(".npc set model "..currentid)
+    -- Check if ID exists
+    local guid = ma_NPC_guidbutton:GetText()
+    local npcid = ma_NPC_idbutton:GetText()
+
+    if UnitExists("target") and guid ~= "" and npcid ~= "" then
+        local currentid = ma_NPC_idbutton:GetText()
+        currentid = currentid - 1
+        ma_NPC_idbutton:SetText(currentid)
+    else
+        AzerothAdmin:LogAction("Target NPC and use 'Get GUID' first")
+        print("Target NPC and use 'Get GUID' first")
+    end
+end
+
+function NPCClear()
+    -- Clear all NPC info text boxes
+    ma_NPC_guidbutton:SetText("")
+    ma_NPC_idbutton:SetText("")
+    ma_npcdisplayid:SetText("")
+    ma_npc_distance_box:SetText("")
+    AzerothAdmin:LogAction("Cleared all NPC info fields")
 end
 
 function NPCModelZoomIn()

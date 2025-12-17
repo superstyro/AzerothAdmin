@@ -462,8 +462,22 @@ function AzerothAdmin:TogglePopup(value, param)
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+
+    -- Hide mail-specific elements
+    ma_ptabbutton_3:Hide()
     ma_mailscrollframe:Hide()
     ma_maileditbox:Hide()
+    for i = 1, 12 do
+      _G["ma_mailitemslot"..i]:Hide()
+    end
+    ma_mailmoneytext:Hide()
+    ma_mailgoldeditbox:Hide()
+    ma_mailgoldicon:Hide()
+    ma_mailsilvereditbox:Hide()
+    ma_mailsilvericon:Hide()
+    ma_mailcoppereditbox:Hide()
+    ma_mailcoppericon:Hide()
+
     ma_var1editbox:Hide()
     ma_var2editbox:Hide()
     ma_var1text:Hide()
@@ -476,6 +490,7 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_resetsearchbutton:Enable()
     ma_ptabbutton_1:SetScript("OnClick", function() AzerothAdmin:TogglePopup("search", {type = param.type}) end)
     ma_ptabbutton_2:SetScript("OnClick", function() AzerothAdmin:TogglePopup("favorites", {type = param.type}) end)
+    ma_ptabbutton_2:SetText("Favorites")
     ma_ptabbutton_2:Show()
     ma_selectallbutton:SetScript("OnClick", function() self:Favorites("select", param.type) end)
     ma_deselectallbutton:SetScript("OnClick", function() self:Favorites("deselect", param.type) end)
@@ -531,6 +546,22 @@ function AzerothAdmin:TogglePopup(value, param)
     self:SearchReset()
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+
+    -- Hide mail-specific elements
+    ma_ptabbutton_3:Hide()
+    ma_mailscrollframe:Hide()
+    ma_maileditbox:Hide()
+    for i = 1, 12 do
+      _G["ma_mailitemslot"..i]:Hide()
+    end
+    ma_mailmoneytext:Hide()
+    ma_mailgoldeditbox:Hide()
+    ma_mailgoldicon:Hide()
+    ma_mailsilvereditbox:Hide()
+    ma_mailsilvericon:Hide()
+    ma_mailcoppereditbox:Hide()
+    ma_mailcoppericon:Hide()
+
     ma_modfavsbutton:SetScript("OnClick", function() self:Favorites("remove", param.type) end)
     ma_modfavsbutton:SetText(Locale["ma_FavRemove"])
     ma_modfavsbutton:Enable()
@@ -1424,6 +1455,194 @@ function AzerothAdmin:UpdateMailBytesLeft()
   else
     ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."|cffff0000"..bleft.."|r")
   end
+end
+
+-- Initialize mail item slots storage
+if not AzerothAdmin.mailItemSlots then
+  AzerothAdmin.mailItemSlots = {}
+end
+
+-- Handle dragging items into mail slots
+function AzerothAdmin:MailItemSlotReceiveDrag(slotNum)
+  local cursorType, itemId, itemLink = GetCursorInfo()
+
+  if cursorType == "item" then
+    -- Extract item ID from item link (format: |cffffffff|Hitem:12345:0:0:0:0:0:0:0|h[Item Name]|h|r)
+    local extractedItemId = itemLink and itemLink:match("item:(%d+):")
+
+    if extractedItemId then
+      extractedItemId = tonumber(extractedItemId)
+
+      -- For items on cursor, we treat them as count 1
+      -- (WoW's GetCursorInfo doesn't return stack count for items)
+      local count = 1
+
+      -- Check if adding this item would exceed 12 total items
+      local currentTotal = self:GetTotalMailItems()
+      if currentTotal - (self.mailItemSlots[slotNum] and self.mailItemSlots[slotNum].count or 0) + count > 12 then
+        self:Print("Cannot add item: Maximum 12 total items allowed!")
+        ClearCursor()
+        return
+      end
+
+      -- Get item info
+      local itemName, _, _, _, _, _, _, _, _, texture = GetItemInfo(extractedItemId)
+
+      if itemName and texture then
+        -- Store item info with count
+        self.mailItemSlots[slotNum] = {
+          itemId = extractedItemId,
+          itemLink = itemLink,
+          itemName = itemName,
+          texture = texture,
+          count = count
+        }
+
+        -- Update slot icon texture
+        local slot = _G["ma_mailitemslot"..slotNum]
+        if slot then
+          -- Create or reuse icon texture
+          if not slot.iconTexture then
+            slot.iconTexture = slot:CreateTexture(nil, "ARTWORK")
+            slot.iconTexture:SetAllPoints(slot)
+          end
+          slot.iconTexture:SetTexture(texture)
+          slot.iconTexture:SetTexCoord(0.07, 0.93, 0.07, 0.93)  -- Crop borders for clean display
+
+          -- Create or reuse count text
+          if not slot.countText then
+            slot.countText = slot:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
+            slot.countText:SetPoint("BOTTOMRIGHT", -2, 2)
+          end
+
+          if count and count > 1 then
+            slot.countText:SetText(count)
+            slot.countText:Show()
+          else
+            slot.countText:SetText("")
+            slot.countText:Hide()
+          end
+        end
+
+        ClearCursor()
+
+        -- Update send button state
+        self:UpdateMailItemsSendButton()
+      end
+    end
+  end
+end
+
+-- Clear a mail item slot
+function AzerothAdmin:MailItemSlotClear(slotNum)
+  self.mailItemSlots[slotNum] = nil
+  local slot = _G["ma_mailitemslot"..slotNum]
+  if slot then
+    -- Clear icon texture
+    if slot.iconTexture then
+      slot.iconTexture:SetTexture(nil)
+    end
+
+    -- Clear count display
+    if slot.countText then
+      slot.countText:SetText("")
+      slot.countText:Hide()
+    end
+  end
+
+  -- Update send button state
+  self:UpdateMailItemsSendButton()
+end
+
+-- Get total item count (including stacks)
+function AzerothAdmin:GetTotalMailItems()
+  local total = 0
+  for i = 1, 12 do
+    if self.mailItemSlots[i] and self.mailItemSlots[i].count then
+      total = total + self.mailItemSlots[i].count
+    end
+  end
+  return total
+end
+
+-- Update send button state based on item count (only for tab 2)
+function AzerothAdmin:UpdateMailItemsSendButton()
+  -- Only update if we're on the Items tab
+  if not self.currentMailTab or self.currentMailTab ~= 2 then
+    return
+  end
+
+  local total = self:GetTotalMailItems()
+  if total > 12 then
+    ma_searchbutton:Disable()
+    ma_lookupresulttext:SetText("Too many items! ("..total.."/12) - Right-click to remove")
+  elseif total == 0 then
+    ma_searchbutton:Disable()
+    ma_lookupresulttext:SetText("Drop items into slots (0/12)")
+  else
+    if not ma_searchbutton.cooldownActive then
+      ma_searchbutton:Enable()
+    end
+    ma_lookupresulttext:SetText("Items ready to send ("..total.."/12)")
+  end
+end
+
+-- Send mail with items
+function AzerothAdmin:SendMailWithItems(recipient, subject, body)
+  recipient = string.gsub(recipient, " ", "")
+  subject = string.gsub(subject, " ", "")
+  body = string.gsub(body, "\n", " ")
+  subject = '"'..subject..'"'
+  body = '"'..body..'"'
+
+  -- Collect item IDs with counts from slots
+  local itemEntries = {}
+  for i = 1, 12 do
+    if self.mailItemSlots[i] and self.mailItemSlots[i].itemId then
+      local itemId = self.mailItemSlots[i].itemId
+      local count = self.mailItemSlots[i].count or 1
+      -- Format: itemid:count
+      table.insert(itemEntries, itemId..":"..count)
+    end
+  end
+
+  if #itemEntries == 0 then
+    self:Print("No items selected to send!")
+    return
+  end
+
+  -- Build item list with space separation
+  local itemList = table.concat(itemEntries, " ")
+
+  -- Send mail with items using .send items command
+  self:ChatMsg(".send items "..recipient.." "..subject.." "..body.." "..itemList)
+  self:LogAction("Sent mail with items to "..recipient..". Subject: "..subject..", Items: "..itemList)
+
+  -- Clear item slots
+  for i = 1, 12 do
+    self:MailItemSlotClear(i)
+  end
+end
+
+-- Send mail with money
+function AzerothAdmin:SendMailWithMoney(recipient, subject, gold, silver, copper, body)
+  recipient = string.gsub(recipient, " ", "")
+  subject = string.gsub(subject, " ", "")
+  body = string.gsub(body, "\n", " ")
+  subject = '"'..subject..'"'
+  body = '"'..body..'"'
+
+  -- Convert to total copper
+  local totalCopper = (gold * 10000) + (silver * 100) + copper
+
+  if totalCopper <= 0 then
+    self:Print("No money amount specified!")
+    return
+  end
+
+  -- Send mail with money using .send money command
+  self:ChatMsg(".send money "..recipient.." "..subject.." "..body.." "..totalCopper)
+  self:LogAction("Sent mail with money to "..recipient..". Subject: "..subject..", Amount: "..gold.."g "..silver.."s "..copper.."c")
 end
 
 function AzerothAdmin:Favorites(value, searchtype)

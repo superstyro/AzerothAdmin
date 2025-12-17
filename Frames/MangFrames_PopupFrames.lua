@@ -222,6 +222,32 @@ function AzerothAdmin:CreatePopupFrames()
     text = "Favorites"
   })
 
+  FrameLib:BuildButton({
+    name = "ma_ptabbutton_3",
+    group = "popup",
+    parent = ma_popuptopframe,
+    texture = {
+      name = "ma_ptabbutton_3_texture",
+      color = {color.frm.r, color.frm.g, color.frm.b, transparency.frm},
+      gradient = {
+        orientation = "vertical",
+        min = {102,102,102,1},
+        max = {color.frm.r, color.frm.g, color.frm.b, transparency.frm}
+      }
+    },
+    size = {
+      width = 100,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      relTo = "ma_ptabbutton_2",
+      relPos = "TOPRIGHT",
+      offX = 2
+    },
+    text = "Tab 3"
+  })
+
   -- Popup Editbox and Searchbutton
   FrameLib:BuildFontString({
     name = "ma_lookupresulttext",
@@ -761,6 +787,121 @@ function AzerothAdmin:CreatePopupFrames()
     textcolor = {0, 0, 0, 1.0}
   })
 
+  -- [[Mail Item Slots - for Send Items tab]]
+  -- Create 12 item slots in a 2x6 grid layout (centered in bottom frame)
+  for i = 1, 12 do
+    local row = math.floor((i - 1) / 6)  -- 0 for first row, 1 for second row
+    local col = (i - 1) % 6  -- 0-5 for column position
+
+    -- Calculate centered position with smaller icons
+    -- 6 slots * 30 width + 5 gaps * 5 spacing = 180 + 25 = 205 total width
+    -- Center in 435 width frame: (435 - 205) / 2 = 115 offset
+    local xOffset = 115 + (col * 35)  -- 35 = 30 slot + 5 spacing
+    local yOffset = -7 - (row * 35)  -- 35 = 30 slot + 5 spacing
+
+    FrameLib:BuildButton({
+      name = "ma_mailitemslot"..i,
+      group = "popup",
+      parent = ma_popupbottomframe,
+      texture = {
+        name = "ma_mailitemslot"..i.."_texture",
+        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+      },
+      size = {
+        width = 30,
+        height = 30
+      },
+      setpoint = {
+        pos = "TOPLEFT",
+        offX = xOffset,
+        offY = yOffset
+      },
+      inherits = "ItemButtonTemplate"
+    })
+  end
+
+  -- [[Mail Money Input Fields - for Send Money tab (moved to bottom frame)]]
+  FrameLib:BuildFontString({
+    name = "ma_mailmoneytext",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    text = "Amount:",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -15
+    }
+  })
+
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_mailgoldeditbox",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -10
+    },
+    inherits = "InputBoxTemplate"
+  })
+
+  -- Gold coin icon
+  local ma_mailgoldicon = ma_popupbottomframe:CreateTexture("ma_mailgoldicon", "ARTWORK")
+  ma_mailgoldicon:SetTexture("Interface\\MoneyFrame\\UI-GoldIcon")
+  ma_mailgoldicon:SetSize(14, 14)
+  ma_mailgoldicon:SetPoint("TOPLEFT", ma_popupbottomframe, "TOPLEFT", 95, -12)
+
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_mailsilvereditbox",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    size = {
+      width = 35,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 135,
+      offY = -10
+    },
+    inherits = "InputBoxTemplate"
+  })
+
+  -- Silver coin icon
+  local ma_mailsilvericon = ma_popupbottomframe:CreateTexture("ma_mailsilvericon", "ARTWORK")
+  ma_mailsilvericon:SetTexture("Interface\\MoneyFrame\\UI-SilverIcon")
+  ma_mailsilvericon:SetSize(14, 14)
+  ma_mailsilvericon:SetPoint("TOPLEFT", ma_popupbottomframe, "TOPLEFT", 175, -12)
+
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_mailcoppereditbox",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    size = {
+      width = 35,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 215,
+      offY = -10
+    },
+    inherits = "InputBoxTemplate"
+  })
+
+  -- Copper coin icon
+  local ma_mailcoppericon = ma_popupbottomframe:CreateTexture("ma_mailcoppericon", "ARTWORK")
+  ma_mailcoppericon:SetTexture("Interface\\MoneyFrame\\UI-CopperIcon")
+  ma_mailcoppericon:SetSize(14, 14)
+  ma_mailcoppericon:SetPoint("TOPLEFT", ma_popupbottomframe, "TOPLEFT", 255, -12)
+
   FrameLib:BuildButton({
     name = "ma_modfavsbutton",
     group = "popup",
@@ -824,8 +965,9 @@ end
 
 -- Setup Mail Popup UI
 function AzerothAdmin:SetupMailPopup(param)
-  _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
-  _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+  -- Initialize with tab 1 (Send Mail) as default
+  local currentTab = param.tab or 1
+
   FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
 
   -- Hide search entries
@@ -833,54 +975,408 @@ function AzerothAdmin:SetupMailPopup(param)
     _G["ma_PopupScrollBarEntry"..n]:Hide()
   end
 
-  -- Show/hide relevant elements
-  ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."246")
-  ma_lookupresulttext:Show()
+  -- Hide default elements
   ma_resetsearchbutton:Hide()
   ma_PopupScrollBar:Hide()
   ma_modfavsbutton:Hide()
   ma_selectallbutton:Hide()
   ma_deselectallbutton:Hide()
-  ma_ptabbutton_2:Hide()
   ma_var2editbox:Hide()
   ma_var2text:Hide()
 
-  -- Setup text change handlers for byte count
-  ma_searcheditbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
-  ma_var1editbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+  -- Setup tab buttons
+  ma_ptabbutton_1:SetText("Send Mail")
+  ma_ptabbutton_2:SetText("Send Items")
+  ma_ptabbutton_3:SetText("Send Money")
+  ma_ptabbutton_2:Show()
+  ma_ptabbutton_3:Show()
 
-  -- Setup recipient field
+  -- Setup tab click handlers (preserve message body when switching)
+  ma_ptabbutton_1:SetScript("OnClick", function()
+    param.body = ma_maileditbox:GetText()
+    AzerothAdmin:SwitchMailTab(1, param)
+  end)
+  ma_ptabbutton_2:SetScript("OnClick", function()
+    param.body = ma_maileditbox:GetText()
+    AzerothAdmin:SwitchMailTab(2, param)
+  end)
+  ma_ptabbutton_3:SetScript("OnClick", function()
+    param.body = ma_maileditbox:GetText()
+    AzerothAdmin:SwitchMailTab(3, param)
+  end)
+
+  -- Setup recipient field with auto-clear on focus
   if param.recipient then
     ma_searcheditbox:SetText(param.recipient)
   else
     ma_searcheditbox:SetText(Locale["ma_MailRecipient"])
   end
 
-  -- Setup body field
-  if param.body then
-    ma_maileditbox:SetText(param.body)
-  else
-    ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
-  end
+  ma_searcheditbox:SetScript("OnEditFocusGained", function(self)
+    if self:GetText() == Locale["ma_MailRecipient"] then
+      self:SetText("")
+    end
+    self:HighlightText()
+  end)
 
-  -- Setup subject field
+  ma_searcheditbox:SetScript("OnEditFocusLost", function(self)
+    if self:GetText() == "" then
+      self:SetText(Locale["ma_MailRecipient"])
+    end
+  end)
+
+  -- Setup tab key to move to subject
+  ma_searcheditbox:SetScript("OnTabPressed", function()
+    ma_var1editbox:SetFocus()
+  end)
+
+  -- Setup subject field with auto-clear on focus
   if param.subject then
     ma_var1editbox:SetText(param.subject)
   else
     ma_var1editbox:SetText(Locale["ma_MailSubject"])
   end
-  ma_var1editbox:Show()
   ma_var1text:SetText(Locale["ma_MailSubject"])
-  ma_var1text:Show()
 
-  -- Setup buttons
-  ma_ptabbutton_1:SetText(Locale["ma_Mail"])
-  ma_searchbutton:SetText(Locale["ma_Send"])
-  ma_searchbutton:SetScript("OnClick", function()
-    self:SendMail(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), ma_maileditbox:GetText())
-    ma_popupframe:Hide()
+  ma_var1editbox:SetScript("OnEditFocusGained", function(self)
+    if self:GetText() == Locale["ma_MailSubject"] then
+      self:SetText("")
+    end
+    self:HighlightText()
   end)
 
-  -- Show mail editbox
-  ma_maileditbox:Show()
+  ma_var1editbox:SetScript("OnEditFocusLost", function(self)
+    if self:GetText() == "" then
+      self:SetText(Locale["ma_MailSubject"])
+    end
+  end)
+
+  -- Setup tab key to move to message body
+  ma_var1editbox:SetScript("OnTabPressed", function()
+    ma_maileditbox:SetFocus()
+  end)
+
+  -- Setup message body field with auto-clear on focus
+  ma_maileditbox:SetScript("OnEditFocusGained", function(self)
+    if self:GetText() == Locale["ma_MailYourMsg"] then
+      self:SetText("")
+    end
+  end)
+
+  ma_maileditbox:SetScript("OnEditFocusLost", function(self)
+    if self:GetText() == "" then
+      self:SetText(Locale["ma_MailYourMsg"])
+    end
+  end)
+
+  ma_maileditbox:SetScript("OnEscapePressed", function(self)
+    self:ClearFocus()
+  end)
+
+  -- Switch to the requested tab
+  self:SwitchMailTab(currentTab, param)
+end
+
+-- Switch between mail tabs
+function AzerothAdmin:SwitchMailTab(tabNum, param)
+  -- Store current tab for other functions to reference
+  self.currentMailTab = tabNum
+
+  -- Update tab button highlights
+  if tabNum == 1 then
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+  elseif tabNum == 2 then
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+  elseif tabNum == 3 then
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+  end
+
+  -- Hide all tab-specific elements
+  ma_maileditbox:Hide()
+  for i = 1, 12 do
+    _G["ma_mailitemslot"..i]:Hide()
+  end
+  ma_mailmoneytext:Hide()
+  ma_mailgoldeditbox:Hide()
+  ma_mailgoldicon:Hide()
+  ma_mailsilvereditbox:Hide()
+  ma_mailsilvericon:Hide()
+  ma_mailcoppereditbox:Hide()
+  ma_mailcoppericon:Hide()
+
+  -- Show common elements
+  ma_searcheditbox:Show()
+  ma_var1editbox:Show()
+  ma_var1text:Show()
+  ma_lookupresulttext:Show()
+
+  -- Tab 1: Send Mail (regular mail with message body)
+  if tabNum == 1 then
+    -- Setup text change handlers for byte count
+    ma_searcheditbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+    ma_var1editbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+
+    ma_lookupresulttext:SetText(Locale["ma_MailBytesLeft"].."246")
+
+    -- Setup body field (use persistent body from param)
+    if param.body and param.body ~= "" and param.body ~= Locale["ma_MailYourMsg"] then
+      ma_maileditbox:SetText(param.body)
+    else
+      ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
+    end
+
+    ma_maileditbox:Show()
+    ma_maileditbox:SetScript("OnTextChanged", function() AzerothAdmin:UpdateMailBytesLeft() end)
+
+    -- Enable send button for Tab 1
+    if not ma_searchbutton.cooldownActive then
+      ma_searchbutton:Enable()
+    end
+
+    ma_searchbutton:SetText(Locale["ma_Send"])
+    ma_searchbutton:SetScript("OnClick", function()
+      if not ma_searchbutton.cooldownActive then
+        self:SendMail(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), ma_maileditbox:GetText())
+
+        -- Set cooldown
+        ma_searchbutton.cooldownActive = true
+        ma_searchbutton:Disable()
+        ma_searchbutton.countdown = 5
+        ma_searchbutton:SetText("Sent! (5s)")
+
+        -- Create OnUpdate frame for countdown
+        if not ma_searchbutton.cooldownFrame then
+          ma_searchbutton.cooldownFrame = CreateFrame("Frame")
+        end
+
+        ma_searchbutton.cooldownFrame.elapsed = 0
+        ma_searchbutton.cooldownFrame:SetScript("OnUpdate", function(self, elapsed)
+          self.elapsed = self.elapsed + elapsed
+          if self.elapsed >= 1 then
+            self.elapsed = 0
+            ma_searchbutton.countdown = ma_searchbutton.countdown - 1
+            if ma_searchbutton.countdown > 0 then
+              ma_searchbutton:SetText("Sent! ("..ma_searchbutton.countdown.."s)")
+            else
+              ma_searchbutton:SetText(Locale["ma_Send"])
+              ma_searchbutton:Enable()
+              ma_searchbutton.cooldownActive = false
+              self:SetScript("OnUpdate", nil)
+            end
+          end
+        end)
+      end
+    end)
+
+  -- Tab 2: Send Items
+  elseif tabNum == 2 then
+    -- Show item slots
+    for i = 1, 12 do
+      local slot = _G["ma_mailitemslot"..i]
+      slot:Show()
+      slot:SetScript("OnReceiveDrag", function()
+        AzerothAdmin:MailItemSlotReceiveDrag(i)
+      end)
+      slot:SetScript("OnClick", function(self, button)
+        if button == "RightButton" then
+          -- Right-click to clear slot
+          AzerothAdmin:MailItemSlotClear(i)
+        elseif IsShiftKeyDown() then
+          -- Shift+click to drag from cursor
+          AzerothAdmin:MailItemSlotReceiveDrag(i)
+        end
+      end)
+      slot:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+    end
+
+    -- Setup body field (use persistent body from param)
+    if param.body and param.body ~= "" and param.body ~= Locale["ma_MailYourMsg"] then
+      ma_maileditbox:SetText(param.body)
+    else
+      ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
+    end
+    ma_maileditbox:Show()
+
+    -- Update button state based on current items
+    self:UpdateMailItemsSendButton()
+
+    ma_searchbutton:SetText(Locale["ma_Send"])
+    ma_searchbutton:SetScript("OnClick", function()
+      if not ma_searchbutton.cooldownActive then
+        self:SendMailWithItems(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), ma_maileditbox:GetText())
+
+        -- Set cooldown
+        ma_searchbutton.cooldownActive = true
+        ma_searchbutton:Disable()
+        ma_searchbutton.countdown = 5
+        ma_searchbutton:SetText("Sent! (5s)")
+
+        -- Create OnUpdate frame for countdown
+        if not ma_searchbutton.cooldownFrame then
+          ma_searchbutton.cooldownFrame = CreateFrame("Frame")
+        end
+
+        ma_searchbutton.cooldownFrame.elapsed = 0
+        ma_searchbutton.cooldownFrame:SetScript("OnUpdate", function(self, elapsed)
+          self.elapsed = self.elapsed + elapsed
+          if self.elapsed >= 1 then
+            self.elapsed = 0
+            ma_searchbutton.countdown = ma_searchbutton.countdown - 1
+            if ma_searchbutton.countdown > 0 then
+              ma_searchbutton:SetText("Sent! ("..ma_searchbutton.countdown.."s)")
+            else
+              ma_searchbutton:SetText(Locale["ma_Send"])
+              ma_searchbutton:Enable()
+              ma_searchbutton.cooldownActive = false
+              self:SetScript("OnUpdate", nil)
+            end
+          end
+        end)
+      end
+    end)
+
+  -- Tab 3: Send Money
+  elseif tabNum == 3 then
+    -- Show money input fields
+    ma_mailmoneytext:Hide()
+    ma_mailgoldeditbox:Show()
+    ma_mailgoldicon:Show()
+    ma_mailsilvereditbox:Show()
+    ma_mailsilvericon:Show()
+    ma_mailcoppereditbox:Show()
+    ma_mailcoppericon:Show()
+
+    -- Set default values
+    ma_mailgoldeditbox:SetText("0")
+    ma_mailsilvereditbox:SetText("0")
+    ma_mailcoppereditbox:SetText("0")
+
+    -- Function to update button state based on money amount
+    local function UpdateMoneySendButton()
+      local copper = tonumber(ma_mailcoppereditbox:GetText()) or 0
+      local silver = tonumber(ma_mailsilvereditbox:GetText()) or 0
+      local gold = tonumber(ma_mailgoldeditbox:GetText()) or 0
+
+      local totalCopper = copper + (silver * 100) + (gold * 10000)
+
+      if totalCopper > 0 then
+        if not ma_searchbutton.cooldownActive then
+          ma_searchbutton:Enable()
+        end
+        ma_lookupresulttext:SetText("Ready to send money")
+      else
+        ma_searchbutton:Disable()
+        ma_lookupresulttext:SetText("Enter money amount to send")
+      end
+    end
+
+    -- Limit and validate currency input
+    local function ValidateCurrency()
+      local copperText = ma_mailcoppereditbox:GetText()
+      local silverText = ma_mailsilvereditbox:GetText()
+      local goldText = ma_mailgoldeditbox:GetText()
+
+      -- Limit silver and copper to 2 characters max
+      if string.len(copperText) > 2 then
+        copperText = string.sub(copperText, 1, 2)
+        ma_mailcoppereditbox:SetText(copperText)
+      end
+
+      if string.len(silverText) > 2 then
+        silverText = string.sub(silverText, 1, 2)
+        ma_mailsilvereditbox:SetText(silverText)
+      end
+
+      -- Ensure non-negative values and limit gold to max safe value
+      local copper = tonumber(copperText) or 0
+      local silver = tonumber(silverText) or 0
+      local gold = tonumber(goldText) or 0
+
+      -- Maximum gold cap (214748 gold = ~2.1 billion copper, safe for unsigned int)
+      local MAX_GOLD = 214748
+
+      if copper < 0 then
+        ma_mailcoppereditbox:SetText("0")
+      end
+      if silver < 0 then
+        ma_mailsilvereditbox:SetText("0")
+      end
+      if gold < 0 then
+        ma_mailgoldeditbox:SetText("0")
+      elseif gold > MAX_GOLD then
+        ma_mailgoldeditbox:SetText(tostring(MAX_GOLD))
+      end
+
+      -- Update button state
+      UpdateMoneySendButton()
+    end
+
+    -- Add validation on text change
+    ma_mailcoppereditbox:SetScript("OnTextChanged", function()
+      ValidateCurrency()
+    end)
+
+    ma_mailsilvereditbox:SetScript("OnTextChanged", function()
+      ValidateCurrency()
+    end)
+
+    ma_mailgoldeditbox:SetScript("OnTextChanged", function()
+      ValidateCurrency()
+    end)
+
+    -- Setup body field (use persistent body from param)
+    if param.body and param.body ~= "" and param.body ~= Locale["ma_MailYourMsg"] then
+      ma_maileditbox:SetText(param.body)
+    else
+      ma_maileditbox:SetText(Locale["ma_MailYourMsg"])
+    end
+    ma_maileditbox:Show()
+
+    -- Initial button state (disabled until money is entered)
+    UpdateMoneySendButton()
+
+    ma_searchbutton:SetText(Locale["ma_Send"])
+    ma_searchbutton:SetScript("OnClick", function()
+      if not ma_searchbutton.cooldownActive then
+        local gold = tonumber(ma_mailgoldeditbox:GetText()) or 0
+        local silver = tonumber(ma_mailsilvereditbox:GetText()) or 0
+        local copper = tonumber(ma_mailcoppereditbox:GetText()) or 0
+        self:SendMailWithMoney(ma_searcheditbox:GetText(), ma_var1editbox:GetText(), gold, silver, copper, ma_maileditbox:GetText())
+
+        -- Set cooldown
+        ma_searchbutton.cooldownActive = true
+        ma_searchbutton:Disable()
+        ma_searchbutton.countdown = 5
+        ma_searchbutton:SetText("Sent! (5s)")
+
+        -- Create OnUpdate frame for countdown
+        if not ma_searchbutton.cooldownFrame then
+          ma_searchbutton.cooldownFrame = CreateFrame("Frame")
+        end
+
+        ma_searchbutton.cooldownFrame.elapsed = 0
+        ma_searchbutton.cooldownFrame:SetScript("OnUpdate", function(self, elapsed)
+          self.elapsed = self.elapsed + elapsed
+          if self.elapsed >= 1 then
+            self.elapsed = 0
+            ma_searchbutton.countdown = ma_searchbutton.countdown - 1
+            if ma_searchbutton.countdown > 0 then
+              ma_searchbutton:SetText("Sent! ("..ma_searchbutton.countdown.."s)")
+            else
+              ma_searchbutton:SetText(Locale["ma_Send"])
+              ma_searchbutton:Enable()
+              ma_searchbutton.cooldownActive = false
+              self:SetScript("OnUpdate", nil)
+            end
+          end
+        end)
+      end
+    end)
+  end
 end

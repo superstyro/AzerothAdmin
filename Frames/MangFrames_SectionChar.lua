@@ -383,8 +383,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -95 --charRowFour
+      offX = 385, --charColFour
+      offY = -139 --charRowSix
     },
     text = Locale["ma_RecallButton"]
   })
@@ -445,7 +445,7 @@ function AzerothAdmin:CreateCharSection()
     group = "char",
     parent = ma_midframe,
     size = {
-      width = 30,
+      width = 90,
       height = 20
     },
     setpoint = {
@@ -470,7 +470,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 485,
+      offX = 550,
       offY = -4
     },
     text = Locale["ma_Modify"]
@@ -605,8 +605,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -139 --charRowSix
+      offX = 222, --charColTwo
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_charchangerace"]
   })
@@ -645,8 +645,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -160 --charRowSeven
+      offX = 303, --charColThree
+      offY = -139 --charRowSix
     },
     text = Locale["ma_charcombatstop"]
   })
@@ -712,11 +712,11 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_charlistfreezebutton",
+    name = "ma_charlistdeletedbutton",
     group = "char",
     parent = ma_midframe,
     texture = {
-      name = "ma_charlistfreezebutton_texture",
+      name = "ma_charlistdeletedbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -728,7 +728,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 303, --charColThree
       offY = -182 --charRowEight
     },
-    text = Locale["ma_charlistfreeze"]
+    text = Locale["ma_charlistdeleted"]
   })
 
   FrameLib:BuildButton({
@@ -772,11 +772,11 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_charrecallbutton",
+    name = "ma_chardeletedrestorebutton",
     group = "char",
     parent = ma_midframe,
     texture = {
-      name = "ma_charrecallbutton_texture",
+      name = "ma_chardeletedrestorebutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -788,7 +788,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 303, --charColThree
       offY = -204 --charRowNine
     },
-    text = Locale["ma_charrecall"]
+    text = Locale["ma_chardeletedrestore"]
   })
 
   FrameLib:BuildButton({
@@ -830,7 +830,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -52 --charRowTwo
     },
     text = Locale["ma_banbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_charmorphbutton",
@@ -846,11 +846,11 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -139 --charRowSix
+      offX = 222, --charColTwo
+      offY = -95 --charRowFour
     },
     text = Locale["ma_Morph"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_gonamebutton",
@@ -870,7 +870,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -52 --charRowTwo
     },
     text = Locale["ma_gonamebutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_createguildbutton",
@@ -890,7 +890,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -52 --charRowTwo
     },
     text = Locale["ma_createguildbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_baninfobutton",
@@ -910,7 +910,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -74  --charRowThree
     },
     text = Locale["ma_baninfobutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_groupgobutton",
@@ -930,7 +930,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -74  --charRowThree
     },
     text = Locale["ma_groupgobutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_guildinvitebutton",
@@ -950,7 +950,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -74  --charRowThree
     },
     text = Locale["ma_guildinvitebutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_banlistbutton",
@@ -970,7 +970,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -95 --charRowFour
     },
     text = Locale["ma_banlistbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_namegobutton",
@@ -990,7 +990,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -95 --charRowFour
     },
     text = Locale["ma_namegobutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_guildrankbutton",
@@ -1010,7 +1010,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -95 --charRowFour
     },
     text = Locale["ma_guildrankbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_telegroupbutton",
@@ -1030,7 +1030,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -30 --charRowOne
     },
     text = Locale["ma_telegroupbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_unbanbutton",
@@ -1050,7 +1050,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -117 --charRowFive
     },
     text = Locale["ma_unbanbutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_guilddeletebutton",
@@ -1070,7 +1070,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -117 --charRowFive
     },
     text = Locale["ma_guilddeletebutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_guilduninvitebutton",
@@ -1090,7 +1090,7 @@ function AzerothAdmin:CreateCharSection()
       offY = -117 --charRowFive
     },
     text = Locale["ma_guilduninvitebutton"]
-    })
+  })
 
   FrameLib:BuildButton({
     name = "ma_telenamebutton",
@@ -1418,12 +1418,13 @@ function AzerothAdmin:CreateCharSection()
     parent = ma_midframe,
     text = Locale["ma_parameters"],
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 223, --charColTwo
-      offY = 8
+      pos = "TOPLEFT",
+      offX = 142, --charColOne
+      offY = -232
     }
   })
 
+  --[[Parameter Box Input]]
   FrameLib:BuildFrame({
     type = "EditBox",
     name = "ma_charactertarget",
@@ -1434,9 +1435,9 @@ function AzerothAdmin:CreateCharSection()
       height = 20
     },
     setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 309,
-      offY = 4
+      pos = "TOPLEFT",
+      offX = 226,
+      offY = -231 --charRowTen
     },
     inherits = "InputBoxTemplate"
   })

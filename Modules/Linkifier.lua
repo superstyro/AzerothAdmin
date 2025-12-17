@@ -165,7 +165,7 @@ function MangLinkifier_SetItemRef(link, text, button)
     SendChatMessage(".list object "..strsub(link, 12), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 10) == "targguidgo" ) then
-    SendChatMessage(".go object "..strsub(link, 12), say, nil, nil)
+    SendChatMessage(".go gameobject "..strsub(link, 12), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 12) == "targguidmove" ) then
     SendChatMessage(".gobject move "..strsub(link, 14), say, nil, nil)
@@ -203,7 +203,7 @@ function MangLinkifier_SetItemRef(link, text, button)
     return;
   ----------====~~ ADD GO Command Functions ~~====----------
   elseif ( strsub(link, 1, 11) == "addgoguidgo" ) then
-    SendChatMessage(".go object "..strsub(link, 13), say, nil, nil)
+    SendChatMessage(".go gameobject "..strsub(link, 13), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 13) == "addgoguidmove" ) then
     SendChatMessage(".gobject move "..strsub(link, 15), say, nil, nil)
@@ -264,7 +264,7 @@ function MangLinkifier_SetItemRef(link, text, button)
     SendChatMessage(".list creature "..strsub(link, 20), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 10) == "gameobject" ) then
-    SendChatMessage(".go object "..strsub(link, 12), say, nil, nil)
+    SendChatMessage(".go gameobject "..strsub(link, 12), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 8) == "creature" ) then
     SendChatMessage(".go creature "..strsub(link, 10), say, nil, nil)

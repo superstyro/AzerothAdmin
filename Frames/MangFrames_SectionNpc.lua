@@ -169,7 +169,7 @@ function AzerothAdmin:CreateNpcSection()
     text = Locale["ma_Respawn"]
   })
 
-  FrameLib:BuildButton({
+    FrameLib:BuildButton({
     name = "ma_npcdistancebutton",
     group = "npc",
     parent = ma_midframe,
@@ -183,8 +183,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
-      offY = -160 --charRowSeven
+      offX = 498, --charColFive
+      offY = -139 --charRowSix
     },
     text = Locale["ma_NPCDistanceButton"]
   })
@@ -202,8 +202,8 @@ function AzerothAdmin:CreateNpcSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCGUIDButton"]
@@ -224,7 +224,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -52 --charRowTwo
+      offY = -30 --charRowOne
     },
     text = Locale["ma_NPCInfoButton"]
   })
@@ -379,11 +379,23 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
+      offX = 498, --charColFive
       offY = -204 --charRowNine
     },
     text = "<<"
     })
+
+  FrameLib:BuildFontString({
+    name = "ma_npcdisplayidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "Display ID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -208 --charRowNine
+    }
+  })
 
   FrameLib:BuildFrame({
     type = "EditBox",
@@ -396,7 +408,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -204 --charRowNine
     },
     inherits = "InputBoxTemplate"
@@ -415,12 +427,24 @@ function AzerothAdmin:CreateNpcSection()
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -204 --charRowNine
     },
     text = ">>"
     })
+
+  FrameLib:BuildFontString({
+    name = "ma_npcidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "NPC ID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -186 --charRowEight
+    }
+  })
 
   FrameLib:BuildFrame({
     type = "EditBox",
@@ -433,7 +457,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -182 --charRowEight
     },
     inherits = "InputBoxTemplate"
@@ -448,12 +472,12 @@ function AzerothAdmin:CreateNpcSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 39,
+      width = 80,
       height = 20
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 589,
+      pos = "TOPRIGHT",
+      offX = -5, --charColSix
       offY = -182 --charRowEight
     },
     text = ">>"
@@ -468,12 +492,12 @@ function AzerothAdmin:CreateNpcSection()
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-      width = 40,
+      width = 80,
       height = 20
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548,
+      offX = 498, --charColFive
       offY = -182 --charRowEight
     },
     text = "<<"
@@ -493,8 +517,10 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -182 --charRowEight
+      offX = 303, --charColThree
+      offY = -52 --charRowTwo
+      --offX = 385, --charColFour
+      --offY = -182 --charRowEight
     },
     text = Locale["ma_NPCAdd"]
   })
@@ -513,10 +539,22 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
+      offX = 498, --charColFive
       offY = -160 --charRowSeven
     },
     text = Locale["ma_getguid"]
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_npcguidboxtext",
+    group = "npc",
+    parent = ma_midframe,
+    text = "GUID:",
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -175, --Left of charColSix
+      offY = -164 --charRowSeven
+    }
   })
 
   FrameLib:BuildFrame({
@@ -530,7 +568,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -160 --charRowSeven
     },
     inherits = "InputBoxTemplate"
@@ -544,7 +582,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 142, --charColOne
-      offY = -231
+      offY = -232
     }
   })
 
@@ -561,7 +599,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 226,
-      offY = -225 --charRowTen
+      offY = -231 --charRowTen
     },
     inherits = "InputBoxTemplate"
   })
@@ -580,8 +618,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -182 --charRowEight
+      offX = 140, --charColOne
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCMorph"]
   })
@@ -600,8 +638,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -204 --charRowNine
+      offX = 222, --charColTwo
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCDemorph"]
   })
@@ -740,8 +778,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -160 --charRowSeven
+      offX = 303, --charColThree
+      offY = -204 --charRowNine
     },
     text = Locale["ma_NPCComeToMe"]
   })
@@ -965,7 +1003,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -74  --charRowThree
+      offY = -30 --charRowOne
     },
     text = Locale["ma_WayShow"]
   })
@@ -985,7 +1023,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -95 --charRowFour
+      offY = -52 --charRowTwo
     },
     text = Locale["ma_NPCUnFreeze_WayButton"]
   })
@@ -1005,14 +1043,14 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -139 --charRowSix
+      offY = -95 --charRowFour
     },
     text = Locale["ma_NPCUnFreeze_RandomButton"]
   })
 
   FrameLib:BuildFrame({
     type = "EditBox",
-    name = "ma_npcunfreeze_random_distancebutton",	-- ma_npccharactertarget
+    name = "ma_npc_distance_box",
     group = "npc",
     parent = ma_midframe,
     size = {
@@ -1021,7 +1059,7 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 585, --charColSix
       offY = -139 --charRowSix
     },
     inherits = "InputBoxTemplate"
@@ -1042,21 +1080,46 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -117 --charRowFive
+      offY = -74 --charRowThree
     },
     text = Locale["ma_MoveStackButton"]
   })
 
-  FrameLib:BuildFontString({
-    name = "ma_npcdistanceboxtext",
+  FrameLib:BuildButton({
+    name = "ma_npcclearbutton",
     group = "npc",
     parent = ma_midframe,
-    text = Locale["ma_DistanceBox"],
+    texture = {
+      name = "ma_npcclearbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
-      offY = -144
-    }
+      pos = "TOPRIGHT",
+      offX = -5, --charColSeven
+      offY = -139 --charRowSix
+    },
+    text = "Clear"
   })
+
+  -- Make boxes read-only (display only)
+  ma_NPC_guidbutton:EnableMouse(false)
+  ma_NPC_guidbutton:EnableKeyboard(false)
+  ma_NPC_guidbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_NPC_idbutton:EnableMouse(false)
+  ma_NPC_idbutton:EnableKeyboard(false)
+  ma_NPC_idbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_npcdisplayid:EnableMouse(false)
+  ma_npcdisplayid:EnableKeyboard(false)
+  ma_npcdisplayid:SetTextColor(1, 1, 1, 1) -- White text for visibility
+
+  ma_npc_distance_box:EnableMouse(false)
+  ma_npc_distance_box:EnableKeyboard(false)
+  ma_npc_distance_box:SetTextColor(1, 1, 1, 1) -- White text for visibility
 
 end

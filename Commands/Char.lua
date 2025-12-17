@@ -456,9 +456,16 @@ function CharUnFreeze()
     AzerothAdmin:LogAction("UnFroze "..player)
 end
 
-function CharListFreeze()
-    AzerothAdmin:ChatMsg(".listfreeze")
-    AzerothAdmin:LogAction("Listed Frozen players")
+function CharListDeleted()
+    local cname = ma_charactertarget:GetText()
+    AzerothAdmin:ChatMsg(".character deleted list")
+    AzerothAdmin:LogAction("Listed deleted characters")
+end
+
+function CharDeletedRestore()
+    local cname = ma_charactertarget:GetText()
+    AzerothAdmin:ChatMsg(".character deleted restore "..cname)
+    AzerothAdmin:LogAction("Restores deleted character "..cname)
 end
 
 function CharPossess()
@@ -485,7 +492,6 @@ function CharRepair()
     AzerothAdmin:LogAction("Repaired  "..player.."'s items")
 end
 
---[[CHAR2 TAB Copy Over]]
 function BanButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".ban "..cname)
@@ -613,14 +619,14 @@ function CharUnAuraButton()
 end
 
 function JailA()
-    cname=ma_charactertarget:GetText()
+    local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_AllianceJail")
     AzerothAdmin:LogAction("Jailed player "..cname..".")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been found guilty and jailed.")
 end
 
 function JailH()
-    cname=ma_charactertarget:GetText()
+    local cname = ma_charactertarget:GetText()
     --self:ChatMsg("Selected "..cname)
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_HordeJail")
     AzerothAdmin:LogAction("Jailed player "..cname..".")
@@ -628,7 +634,7 @@ function JailH()
 end
 
 function UnJail()
-    cname=ma_charactertarget:GetText()
+    local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".recall "..cname)
     AzerothAdmin:LogAction("UnJailed player "..cname..".")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been pardoned and released from jail.")

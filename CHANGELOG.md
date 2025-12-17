@@ -1,5 +1,20 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 15 - 12/16/2025]=-
+
+- IMPROVE NPC section UI and functionality
+  - Fixed 'Get GUID' button to correctly populate GUID, NPC ID, and Display ID fields
+  - Added labels for GUID, NPC ID, and Display ID text boxes for better clarity
+  - Made all info boxes read-only (GUID, NPC ID, Display ID, Distance) to prevent manual editing
+  - Updated pattern matching to work with actual server output format
+    - GUID now captures Low value from server response
+    - Entry ID pattern updated to match "Entry:" format
+    - Display ID pattern simplified for compatibility
+  - Added validation to Distance button (requires valid target)
+  - Added validation to increment/decrement buttons (requires target and populated fields)
+  - Replaced Distance label with Clear button to clear all NPC info fields
+  - Added tooltip for Clear button functionality
+
 ## -=[ Version 14 - 12/06/2025]=-
 
 - OPTIMIZE Memory usage with massive 74% reduction (7.5 MB → 1.9 MB)

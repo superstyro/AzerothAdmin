@@ -368,17 +368,27 @@ function IsPlayerSpellKnown(spellId)
   local spellName = GetSpellInfo(spellId)
   if not spellName then return false end
 
+  -- DEBUG: Print what we're looking for
+  DEFAULT_CHAT_FRAME:AddMessage("DEBUG IsPlayerSpellKnown: Looking for '"..spellName.."' (ID:"..spellId..")")
+
   -- Check if the spell is in the spellbook by name
   -- In 3.3.5, we scan the spellbook and compare names
   local i = 1
+  local foundLanguages = {}
   while true do
     local bookSpellName, bookSpellRank = GetSpellName(i, BOOKTYPE_SPELL)
     if not bookSpellName then
       break
     end
 
+    -- Track language spells for debugging
+    if bookSpellName and bookSpellName:find("Language") then
+      table.insert(foundLanguages, bookSpellName)
+    end
+
     -- Match by name (languages don't have ranks)
     if bookSpellName == spellName then
+      DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found exact match at position "..i)
       return true
     end
 
@@ -388,6 +398,11 @@ function IsPlayerSpellKnown(spellId)
     if i > 1024 then
       break
     end
+  end
+
+  -- DEBUG: Show what language spells we found
+  if #foundLanguages > 0 then
+    DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Languages in spellbook: "..table.concat(foundLanguages, ", "))
   end
 
   return false

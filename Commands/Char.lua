@@ -177,7 +177,7 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." all_crafts")
         AzerothAdmin:LogAction(logcmd.." all professions and recipes to "..player..".")
       elseif value == "all_gm" then
-        AzerothAdmin:ChatMsg(command.." all_gm")
+        AzerothAdmin:ChatMsg(command.." all gm")
         AzerothAdmin:LogAction(logcmd.." all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
         AzerothAdmin:ChatMsg(command.." all lang")
@@ -283,36 +283,22 @@ function Reset(value)
 end
 
   -- LEARN LANG
-function LearnLangDropDownInitialize()
+function LearnDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
-      {Locale["ma_AllLang"],"all_lang"},
-      {Locale["Common"],"668"},
-      {Locale["Orcish"],"669"},
-      {Locale["Taurahe"],"670"},
-      {Locale["Darnassian"],"671"},
-      {Locale["Dwarvish"],"672"},
-      {Locale["Thalassian"],"813"},
-      {Locale["Demonic"],"815"},
-      {Locale["Draconic"],"814"},
-      {Locale["Titan"],"816"},
-      {Locale["Kalimag"],"817"},
-      {Locale["Gnomish"],"7340"},
-      {Locale["Troll"],"7341"},
-      {Locale["Gutterspeak"],"17737"},
-      {Locale["Draenei"],"29932"}
+      {Locale["ma_AllGMSpells"],"all_gm"},
+      {Locale["ma_AllLang"],"all_lang"}
     }
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, "all_lang")
 end
 
   -- MODIFY
@@ -346,12 +332,11 @@ function ModifyDropDownInitialize()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_modifydropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_modifydropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_modifydropdown, "levelup")
 end
 
   -- RESET
@@ -372,12 +357,11 @@ function ResetDropDownInitialize()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_resetdropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_resetdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_resetdropdown, "talents")
 end
 
 function CharModelZoomIn()

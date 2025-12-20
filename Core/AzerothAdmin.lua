@@ -1980,17 +1980,17 @@ function AzerothAdmin:InitDropDowns()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown) == v[2])
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, this.value) end
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, "all")
   end
   UIDropDownMenu_Initialize(ma_reloadtabledropdown, ReloadTableDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_reloadtabledropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_reloadtabledropdown, 20)
+  UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, "all")
 
   -- WEATHER
   local function WeatherDropDownInitialize()
@@ -2007,17 +2007,17 @@ function AzerothAdmin:InitDropDowns()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_weatherdropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, "0 0")
   end
   UIDropDownMenu_Initialize(ma_weatherdropdown, WeatherDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_weatherdropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_weatherdropdown, 20)
+  UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, "0 0")
 
   --NPC EMOTE
   local function NpcEmoteDropDownInitialize()
@@ -2062,17 +2062,17 @@ function AzerothAdmin:InitDropDowns()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_npcemotedropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, "0")
   end
   UIDropDownMenu_Initialize(ma_npcemotedropdown, NpcEmoteDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_npcemotedropdown, 85)
   UIDropDownMenu_SetButtonWidth(ma_npcemotedropdown, 20)
+  UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, "0")
 
   --NPC EMOTE
   local function NpcEmoteDropDownInitialize()
@@ -2117,17 +2117,17 @@ function AzerothAdmin:InitDropDowns()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_npcemotedropdown_a) == v[2])
       --info.notCheckable = true
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, "0")
   end
   UIDropDownMenu_Initialize(ma_npcemotedropdown_a, NpcEmoteDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_npcemotedropdown_a, 85)
   UIDropDownMenu_SetButtonWidth(ma_npcemotedropdown_a, 20)
+  UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, "0")
 
   --LANGUAGE
   local function LangDropDownInitialize()
@@ -2156,17 +2156,17 @@ function AzerothAdmin:InitDropDowns()
       info.text = v[1]
       info.value = v[2]
       info.func = function() UIDropDownMenu_SetSelectedValue(ma_languagedropdown, this.value) end
-      info.checked = nil
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_languagedropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_languagedropdown, Locale:GetLocale())
   end
   UIDropDownMenu_Initialize(ma_languagedropdown, LangDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_languagedropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_languagedropdown, 20)
+  UIDropDownMenu_SetSelectedValue(ma_languagedropdown, Locale:GetLocale())
 
   -- FRAME STRATA DROPDOWN
   local function FrameStrataDropDownInitialize()
@@ -2193,11 +2193,11 @@ function AzerothAdmin:InitDropDowns()
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
-    UIDropDownMenu_SetSelectedValue(ma_framestratadropdown, AzerothAdmin.db.account.style.framestrata)
   end
   UIDropDownMenu_Initialize(ma_framestratadropdown, FrameStrataDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_framestratadropdown, 100)
   UIDropDownMenu_SetButtonWidth(ma_framestratadropdown, 20)
+  UIDropDownMenu_SetSelectedValue(ma_framestratadropdown, AzerothAdmin.db.account.style.framestrata)
 
 end
 

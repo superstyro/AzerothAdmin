@@ -12,7 +12,6 @@
   - Added ESC key support to remove focus from message editbox
   - Fixed UI element visibility to prevent mail-specific tabs showing in other popup types (Item/Spell/etc. searches)
   - Ensured "Favorites" tab text displays correctly for non-mail search popups
-## -=[ Version 16 - 12/19/2025]=-
 
 - IMPROVE Language learning system for Character tab
   - Fixed "All Languages" button to properly learn each language individually

@@ -165,10 +165,6 @@ function LearnSpell(value, state)
     local class = UnitClass("target") or UnitClass("player")
     local command = ".learn"
     local logcmd = "Learned"
-    if state == "RightButton" then
-      command = ".unlearn"
-      logcmd = "Unlearned"
-    end
 
     -- Language spell ID to name lookup table
     local languageNames = {
@@ -187,6 +183,19 @@ function LearnSpell(value, state)
       ["17737"] = Locale["Gutterspeak"],
       ["29932"] = Locale["Draenei"]
     }
+
+    -- For language spells, auto-detect learn/unlearn based on spell knowledge
+    -- For other spells, use right-click to unlearn
+    if state == "RightButton" then
+      command = ".unlearn"
+      logcmd = "Unlearned"
+    elseif type(value) == "string" and languageNames[value] then
+      local spellId = tonumber(value)
+      if spellId and IsSpellKnown(spellId) then
+        command = ".unlearn"
+        logcmd = "Unlearned"
+      end
+    end
 
     if type(value) == "string" then
       if value == "all" then
@@ -212,7 +221,13 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." "..value)
         -- Check if this is a language spell and add the name to the log
         if languageNames[value] then
-          AzerothAdmin:LogAction(logcmd.." "..languageNames[value].." ("..value..") to "..player..".")
+          local msg = logcmd.." "..languageNames[value].." ("..value..") to "..player.."."
+          AzerothAdmin:LogAction(msg)
+          AzerothAdmin:Print(msg)
+          -- Update button text after learning/unlearning a language
+          if UpdateLearnLangButton then
+            UpdateLearnLangButton()
+          end
         else
           AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
         end
@@ -222,7 +237,9 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." "..v)
         -- Check if this is a language spell and add the name to the log
         if languageNames[v] then
-          AzerothAdmin:LogAction(logcmd.." "..languageNames[v].." ("..v..") to "..player..".")
+          local msg = logcmd.." "..languageNames[v].." ("..v..") to "..player.."."
+          AzerothAdmin:LogAction(msg)
+          AzerothAdmin:Print(msg)
         else
           AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
         end
@@ -316,6 +333,22 @@ function Reset(value)
 end
 
   -- LEARN LANG
+function UpdateLearnLangButton()
+  local selectedValue = UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown)
+  if not selectedValue or selectedValue == "all_lang" then
+    ma_learnlangbutton:SetText(Locale["ma_Learn"])
+    return
+  end
+
+  -- Check if the player knows this spell
+  local spellId = tonumber(selectedValue)
+  if spellId and IsSpellKnown(spellId) then
+    ma_learnlangbutton:SetText(Locale["ma_Unlearn"] or "Unlearn")
+  else
+    ma_learnlangbutton:SetText(Locale["ma_Learn"])
+  end
+end
+
 function LearnLangDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
@@ -339,13 +372,14 @@ function LearnLangDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value) end
+      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value); UpdateLearnLangButton() end
       info.checked = nil
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
     UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, "all_lang")
+    UpdateLearnLangButton()
 end
 
   -- MODIFY

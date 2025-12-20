@@ -325,6 +325,7 @@ function Return_enUS()
     ["ma_HideMapsCharButton"]         = "Hide Maps",
     ["ma_LearnLangButton"]            = "All languages",
     ["ma_Learn"]                      = "Learn",
+    ["ma_Unlearn"]                    = "Unlearn",
     ["ma_Modify"]                     = "Modify",
     ["ma_Reset"]                      = "Reset",
     ["ma_CharBindsight"]              = "BindSight",

@@ -163,36 +163,72 @@ function LearnSpell(value, state)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     local class = UnitClass("target") or UnitClass("player")
-    local command = ".learn"
-    local logcmd = "Learned"
-    if state == "RightButton" then
-      command = ".unlearn"
-      logcmd = "Unlearned"
-    end
     if type(value) == "string" then
       if value == "all" then
-        AzerothAdmin:ChatMsg(command.." all")
-        AzerothAdmin:LogAction(logcmd.." all spells to "..player..".")
+        AzerothAdmin:ChatMsg(".learn all")
+        AzerothAdmin:LogAction("Learned all spells to "..player..".")
       elseif value == "all_crafts" then
-        AzerothAdmin:ChatMsg(command.." all_crafts")
-        AzerothAdmin:LogAction(logcmd.." all professions and recipes to "..player..".")
+        AzerothAdmin:ChatMsg(".learn all crafts")
+        AzerothAdmin:LogAction("Learned all professions and recipes to "..player..".")
+      elseif value == "all_default" then
+        AzerothAdmin:ChatMsg(".learn all default")
+        AzerothAdmin:LogAction("Learned all default spells for race/class to "..player..".")
       elseif value == "all_gm" then
-        AzerothAdmin:ChatMsg(command.." all gm")
-        AzerothAdmin:LogAction(logcmd.." all default spells for Game Masters to "..player..".")
+        AzerothAdmin:ChatMsg(".learn all gm")
+        AzerothAdmin:LogAction("Learned all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
-        AzerothAdmin:ChatMsg(command.." all lang")
-        AzerothAdmin:LogAction(logcmd.." all languages to "..player..".")
+        AzerothAdmin:ChatMsg(".learn all lang")
+        AzerothAdmin:LogAction("Learned all languages to "..player..".")
       elseif value == "all_myclass" then
-        AzerothAdmin:ChatMsg(command.." all_myclass")
-        AzerothAdmin:LogAction(logcmd.." all spells available to the "..class.."-class to "..player..".")
+        AzerothAdmin:ChatMsg(".learn all my class")
+        AzerothAdmin:LogAction("Learned all spells and talents available to the "..class.."-class to "..player..".")
+      elseif value == "all_mypettalents" then
+        AzerothAdmin:ChatMsg(".learn all my pettalents")
+        AzerothAdmin:LogAction("Learned all pet talents to "..player..".")
+      elseif value == "all_myspells" then
+        AzerothAdmin:ChatMsg(".learn all my spells")
+        AzerothAdmin:LogAction("Learned all spells (except talents) available to the "..class.."-class to "..player..".")
+      elseif value == "all_mytalents" then
+        AzerothAdmin:ChatMsg(".learn all my talents")
+        AzerothAdmin:LogAction("Learned all talents available to the "..class.."-class to "..player..".")
+      elseif value == "all_recipes_alchemy" then
+        AzerothAdmin:ChatMsg(".learn all recipes alchemy")
+        AzerothAdmin:LogAction("Learned all Alchemy recipes to "..player..".")
+      elseif value == "all_recipes_blacksmithing" then
+        AzerothAdmin:ChatMsg(".learn all recipes blacksmithing")
+        AzerothAdmin:LogAction("Learned all Blacksmithing recipes to "..player..".")
+      elseif value == "all_recipes_cooking" then
+        AzerothAdmin:ChatMsg(".learn all recipes cooking")
+        AzerothAdmin:LogAction("Learned all Cooking recipes to "..player..".")
+      elseif value == "all_recipes_enchanting" then
+        AzerothAdmin:ChatMsg(".learn all recipes enchanting")
+        AzerothAdmin:LogAction("Learned all Enchanting recipes to "..player..".")
+      elseif value == "all_recipes_engineering" then
+        AzerothAdmin:ChatMsg(".learn all recipes engineering")
+        AzerothAdmin:LogAction("Learned all Engineering recipes to "..player..".")
+      elseif value == "all_recipes_firstaid" then
+        AzerothAdmin:ChatMsg(".learn all recipes firstaid")
+        AzerothAdmin:LogAction("Learned all First Aid recipes to "..player..".")
+      elseif value == "all_recipes_inscription" then
+        AzerothAdmin:ChatMsg(".learn all recipes inscription")
+        AzerothAdmin:LogAction("Learned all Inscription recipes to "..player..".")
+      elseif value == "all_recipes_jewelcrafting" then
+        AzerothAdmin:ChatMsg(".learn all recipes jewelcrafting")
+        AzerothAdmin:LogAction("Learned all Jewelcrafting recipes to "..player..".")
+      elseif value == "all_recipes_leatherworking" then
+        AzerothAdmin:ChatMsg(".learn all recipes leatherworking")
+        AzerothAdmin:LogAction("Learned all Leatherworking recipes to "..player..".")
+      elseif value == "all_recipes_tailoring" then
+        AzerothAdmin:ChatMsg(".learn all recipes tailoring")
+        AzerothAdmin:LogAction("Learned all Tailoring recipes to "..player..".")
       else
-        AzerothAdmin:ChatMsg(command.." "..value)
-        AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
+        AzerothAdmin:ChatMsg(".learn "..value)
+        AzerothAdmin:LogAction("Learned spell "..value.." to "..player..".")
       end
     elseif type(value) == "table" then
       for k,v in pairs(value) do
-        AzerothAdmin:ChatMsg(command.." "..v)
-        AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
+        AzerothAdmin:ChatMsg(".learn "..v)
+        AzerothAdmin:LogAction("Learned spell "..v.." to "..player..".")
       end
     end
   else
@@ -287,8 +323,24 @@ function LearnDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
+      {Locale["ma_AllCrafts"],"all_crafts"},
+      {Locale["ma_AllDefault"],"all_default"},
       {Locale["ma_AllGMSpells"],"all_gm"},
-      {Locale["ma_AllLang"],"all_lang"}
+      {Locale["ma_AllLang"],"all_lang"},
+      {Locale["ma_AllMyClass"],"all_myclass"},
+      {Locale["ma_AllMyPetTalents"],"all_mypettalents"},
+      {Locale["ma_AllMySpells"],"all_myspells"},
+      {Locale["ma_AllMyTalents"],"all_mytalents"},
+      {Locale["ma_AllRecipesAlchemy"],"all_recipes_alchemy"},
+      {Locale["ma_AllRecipesBlacksmithing"],"all_recipes_blacksmithing"},
+      {Locale["ma_AllRecipesCooking"],"all_recipes_cooking"},
+      {Locale["ma_AllRecipesEnchanting"],"all_recipes_enchanting"},
+      {Locale["ma_AllRecipesEngineering"],"all_recipes_engineering"},
+      {Locale["ma_AllRecipesFirstAid"],"all_recipes_firstaid"},
+      {Locale["ma_AllRecipesInscription"],"all_recipes_inscription"},
+      {Locale["ma_AllRecipesJewelcrafting"],"all_recipes_jewelcrafting"},
+      {Locale["ma_AllRecipesLeatherworking"],"all_recipes_leatherworking"},
+      {Locale["ma_AllRecipesTailoring"],"all_recipes_tailoring"}
     }
     for k,v in pairs(buttons) do
       info.text = v[1]

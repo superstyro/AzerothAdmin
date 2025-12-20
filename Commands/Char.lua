@@ -165,39 +165,10 @@ function LearnSpell(value, state)
     local class = UnitClass("target") or UnitClass("player")
     local command = ".learn"
     local logcmd = "Learned"
-
-    -- Language spell ID to name lookup table
-    -- Based on Languages.dbc for WoW 3.3.5a
-    local languageNames = {
-      ["669"] = Locale["Orcish"],           -- ID 1
-      ["671"] = Locale["Darnassian"],       -- ID 2
-      ["670"] = Locale["Taurahe"],          -- ID 3
-      ["672"] = Locale["Dwarvish"],         -- ID 6
-      ["668"] = Locale["Common"],           -- ID 7
-      ["815"] = Locale["Demonic"],          -- ID 8
-      ["816"] = Locale["Titan"],            -- ID 9
-      ["813"] = Locale["Thalassian"],       -- ID 10
-      ["814"] = Locale["Draconic"],         -- ID 11
-      ["817"] = Locale["Kalimag"],          -- ID 12
-      ["7340"] = Locale["Gnomish"],         -- ID 13
-      ["7341"] = Locale["Troll"],           -- ID 14
-      ["17737"] = Locale["Gutterspeak"],    -- ID 33
-      ["29932"] = Locale["Draenei"]         -- ID 35
-    }
-
-    -- For language spells, toggle based on current button text
-    -- For other spells, use right-click to unlearn
     if state == "RightButton" then
       command = ".unlearn"
       logcmd = "Unlearned"
-    elseif type(value) == "string" and languageNames[value] then
-      -- Check button text to determine action (since we can't detect skill in 3.3.5)
-      if ma_learnlangbutton and ma_learnlangbutton:GetText() == Locale["ma_Unlearn"] then
-        command = ".unlearn"
-        logcmd = "Unlearned"
-      end
     end
-
     if type(value) == "string" then
       if value == "all" then
         AzerothAdmin:ChatMsg(command.." all")
@@ -209,71 +180,19 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." all_gm")
         AzerothAdmin:LogAction(logcmd.." all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
-        -- Learn all languages individually since server doesn't support all_lang parameter
-        -- Based on Languages.dbc for WoW 3.3.5a
-        local languages = {
-          "669",   -- Orcish (ID 1)
-          "671",   -- Darnassian (ID 2)
-          "670",   -- Taurahe (ID 3)
-          "672",   -- Dwarvish (ID 6)
-          "668",   -- Common (ID 7)
-          "815",   -- Demonic (ID 8)
-          "816",   -- Titan (ID 9)
-          "813",   -- Thalassian (ID 10)
-          "814",   -- Draconic (ID 11)
-          "817",   -- Kalimag (ID 12)
-          "7340",  -- Gnomish (ID 13)
-          "7341",  -- Troll (ID 14)
-          "17737", -- Gutterspeak (ID 33)
-          "29932"  -- Draenei (ID 35)
-        }
-        for _, lang in ipairs(languages) do
-          AzerothAdmin:ChatMsg(command.." "..lang)
-        end
+        AzerothAdmin:ChatMsg(command.." all lang")
         AzerothAdmin:LogAction(logcmd.." all languages to "..player..".")
       elseif value == "all_myclass" then
         AzerothAdmin:ChatMsg(command.." all_myclass")
         AzerothAdmin:LogAction(logcmd.." all spells available to the "..class.."-class to "..player..".")
       else
-        -- Send the command
         AzerothAdmin:ChatMsg(command.." "..value)
-
-        -- Check if this is a language spell for logging
-        if languageNames[value] then
-          local msg = "Attempting to "..string.lower(logcmd).." "..languageNames[value].." ("..value..")"
-          AzerothAdmin:LogAction(msg)
-          AzerothAdmin:Print(msg)
-
-          -- For languages, toggle the button state for next click
-          -- Since we can't detect if known in 3.3.5, we just flip the button
-          if ma_learnlangbutton:GetText() == Locale["ma_Learn"] then
-            ma_learnlangbutton:SetText(Locale["ma_Unlearn"])
-          else
-            ma_learnlangbutton:SetText(Locale["ma_Learn"])
-          end
-        else
-          AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
-        end
+        AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
       end
     elseif type(value) == "table" then
       for k,v in pairs(value) do
-        -- Check if this is a language spell
-        if languageNames[v] then
-          local spellId = tonumber(v)
-          local isKnown = IsPlayerSpellKnown(spellId)
-
-          -- Only proceed if the action makes sense
-          if (command == ".learn" and not isKnown) or (command == ".unlearn" and isKnown) then
-            AzerothAdmin:ChatMsg(command.." "..v)
-            local msg = logcmd.." "..languageNames[v].." ("..v..") to "..player.."."
-            AzerothAdmin:LogAction(msg)
-            AzerothAdmin:Print(msg)
-          end
-        else
-          -- Non-language spell, handle normally
-          AzerothAdmin:ChatMsg(command.." "..v)
-          AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
-        end
+        AzerothAdmin:ChatMsg(command.." "..v)
+        AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
       end
     end
   else
@@ -364,47 +283,36 @@ function Reset(value)
 end
 
   -- LEARN LANG
--- Note: In WoW 3.3.5, languages are not detectable via spell book APIs
--- They exist as passive racial abilities not accessible through GetSpellName
--- So we use a simple toggle approach instead
-
-function UpdateLearnLangButton()
-  -- Just set to Learn by default when changing selection
-  ma_learnlangbutton:SetText(Locale["ma_Learn"])
-end
-
 function LearnLangDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
-    -- Language list ordered by Languages.dbc ID for WoW 3.3.5a
     local buttons = {
-      {Locale["ma_AllLang"],"all_lang"},        -- Special: Learn all
-      {Locale["Orcish"],"669"},                 -- ID 1
-      {Locale["Darnassian"],"671"},             -- ID 2
-      {Locale["Taurahe"],"670"},                -- ID 3
-      {Locale["Dwarvish"],"672"},               -- ID 6
-      {Locale["Common"],"668"},                 -- ID 7
-      {Locale["Demonic"],"815"},                -- ID 8
-      {Locale["Titan"],"816"},                  -- ID 9
-      {Locale["Thalassian"],"813"},             -- ID 10
-      {Locale["Draconic"],"814"},               -- ID 11
-      {Locale["Kalimag"],"817"},                -- ID 12
-      {Locale["Gnomish"],"7340"},               -- ID 13
-      {Locale["Troll"],"7341"},                 -- ID 14
-      {Locale["Gutterspeak"],"17737"},          -- ID 33
-      {Locale["Draenei"],"29932"}               -- ID 35
+      {Locale["ma_AllLang"],"all_lang"},
+      {Locale["Common"],"668"},
+      {Locale["Orcish"],"669"},
+      {Locale["Taurahe"],"670"},
+      {Locale["Darnassian"],"671"},
+      {Locale["Dwarvish"],"672"},
+      {Locale["Thalassian"],"813"},
+      {Locale["Demonic"],"815"},
+      {Locale["Draconic"],"814"},
+      {Locale["Titan"],"816"},
+      {Locale["Kalimag"],"817"},
+      {Locale["Gnomish"],"7340"},
+      {Locale["Troll"],"7341"},
+      {Locale["Gutterspeak"],"17737"},
+      {Locale["Draenei"],"29932"}
     }
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value); UpdateLearnLangButton() end
+      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value) end
       info.checked = nil
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
     end
     UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, "all_lang")
-    UpdateLearnLangButton()
 end
 
   -- MODIFY

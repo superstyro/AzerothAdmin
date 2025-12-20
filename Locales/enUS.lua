@@ -421,9 +421,6 @@ function Return_enUS()
     ["Troll"]                         = "Troll",
     ["Gutterspeak"]                   = "Gutterspeak",
     ["Draenei"]                       = "Draenei",
-    ["Zombie"]                        = "Zombie",
-    ["GnomishBinary"]                 = "Gnomish Binary",
-    ["GoblinBinary"]                  = "Goblin Binary",
 
 
 

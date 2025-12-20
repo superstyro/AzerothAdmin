@@ -182,10 +182,7 @@ function LearnSpell(value, state)
       ["7340"] = Locale["Gnomish"],         -- ID 13
       ["7341"] = Locale["Troll"],           -- ID 14
       ["17737"] = Locale["Gutterspeak"],    -- ID 33
-      ["29932"] = Locale["Draenei"],        -- ID 35
-      ["17253"] = Locale["Zombie"],         -- ID 36
-      ["7342"] = Locale["GnomishBinary"],   -- ID 37
-      ["13228"] = Locale["GoblinBinary"]    -- ID 38
+      ["29932"] = Locale["Draenei"]         -- ID 35
     }
 
     -- For language spells, toggle based on current button text
@@ -228,10 +225,7 @@ function LearnSpell(value, state)
           "7340",  -- Gnomish (ID 13)
           "7341",  -- Troll (ID 14)
           "17737", -- Gutterspeak (ID 33)
-          "29932", -- Draenei (ID 35)
-          "17253", -- Zombie (ID 36)
-          "7342",  -- Gnomish Binary (ID 37)
-          "13228"  -- Goblin Binary (ID 38)
+          "29932"  -- Draenei (ID 35)
         }
         for _, lang in ipairs(languages) do
           AzerothAdmin:ChatMsg(command.." "..lang)
@@ -398,10 +392,7 @@ function LearnLangDropDownInitialize()
       {Locale["Gnomish"],"7340"},               -- ID 13
       {Locale["Troll"],"7341"},                 -- ID 14
       {Locale["Gutterspeak"],"17737"},          -- ID 33
-      {Locale["Draenei"],"29932"},              -- ID 35
-      {Locale["Zombie"],"17253"},               -- ID 36
-      {Locale["GnomishBinary"],"7342"},         -- ID 37
-      {Locale["GoblinBinary"],"13228"}          -- ID 38
+      {Locale["Draenei"],"29932"}               -- ID 35
     }
     for k,v in pairs(buttons) do
       info.text = v[1]

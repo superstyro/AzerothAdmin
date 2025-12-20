@@ -223,6 +223,10 @@ function LearnSpell(value, state)
           local spellId = tonumber(value)
           local isKnown = IsPlayerSpellKnown(spellId)
 
+          -- Debug: Show what we detected
+          local spellName = GetSpellInfo(spellId) or "Unknown"
+          AzerothAdmin:Print("DEBUG: "..spellName.." (ID:"..value..") - Known: "..tostring(isKnown).." - Command: "..command)
+
           -- Only proceed if the action makes sense
           if (command == ".learn" and not isKnown) or (command == ".unlearn" and isKnown) then
             AzerothAdmin:ChatMsg(command.." "..value)
@@ -360,26 +364,30 @@ end
 function IsPlayerSpellKnown(spellId)
   if not spellId then return false end
 
-  -- Try IsSpellKnown first (works in retail/some versions)
-  if IsSpellKnown and IsSpellKnown(spellId) then
-    return true
-  end
+  -- Get the spell name from the ID
+  local spellName = GetSpellInfo(spellId)
+  if not spellName then return false end
 
-  -- Fallback: scan the spellbook for the spell
+  -- Check if the spell is in the spellbook by name
+  -- In 3.3.5, we scan the spellbook and compare names
   local i = 1
   while true do
-    local spellName, spellRank = GetSpellName(i, BOOKTYPE_SPELL)
-    if not spellName then
+    local bookSpellName, bookSpellRank = GetSpellName(i, BOOKTYPE_SPELL)
+    if not bookSpellName then
       break
     end
-    local link = GetSpellLink(i, BOOKTYPE_SPELL)
-    if link then
-      local linkSpellId = tonumber(link:match("spell:(%d+)"))
-      if linkSpellId == spellId then
-        return true
-      end
+
+    -- Match by name (languages don't have ranks)
+    if bookSpellName == spellName then
+      return true
     end
+
     i = i + 1
+
+    -- Safety check to prevent infinite loops
+    if i > 1024 then
+      break
+    end
   end
 
   return false

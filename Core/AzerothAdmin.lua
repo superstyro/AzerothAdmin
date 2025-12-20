@@ -1052,7 +1052,7 @@ function AzerothAdmin:LogAction(msg)
 end
 
 function AzerothAdmin:ChatMsg(msg, msgt, recipient)
-  if not msgt then local msgt = "say" end
+  if not msgt then msgt = "say" end
   if msgt == "addon" then
     if recipient then
       SendAddonMessage("", msg, "WHISPER", recipient)

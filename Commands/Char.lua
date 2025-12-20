@@ -184,14 +184,14 @@ function LearnSpell(value, state)
       ["29932"] = Locale["Draenei"]
     }
 
-    -- For language spells, auto-detect learn/unlearn based on spell knowledge
+    -- For language spells, toggle based on current button text
     -- For other spells, use right-click to unlearn
     if state == "RightButton" then
       command = ".unlearn"
       logcmd = "Unlearned"
     elseif type(value) == "string" and languageNames[value] then
-      local spellId = tonumber(value)
-      if spellId and IsPlayerSpellKnown(spellId) then
+      -- Check button text to determine action (since we can't detect skill in 3.3.5)
+      if ma_learnlangbutton and ma_learnlangbutton:GetText() == Locale["ma_Unlearn"] then
         command = ".unlearn"
         logcmd = "Unlearned"
       end
@@ -218,36 +218,23 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." all_myclass")
         AzerothAdmin:LogAction(logcmd.." all spells available to the "..class.."-class to "..player..".")
       else
-        -- Check if this is a language spell
+        -- Send the command
+        AzerothAdmin:ChatMsg(command.." "..value)
+
+        -- Check if this is a language spell for logging
         if languageNames[value] then
-          local spellId = tonumber(value)
-          local isKnown = IsPlayerSpellKnown(spellId)
+          local msg = "Attempting to "..string.lower(logcmd).." "..languageNames[value].." ("..value..")"
+          AzerothAdmin:LogAction(msg)
+          AzerothAdmin:Print(msg)
 
-          -- Debug: Show what we detected
-          local spellName = GetSpellInfo(spellId) or "Unknown"
-          AzerothAdmin:Print("DEBUG: "..spellName.." (ID:"..value..") - Known: "..tostring(isKnown).." - Command: "..command)
-
-          -- Only proceed if the action makes sense
-          if (command == ".learn" and not isKnown) or (command == ".unlearn" and isKnown) then
-            AzerothAdmin:ChatMsg(command.." "..value)
-            local msg = logcmd.." "..languageNames[value].." ("..value..") to "..player.."."
-            AzerothAdmin:LogAction(msg)
-            AzerothAdmin:Print(msg)
+          -- For languages, toggle the button state for next click
+          -- Since we can't detect if known in 3.3.5, we just flip the button
+          if ma_learnlangbutton:GetText() == Locale["ma_Learn"] then
+            ma_learnlangbutton:SetText(Locale["ma_Unlearn"])
           else
-            -- Spell is already in desired state
-            if isKnown then
-              AzerothAdmin:Print("Already know "..languageNames[value].." ("..value..").")
-            else
-              AzerothAdmin:Print("Don't know "..languageNames[value].." ("..value..") yet.")
-            end
-          end
-          -- Update button text after attempting to learn/unlearn
-          if UpdateLearnLangButton then
-            UpdateLearnLangButton()
+            ma_learnlangbutton:SetText(Locale["ma_Learn"])
           end
         else
-          -- Non-language spell, handle normally
-          AzerothAdmin:ChatMsg(command.." "..value)
           AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
         end
       end
@@ -360,77 +347,13 @@ function Reset(value)
 end
 
   -- LEARN LANG
--- Helper function to check if player knows a spell by scanning spellbook
-function IsPlayerSpellKnown(spellId)
-  if not spellId then return false end
-
-  -- Get the spell name from the ID
-  local spellName = GetSpellInfo(spellId)
-  if not spellName then return false end
-
-  -- DEBUG: Print what we're looking for
-  DEFAULT_CHAT_FRAME:AddMessage("DEBUG IsPlayerSpellKnown: Looking for '"..spellName.."' (ID:"..spellId..")")
-
-  -- Try multiple book types (General, Professions)
-  local bookTypes = {BOOKTYPE_SPELL, BOOKTYPE_PROFESSION}
-  local totalSpells = 0
-  local foundSpells = {}
-
-  for _, bookType in ipairs(bookTypes) do
-    local i = 1
-    while true do
-      local bookSpellName, bookSpellRank = GetSpellName(i, bookType)
-      if not bookSpellName then
-        break
-      end
-
-      totalSpells = totalSpells + 1
-
-      -- DEBUG: Collect first 5 spells for each book type
-      if i <= 5 then
-        table.insert(foundSpells, bookType..":"..i.."="..bookSpellName)
-      end
-
-      -- Track language spells
-      if bookSpellName and bookSpellName:find("Language") then
-        DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found language spell '"..bookSpellName.."' at "..bookType..":"..i)
-      end
-
-      -- Match by name (languages don't have ranks)
-      if bookSpellName == spellName then
-        DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found exact match at "..bookType..":"..i)
-        return true
-      end
-
-      i = i + 1
-
-      -- Safety check to prevent infinite loops
-      if i > 1024 then
-        break
-      end
-    end
-  end
-
-  -- DEBUG: Show sample of what we found
-  DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Scanned "..totalSpells.." total spells. First few: "..table.concat(foundSpells, ", "))
-
-  return false
-end
+-- Note: In WoW 3.3.5, languages are not detectable via spell book APIs
+-- They exist as passive racial abilities not accessible through GetSpellName
+-- So we use a simple toggle approach instead
 
 function UpdateLearnLangButton()
-  local selectedValue = UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown)
-  if not selectedValue or selectedValue == "all_lang" then
-    ma_learnlangbutton:SetText(Locale["ma_Learn"])
-    return
-  end
-
-  -- Check if the player knows this spell
-  local spellId = tonumber(selectedValue)
-  if spellId and IsPlayerSpellKnown(spellId) then
-    ma_learnlangbutton:SetText(Locale["ma_Unlearn"] or "Unlearn")
-  else
-    ma_learnlangbutton:SetText(Locale["ma_Learn"])
-  end
+  -- Just set to Learn by default when changing selection
+  ma_learnlangbutton:SetText(Locale["ma_Learn"])
 end
 
 function LearnLangDropDownInitialize()

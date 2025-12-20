@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 15
+## Version: 16
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3

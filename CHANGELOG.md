@@ -1,5 +1,27 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 16 - 12/19/2025]=-
+
+- IMPROVE Language learning system for Character tab
+  - Fixed "All Languages" button to properly learn each language individually
+    - Server doesn't support `.learn all_lang` parameter
+    - Now sends 14 individual `.learn` commands for each language
+  - Updated complete language list based on Languages.dbc for WoW 3.3.5a
+    - Added all 14 standard languages in DBC order
+    - Languages: Orcish, Darnassian, Taurahe, Dwarvish, Common, Demonic, Titan, Thalassian, Draconic, Kalimag, Gnomish, Troll, Gutterspeak, Draenei
+  - Implemented toggle-based Learn/Unlearn button
+    - Button starts as "Learn" when selecting a language
+    - Automatically toggles to "Unlearn" after learning
+    - Toggles back to "Learn" after unlearning
+    - Resets to "Learn" when changing dropdown selection
+    - Works with WoW 3.3.5's passive language skill system
+  - Enhanced chat notifications for language commands
+    - Shows language name with spell ID: "Attempting to learn Draconic (814)"
+    - Displays in both addon log and main chat window
+    - No more misleading "Learned" messages when spell is already known
+  - Fixed ChatMsg default parameter bug that could cause chat messages to use wrong channel
+  - Note: Language skills in 3.3.5 are stored in Skills tab (not spell book), so detection uses simple toggle approach
+
 ## -=[ Version 15 - 12/16/2025]=-
 
 - IMPROVE NPC section UI and functionality

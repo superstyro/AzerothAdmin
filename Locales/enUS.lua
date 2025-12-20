@@ -406,21 +406,24 @@ function Return_enUS()
     ["ma_StandState"]                 = "StandState",
     ["ma_SwimSpeed"]                  = "SwimSpeed",
     ["ma_TalentPoints"]               = "TalentPoints",
-    -- languages
-    ["Common"]                        = "Common",
+    -- languages (ordered by Languages.dbc ID for WoW 3.3.5a)
     ["Orcish"]                        = "Orcish",
-    ["Taurahe"]                       = "Taurahe",
     ["Darnassian"]                    = "Darnassian",
+    ["Taurahe"]                       = "Taurahe",
     ["Dwarvish"]                      = "Dwarvish",
-    ["Thalassian"]                    = "Thalassian",
+    ["Common"]                        = "Common",
     ["Demonic"]                       = "Demonic",
-    ["Draconic"]                      = "Draconic",
     ["Titan"]                         = "Titan",
+    ["Thalassian"]                    = "Thalassian",
+    ["Draconic"]                      = "Draconic",
     ["Kalimag"]                       = "Kalimag",
     ["Gnomish"]                       = "Gnomish",
     ["Troll"]                         = "Troll",
     ["Gutterspeak"]                   = "Gutterspeak",
     ["Draenei"]                       = "Draenei",
+    ["Zombie"]                        = "Zombie",
+    ["GnomishBinary"]                 = "Gnomish Binary",
+    ["GoblinBinary"]                  = "Goblin Binary",
 
 
 

@@ -167,21 +167,25 @@ function LearnSpell(value, state)
     local logcmd = "Learned"
 
     -- Language spell ID to name lookup table
+    -- Based on Languages.dbc for WoW 3.3.5a
     local languageNames = {
-      ["668"] = Locale["Common"],
-      ["669"] = Locale["Orcish"],
-      ["670"] = Locale["Taurahe"],
-      ["671"] = Locale["Darnassian"],
-      ["672"] = Locale["Dwarvish"],
-      ["813"] = Locale["Thalassian"],
-      ["815"] = Locale["Demonic"],
-      ["814"] = Locale["Draconic"],
-      ["816"] = Locale["Titan"],
-      ["817"] = Locale["Kalimag"],
-      ["7340"] = Locale["Gnomish"],
-      ["7341"] = Locale["Troll"],
-      ["17737"] = Locale["Gutterspeak"],
-      ["29932"] = Locale["Draenei"]
+      ["669"] = Locale["Orcish"],           -- ID 1
+      ["671"] = Locale["Darnassian"],       -- ID 2
+      ["670"] = Locale["Taurahe"],          -- ID 3
+      ["672"] = Locale["Dwarvish"],         -- ID 6
+      ["668"] = Locale["Common"],           -- ID 7
+      ["815"] = Locale["Demonic"],          -- ID 8
+      ["816"] = Locale["Titan"],            -- ID 9
+      ["813"] = Locale["Thalassian"],       -- ID 10
+      ["814"] = Locale["Draconic"],         -- ID 11
+      ["817"] = Locale["Kalimag"],          -- ID 12
+      ["7340"] = Locale["Gnomish"],         -- ID 13
+      ["7341"] = Locale["Troll"],           -- ID 14
+      ["17737"] = Locale["Gutterspeak"],    -- ID 33
+      ["29932"] = Locale["Draenei"],        -- ID 35
+      ["17253"] = Locale["Zombie"],         -- ID 36
+      ["7342"] = Locale["GnomishBinary"],   -- ID 37
+      ["13228"] = Locale["GoblinBinary"]    -- ID 38
     }
 
     -- For language spells, toggle based on current button text
@@ -209,7 +213,26 @@ function LearnSpell(value, state)
         AzerothAdmin:LogAction(logcmd.." all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
         -- Learn all languages individually since server doesn't support all_lang parameter
-        local languages = {"668", "669", "670", "671", "672", "813", "815", "814", "816", "817", "7340", "7341", "17737", "29932"}
+        -- Based on Languages.dbc for WoW 3.3.5a
+        local languages = {
+          "669",   -- Orcish (ID 1)
+          "671",   -- Darnassian (ID 2)
+          "670",   -- Taurahe (ID 3)
+          "672",   -- Dwarvish (ID 6)
+          "668",   -- Common (ID 7)
+          "815",   -- Demonic (ID 8)
+          "816",   -- Titan (ID 9)
+          "813",   -- Thalassian (ID 10)
+          "814",   -- Draconic (ID 11)
+          "817",   -- Kalimag (ID 12)
+          "7340",  -- Gnomish (ID 13)
+          "7341",  -- Troll (ID 14)
+          "17737", -- Gutterspeak (ID 33)
+          "29932", -- Draenei (ID 35)
+          "17253", -- Zombie (ID 36)
+          "7342",  -- Gnomish Binary (ID 37)
+          "13228"  -- Goblin Binary (ID 38)
+        }
         for _, lang in ipairs(languages) do
           AzerothAdmin:ChatMsg(command.." "..lang)
         end
@@ -359,22 +382,26 @@ end
 function LearnLangDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
+    -- Language list ordered by Languages.dbc ID for WoW 3.3.5a
     local buttons = {
-      {Locale["ma_AllLang"],"all_lang"},
-      {Locale["Common"],"668"},
-      {Locale["Orcish"],"669"},
-      {Locale["Taurahe"],"670"},
-      {Locale["Darnassian"],"671"},
-      {Locale["Dwarvish"],"672"},
-      {Locale["Thalassian"],"813"},
-      {Locale["Demonic"],"815"},
-      {Locale["Draconic"],"814"},
-      {Locale["Titan"],"816"},
-      {Locale["Kalimag"],"817"},
-      {Locale["Gnomish"],"7340"},
-      {Locale["Troll"],"7341"},
-      {Locale["Gutterspeak"],"17737"},
-      {Locale["Draenei"],"29932"}
+      {Locale["ma_AllLang"],"all_lang"},        -- Special: Learn all
+      {Locale["Orcish"],"669"},                 -- ID 1
+      {Locale["Darnassian"],"671"},             -- ID 2
+      {Locale["Taurahe"],"670"},                -- ID 3
+      {Locale["Dwarvish"],"672"},               -- ID 6
+      {Locale["Common"],"668"},                 -- ID 7
+      {Locale["Demonic"],"815"},                -- ID 8
+      {Locale["Titan"],"816"},                  -- ID 9
+      {Locale["Thalassian"],"813"},             -- ID 10
+      {Locale["Draconic"],"814"},               -- ID 11
+      {Locale["Kalimag"],"817"},                -- ID 12
+      {Locale["Gnomish"],"7340"},               -- ID 13
+      {Locale["Troll"],"7341"},                 -- ID 14
+      {Locale["Gutterspeak"],"17737"},          -- ID 33
+      {Locale["Draenei"],"29932"},              -- ID 35
+      {Locale["Zombie"],"17253"},               -- ID 36
+      {Locale["GnomishBinary"],"7342"},         -- ID 37
+      {Locale["GoblinBinary"],"13228"}          -- ID 38
     }
     for k,v in pairs(buttons) do
       info.text = v[1]

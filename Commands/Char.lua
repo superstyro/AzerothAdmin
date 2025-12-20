@@ -191,7 +191,7 @@ function LearnSpell(value, state)
       logcmd = "Unlearned"
     elseif type(value) == "string" and languageNames[value] then
       local spellId = tonumber(value)
-      if spellId and IsSpellKnown(spellId) then
+      if spellId and IsPlayerSpellKnown(spellId) then
         command = ".unlearn"
         logcmd = "Unlearned"
       end
@@ -218,29 +218,52 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." all_myclass")
         AzerothAdmin:LogAction(logcmd.." all spells available to the "..class.."-class to "..player..".")
       else
-        AzerothAdmin:ChatMsg(command.." "..value)
-        -- Check if this is a language spell and add the name to the log
+        -- Check if this is a language spell
         if languageNames[value] then
-          local msg = logcmd.." "..languageNames[value].." ("..value..") to "..player.."."
-          AzerothAdmin:LogAction(msg)
-          AzerothAdmin:Print(msg)
-          -- Update button text after learning/unlearning a language
+          local spellId = tonumber(value)
+          local isKnown = IsPlayerSpellKnown(spellId)
+
+          -- Only proceed if the action makes sense
+          if (command == ".learn" and not isKnown) or (command == ".unlearn" and isKnown) then
+            AzerothAdmin:ChatMsg(command.." "..value)
+            local msg = logcmd.." "..languageNames[value].." ("..value..") to "..player.."."
+            AzerothAdmin:LogAction(msg)
+            AzerothAdmin:Print(msg)
+          else
+            -- Spell is already in desired state
+            if isKnown then
+              AzerothAdmin:Print("Already know "..languageNames[value].." ("..value..").")
+            else
+              AzerothAdmin:Print("Don't know "..languageNames[value].." ("..value..") yet.")
+            end
+          end
+          -- Update button text after attempting to learn/unlearn
           if UpdateLearnLangButton then
             UpdateLearnLangButton()
           end
         else
+          -- Non-language spell, handle normally
+          AzerothAdmin:ChatMsg(command.." "..value)
           AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
         end
       end
     elseif type(value) == "table" then
       for k,v in pairs(value) do
-        AzerothAdmin:ChatMsg(command.." "..v)
-        -- Check if this is a language spell and add the name to the log
+        -- Check if this is a language spell
         if languageNames[v] then
-          local msg = logcmd.." "..languageNames[v].." ("..v..") to "..player.."."
-          AzerothAdmin:LogAction(msg)
-          AzerothAdmin:Print(msg)
+          local spellId = tonumber(v)
+          local isKnown = IsPlayerSpellKnown(spellId)
+
+          -- Only proceed if the action makes sense
+          if (command == ".learn" and not isKnown) or (command == ".unlearn" and isKnown) then
+            AzerothAdmin:ChatMsg(command.." "..v)
+            local msg = logcmd.." "..languageNames[v].." ("..v..") to "..player.."."
+            AzerothAdmin:LogAction(msg)
+            AzerothAdmin:Print(msg)
+          end
         else
+          -- Non-language spell, handle normally
+          AzerothAdmin:ChatMsg(command.." "..v)
           AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
         end
       end
@@ -333,6 +356,35 @@ function Reset(value)
 end
 
   -- LEARN LANG
+-- Helper function to check if player knows a spell by scanning spellbook
+function IsPlayerSpellKnown(spellId)
+  if not spellId then return false end
+
+  -- Try IsSpellKnown first (works in retail/some versions)
+  if IsSpellKnown and IsSpellKnown(spellId) then
+    return true
+  end
+
+  -- Fallback: scan the spellbook for the spell
+  local i = 1
+  while true do
+    local spellName, spellRank = GetSpellName(i, BOOKTYPE_SPELL)
+    if not spellName then
+      break
+    end
+    local link = GetSpellLink(i, BOOKTYPE_SPELL)
+    if link then
+      local linkSpellId = tonumber(link:match("spell:(%d+)"))
+      if linkSpellId == spellId then
+        return true
+      end
+    end
+    i = i + 1
+  end
+
+  return false
+end
+
 function UpdateLearnLangButton()
   local selectedValue = UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown)
   if not selectedValue or selectedValue == "all_lang" then
@@ -342,7 +394,7 @@ function UpdateLearnLangButton()
 
   -- Check if the player knows this spell
   local spellId = tonumber(selectedValue)
-  if spellId and IsSpellKnown(spellId) then
+  if spellId and IsPlayerSpellKnown(spellId) then
     ma_learnlangbutton:SetText(Locale["ma_Unlearn"] or "Unlearn")
   else
     ma_learnlangbutton:SetText(Locale["ma_Learn"])

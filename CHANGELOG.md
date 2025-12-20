@@ -1,5 +1,17 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 16 - 12/20/2025]=-
+
+- IMPROVE Mail system with expanded slots and bug fixes
+  - Expanded mail item slots from 7 to 12 in a 2x6 grid layout
+  - Reduced slot size from 37x37 to 30x30 pixels for better fit
+  - Centered item grid horizontally in bottom frame
+  - Fixed bug where adding a single item incorrectly showed "Maximum 12 items" error
+  - Corrected item count logic (WoW API doesn't provide stack count from cursor, defaults to 1)
+  - Added 3-tab interface: "Send Mail", "Send Items", "Send Money"
+  - Added ESC key support to remove focus from message editbox
+  - Fixed UI element visibility to prevent mail-specific tabs showing in other popup types (Item/Spell/etc. searches)
+  - Ensured "Favorites" tab text displays correctly for non-mail search popups
 ## -=[ Version 16 - 12/19/2025]=-
 
 - IMPROVE Language learning system for Character tab

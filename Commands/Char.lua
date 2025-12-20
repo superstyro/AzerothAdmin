@@ -371,39 +371,48 @@ function IsPlayerSpellKnown(spellId)
   -- DEBUG: Print what we're looking for
   DEFAULT_CHAT_FRAME:AddMessage("DEBUG IsPlayerSpellKnown: Looking for '"..spellName.."' (ID:"..spellId..")")
 
-  -- Check if the spell is in the spellbook by name
-  -- In 3.3.5, we scan the spellbook and compare names
-  local i = 1
-  local foundLanguages = {}
-  while true do
-    local bookSpellName, bookSpellRank = GetSpellName(i, BOOKTYPE_SPELL)
-    if not bookSpellName then
-      break
-    end
+  -- Try multiple book types (General, Professions)
+  local bookTypes = {BOOKTYPE_SPELL, BOOKTYPE_PROFESSION}
+  local totalSpells = 0
+  local foundSpells = {}
 
-    -- Track language spells for debugging
-    if bookSpellName and bookSpellName:find("Language") then
-      table.insert(foundLanguages, bookSpellName)
-    end
+  for _, bookType in ipairs(bookTypes) do
+    local i = 1
+    while true do
+      local bookSpellName, bookSpellRank = GetSpellName(i, bookType)
+      if not bookSpellName then
+        break
+      end
 
-    -- Match by name (languages don't have ranks)
-    if bookSpellName == spellName then
-      DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found exact match at position "..i)
-      return true
-    end
+      totalSpells = totalSpells + 1
 
-    i = i + 1
+      -- DEBUG: Collect first 5 spells for each book type
+      if i <= 5 then
+        table.insert(foundSpells, bookType..":"..i.."="..bookSpellName)
+      end
 
-    -- Safety check to prevent infinite loops
-    if i > 1024 then
-      break
+      -- Track language spells
+      if bookSpellName and bookSpellName:find("Language") then
+        DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found language spell '"..bookSpellName.."' at "..bookType..":"..i)
+      end
+
+      -- Match by name (languages don't have ranks)
+      if bookSpellName == spellName then
+        DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Found exact match at "..bookType..":"..i)
+        return true
+      end
+
+      i = i + 1
+
+      -- Safety check to prevent infinite loops
+      if i > 1024 then
+        break
+      end
     end
   end
 
-  -- DEBUG: Show what language spells we found
-  if #foundLanguages > 0 then
-    DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Languages in spellbook: "..table.concat(foundLanguages, ", "))
-  end
+  -- DEBUG: Show sample of what we found
+  DEFAULT_CHAT_FRAME:AddMessage("DEBUG: Scanned "..totalSpells.." total spells. First few: "..table.concat(foundSpells, ", "))
 
   return false
 end

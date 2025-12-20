@@ -169,6 +169,25 @@ function LearnSpell(value, state)
       command = ".unlearn"
       logcmd = "Unlearned"
     end
+
+    -- Language spell ID to name lookup table
+    local languageNames = {
+      ["668"] = Locale["Common"],
+      ["669"] = Locale["Orcish"],
+      ["670"] = Locale["Taurahe"],
+      ["671"] = Locale["Darnassian"],
+      ["672"] = Locale["Dwarvish"],
+      ["813"] = Locale["Thalassian"],
+      ["815"] = Locale["Demonic"],
+      ["814"] = Locale["Draconic"],
+      ["816"] = Locale["Titan"],
+      ["817"] = Locale["Kalimag"],
+      ["7340"] = Locale["Gnomish"],
+      ["7341"] = Locale["Troll"],
+      ["17737"] = Locale["Gutterspeak"],
+      ["29932"] = Locale["Draenei"]
+    }
+
     if type(value) == "string" then
       if value == "all" then
         AzerothAdmin:ChatMsg(command.." all")
@@ -191,12 +210,22 @@ function LearnSpell(value, state)
         AzerothAdmin:LogAction(logcmd.." all spells available to the "..class.."-class to "..player..".")
       else
         AzerothAdmin:ChatMsg(command.." "..value)
-        AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
+        -- Check if this is a language spell and add the name to the log
+        if languageNames[value] then
+          AzerothAdmin:LogAction(logcmd.." "..languageNames[value].." ("..value..") to "..player..".")
+        else
+          AzerothAdmin:LogAction(logcmd.." spell "..value.." to "..player..".")
+        end
       end
     elseif type(value) == "table" then
       for k,v in pairs(value) do
         AzerothAdmin:ChatMsg(command.." "..v)
-        AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
+        -- Check if this is a language spell and add the name to the log
+        if languageNames[v] then
+          AzerothAdmin:LogAction(logcmd.." "..languageNames[v].." ("..v..") to "..player..".")
+        else
+          AzerothAdmin:LogAction(logcmd.." spell "..v.." to "..player..".")
+        end
       end
     end
   else

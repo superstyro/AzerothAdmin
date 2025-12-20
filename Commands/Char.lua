@@ -180,7 +180,11 @@ function LearnSpell(value, state)
         AzerothAdmin:ChatMsg(command.." all_gm")
         AzerothAdmin:LogAction(logcmd.." all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
-        AzerothAdmin:ChatMsg(command.." all_lang")
+        -- Learn all languages individually since server doesn't support all_lang parameter
+        local languages = {"668", "669", "670", "671", "672", "813", "815", "814", "816", "817", "7340", "7341", "17737", "29932"}
+        for _, lang in ipairs(languages) do
+          AzerothAdmin:ChatMsg(command.." "..lang)
+        end
         AzerothAdmin:LogAction(logcmd.." all languages to "..player..".")
       elseif value == "all_myclass" then
         AzerothAdmin:ChatMsg(command.." all_myclass")

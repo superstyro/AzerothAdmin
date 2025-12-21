@@ -311,7 +311,7 @@ end
 function Reset(value)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".reset "..value)
+    AzerothAdmin:ChatMsg(".reset "..value.." "..player)
     AzerothAdmin:LogAction("Reset "..value.."' for player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
@@ -396,9 +396,6 @@ function ResetDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
-      {Locale["ma_resetallspells"],"all spells"},
-      {Locale["ma_resetalltalents"],"all talents"},
-      {Locale["ma_achievements"],"achievements"},
       {Locale["ma_Honor"],"honor"},
       {Locale["ma_Level"],"level"},
       {Locale["ma_Spells"],"spells"},

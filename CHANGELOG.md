@@ -1,5 +1,33 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 17 - 12/22/2025]=-
+
+- FIX [[#51](https://github.com/superstyro/AzerothAdmin/issues/51)] Reset command not working on Char tab
+  - Added player name parameter to reset command for proper targeting
+  - Removed unused reset options (all spells, all talents, achievements) from dropdown menu
+  - Reset functionality now works correctly with proper command syntax
+
+- ADD [[#45](https://github.com/superstyro/AzerothAdmin/issues/45)] Expanded learn command options
+  - Added new learn commands: All Crafts, All Default, All My Class, All My Pet Talents, All My Spells, All My Talents
+  - Added individual profession recipe options (Alchemy, Blacksmithing, Cooking, Enchanting, Engineering, First Aid, Inscription, Jewelcrafting, Leatherworking, Tailoring)
+  - Removed right-click unlearn functionality from Learn button
+  - Changed default selection from "All GM Spells" to "All Crafts"
+  - All dropdown entries are now in alphabetical order
+
+- ADD [[#46](https://github.com/superstyro/AzerothAdmin/issues/46)] All GM Spells learning option
+  - Added "All GM Spells" option to learn dropdown
+  - Updated command from `.learn all_gm` to `.learn all gm` (correct syntax)
+  - Renamed LearnLangDropDownInitialize to LearnDropDownInitialize
+  - Removed individual language options, keeping only "All Languages"
+  - Updated tooltip from "Learn selected langauge(s)" to "Learn selected spells" (fixed typo)
+
+- FIX Dropdown menu selection and checkmark behavior
+  - Fixed dropdown menus resetting to default values when clicked
+  - Fixed checkmarks not updating to reflect current selection
+  - Moved default value initialization out of initialize functions to prevent reset on dropdown open
+  - Applied fix to all dropdowns: Learn, Modify, Reset, ReloadTable, Weather, NpcEmote, Language, and FrameStrata
+  - Dropdown selections now persist across interactions
+
 ## -=[ Version 16 - 12/20/2025]=-
 
 - IMPROVE Mail system with expanded slots and bug fixes

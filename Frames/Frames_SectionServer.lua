@@ -58,8 +58,8 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_ServerLatencyLabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 10,
-      offY = -170
+      offX = 8,
+      offY = -169
     }
   })
 
@@ -85,7 +85,7 @@ function AzerothAdmin:CreateServerSection()
       if not dropdownOpen then
           local down, up, lag = GetNetStats();
           g:AddBar(lag)
-          ma_lagmetertext:SetText("^Server Latency: "..lag.." ms")
+          ma_lagmetertext:SetText(Locale["ma_ServerLatencyLabel"]..lag.."ms")
       end
       f.NextUpdate=f.NextUpdate + 1
     end)
@@ -267,7 +267,7 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_UpdateDiffLabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 170,
+      offX = 167,
       offY = -170
     }
   })
@@ -279,8 +279,8 @@ function AzerothAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 236, --Original 250
-      offY = -170 --Original -170
+      offX = 238,
+      offY = -170
     }
   })
 
@@ -291,8 +291,8 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_MeanLabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 270,
-      offY = -170
+      offX = 328,
+      offY = -110
     }
   })
 
@@ -303,8 +303,8 @@ function AzerothAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 305,
-      offY = -170
+      offX = 365,
+      offY = -110
     }
   })
 
@@ -315,8 +315,8 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_MedianLabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 260,
-      offY = -185
+      offX = 328,
+      offY = -130
     }
   })
 
@@ -327,8 +327,8 @@ function AzerothAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 305,
-      offY = -185
+      offX = 375,
+      offY = -130
     }
   })
 
@@ -339,8 +339,8 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_PercentilesLabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 240,
-      offY = -200
+      offX = 328,
+      offY = -150
     }
   })
 
@@ -351,8 +351,8 @@ function AzerothAdmin:CreateServerSection()
     text = "",
     setpoint = {
       pos = "TOPLEFT",
-      offX = 305,
-      offY = -200
+      offX = 395,
+      offY = -150
     }
   })
 
@@ -378,8 +378,8 @@ function AzerothAdmin:CreateServerSection()
           local dropdownOpen = UIDROPDOWNMENU_OPEN_MENU or (DropDownList1 and DropDownList1:IsShown())
           if not dropdownOpen then
               AzerothAdmin:ChatMsg(".server info")
-              --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
-              local s = tonumber(ma_difftext:GetText())
+              local diffValue = ma_difftext:GetText():gsub("ms", "")
+              local s = tonumber(diffValue)
               if s then
                   local r = 100 -- Trinity says anything over 150 is bad
                   if s > r then

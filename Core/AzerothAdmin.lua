@@ -1954,6 +1954,7 @@ function AzerothAdmin:InitDropDowns()
       {"All_quest","all quest"},
       {"All scripts","all scripts"},
       {"All spell","all spell"},
+      {"acore_string","acore_string"},
       {"areatrigger_tavern","areatrigger_tavern"},
       {"areatrigger_teleport","areatrigger_teleport"},
       {"autobroadcast","autobroadcast"},
@@ -1965,17 +1966,15 @@ function AzerothAdmin:InitDropDowns()
       {"creature_template","creature_template"},
       {"creature_text","creature_text"},
       {"disables","disables"},
-      {"game_graveyard_zone","game_graveyard_zone"},
+      {"game_graveyard","game_graveyard"},
       {"game_tele","game_tele"},
-      {"gm_tickets","gm_tickets"},
+      {"graveyard_zone","graveyard_zone"},
       {"item_set_names","item_set_names"},
-      {"lfg_dungeon_encounters","lfg_dungeon_encounters"},
       {"lfg_dungeon_rewards","lfg_dungeon_rewards"},
       {"reserved_name","reserved_name"},
       {"skill_discovery_template","skill_discovery_template"},
       {"skill_extra_item_template","skill_extra_item_template"},
       {"skill_fishing_base_level","skill_fishing_base_level"},
-      {"trinity_string","trinity_string"},
     }
     for k,v in pairs(buttons) do
       info.text = v[1]

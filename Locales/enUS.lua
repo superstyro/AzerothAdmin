@@ -654,6 +654,7 @@ function Return_enUS()
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",
     ["cmd_tooltip"]                   = "Toggle wether the button tooltips are shown or not",
   --[[Other]]
+    ["ma_ApplyWeatherButton"]         = "Apply Weather",
     ["ma_WeatherFine"]                = "Fine",
     ["ma_WeatherFog"]                 = "Fog",
     ["ma_WeatherRain"]                = "Rain",

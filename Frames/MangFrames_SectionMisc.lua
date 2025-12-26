@@ -391,6 +391,6 @@ function AzerothAdmin:CreateMiscSection()
       offX = -10,
       offY = -10
     },
-    text = "Apply Weather"
+    text = Locale["ma_ApplyWeatherButton"]
   })
 end

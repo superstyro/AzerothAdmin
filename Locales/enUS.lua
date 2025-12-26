@@ -759,9 +759,11 @@ function Return_enUS()
   --[[Tooltips]]
     ["tt_AnnounceButton"]             = "Announce a system message.",
     ["tt_ShutdownButton"]             = "Shut down the server in the amount of seconds from the field, if omitted shut down immediately!",
+    ["tt_CancelShutdownButton"]       = "Cancel the server shutdown countdown.",
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
     ["ma_ShutdownButton"]             = "Server Shutdown",
+    ["ma_CancelShutdownButton"]       = "Cancel Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server Latency:|r",

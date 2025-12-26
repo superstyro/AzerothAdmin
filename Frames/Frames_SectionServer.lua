@@ -241,6 +241,27 @@ function AzerothAdmin:CreateServerSection()
     text = Locale["ma_ShutdownButton"]
   })
 
+  FrameLib:BuildButton({
+    name = "ma_cancelshutdownbutton",
+    group = "server_special",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cancelshutdownbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 100,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -10,
+      offY = -65
+    },
+    text = Locale["ma_CancelShutdownButton"]
+  })
+  ma_cancelshutdownbutton:Hide()
+
   FrameLib:BuildFrame({
     name = "ma_netgraphframe2",
     group = "server",

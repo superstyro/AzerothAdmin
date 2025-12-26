@@ -40,6 +40,7 @@ Data\DBC.lua
 Data\TeleportTable.lua
 Core\Init.lua
 Core\AzerothAdmin.lua
+Commands\Confirmation.lua
 Core\DropDownStyle.lua
 Modules\Linkifier.lua
 Frames\Frames_Start.lua

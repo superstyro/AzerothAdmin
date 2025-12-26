@@ -304,6 +304,7 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_announcebutton                  , Locale["tt_AnnounceButton"]             , function() Announce(ma_announceeditbox:GetText()) end)
   AzerothAdmin:PrepareScript(ma_resetannouncebutton             , nil                                     , function() ma_announceeditbox:SetText("") end)
   AzerothAdmin:PrepareScript(ma_shutdownbutton                  , Locale["tt_ShutdownButton"]             , function() Shutdown(ma_shutdowneditbox:GetText()) end)
+  AzerothAdmin:PrepareScript(ma_cancelshutdownbutton            , Locale["tt_CancelShutdownButton"]       , function() CancelShutdown() end)
   AzerothAdmin:PrepareScript(ma_loadtablebutton                 , nil                                     , function() ReloadTable(UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown)) end)
   AzerothAdmin:PrepareScript(ma_loadscriptsbutton               , nil                                     , function() ReloadScripts() end)
 

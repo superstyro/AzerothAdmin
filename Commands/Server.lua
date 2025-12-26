@@ -23,12 +23,31 @@ end
 
 function Shutdown(value)
   if value == "" then
-    AzerothAdmin:ChatMsg(".server shutdown 0")
-    AzerothAdmin:LogAction("Shut down server instantly.")
-  else
-    AzerothAdmin:ChatMsg(".server shutdown "..value)
-    AzerothAdmin:LogAction("Shut down server in "..value.." seconds.")
+    AzerothAdmin:Print("Please enter the time in seconds before using server shutdown.")
+    return
   end
+
+  local confirmMsg = "Are you sure you want to shut down the server in "..value.." seconds?"
+
+  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
+    Shutdown_Confirmed(value)
+  end)
+end
+
+function Shutdown_Confirmed(value)
+  AzerothAdmin:ChatMsg(".server shutdown "..value)
+  AzerothAdmin:LogAction("Shut down server in "..value.." seconds.")
+  -- Show the cancel button and hide the shutdown button
+  ma_shutdownbutton:Hide()
+  ma_cancelshutdownbutton:Show()
+end
+
+function CancelShutdown()
+  AzerothAdmin:ChatMsg(".server shutdown cancel")
+  AzerothAdmin:LogAction("Cancelled server shutdown.")
+  -- Hide the cancel button and show the shutdown button
+  ma_cancelshutdownbutton:Hide()
+  ma_shutdownbutton:Show()
 end
 
 function ReloadTable(tablename)

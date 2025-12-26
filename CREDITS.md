@@ -7,8 +7,7 @@ TrinityAdmin v2 was maintained and developed by **iotech**
 TrinityAdmin v2.5 is maintained and developed by **SuperStyro**
 AzerothAdmin v1 is maintained and developed by **SuperStryro**
 
-
-### AzerothAdmin contains code from TrinityAdmin
+## AzerothAdmin contains code from TrinityAdmin
 
 TrinityAdmin also contains code donated by:
  -**Pryd** (teleport work)

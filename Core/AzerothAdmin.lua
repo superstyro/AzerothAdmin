@@ -853,19 +853,19 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
 
     -- hook Last 500 diff info from .server info
     for mean in string.gmatch(text, Strings["ma_GmatchMean"]) do
-      ma_meantextoutput:SetText(mean .. " ms")
+      ma_meantextoutput:SetText(mean .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
     for median in string.gmatch(text, Strings["ma_GmatchMedian"]) do
-      ma_mediantextoutput:SetText(median .. " ms")
+      ma_mediantextoutput:SetText(median .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
     for p95, p99, pmax in string.gmatch(text, Strings["ma_GmatchPercentiles"]) do
       --print("Matched percentiles:", p95, p99, pmax) -- Debug print
       --ma_percentilestextoutput:SetText("95th: " .. p95 .. "ms, 99th: " .. p99 .. "ms, Max: " .. pmax .. "ms")
-      ma_percentilestextoutput:SetText("".. p95 .. " ms, " .. p99 .. " ms, " .. pmax .. " ms") -- simple output
+      ma_percentilestextoutput:SetText("".. p95 .. "ms, " .. p99 .. "ms, " .. pmax .. "ms") -- simple output
       catchedSth = true
     end
 

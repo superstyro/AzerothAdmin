@@ -169,7 +169,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_toptext",
     group = "bg",
     parent = ma_topframe,
-    text = "toptext, you should not see this!",
+    text = Locale["ma_TopText"],
     setpoint = {
       pos = "BOTTOMRIGHT",
       offX = -10,
@@ -193,7 +193,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_top2text",
     group = "bg",
     parent = ma_topframe,
-    text = "toptext, you should not see this!",
+    text = Locale["ma_Top2Text"],
     setpoint = {
       pos = "BOTTOMRIGHT",
       offX = -10,
@@ -205,7 +205,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infoonlinetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Players Online: ...",
+    text = Locale["ma_InfoOnlineText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -217,7 +217,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infomaxonlinetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Maximum Online: ...",
+    text = Locale["ma_InfoMaxOnlineText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -229,7 +229,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infouptimetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Server Uptime: ...",
+    text = Locale["ma_InfoUptimeText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -241,7 +241,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_inforevisiontext",
     group = "bg",
     parent = ma_rightframe,
-    text = "AzerothCore Revision: ...",
+    text = Locale["ma_InfoRevisionText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,

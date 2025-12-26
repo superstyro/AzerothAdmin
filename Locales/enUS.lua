@@ -87,12 +87,12 @@ function Return_enUS()
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
-    ["tt_LanguageButton"]             = "Reload AzerothAdmin.", --Removed locals. Updated tooltip to just reload
+    ["tt_LanguageButton"]             = "Reload AzerothAdmin and apply selected language.",
     ["tt_RefreshButton"]              = "Refresh server information.",
   --[[Control Labels]]
     ["ma_LanguageButton"]             = "Reload UI",
     ["ma_RefreshButton"]              = "Refresh", 
-    ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ", --Updated: Matched string output to AzerothAdmin
+    ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ",
     ["info_platform"]                 = "|cFF00FF00Server Platform:|r ",
     ["info_online"]                   = "|cFF00FF00Players Online:|r ",
     ["info_maxonline"]                = "|cFF00FF00Maximum Online:|r ",

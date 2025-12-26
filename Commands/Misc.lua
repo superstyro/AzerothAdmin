@@ -254,6 +254,5 @@ end
 function ChangeWeather(status)
   if not (status == "") then
     AzerothAdmin:ChatMsg(".wchange "..status)
-    AzerothAdmin:LogAction("Changed weather ("..status..").")
   end
 end

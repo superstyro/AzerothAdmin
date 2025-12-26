@@ -34,7 +34,6 @@ function RefreshOnlineTickets()
     ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
-    AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket onlinelist")
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
@@ -49,7 +48,6 @@ function RefreshTickets()
     ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
-    AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket list")
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
@@ -75,7 +73,6 @@ function ResetTickets()
     ma_ticketcreatedby:SetText(nil)
     ma_tickettimecreated:SetText(nil)
     ma_ticketlastchange:SetText(nil)
-    AzerothAdmin:LogAction("Reset/Cleared tickets.")
     ma_goticketbutton:Disable()
     ma_deleteticketbutton:Disable()
     ma_answerticketbutton:Disable()
@@ -138,7 +135,6 @@ function Ticket(value)
   local ticket = AzerothAdmin.db.account.tickets.selected
   if value == "delete" then
     AzerothAdmin:ChatMsg(".ticket close "..ma_ticketid:GetText())
-    AzerothAdmin:LogAction("Closed ticket with number: "..ma_ticketid:GetText())
     wipe(AzerothAdmin.db.account.buffer.tickets)
     AzerothAdmin.db.account.buffer.tickets={}
 --    AzerothAdmin:ChatMsg(".ticket delete"..ma_ticketid:GetText())
@@ -175,12 +171,10 @@ end
 
 --[[function AzerothAdmin:ToggleTickets(value)
   AzerothAdmin:ChatMsg(".ticket "..value)
-  AzerothAdmin:LogAction("Turned receiving new tickets "..value..".")
 end]]
 
 
 function InlineScrollUpdate()
-    AzerothAdmin:LogAction("Showing tickets.")
     local ticketCount = 0
     for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
     if ticketCount > 0 then
@@ -229,7 +223,6 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     ma_ticketcreatedby:SetText(tChar)
     ma_tickettimecreated:SetText(tLCreate)
     ma_ticketlastchange:SetText(tLUpdate)
-    AzerothAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
     local ticketdetail = AzerothAdmin.db.account.buffer.ticketsfull
     ma_ticketdetail:Show();
     --AzerothAdmin:ChatMsg("???")

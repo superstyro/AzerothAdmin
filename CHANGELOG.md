@@ -1,6 +1,14 @@
 # AzerothAdmin Changelog
 
-## -=[ Version 17.5 - 12/26/2025]=-
+## -=[ Version 18 - 12/26/2025]=-
+
+- REMOVE Log Tab feature
+  - Purged entire Log Tab functionality from addon (deprecated/non-functional feature)
+  - Removed LogAction tracking and storage across all command files
+  - Cleaned up Commands files: removed LogAction() calls from Char.lua, Server.lua, Ticket.lua, NPC.lua, GO.lua, Tele.lua, Misc.lua, Main.lua, and Confirmation.lua
+  - Removed Frames/Frames_SectionLog.lua and all log-related UI code
+  - Removed log tab button and references from frame initialization
+  - Space savings: Significantly reduced addon complexity and unused data storage
 
 - REMOVE Who Tab feature
   - Removed entire Who Tab functionality including UI, buttons, and all associated functions
@@ -10,6 +18,13 @@
   - Cleaned up message parsing code for who-related server responses
   - Reduces addon size and complexity by removing unused/non-functional feature
   - Space savings: ~860+ lines of code removed
+
+- ADD Server shutdown notification and cancel feature
+  - Added shutdown status monitoring with countdown display
+  - Shows real-time shutdown timer with time remaining
+  - Added "Cancel Shutdown" button to abort scheduled shutdowns
+  - Automatic status updates every second when shutdown is active
+  - Provides clear visual feedback for shutdown state
 
 - FIX Dropdown menus closing unexpectedly during server updates
   - Fixed race condition where OnUpdate handlers would close dropdown menus during periodic server information updates
@@ -44,12 +59,27 @@
   - Covered all tabs: Misc, Tele, NPC, GameObject, Tickets, Server, Char, MiniMenu, and Popup frames
   - Preserved debug text and internal strings (not user-facing)
   - Enables easy multi-language support for future translations
+  - Migrated additional hardcoded UI text to locale entries for chat output messages
   - Modified files: MangFrames_SectionMisc.lua, MangFrames_SectionTele.lua, MangFrames_SectionNpc.lua, MangFrames_SectionGO.lua, MangFrames_SectionTicket.lua, MangFrames_SectionServer.lua, MangFrames_SectionChar.lua, MangFrames_MiniMenu.lua, MangFrames_PopupFrames.lua
 
 - ADD Localization for buttons without locale entries
   - Added locale entry for "Refresh" button with tooltip "Refresh server information"
   - Added locale entry for "Apply Weather" button
   - Ensures all user-facing buttons use consistent localization system
+
+- IMPROVE UI text formatting and positioning
+  - Updated string color schemes for better visibility
+  - Corrected difftime format display (added missing 'ms' suffix)
+  - Adjusted text positions for better alignment
+  - Improved overall visual consistency
+  - Added space to left side of GM tab to match other tabs
+
+- IMPROVE Documentation
+  - Enhanced README installation instructions
+  - Updated GNU General Public License information and links
+  - Fixed markdown formatting issues throughout documentation
+  - Corrected addon derivation timeline for historical accuracy
+  - Fixed various typos and improved layout
 
 ## -=[ Version 17 - 12/22/2025]=-
 

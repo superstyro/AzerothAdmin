@@ -772,6 +772,8 @@ function Return_enUS()
     ["ma_MedianLabel"]                = "|cFF00FF00Median:|r",
     ["ma_PercentilesLabel"]           = "|cFF00FF00Percentiles:|r",
   --[[Other]]
+    ["msg_shutdown_time_required"]    = "Please enter the time in seconds before using server shutdown.",
+    ["msg_shutdown_confirm"]          = "Are you sure you want to shut down the server in %s seconds?",
 
 
 

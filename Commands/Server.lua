@@ -22,11 +22,11 @@ end
 
 function Shutdown(value)
   if value == "" then
-    AzerothAdmin:Print("Please enter the time in seconds before using server shutdown.")
+    AzerothAdmin:Print(Locale["msg_shutdown_time_required"])
     return
   end
 
-  local confirmMsg = "Are you sure you want to shut down the server in "..value.." seconds?"
+  local confirmMsg = string.format(Locale["msg_shutdown_confirm"], value)
 
   AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
     Shutdown_Confirmed(value)

@@ -18,7 +18,6 @@
 
 function Announce(value)
   AzerothAdmin:ChatMsg(".announce "..value)
-  AzerothAdmin:LogAction("Announced message: "..value)
 end
 
 function Shutdown(value)
@@ -36,7 +35,6 @@ end
 
 function Shutdown_Confirmed(value)
   AzerothAdmin:ChatMsg(".server shutdown "..value)
-  AzerothAdmin:LogAction("Shut down server in "..value.." seconds.")
   -- Show the cancel button and hide the shutdown button
   ma_shutdownbutton:Hide()
   ma_cancelshutdownbutton:Show()
@@ -44,7 +42,6 @@ end
 
 function CancelShutdown()
   AzerothAdmin:ChatMsg(".server shutdown cancel")
-  AzerothAdmin:LogAction("Cancelled server shutdown.")
   -- Hide the cancel button and show the shutdown button
   ma_cancelshutdownbutton:Hide()
   ma_shutdownbutton:Show()
@@ -53,15 +50,9 @@ end
 function ReloadTable(tablename)
   if tablename ~= "" then
     AzerothAdmin:ChatMsg(".reload "..tablename)
-    if tablename == "all" then
-      AzerothAdmin:LogAction("Reloaded all reloadable AzerothCore database tables.")
-    else
-      AzerothAdmin:LogAction("Reloaded the table "..tablename..".")
-    end
   end
 end
 
 function ReloadScripts()
   AzerothAdmin:ChatMsg(".reload smart_scripts")
-  AzerothAdmin:LogAction("Reload Smart Scripts.")
 end

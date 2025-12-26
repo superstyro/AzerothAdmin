@@ -1,5 +1,53 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 17.5 - 12/26/2025]=-
+
+- FIX Dropdown menus closing unexpectedly during server updates
+  - Fixed race condition where OnUpdate handlers would close dropdown menus during periodic server information updates
+  - Added dual-check for dropdown state (UIDROPDOWNMENU_OPEN_MENU and DropDownList1:IsShown())
+  - Protected latency graph and server info/diff graph OnUpdate handlers from updating while dropdown is open
+  - Fixes issue where first click would close dropdown, requiring second click to actually open it
+
+- FIX Modify dropdown command syntax errors
+  - Changed "modify tp" to "modify talentpoints" to match correct server command syntax
+  - Fixed speed-related commands to use proper "modify speed" syntax:
+    - All Speeds: "modify aspeed" → "modify speed all"
+    - BackWalk: "modify bwalk" → "modify speed backwalk"
+    - Fly Speed: "modify fly" → "modify speed fly"
+    - Walk Speed: "modify speed" → "modify speed walk"
+    - Swim Speed: "modify swim" → "modify speed swim"
+
+- FIX Reload Table dropdown with invalid AzerothCore commands
+  - Changed "trinity_string" to "acore_string" (correct AzerothCore command)
+  - Split "game_graveyard_zone" into "game_graveyard" and "graveyard_zone" (separate commands)
+  - Removed "gm_tickets" (not a valid reload command)
+  - Removed "lfg_dungeon_encounters" (invalid, lfg_dungeon_rewards already exists)
+  - All commands now match valid AzerothCore cs_reload.cpp commands
+
+- CHANGE Modify and Reset dropdown default selections
+  - Modify dropdown now defaults to "All Speeds" instead of "Level Up"
+  - Reset dropdown now defaults to "Honor" instead of "Talents"
+  - More logical defaults for common use cases
+
+- ADD Comprehensive localization system for all UI text
+  - Added 80+ new locale entries to enUS.lua organized by tab/section
+  - Replaced all hardcoded display text with Locale["..."] references across 10 frame files
+  - Covered all tabs: Misc, Tele, NPC, GameObject, Tickets, Server, Char, MiniMenu, and Popup frames
+  - Preserved debug text and internal strings (not user-facing)
+  - Enables easy multi-language support for future translations
+  - Modified files: MangFrames_SectionMisc.lua, MangFrames_SectionTele.lua, MangFrames_SectionNpc.lua, MangFrames_SectionGO.lua, MangFrames_SectionTicket.lua, MangFrames_SectionServer.lua, MangFrames_SectionChar.lua, MangFrames_MiniMenu.lua, MangFrames_PopupFrames.lua
+
+- CHANGE Language dropdown moved to Misc tab
+  - Moved language dropdown from main window top bar to Misc tab
+  - Positioned to the right of "Update Changes" button and below update frequency settings
+  - Added tooltip to language dropdown: "Language Locale future update planned"
+  - Reload UI button remains in original position on main window top bar
+
+- ADD Localization for buttons without locale entries
+  - Added locale entry for "Refresh" button with tooltip "Refresh server information"
+  - Added locale entry for "Apply Weather" button
+  - Ensures all user-facing buttons use consistent localization system
+
 ## -=[ Version 17 - 12/22/2025]=-
 
 - FIX [[#51](https://github.com/superstyro/AzerothAdmin/issues/51)] Reset command not working on Char tab

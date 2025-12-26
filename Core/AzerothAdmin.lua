@@ -419,7 +419,6 @@ function AzerothAdmin:OnTooltipUpdate()
     end
     AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon2")
   end
-  Tablet:SetHint(Locale["ma_IconHint"])
 end
 
 function AzerothAdmin:ToggleTabButton(group)

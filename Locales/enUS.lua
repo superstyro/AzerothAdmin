@@ -86,7 +86,6 @@ function Return_enUS()
   return {
 --[[General]]
   --[[Tooltips]]
-    ["ma_IconHint"]                   = "|cffeda55fClick|r to open AzerothAdmin. |cffeda55fShift-Click|r to reload the user interface.",
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
     ["tt_LanguageButton"]             = "Reload AzerothAdmin.", --Removed locals. Updated tooltip to just reload
     ["tt_RefreshButton"]              = "Refresh server information.",

@@ -758,11 +758,11 @@ function Return_enUS()
     ["ma_ShutdownButton"]             = "Server Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
-    ["ma_ServerLatencyLabel"]         = "^Server Latency",
-    ["ma_UpdateDiffLabel"]            = "^Update Diff:",
-    ["ma_MeanLabel"]                  = "Mean:",
-    ["ma_MedianLabel"]                = "Median:",
-    ["ma_PercentilesLabel"]           = "Percentiles:",
+    ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server Latency:|r",
+    ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
+    ["ma_MeanLabel"]                  = "|cFF00FF00Mean:|r",
+    ["ma_MedianLabel"]                = "|cFF00FF00Median:|r",
+    ["ma_PercentilesLabel"]           = "|cFF00FF00Percentiles:|r",
   --[[Other]]
 
 

@@ -45,7 +45,6 @@ function ReturnStrings_enUS()
     ["ma_GmatchMaxConnections"] = "Connection peak: (%d+).",
     ["ma_GmatchUptime"] = "Server uptime: (.*)",
     ["ma_GmatchActiveConnections"] = "Active connections.*",
-    ["ma_GmatchWho"] = "%-%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]-",
 
     --linkifier
     ----------====~~GO Target Command Match Text ~~====----------

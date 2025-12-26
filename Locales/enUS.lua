@@ -244,7 +244,6 @@ function Return_enUS()
     ["ma_MiniMenuMisc"]               = "Mi",
     ["ma_MiniMenuServer"]             = "Se",
     ["ma_MiniMenuLog"]                = "Lo",
-    ["ma_MiniMenuWho"]                = "Wh",
     ["ma_MiniMenuRevive"]             = "REVIVE!",
   --[[Other]]
 
@@ -773,40 +772,6 @@ function Return_enUS()
     ["tt_LogButton"]                  = "Show the log of all actions done with AzerothAdmin.",
   --[[Tooltips]]
   --[[Control Labels]]
-  --[[Other]]
-
-
-
---[[Who Tab]]
-    ["tabmenu_who"]                   = "WHO",
-    ["tt_whotabmenubutton"]           = "Toggle a window which allows control of Who commands.",
-  --[[Tooltips]]
-    ["tt_who_customize"]              = "Flag character for customization at next login.",
-    ["tt_who_chardelete"]             = "CAUTION! Deletes the selected character. CAUTION!",
-    ["tt_who_charrename"]             = "Flags selected character for rename at next login.",
-    ["tt_who_permbanbutton"]          = "Bans the selected character's account PERMANENTLY",
-    ["tt_who_1daybanbutton"]          = "Bans the selected character's account for 1 day",
-    ["tt_who_jailabutton"]            = "Jails the character in the Alliance Jail",
-    ["tt_who_jailhbutton"]            = "Jails the character in the Horde Jail",
-    ["tt_who_unjailbutton"]           = "UnJails the character",
-  --[[Control Labels]]
-    ["ma_ShowWhoButton"]              = "Refresh",
-    ["ma_resetwhobutton"]             = "Reset",
-    ["ma_acctdetail"]                 = "Acct:",
-    ["ma_chardetail"]                 = "Char:",
-    ["ma_whisperbutton"]              = "Whisper",
-    ["ma_SummonWhoButton"]            = "Summon",
-    ["ma_GoCharWhoButton"]            = "Appear",
-    ["ma_AnswerWhoButton"]            = "Mail",
-    ["ma_who_customize"]              = "Customize",
-    ["ma_who_chardelete"]             = "|c00FF0000Char Del|r",
-    ["ma_who_charrename"]             = "Rename",
-    ["ma_DeleteWhoButton"]            = "Kick",
-    ["ma_who_1daybanbutton"]          = "1dayBan",
-    ["ma_who_permbanbutton"]          = "PermBan",
-    ["ma_who_jailabutton"]            = "Jail(A)",
-    ["ma_who_jailhbutton"]            = "Jail(H)",
-    ["ma_who_unjailbutton"]           = "UnJail",
   --[[Other]]
 
 

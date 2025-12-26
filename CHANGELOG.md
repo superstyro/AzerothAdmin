@@ -2,6 +2,15 @@
 
 ## -=[ Version 17.5 - 12/26/2025]=-
 
+- REMOVE Who Tab feature
+  - Removed entire Who Tab functionality including UI, buttons, and all associated functions
+  - Deleted Commands/Who.lua (137 lines) and Frames/MangFrames_SectionWho.lua (729 lines)
+  - Removed 33 locale strings and all who-related tooltips from enUS.lua
+  - Removed who tab and mini menu buttons from UI
+  - Cleaned up message parsing code for who-related server responses
+  - Reduces addon size and complexity by removing unused/non-functional feature
+  - Space savings: ~860+ lines of code removed
+
 - FIX Dropdown menus closing unexpectedly during server updates
   - Fixed race condition where OnUpdate handlers would close dropdown menus during periodic server information updates
   - Added dual-check for dropdown state (UIDROPDOWNMENU_OPEN_MENU and DropDownList1:IsShown())

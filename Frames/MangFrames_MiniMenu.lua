@@ -344,28 +344,6 @@ function AzerothAdmin:CreateMiniMenu()
     text = Locale["ma_MiniMenuLog"]
   })
 
-  FrameLib:BuildButton({
-    name = "ma_mm_whobutton",
-    group = "minimenu",
-    parent = ma_miniframe,
-    texture = {
-      name = "ma_mm_whobutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 20,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      relTo = "ma_mm_logbutton",
-      relPos = "BOTTOMLEFT",
-      offX = 0,
-      offY = -2
-    },
-    text = Locale["ma_MiniMenuWho"]
-  })
-
   FrameLib:BuildButton({ --This button shows up in the center of the screen when you die!
     name = "ma_mm_revivebutton",
     group = "noneyet",
@@ -420,10 +398,6 @@ function AzerothAdmin:CreateMiniMenu()
 
   ma_mm_logbutton:SetScript("OnClick", function()
     AzerothAdmin:ShowSection("log")
-  end)
-
-  ma_mm_whobutton:SetScript("OnClick", function()
-    AzerothAdmin:ShowSection("who")
   end)
 
   -- Make logo button draggable (propagates to parent)

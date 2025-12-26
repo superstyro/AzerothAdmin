@@ -37,7 +37,6 @@ function AzerothAdmin:CreateFrames()
   self:CreateServerSection()
   self:CreateNpcSection()
   self:CreateGOSection()
-  self:CreateWhoSection()
 
 
   --FrameLib:HandleGroup("bg", function(frame) frame:Hide() end)
@@ -52,6 +51,5 @@ function AzerothAdmin:CreateFrames()
   FrameLib:HandleGroup("misc", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("popup", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("popup2", function(frame) frame:Hide() end)
-  FrameLib:HandleGroup("who", function(frame) frame:Hide() end)
   ma_mm_revivebutton:Hide()
 end

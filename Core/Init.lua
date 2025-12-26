@@ -308,19 +308,4 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_loadscriptsbutton               , nil                                     , function() ReloadScripts() end)
 
 --[[Log Tab]]
---[[Who Tab]]
-  AzerothAdmin:PrepareScript(ma_resetwhobutton                  , nil                                     , function() ResetWho() end)
-  AzerothAdmin:PrepareScript(ma_deletewhobutton                 , nil                                     , function() Who("delete") end)
-  AzerothAdmin:PrepareScript(ma_answerwhobutton                 , nil                                     , function() Who("answer") end)
-  AzerothAdmin:PrepareScript(ma_summonwhobutton                 , nil                                     , function() Who("getchar") end)
-  AzerothAdmin:PrepareScript(ma_gocharwhobutton                 , nil                                     , function() Who("gochar") end)
-  AzerothAdmin:PrepareScript(ma_whisperwhobutton                , nil                                     , function() Who("whisper") end)
-  AzerothAdmin:PrepareScript(ma_who_customizebutton             , Locale["tt_who_customize"]              , function() Who("customize") end)
-  AzerothAdmin:PrepareScript(ma_who_chardeletebutton            , Locale["tt_who_chardelete"]             , function() Who("chardelete") end)
-  AzerothAdmin:PrepareScript(ma_who_charrenamebutton            , Locale["tt_who_charrename"]             , function() Who("charrename") end)
-  AzerothAdmin:PrepareScript(ma_who_1daybanbutton               , Locale["tt_who_1daybanbutton"]          , function() Who("1dayban") end)
-  AzerothAdmin:PrepareScript(ma_who_permbanbutton               , Locale["tt_who_permbanbutton"]          , function() Who("permban") end)
-  AzerothAdmin:PrepareScript(ma_who_jailabutton                 , Locale["tt_who_jailabutton"]            , function() Who("jaila") end)
-  AzerothAdmin:PrepareScript(ma_who_jailhbutton                 , Locale["tt_who_jailhbutton"]            , function() Who("jailh") end)
-  AzerothAdmin:PrepareScript(ma_who_unjailbutton                , Locale["tt_who_unjailbutton"]           , function() Who("unjail") end)
 end

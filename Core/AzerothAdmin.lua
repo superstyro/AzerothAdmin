@@ -224,7 +224,6 @@ function AzerothAdmin:OnInitialize()
   self:InitButtons()  -- this prepares the actions and tooltips of nearly all AzerothAdmin buttons
   InitControls()
   self:SearchReset()
-  AzerothAdmin.db.account.buffer.who = {}
 
   -- make AzerothAdmin frames closable with escape key
   tinsert(UISpecialFrames,"ma_bgframe")
@@ -244,7 +243,6 @@ function AzerothAdmin:OnInitialize()
   ma_gobmovedistforwardback:SetText("1")
   ma_gobmovedistleftright:SetText("1")
   ma_gobmovedistupdown:SetText("1")
-  AzerothAdmin.db.account.buffer.who = {}
   --clear color buffer
   self.db.account.style.color.buffer = {}
   --altering the function setitemref, to make it possible to click links
@@ -273,10 +271,6 @@ function AzerothAdmin:OnEnable()
   self:RegisterEvent("PLAYER_ALIVE")
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
-
-  -- Hide Who buttons for FIX #11. Admin level 4 not possible ingame?
-  ma_tabbutton_who:Hide()
-  ma_mm_whobutton:Hide()
 
   -- Dissable unusable options in GM(main) tab WIP: FIX #10
   ma_hoveronbutton:Disable()
@@ -443,10 +437,6 @@ function AzerothAdmin:InstantGroupToggle(group)
   if group == "ticket" then
     self.db.char.requests.ticket = false
   end
-  if group== "who" then
-    AzerothAdmin:ChatMsg(".account onlinelist")
-    ResetWho()
-  end
   FrameLib:HandleGroup("bg", function(frame) frame:Show() end)
   AzerothAdmin:ToggleTabButton(group)
   AzerothAdmin:ToggleContentGroup(group)
@@ -580,7 +570,6 @@ function AzerothAdmin:HideAllGroups()
   FrameLib:HandleGroup("server", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("misc", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("log", function(frame) frame:Hide() end)
-  FrameLib:HandleGroup("who", function(frame) frame:Hide() end)
 end
 
 --[[function WaitLoop(seconds)
@@ -968,46 +957,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         output = AzerothAdmin.db.account.style.showchat
     end
 
-    for acc, char, ip, map, zone, exp, gmlevel in string.gmatch(text, Strings["ma_GmatchWho"]) do
-    	acc= string.gsub(acc, " ", "")
-    	char= string.gsub(char, " ", "")
-    	ip= string.gsub(ip, " ", "")
-        map=string.gsub(map, " ", "")
-        zone=string.gsub(zone, " ", "")
-    	exp= string.gsub(exp, " ", "")
-    	gmlevel= string.gsub(gmlevel, " ", "")
-        gmlevel=strtrim(gmlevel, "]-")
-        --self:ChatMsg("Matched Who")
-        if acc == "Account" then
-        else
-            table.insert(AzerothAdmin.db.account.buffer.who, {tAcc = acc, tChar = char, tIP = ip, tMap = map, tZone = zone, tExp = exp, tGMLevel = gmlevel})
-        end
-            catchedSth = true
-            output = AzerothAdmin.db.account.style.showchat
-            WhoUpdate()
-    end
---    ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
---    ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",
-    for charname, charguid, account, accountid, email, gmlvl, lastip, lastlogin, latency in string.gmatch(text, Strings["ma_GmatchAccountInfo"]) do
-       ma_whodetail:SetText("|c00ff00ffCharacter:|r"..charname.." |cffffffff("..charguid..")|r\n".."|c00ff0000Acct:|r|cffffffff"..account.." ("..accountid..")|r\n".."|c00ff0000IP:|r|cffffffff"..lastip.."|r\n".."|c00ff0000Login:|r|cffffffff"..lastlogin.."|r\n".."|c00ff0000Latency:|r|cffffffff"..latency.."ms|r\n")
-       catchedSth = true
-       output = AzerothAdmin.db.account.style.showchat
-    end
-
-    for race, class, playedtime, level, money in string.gmatch(text, Strings["ma_GmatchAccountInfo2"]) do
-        --self:ChatMsg("Matched Who")
-       ma_whodetail2:SetText("|c00ff0000Race:|r|cffffffff"..race.."|r\n".."|c00ff0000Class|r|cffffffff"..class.."|r\n".."|c00ff0000Level:|r|cffffffff"..level.."|r\n".."|c00ff0000Money:|r|cffffffff"..money.."|r\n".."|c00ff0000Played Time:|r|cffffffff"..playedtime.."|r\n")
-       catchedSth = true
-       output = AzerothAdmin.db.account.style.showchat
-    end
-    for mymatch in string.gmatch(text, "=====") do
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
-    end
-    for mymatch in string.gmatch(text, "Characters Online:") do
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
-    end
  --[[
     -- get ticket content
     if self.db.char.requests.ticket then
@@ -1897,7 +1846,6 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_tabbutton_misc       , Locale["tt_MiscButton"]         , function() AzerothAdmin:InstantGroupToggle("misc") end)
   self:PrepareScript(ma_tabbutton_server     , Locale["tt_ServerButton"]       , function() AzerothAdmin:InstantGroupToggle("server") end)
   self:PrepareScript(ma_tabbutton_log        , Locale["tt_LogButton"]          , function() AzerothAdmin:InstantGroupToggle("log") end)
-  self:PrepareScript(ma_tabbutton_who        , Locale["tt_whotabmenubutton"]   , function() AzerothAdmin:InstantGroupToggle("who") end)
   --end tab buttons
   -- start mini buttons
   self:PrepareScript(ma_mm_logoframe         , nil                             , function() AzerothAdmin:OnClick() end)
@@ -1910,7 +1858,6 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_mm_miscbutton        , Locale["tt_MiscButton"]         , function() AzerothAdmin:InstantGroupToggle("misc") end)
   self:PrepareScript(ma_mm_serverbutton      , Locale["tt_ServerButton"]       , function() AzerothAdmin:InstantGroupToggle("server") end)
   self:PrepareScript(ma_mm_logbutton         , Locale["tt_LogButton"]          , function() AzerothAdmin:InstantGroupToggle("log") end)
-  self:PrepareScript(ma_mm_whobutton         , Locale["tt_whotabmenubutton"]   , function() AzerothAdmin:InstantGroupToggle("who") end)
   --end mini buttons
   self:PrepareScript(ma_languagebutton       , Locale["tt_LanguageButton"]     , function() AzerothAdmin:ChangeLanguage(UIDropDownMenu_GetSelectedValue(ma_languagedropdown)) end)
   self:PrepareScript(ma_itembutton           , Locale["tt_ItemButton"]         , function() AzerothAdmin:TogglePopup("search", {type = "item"}) end)
@@ -2235,8 +2182,6 @@ function AzerothAdmin:InitScrollFrames()
   --ma_ticketscrollframe1:SetText("No Data")
 --  ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate("onlinelist"), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate("onlinelist")) end)
 --  ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate("onlinelist") end)
-  ma_whoscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, WhoUpdate) end)
-  ma_whoscrollframe:SetScript("OnShow", function() WhoUpdate() end)
 
   --ma_ticketeditbox:SetScript("OnTextChanged", function() ScrollingEdit_OnTextChanged(self, ma_ticketeditbox) end)
   --ma_ticketeditbox:SetScript("OnCursorChanged", function() ScrollingEdit_OnCursorChanged(self, x, y, w, h) end)

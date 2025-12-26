@@ -37,10 +37,6 @@
   - Enables easy multi-language support for future translations
   - Modified files: MangFrames_SectionMisc.lua, MangFrames_SectionTele.lua, MangFrames_SectionNpc.lua, MangFrames_SectionGO.lua, MangFrames_SectionTicket.lua, MangFrames_SectionServer.lua, MangFrames_SectionChar.lua, MangFrames_MiniMenu.lua, MangFrames_PopupFrames.lua
 
-- CHANGE Language dropdown moved to Misc tab
-  - Moved language dropdown from main window top bar to Misc tab
-  - Positioned to the right of "Update Changes" button and below update frequency settings
-
 - ADD Localization for buttons without locale entries
   - Added locale entry for "Refresh" button with tooltip "Refresh server information"
   - Added locale entry for "Apply Weather" button

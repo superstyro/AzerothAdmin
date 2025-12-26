@@ -300,4 +300,16 @@ function AzerothAdmin:CreateStartFrames()
     },
     text = Locale["ma_LanguageButton"]
   })
+
+  FrameLib:BuildFrame({
+    name = "ma_languagedropdown",
+    group = "bg",
+    parent = ma_topframe,
+    setpoint = {
+      pos = "TOPRIGHT",
+      offX = -160,
+      offY = -10
+    },
+    inherits = "UIDropDownMenuTemplate"
+  })
 end

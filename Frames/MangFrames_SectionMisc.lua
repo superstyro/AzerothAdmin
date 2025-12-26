@@ -344,19 +344,6 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_UpdateChangesButton"]
   })
 
-  -- Language dropdown (positioned to the right of Update Changes and below update frequency)
-  FrameLib:BuildFrame({
-    name = "ma_languagedropdown",
-    group = "misc",
-    parent = ma_midframe,
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 190,
-      offY = -260
-    },
-    inherits = "UIDropDownMenuTemplate"
-  })
-
   -- Weather dropdown (initialized in AzerothAdmin.lua)
   FrameLib:BuildFrame({
     name = "ma_weatherdropdown",

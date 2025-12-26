@@ -2,11 +2,9 @@
 
 ## CREDITS
 
-AzerothAdmin is derived from TrinityAdmin.  
 TrinityAdmin is derived from MangAdmin.  
 TrinityAdmin v2 was maintained and developed by **iotech**  
-
-TrinityAdmin v2.5 is maintained and developed by **SuperStyro**  
+AzerothAdmin is derived from TrinityAdmin.  
 AzerothAdmin is maintained and developed by **SuperStyro**  
 
 ## AzerothAdmin contains code from TrinityAdmin

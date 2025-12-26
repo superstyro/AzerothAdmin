@@ -6,9 +6,9 @@ Original Locale Team: iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok
 
 AzerothAdmin Locale Contributors: iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok, Lyrr123, borgotech, Morpheux, Georgios, Kitharo  
 
-AzerothAdmin developed by: [SuperStyro (Project Owner)](https://github.com/superstyro), [Stuntmonkey4u](https://github.com/Stuntmonkey4u), [claude(AI)](https://github.com/claude)  
-
 TrinityAdmin(MangAdmin) developed by: Josh, iotech, infamousblob, Atreus420, killat200623, dragonfrost, Necroblack  
+
+AzerothAdmin developed by: [SuperStyro (Project Owner)](https://github.com/superstyro), [Stuntmonkey4u](https://github.com/Stuntmonkey4u), [claude(AI)](https://github.com/claude)  
 
 ### Code Origination/Contributions
 

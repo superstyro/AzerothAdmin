@@ -374,10 +374,6 @@ function AzerothAdmin:CreateMiniMenu()
     AzerothAdmin:ShowSection("server")
   end)
 
-  ma_mm_logbutton:SetScript("OnClick", function()
-    AzerothAdmin:ShowSection("log")
-  end)
-
   -- Make logo button draggable (propagates to parent)
   ma_mm_logoframe:RegisterForDrag("LeftButton")
 

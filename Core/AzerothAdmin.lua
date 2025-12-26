@@ -569,7 +569,6 @@ function AzerothAdmin:HideAllGroups()
   FrameLib:HandleGroup("ticket", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("server", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("misc", function(frame) frame:Hide() end)
-  FrameLib:HandleGroup("log", function(frame) frame:Hide() end)
 end
 
 --[[function WaitLoop(seconds)

@@ -79,9 +79,14 @@ function AzerothAdmin:CreateServerSection()
       if f.NextUpdate>GetTime() then
         return
       end
-      local down, up, lag = GetNetStats();
-      g:AddBar(lag)
-      ma_lagmetertext:SetText("^Server Latency: "..lag.." ms")
+      -- Don't update graph if a dropdown menu is currently open
+      -- Check both UIDROPDOWNMENU_OPEN_MENU and if any dropdown list frames are visible
+      local dropdownOpen = UIDROPDOWNMENU_OPEN_MENU or (DropDownList1 and DropDownList1:IsShown())
+      if not dropdownOpen then
+          local down, up, lag = GetNetStats();
+          g:AddBar(lag)
+          ma_lagmetertext:SetText("^Server Latency: "..lag.." ms")
+      end
       f.NextUpdate=f.NextUpdate + 1
     end)
   f:Show()
@@ -368,19 +373,24 @@ function AzerothAdmin:CreateServerSection()
       -- Check if ma_delayparam exists before using it
       local delayParam = ma_delayparam and tonumber(ma_delayparam:GetText())
       if delayParam and q > delayParam then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
-          AzerothAdmin:ChatMsg(".server info")
-          q = 0
-          --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
-          local s = tonumber(ma_difftext:GetText())
-          if s then
-              local r = 100 -- Trinity says anything over 150 is bad
-              if s > r then
-                  z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red
-              else
-                  z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
+          -- Don't update server info or graph if a dropdown menu is currently open
+          -- Check both UIDROPDOWNMENU_OPEN_MENU and if any dropdown list frames are visible
+          local dropdownOpen = UIDROPDOWNMENU_OPEN_MENU or (DropDownList1 and DropDownList1:IsShown())
+          if not dropdownOpen then
+              AzerothAdmin:ChatMsg(".server info")
+              --TODO: Change the way the value of 'ma_difftext' is set to be able to add 'ms' to the end of the value
+              local s = tonumber(ma_difftext:GetText())
+              if s then
+                  local r = 100 -- Trinity says anything over 150 is bad
+                  if s > r then
+                      z:SetBarColors({1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0}) -->100, turn red
+                  else
+                      z:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) --otherwise green
+                  end
+                  z:AddBar(s)
               end
-              z:AddBar(s)
           end
+          q = 0
       end
       if x.NextUpdate>GetTime() then
         return

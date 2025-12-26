@@ -844,13 +844,9 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         end
       end
     end
---     for diff in string.gmatch(text, Strings["ma_GmatchUpdateDiff"]) do
---         ma_difftext:SetText(diff)
---         catchedSth = true
---         output     = AzerothAdmin.db.account.style.showchat
---     end
+
     for difftime in string.gmatch(text, Strings["ma_GmatchUpdateDiffTime"]) do --We just want the Diff time number value
-      ma_difftext:SetText(difftime)
+      ma_difftext:SetText(difftime .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end

@@ -66,7 +66,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 28,
       offY = -35
     },
-    text = "<<="
+    text = Locale["ma_CharRotateLeft"]
   })
 
   FrameLib:BuildButton({
@@ -86,7 +86,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 54,
       offY = -35
     },
-    text = "=>>"
+    text = Locale["ma_CharRotateRight"]
   })
 
   FrameLib:BuildButton({
@@ -106,7 +106,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 81,
       offY = -35
     },
-    text = "+"
+    text = Locale["ma_CharZoomIn"]
   })
 
   FrameLib:BuildButton({
@@ -126,7 +126,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 97,
       offY = -35
     },
-    text = "-"
+    text = Locale["ma_CharZoomOut"]
   })
 
   FrameLib:BuildButton({

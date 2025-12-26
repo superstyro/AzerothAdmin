@@ -43,7 +43,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 6,
       offY = -4
     },
-    text = "Enable Transparency",
+    text = Locale["ma_EnableTransparency"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -57,7 +57,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 160,
       offY = -4
     },
-    text = "Enable Localized Search Strings",
+    text = Locale["ma_EnableLocalizedSearch"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -71,7 +71,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 160,
       offY = -34
     },
-    text = "Enable Minimenu/Toolbar",
+    text = Locale["ma_EnableMinimenu"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -85,7 +85,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 160,
       offY = -64
     },
-    text = "Enable Tooltips",
+    text = Locale["ma_EnableTooltips"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -99,7 +99,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 160,
       offY = -94
     },
-    text = "Show Chat Output",
+    text = Locale["ma_ShowChatOutput"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -107,7 +107,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_framestratalabel",
     group = "misc",
     parent = ma_midframe,
-    text = "Frame Strata Level:",
+    text = Locale["ma_FrameStrataLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 165,
@@ -131,7 +131,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_delayparamlabel2",
     group = "misc",
     parent = ma_midframe,
-    text = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes", -- FIX #13
+    text = Locale["ma_UpdateFrequencyLabel"], -- FIX #13
     setpoint = {
       pos = "TOPLEFT",
       offX = 165,
@@ -223,7 +223,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_bgcolorshowtext",
     group = "misc",
     parent = ma_midframe,
-    text = "Backgroundcolor",
+    text = Locale["ma_BackgroundColorLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 35,
@@ -254,7 +254,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_frmcolorshowtext",
     group = "misc",
     parent = ma_midframe,
-    text = "Framecolor",
+    text = Locale["ma_FrameColorLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 35,
@@ -285,7 +285,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_btncolorshowtext",
     group = "misc",
     parent = ma_midframe,
-    text = "Buttoncolor",
+    text = Locale["ma_ButtonColorLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 35,
@@ -316,7 +316,7 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_linkifiercolortext",
     group = "misc",
     parent = ma_midframe,
-    text = "MangLinkifier",
+    text = Locale["ma_LinkifierColorLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 35,
@@ -341,7 +341,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 10,
       offY = -225
     },
-    text = "Update Changes"
+    text = Locale["ma_UpdateChangesButton"]
   })
 
   -- Language dropdown (positioned to the right of Update Changes and below update frequency)

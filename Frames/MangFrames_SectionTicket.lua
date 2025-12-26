@@ -49,7 +49,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 5,
         offY = -5
     },
-    text = "RESET"
+    text = Locale["ma_TicketResetButton"]
 })
 
   FrameLib:BuildButton({
@@ -69,7 +69,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 80,
         offY = 0
     },
-    text = "Load All"
+    text = Locale["ma_TicketLoadAllButton"]
 })
 
   FrameLib:BuildButton({
@@ -89,7 +89,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 80,
         offY = -15
     },
-    text = "Load Online"
+    text = Locale["ma_TicketLoadOnlineButton"]
 })
 
   FrameLib:BuildButton({
@@ -109,7 +109,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 200,
         offY = -5
     },
-    text = "SHOW"
+    text = Locale["ma_TicketShowButton"]
 })
 
   FrameLib:BuildButton({
@@ -129,7 +129,7 @@ function AzerothAdmin:CreateTicketSection()
       offX = 240,
       offY = -226
     },
-    text = "Go Ticket"
+    text = Locale["ma_TicketGoButton"]
   })
 
   FrameLib:BuildButton({

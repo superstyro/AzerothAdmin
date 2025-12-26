@@ -164,7 +164,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 2,
       offY = -20
     },
-    text = "Gm"
+    text = Locale["ma_MiniMenuGM"]
   })
 
   FrameLib:BuildButton({
@@ -186,7 +186,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Cr"
+    text = Locale["ma_MiniMenuChar"]
   })
 
   FrameLib:BuildButton({
@@ -208,7 +208,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Np"
+    text = Locale["ma_MiniMenuNPC"]
   })
 
   FrameLib:BuildButton({
@@ -230,7 +230,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "GO"
+    text = Locale["ma_MiniMenuGO"]
   })
 
 
@@ -253,7 +253,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Te"
+    text = Locale["ma_MiniMenuTele"]
   })
 
   FrameLib:BuildButton({
@@ -275,7 +275,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Ti"
+    text = Locale["ma_MiniMenuTicket"]
   })
 
   FrameLib:BuildButton({
@@ -297,7 +297,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Mi"
+    text = Locale["ma_MiniMenuMisc"]
   })
 
   FrameLib:BuildButton({
@@ -319,7 +319,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Se"
+    text = Locale["ma_MiniMenuServer"]
   })
 
   FrameLib:BuildButton({
@@ -341,7 +341,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Lo"
+    text = Locale["ma_MiniMenuLog"]
   })
 
   FrameLib:BuildButton({
@@ -363,7 +363,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Wh"
+    text = Locale["ma_MiniMenuWho"]
   })
 
   FrameLib:BuildButton({ --This button shows up in the center of the screen when you die!
@@ -382,7 +382,7 @@ function AzerothAdmin:CreateMiniMenu()
       pos = "CENTER",
       offY = 100
     },
-    text = "REVIVE!"
+    text = Locale["ma_MiniMenuRevive"]
   })
 
   -- Set up click handlers for menu buttons

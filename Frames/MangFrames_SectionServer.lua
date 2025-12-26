@@ -55,7 +55,7 @@ function AzerothAdmin:CreateServerSection()
     name = "ma_lagmetertext",
     group = "server",
     parent = ma_midframe,
-    text = "^Server Latency",
+    text = Locale["ma_ServerLatencyLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -264,7 +264,7 @@ function AzerothAdmin:CreateServerSection()
     name = "ma_lagmetertext2",
     group = "server",
     parent = ma_midframe,
-    text = "^Update Diff:",
+    text = Locale["ma_UpdateDiffLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 170,
@@ -288,7 +288,7 @@ function AzerothAdmin:CreateServerSection()
     name = "ma_meantext",
     group = "server",
     parent = ma_midframe,
-    text = "Mean:",
+    text = Locale["ma_MeanLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 270,
@@ -312,7 +312,7 @@ function AzerothAdmin:CreateServerSection()
     name = "ma_mediantext",
     group = "server",
     parent = ma_midframe,
-    text = "Median:",
+    text = Locale["ma_MedianLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 260,
@@ -336,7 +336,7 @@ function AzerothAdmin:CreateServerSection()
     name = "ma_percentilestext",
     group = "server",
     parent = ma_midframe,
-    text = "Percentiles:",
+    text = Locale["ma_PercentilesLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 240,

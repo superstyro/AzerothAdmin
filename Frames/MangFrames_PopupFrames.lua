@@ -193,7 +193,7 @@ function AzerothAdmin:CreatePopupFrames()
       offX = 4,
       offY = -4
     },
-    text = "ERROR"
+    text = Locale["ma_PopupErrorTab"]
   })
 
   FrameLib:BuildButton({
@@ -219,7 +219,7 @@ function AzerothAdmin:CreatePopupFrames()
       relPos = "TOPRIGHT",
       offX = 2
     },
-    text = "Favorites"
+    text = Locale["ma_PopupFavoritesTab"]
   })
 
   FrameLib:BuildButton({
@@ -245,7 +245,7 @@ function AzerothAdmin:CreatePopupFrames()
       relPos = "TOPRIGHT",
       offX = 2
     },
-    text = "Tab 3"
+    text = Locale["ma_PopupTab3"]
   })
 
   -- Popup Editbox and Searchbutton
@@ -825,7 +825,7 @@ function AzerothAdmin:CreatePopupFrames()
     name = "ma_mailmoneytext",
     group = "popup",
     parent = ma_popupbottomframe,
-    text = "Amount:",
+    text = Locale["ma_PopupAmountLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -919,7 +919,7 @@ function AzerothAdmin:CreatePopupFrames()
       offX = -10,
       offY = -10
     },
-    text = "Invisible"
+    text = Locale["ma_PopupInvisibleText"]
   })
 
   FrameLib:BuildButton({

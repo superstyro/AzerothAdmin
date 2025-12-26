@@ -94,7 +94,6 @@ end
     if tonumber(number) > 0 then
       self.db.account.tickets.count = tonumber(number)
       if self.db.char.requests.ticket then
-        self:LogAction("Load of tickets requested. Found "..number.." tickets!")
         self:RequestTickets()
         self:SetIcon(ROOT_PATH.."Textures\\icon.tga")
         --ma_resetsearchbutton:Enable()
@@ -108,7 +107,6 @@ end
     self.db.account.tickets.count = 0
     self.db.account.buffer.tickets = {}
     --self:ChatMsg(".ticket list")
-    --self:LogAction("Requesting ticket numberz!")
   end
   InlineScrollUpdate()
 end]]
@@ -120,13 +118,9 @@ end]]
   --ma_lookupresulttext:SetText(Locale["ma_TicketCount"]..count)
   ma_top2text:SetText(Locale["realm"].." "..Locale["tickets"]..self.db.account.tickets.count)
   local tnumber = self.db.account.tickets.count - ticketCount
-  --self:LogAction("tNumber = "..tnumber..", Tc = "..ticketCount)
   if tnumber > 0 then
     self:ChatMsg(".ticket "..tnumber)
-    --self:LogAction(".ticket "..tnumber)
-    self:LogAction("Loading ticket "..tnumber.."...")
   else
-    self:LogAction("Loaded all available tickets! No more to load...")
     ma_resetsearchbutton:Disable()
   end
 end]]

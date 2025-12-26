@@ -777,9 +777,6 @@ function Return_enUS()
 
 
 
---[[Log Tab]]
-    ["tabmenu_log"]                   = "LOG",
-    ["tt_LogButton"]                  = "Show the log of all actions done with AzerothAdmin.",
   --[[Tooltips]]
   --[[Control Labels]]
   --[[Other]]

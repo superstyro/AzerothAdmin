@@ -30,7 +30,7 @@ fID = 0
 gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
-MAJOR_VERSION = "AzerothAdmin-3.3.5"
+MAJOR_VERSION = "|cFF00FF00AzerothAdmin-3.3.5|r"
 MINOR_VERSION = tonumber(GetAddOnMetadata("AzerothAdmin", "Version")) or 0
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""

@@ -54,7 +54,7 @@ function AzerothAdmin:CreateTabs()
       pos = "TOPLEFT",
       relTo = "ma_menubgframe",
       relPos = "TOPLEFT",
-      offX = 0,
+      offX = 2,
       offY = -4
     },
     text = Locale["tabmenu_Main"]

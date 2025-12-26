@@ -40,8 +40,6 @@
 - CHANGE Language dropdown moved to Misc tab
   - Moved language dropdown from main window top bar to Misc tab
   - Positioned to the right of "Update Changes" button and below update frequency settings
-  - Added tooltip to language dropdown: "Language Locale future update planned"
-  - Reload UI button remains in original position on main window top bar
 
 - ADD Localization for buttons without locale entries
   - Added locale entry for "Refresh" button with tooltip "Refresh server information"

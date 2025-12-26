@@ -278,19 +278,7 @@ function AzerothAdmin:CreateStartFrames()
       offX = -10,
       offY = -10
     },
-    text = "Refresh"
-  })
-
-  FrameLib:BuildFrame({
-    name = "ma_languagedropdown",
-    group = "bg",
-    parent = ma_topframe,
-    setpoint = {
-      pos = "TOPRIGHT",
-      offX = -147,
-      offY = -10
-    },
-    inherits = "UIDropDownMenuTemplate"
+    text = Locale["ma_RefreshButton"]
   })
 
   FrameLib:BuildButton({

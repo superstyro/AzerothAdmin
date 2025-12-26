@@ -1933,7 +1933,7 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_closebutton          , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("bg") end)
   self:PrepareScript(ma_popupclosebutton     , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("popup") end)
   self:PrepareScript(ma_popup2closebutton    , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("popup2") end)
-  self:PrepareScript(ma_inforefreshbutton    , nil                             , function() AzerothAdmin:ChatMsg(".server info") end)
+  self:PrepareScript(ma_inforefreshbutton    , Locale["tt_RefreshButton"]      , function() AzerothAdmin:ChatMsg(".server info") end)
   self:PrepareScript(ma_frmtrslider          , Locale["tt_FrmTrSlider"]        , {{"OnMouseUp", function() AzerothAdmin:ChangeTransparency("frames") end},{"OnValueChanged", function() ma_frmtrsliderText:SetText(string.format("%.2f", ma_frmtrslider:GetValue())) end}})
   self:PrepareScript(ma_btntrslider          , Locale["tt_BtnTrSlider"]        , {{"OnMouseUp", function() AzerothAdmin:ChangeTransparency("buttons") end},{"OnValueChanged", function() ma_btntrsliderText:SetText(string.format("%.2f", ma_btntrslider:GetValue())) end}})
   self:PrepareScript(ma_mm_revivebutton      , nil                             , function() SendChatMessage(".revive", "GUILD", nil, nil) end)
@@ -2166,6 +2166,19 @@ function AzerothAdmin:InitDropDowns()
   UIDropDownMenu_SetWidth(ma_languagedropdown, 70)
   UIDropDownMenu_SetButtonWidth(ma_languagedropdown, 20)
   UIDropDownMenu_SetSelectedValue(ma_languagedropdown, Locale:GetLocale())
+
+  -- Add tooltip to language dropdown
+  if self.db.account.style.showtooltips then
+    ma_languagedropdown:SetScript("OnEnter", function()
+      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+      GameTooltip:SetText("Language Locale future update planned")
+      GameTooltip:Show()
+    end)
+    ma_languagedropdown:SetScript("OnLeave", function()
+      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+      GameTooltip:Hide()
+    end)
+  end
 
   -- FRAME STRATA DROPDOWN
   local function FrameStrataDropDownInitialize()

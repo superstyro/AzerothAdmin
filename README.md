@@ -6,11 +6,22 @@ AzerothAdmin is a general interface add-on which will help admins and GMs in-gam
 
 ## INSTRUCTIONS
 
-### Install
+### Installation
 
-Download Latest from releases
-Extract AzerothAdmin-v*.zip to your World of Warcraft/Interface/AddOns/ folder
-The addon folder will be AzerothAdmin in the Addons folder
+1. **Download** the latest release from [Releases](https://github.com/superstyro/AzerothAdmin/releases)
+   - File format: `AzerothAdmin-{version}.zip` (e.g., `AzerothAdmin-17.zip`)
+
+2. **Extract** the downloaded ZIP file to your `World of Warcraft/Interface/AddOns/` folder
+
+3. **Verify** the following two addon folders are created:
+
+   ```text
+   World of Warcraft/Interface/AddOns/
+   ├── AzerothAdmin/         (Main addon - 1.9 MB)
+   └── AzerothAdmin_Models/  (Model database - 5.6 MB, loads on-demand)
+   ```
+
+**Important:** Both addons are required for full functionality. The `AzerothAdmin_Models` addon loads automatically when you use the GameObject model viewer.
 
 ## Impotant Information
 

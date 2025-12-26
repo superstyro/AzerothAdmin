@@ -300,7 +300,7 @@ function Modify(case, value)
       AzerothAdmin:ChatMsg(".modify speed swim "..value)
       AzerothAdmin:LogAction("Modified SwimSpeed for "..player.." to "..value)
     elseif case == "tp" then
-      AzerothAdmin:ChatMsg(".modify tp "..value)
+      AzerothAdmin:ChatMsg(".modify talentpoints "..value)
       AzerothAdmin:LogAction("Modified TalentPoints for "..player.." to "..value.." points")
     end
   else

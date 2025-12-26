@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_PopupFrames.lua"
+-- This script must be listed in the .toc after "Frames_PopupFrames.lua"
 -- Global dependencies: ma_midframe, Locale, FrameLib (loaded from AzerothAdmin.lua)
 
 function AzerothAdmin:CreateMainSection()

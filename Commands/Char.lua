@@ -261,19 +261,19 @@ function Modify(case, value)
       AzerothAdmin:ChatMsg(".modify mana "..value)
       AzerothAdmin:LogAction("Modified mana for "..player.." to "..value.." mana")
     elseif case == "aspeed" then
-      AzerothAdmin:ChatMsg(".modify aspeed "..value)
+      AzerothAdmin:ChatMsg(".modify speed all "..value)
       AzerothAdmin:LogAction("Modified AllSpeeds for "..player.." to "..value)
     elseif case == "arena" then
       AzerothAdmin:ChatMsg(".modify arena "..value)
       AzerothAdmin:LogAction("Modified Arena Points for "..player.." to "..value.." points")
     elseif case == "bwalk" then
-      AzerothAdmin:ChatMsg(".modify bwalk "..value)
+      AzerothAdmin:ChatMsg(".modify speed backwalk "..value)
       AzerothAdmin:LogAction("Modified BackWalk for "..player.." to "..value)
     elseif case == "drunk" then
       AzerothAdmin:ChatMsg(".modify drunk "..value)
       AzerothAdmin:LogAction("Modified Drunk for "..player.." to "..value)
     elseif case == "fly" then
-      AzerothAdmin:ChatMsg(".modify fly "..value)
+      AzerothAdmin:ChatMsg(".modify speed fly "..value)
       AzerothAdmin:LogAction("Modified FlySpeed for "..player.." to "..value)
     elseif case == "gender" then
       AzerothAdmin:ChatMsg(".modify gender "..value)
@@ -291,13 +291,13 @@ function Modify(case, value)
       AzerothAdmin:ChatMsg(".modify runicpower "..value)
       AzerothAdmin:LogAction("Modified RunicPower for "..player.." to "..value)
     elseif case == "speed" then
-      AzerothAdmin:ChatMsg(".modify speed "..value)
+      AzerothAdmin:ChatMsg(".modify speed walk "..value)
       AzerothAdmin:LogAction("Modified Speed for "..player.." to "..value)
     elseif case == "standstate" then
       AzerothAdmin:ChatMsg(".modify standstate "..value)
       AzerothAdmin:LogAction("Modified StandState for "..player.." to "..value)
     elseif case == "swim" then
-      AzerothAdmin:ChatMsg(".modify swim "..value)
+      AzerothAdmin:ChatMsg(".modify speed swim "..value)
       AzerothAdmin:LogAction("Modified SwimSpeed for "..player.." to "..value)
     elseif case == "tp" then
       AzerothAdmin:ChatMsg(".modify tp "..value)

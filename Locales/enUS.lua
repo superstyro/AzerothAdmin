@@ -757,7 +757,7 @@ function Return_enUS()
     ["tt_ShutdownButton"]             = "Shut down the server in the amount of seconds from the field, if omitted shut down immediately!",
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
-    ["ma_ShutdownButton"]             = "Server Shutdown!",
+    ["ma_ShutdownButton"]             = "Server Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
     ["ma_ServerLatencyLabel"]         = "^Server Latency",

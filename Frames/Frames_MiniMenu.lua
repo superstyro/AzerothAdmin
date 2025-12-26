@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -164,7 +164,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 2,
       offY = -20
     },
-    text = "Gm"
+    text = Locale["ma_MiniMenuGM"]
   })
 
   FrameLib:BuildButton({
@@ -186,7 +186,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Cr"
+    text = Locale["ma_MiniMenuChar"]
   })
 
   FrameLib:BuildButton({
@@ -208,7 +208,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Np"
+    text = Locale["ma_MiniMenuNPC"]
   })
 
   FrameLib:BuildButton({
@@ -230,7 +230,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "GO"
+    text = Locale["ma_MiniMenuGO"]
   })
 
 
@@ -253,7 +253,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Te"
+    text = Locale["ma_MiniMenuTele"]
   })
 
   FrameLib:BuildButton({
@@ -275,7 +275,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Ti"
+    text = Locale["ma_MiniMenuTicket"]
   })
 
   FrameLib:BuildButton({
@@ -297,7 +297,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Mi"
+    text = Locale["ma_MiniMenuMisc"]
   })
 
   FrameLib:BuildButton({
@@ -319,51 +319,7 @@ function AzerothAdmin:CreateMiniMenu()
       offX = 0,
       offY = -2
     },
-    text = "Se"
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_mm_logbutton",
-    group = "minimenu",
-    parent = ma_miniframe,
-    texture = {
-      name = "ma_mm_logbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 20,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      relTo = "ma_mm_serverbutton",
-      relPos = "BOTTOMLEFT",
-      offX = 0,
-      offY = -2
-    },
-    text = "Lo"
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_mm_whobutton",
-    group = "minimenu",
-    parent = ma_miniframe,
-    texture = {
-      name = "ma_mm_whobutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 20,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      relTo = "ma_mm_logbutton",
-      relPos = "BOTTOMLEFT",
-      offX = 0,
-      offY = -2
-    },
-    text = "Wh"
+    text = Locale["ma_MiniMenuServer"]
   })
 
   FrameLib:BuildButton({ --This button shows up in the center of the screen when you die!
@@ -382,7 +338,7 @@ function AzerothAdmin:CreateMiniMenu()
       pos = "CENTER",
       offY = 100
     },
-    text = "REVIVE!"
+    text = Locale["ma_MiniMenuRevive"]
   })
 
   -- Set up click handlers for menu buttons
@@ -416,14 +372,6 @@ function AzerothAdmin:CreateMiniMenu()
 
   ma_mm_serverbutton:SetScript("OnClick", function()
     AzerothAdmin:ShowSection("server")
-  end)
-
-  ma_mm_logbutton:SetScript("OnClick", function()
-    AzerothAdmin:ShowSection("log")
-  end)
-
-  ma_mm_whobutton:SetScript("OnClick", function()
-    AzerothAdmin:ShowSection("who")
   end)
 
   -- Make logo button draggable (propagates to parent)

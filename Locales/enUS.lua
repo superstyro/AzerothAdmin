@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -86,12 +86,19 @@ function Return_enUS()
   return {
 --[[General]]
   --[[Tooltips]]
-    ["ma_IconHint"]                   = "|cffeda55fClick|r to open AzerothAdmin. |cffeda55fShift-Click|r to reload the user interface.",
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
-    ["tt_LanguageButton"]             = "Reload AzerothAdmin.", --Removed locals. Updated tooltip to just reload
+    ["tt_LanguageButton"]             = "Reload AzerothAdmin and apply selected language.",
+    ["tt_RefreshButton"]              = "Refresh server information.",
   --[[Control Labels]]
-    ["ma_LanguageButton"]             = "Reload UI", 
-    ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ", --Updated: Matched string output to AzerothAdmin
+    ["ma_LanguageButton"]             = "Reload UI",
+    ["ma_RefreshButton"]              = "Refresh",
+    ["ma_TopText"]                    = "toptext, you should not see this!",
+    ["ma_Top2Text"]                   = "toptext, you should not see this!",
+    ["ma_InfoOnlineText"]             = "Players Online: ...",
+    ["ma_InfoMaxOnlineText"]          = "Maximum Online: ...",
+    ["ma_InfoUptimeText"]             = "Server Uptime: ...",
+    ["ma_InfoRevisionText"]           = "AzerothCore Revision: ...",
+    ["info_revision"]                 = "|cFF00FF00AzerothCore rev.|r ",
     ["info_platform"]                 = "|cFF00FF00Server Platform:|r ",
     ["info_online"]                   = "|cFF00FF00Players Online:|r ",
     ["info_maxonline"]                = "|cFF00FF00Maximum Online:|r ",
@@ -234,6 +241,16 @@ function Return_enUS()
     ["ma_acctaddon"]                  = "Acct Addon",
     ["ma_acctgmlvl"]                  = "Acct GMLvl",
     ["ma_acctpasswd"]                 = "Acct Passwd",
+    ["ma_MiniMenuGM"]                 = "Gm",
+    ["ma_MiniMenuChar"]               = "Cr",
+    ["ma_MiniMenuNPC"]                = "Np",
+    ["ma_MiniMenuGO"]                 = "GO",
+    ["ma_MiniMenuTele"]               = "Te",
+    ["ma_MiniMenuTicket"]             = "Ti",
+    ["ma_MiniMenuMisc"]               = "Mi",
+    ["ma_MiniMenuServer"]             = "Se",
+    ["ma_MiniMenuLog"]                = "Lo",
+    ["ma_MiniMenuRevive"]             = "REVIVE!",
   --[[Other]]
 
 
@@ -375,6 +392,10 @@ function Return_enUS()
     ["ma_ShowAreaButton"]             = "ShowArea",
     ["ma_HonorAddButton"]             = "HonorAdd",
     ["ma_HonorUpdateButton"]          = "HonorUpdt",
+    ["ma_CharRotateLeft"]             = "<<=",
+    ["ma_CharRotateRight"]            = "=>>",
+    ["ma_CharZoomIn"]                 = "+",
+    ["ma_CharZoomOut"]                = "-",
   --[[Other]]
     ["ma_LevelUp"]                    = "Level up",
     ["ma_LevelDown"]                  = "Level down",
@@ -527,6 +548,17 @@ function Return_enUS()
     ["ma_WayEndAdd"]                  = "WayEndAdd",
     ["ma_WayAdd"]                     = "WayAdd",
     ["ma_WayShow"]                    = "WayShow",
+    ["ma_NPCRotateLeft"]              = "<<=",
+    ["ma_NPCRotateRight"]             = "=>>",
+    ["ma_NPCZoomIn"]                  = "+",
+    ["ma_NPCZoomOut"]                 = "-",
+    ["ma_NPCDisplayIDLabel"]          = "Display ID:",
+    ["ma_NPCIDLabel"]                 = "NPC ID:",
+    ["ma_NPCGUIDLabel"]               = "GUID:",
+    ["ma_NPCDisplayDown"]             = "<<",
+    ["ma_NPCDisplayUp"]               = ">>",
+    ["ma_NPCIDUp"]                    = ">>",
+    ["ma_NPCClearButton"]             = "Clear",
   --[[Other]]
 
 
@@ -568,6 +600,29 @@ function Return_enUS()
     ["ma_OBJAddTemp"]                 = "Obj Add Tmp",
     ["ma_OBJInfo"]                    = "Obj Info",
     ["ma_OBJSetPhase"]                = "Obj Phase",
+    ["ma_GOGUIDLabel"]                = "GUID",
+    ["ma_GOEntryIDLabel"]             = "EntryID",
+    ["ma_GODisplayIDLabel"]           = "DisplayID",
+    ["ma_GORangeLabel"]               = "Range",
+    ["ma_GOAddOnMoveLabel"]           = "Add On Move",
+    ["ma_GOMoveOnMoveLabel"]          = "Move on Move",
+    ["ma_GOMoveDistancesLabel"]       = "Move Distances",
+    ["ma_GOFwdBackLabel"]             = "Fwd/Back:",
+    ["ma_GOLeftRightLabel"]           = "Left/Right:",
+    ["ma_GOUpDownLabel"]              = "Up/Down:",
+    ["ma_GORotateLeft"]               = "<<",
+    ["ma_GORotateRight"]              = ">>",
+    ["ma_GOZoomIn"]                   = "+",
+    ["ma_GOZoomOut"]                  = "-",
+    ["ma_GOMoveForward"]              = "FWD",
+    ["ma_GOMoveLeft"]                 = "LEFT",
+    ["ma_GOMoveRight"]                = "RIGHT",
+    ["ma_GOMoveBack"]                 = "BACK",
+    ["ma_GOSpawnHere"]                = "HERE",
+    ["ma_GOMoveUp"]                   = "UP",
+    ["ma_GOMoveDown"]                 = "DOWN",
+    ["ma_GOShowButton"]               = "Show",
+    ["ma_GOUnloadButton"]             = "Unload",
   --[[Other]]
 
 
@@ -579,6 +634,21 @@ function Return_enUS()
   --[[Tooltips]]
   --[[Control Labels]]
     ["Zone"]                          = "|cFF00FF00Zone:|r ",
+    ["ma_ContinentSelection"]         = "Continent Selection",
+    ["ma_EasternKingdomsN"]           = "Eastern Kingdoms (N)",
+    ["ma_EasternKingdomsS"]           = "Eastern Kingdoms (S)",
+    ["ma_Kalimdor"]                   = "Kalimdor",
+    ["ma_Outland"]                    = "Outland",
+    ["ma_NorthrendAlliance"]          = "Northrend-Alliance",
+    ["ma_NorthrendHorde"]             = "Northrend-Horde",
+    ["ma_BattlegroundsArenas"]        = "Battlegrounds/Arenas",
+    ["ma_InstancesEastern"]           = "Instances: Eastern",
+    ["ma_InstancesKalimdor"]          = "Instances: Kalimdor",
+    ["ma_InstancesOutland"]           = "Instances: Outland",
+    ["ma_InstancesNorthrend"]         = "Instances: Northrend",
+    ["ma_Other"]                      = "Other",
+    ["ma_ZoneSelection"]              = "Zone Selection",
+    ["ma_SelectedSubzone"]            = "Selected Subzone",
   --[[Other]]
     ["ma_NoZones"]                    = "No zones!",
     ["ma_NoSubZones"]                 = "No subzones!",
@@ -631,6 +701,11 @@ function Return_enUS()
     ["ma_TicketsNoInfo"]              = "No info available",
     ["ma_TicketsNotLoaded"]           = "No ticket loaded...",
     ["ma_TicketsNoTickets"]           = "No tickets available!",
+    ["ma_TicketResetButton"]          = "RESET",
+    ["ma_TicketLoadAllButton"]        = "Load All",
+    ["ma_TicketLoadOnlineButton"]     = "Load Online",
+    ["ma_TicketShowButton"]           = "SHOW",
+    ["ma_TicketGoButton"]             = "Go Ticket",
     ["ma_TicketTicketLoaded"]         = "|cFF00FF00Loaded Ticket-Nr:|r %s\n\nPlayer Information\n\n",
     ["ma_Reload"]                     = "Reload",
     ["ma_LoadMore"]                   = "Load more...",
@@ -646,12 +721,25 @@ function Return_enUS()
     ["tt_FrmTrSlider"]                = "Change frame transparency",
     ["tt_BtnTrSlider"]                = "Change button transparency",
     ["tt_windowismovable"]            = "Allow a movable window",
-    ["tt_updatechanges"]              = "Apply changes made to settings. Reloads screen.",
+    ["tt_updatechanges"]              = "Apply changes made to settings. Reloads UI.",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Toggle the main window",
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",
     ["cmd_tooltip"]                   = "Toggle wether the button tooltips are shown or not",
+    ["ma_EnableTransparency"]         = "Enable Transparency",
+    ["ma_EnableLocalizedSearch"]      = "Enable Localized Search Strings",
+    ["ma_EnableMinimenu"]             = "Enable Minimenu/Toolbar",
+    ["ma_EnableTooltips"]             = "Enable Tooltips",
+    ["ma_ShowChatOutput"]             = "Show Chat Output",
+    ["ma_FrameStrataLabel"]           = "Frame Strata Level:",
+    ["ma_UpdateFrequencyLabel"]       = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes",
+    ["ma_BackgroundColorLabel"]       = "Backgroundcolor",
+    ["ma_FrameColorLabel"]            = "Framecolor",
+    ["ma_ButtonColorLabel"]           = "Buttoncolor",
+    ["ma_LinkifierColorLabel"]        = "MangLinkifier",
+    ["ma_UpdateChangesButton"]        = "Update Changes",
   --[[Other]]
+    ["ma_ApplyWeatherButton"]         = "Apply Weather",
     ["ma_WeatherFine"]                = "Fine",
     ["ma_WeatherFog"]                 = "Fog",
     ["ma_WeatherRain"]                = "Rain",
@@ -671,54 +759,26 @@ function Return_enUS()
   --[[Tooltips]]
     ["tt_AnnounceButton"]             = "Announce a system message.",
     ["tt_ShutdownButton"]             = "Shut down the server in the amount of seconds from the field, if omitted shut down immediately!",
+    ["tt_CancelShutdownButton"]       = "Cancel the server shutdown countdown.",
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
-    ["ma_ShutdownButton"]             = "Server Shutdown!",
+    ["ma_ShutdownButton"]             = "Server Shutdown",
+    ["ma_CancelShutdownButton"]       = "Cancel Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
+    ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server Latency:|r",
+    ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
+    ["ma_MeanLabel"]                  = "|cFF00FF00Mean:|r",
+    ["ma_MedianLabel"]                = "|cFF00FF00Median:|r",
+    ["ma_PercentilesLabel"]           = "|cFF00FF00Percentiles:|r",
   --[[Other]]
+    ["msg_shutdown_time_required"]    = "Please enter the time in seconds before using server shutdown.",
+    ["msg_shutdown_confirm"]          = "Are you sure you want to shut down the server in %s seconds?",
 
 
 
---[[Log Tab]]
-    ["tabmenu_log"]                   = "LOG",
-    ["tt_LogButton"]                  = "Show the log of all actions done with AzerothAdmin.",
   --[[Tooltips]]
   --[[Control Labels]]
-  --[[Other]]
-
-
-
---[[Who Tab]]
-    ["tabmenu_who"]                   = "WHO",
-    ["tt_whotabmenubutton"]           = "Toggle a window which allows control of Who commands.",
-  --[[Tooltips]]
-    ["tt_who_customize"]              = "Flag character for customization at next login.",
-    ["tt_who_chardelete"]             = "CAUTION! Deletes the selected character. CAUTION!",
-    ["tt_who_charrename"]             = "Flags selected character for rename at next login.",
-    ["tt_who_permbanbutton"]          = "Bans the selected character's account PERMANENTLY",
-    ["tt_who_1daybanbutton"]          = "Bans the selected character's account for 1 day",
-    ["tt_who_jailabutton"]            = "Jails the character in the Alliance Jail",
-    ["tt_who_jailhbutton"]            = "Jails the character in the Horde Jail",
-    ["tt_who_unjailbutton"]           = "UnJails the character",
-  --[[Control Labels]]
-    ["ma_ShowWhoButton"]              = "Refresh",
-    ["ma_resetwhobutton"]             = "Reset",
-    ["ma_acctdetail"]                 = "Acct:",
-    ["ma_chardetail"]                 = "Char:",
-    ["ma_whisperbutton"]              = "Whisper",
-    ["ma_SummonWhoButton"]            = "Summon",
-    ["ma_GoCharWhoButton"]            = "Appear",
-    ["ma_AnswerWhoButton"]            = "Mail",
-    ["ma_who_customize"]              = "Customize",
-    ["ma_who_chardelete"]             = "|c00FF0000Char Del|r",
-    ["ma_who_charrename"]             = "Rename",
-    ["ma_DeleteWhoButton"]            = "Kick",
-    ["ma_who_1daybanbutton"]          = "1dayBan",
-    ["ma_who_permbanbutton"]          = "PermBan",
-    ["ma_who_jailabutton"]            = "Jail(A)",
-    ["ma_who_jailhbutton"]            = "Jail(H)",
-    ["ma_who_unjailbutton"]           = "UnJail",
   --[[Other]]
 
 
@@ -743,6 +803,11 @@ function Return_enUS()
     ["tt_SearchDefault"]              = "Now you can enter a keyword and start the search.",
     ["tt_SkillButton"]                = "Toggle a popup with the function to search for skills and manage your favorites.",
   --[[Labels]]
+    ["ma_PopupErrorTab"]              = "ERROR",
+    ["ma_PopupFavoritesTab"]          = "Favorites",
+    ["ma_PopupTab3"]                  = "Tab 3",
+    ["ma_PopupAmountLabel"]           = "Amount:",
+    ["ma_PopupInvisibleText"]         = "Invisible",
     ["ma_ItemButton"]                 = "Item-Search",
     ["ma_ItemSetButton"]              = "ItemSet-Search",
     ["ma_SpellButton"]                = "Spell-Search",

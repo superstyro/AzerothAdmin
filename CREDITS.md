@@ -1,22 +1,25 @@
-# AzerothAdmin CREDITS
+# AzerothAdmin
 
-AzerothAdmin is derived from TrinityAdmin.
-TrinityAdmin wis derived from MangAdmin.
-TrinityAdmin v2 was maintained and developed by **iotech**
+## CREDITS
 
-TrinityAdmin v2.5 is maintained and developed by **SuperStyro**
-AzerothAdmin v1 is maintained and developed by **SuperStryro**
+Original Locale Team: iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok, Lyrr123, borgotech, Morpheux, Georgios, Kitharo  
 
+AzerothAdmin Locale Contributors: iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok, Lyrr123, borgotech, Morpheux, Georgios, Kitharo  
 
-### AzerothAdmin contains code from TrinityAdmin
+TrinityAdmin(MangAdmin) developed by: Josh, iotech, infamousblob, Atreus420, killat200623, dragonfrost, Necroblack  
 
-TrinityAdmin also contains code donated by:
- -**Pryd** (teleport work)
- -**Gimp** (teleport work)
- -**Shocker** (various)
+AzerothAdmin developed by: [SuperStyro (Project Owner)](https://github.com/superstyro), [Stuntmonkey4u](https://github.com/Stuntmonkey4u), [claude(AI)](https://github.com/claude)  
 
-Locale Team: (Removed Locales from AzerothCore temporarly)
-iotech, Ravenheart, Gimp, Dracula70, MrLakeC, Namida, Amok, Lyrr123, borgotech, Morpheux, Georgios, Kitharo
+### Code Origination/Contributions
 
-AzerothAdmin(TrinityAdmin(MangAdmin)) is developed by:
-SuperStyro (Project Owner), Josh, iotech, infamousblob, Atreus420, killat200623, dragonfrost, Necroblack
+TrinityAdmin is derived from MangAdmin.  
+TrinityAdmin v2 was maintained and developed by **iotech**  
+AzerothAdmin is derived from TrinityAdmin.  
+AzerothAdmin is maintained and developed by **SuperStyro**  
+
+AzerothAdmin contains code from TrinityAdmin/MangAdmin  
+
+TrinityAdmin/AzerothAdmin contains code donated by:  
+ -**Pryd** (teleport work)  
+ -**Gimp** (teleport work)  
+ -**Shocker** (various)  

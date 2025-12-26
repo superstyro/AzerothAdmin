@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_SectionLog.lua"
+-- This script must be listed in the .toc after "Frames_SectionLog.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateCharSection()
@@ -66,7 +66,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 28,
       offY = -35
     },
-    text = "<<="
+    text = Locale["ma_CharRotateLeft"]
   })
 
   FrameLib:BuildButton({
@@ -86,7 +86,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 54,
       offY = -35
     },
-    text = "=>>"
+    text = Locale["ma_CharRotateRight"]
   })
 
   FrameLib:BuildButton({
@@ -106,7 +106,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 81,
       offY = -35
     },
-    text = "+"
+    text = Locale["ma_CharZoomIn"]
   })
 
   FrameLib:BuildButton({
@@ -126,7 +126,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 97,
       offY = -35
     },
-    text = "-"
+    text = Locale["ma_CharZoomOut"]
   })
 
   FrameLib:BuildButton({

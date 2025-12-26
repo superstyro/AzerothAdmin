@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_SectionTele.lua"
+-- This script must be listed in the .toc after "Frames_SectionTele.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateGOSection()
@@ -177,7 +177,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobguidlabel",
     group = "go",
     parent = ma_midframe,
-    text = "GUID",
+    text = Locale["ma_GOGUIDLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 30,
@@ -189,7 +189,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobentrylabel",
     group = "go",
     parent = ma_midframe,
-    text = "EntryID",
+    text = Locale["ma_GOEntryIDLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 105,
@@ -351,7 +351,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 183,
       offY = -5
     },
-    text = "<<"
+    text = Locale["ma_GORotateLeft"]
   })
 
   FrameLib:BuildButton({
@@ -371,7 +371,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 213,
       offY = -5
     },
-    text = ">>"
+    text = Locale["ma_GORotateRight"]
   })
 
   FrameLib:BuildButton({
@@ -391,7 +391,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 245,
       offY = -5
     },
-    text = "+"
+    text = Locale["ma_GOZoomIn"]
   })
 
   FrameLib:BuildButton({
@@ -411,7 +411,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 262,
       offY = -5
     },
-    text = "-"
+    text = Locale["ma_GOZoomOut"]
   })
 
   FrameLib:BuildFrame({
@@ -481,7 +481,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobdisplayidlabel",
     group = "go",
     parent = ma_midframe,
-    text = "DisplayID",
+    text = Locale["ma_GODisplayIDLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 103,
@@ -531,7 +531,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobrangelabel",
     group = "go",
     parent = ma_midframe,
-    text = "Range",
+    text = Locale["ma_GORangeLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 25,
@@ -556,7 +556,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 640,
       offY = -5
     },
-    text = "FWD"
+    text = Locale["ma_GOMoveForward"]
   })
 
   FrameLib:BuildButton({
@@ -576,7 +576,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 584,
       offY = -31
     },
-    text = "LEFT"
+    text = Locale["ma_GOMoveLeft"]
   })
 
   FrameLib:BuildButton({
@@ -596,7 +596,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 696,
       offY = -31
     },
-    text = "RIGHT"
+    text = Locale["ma_GOMoveRight"]
   })
 
   FrameLib:BuildButton({
@@ -616,7 +616,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 640,
       offY = -57
     },
-    text = "BACK"
+    text = Locale["ma_GOMoveBack"]
   })
 
   FrameLib:BuildButton({
@@ -636,7 +636,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 640,
       offY = -31
     },
-    text = "HERE"
+    text = Locale["ma_GOSpawnHere"]
   })
 
   FrameLib:BuildButton({
@@ -656,7 +656,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 706,
       offY = -5
     },
-    text = "UP"
+    text = Locale["ma_GOMoveUp"]
   })
 
   FrameLib:BuildButton({
@@ -676,7 +676,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 706,
       offY = -57
     },
-    text = "DOWN"
+    text = Locale["ma_GOMoveDown"]
   })
 
   FrameLib:BuildButton({
@@ -689,7 +689,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 615,
       offY = -80
     },
-    text = "Add On Move",
+    text = Locale["ma_GOAddOnMoveLabel"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -703,7 +703,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 615,
       offY = -105
     },
-    text = "Move on Move",
+    text = Locale["ma_GOMoveOnMoveLabel"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -768,7 +768,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobmovedistanceslabel",
     group = "go",
     parent = ma_midframe,
-    text = "Move Distances",
+    text = Locale["ma_GOMoveDistancesLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -20,
@@ -780,7 +780,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobmovedistforwardbacklabel",
     group = "go",
     parent = ma_midframe,
-    text = "Fwd/Back:",
+    text = Locale["ma_GOFwdBackLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -65,
@@ -792,7 +792,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobmovedistleftrightlabel",
     group = "go",
     parent = ma_midframe,
-    text = "Left/Right:",
+    text = Locale["ma_GOLeftRightLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -65,
@@ -804,7 +804,7 @@ function AzerothAdmin:CreateGOSection()
     name = "ma_gobmovedistupdownlabel",
     group = "go",
     parent = ma_midframe,
-    text = "Up/Down:",
+    text = Locale["ma_GOUpDownLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -65,
@@ -829,7 +829,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 280,
       offY = -5
     },
-    text = "Show"
+    text = Locale["ma_GOShowButton"]
   })
 
   -- MEMORY OPTIMIZATION: Unload Models button (frees ~5.6 MB)
@@ -850,7 +850,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 342,
       offY = -5
     },
-    text = "Unload"
+    text = Locale["ma_GOUnloadButton"]
   })
 
 end

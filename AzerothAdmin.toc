@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 17
+## Version: 18
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3
@@ -36,27 +36,26 @@ Commands\Misc.lua
 Commands\Server.lua
 Commands\NPC.lua
 Commands\GO.lua
-Commands\Who.lua
 Data\DBC.lua
 Data\TeleportTable.lua
 Core\Init.lua
 Core\AzerothAdmin.lua
+Commands\Confirmation.lua
 Core\DropDownStyle.lua
 Modules\Linkifier.lua
-Frames\MangFrames_Start.lua
-Frames\MangFrames_Tabs.lua
-Frames\MangFrames_MiniMenu.lua
-Frames\MangFrames_LookupButtons.lua
-Frames\MangFrames_PopupFrames.lua
-Frames\MangFrames_SmallPopupFrames.lua
-Frames\MangFrames_SectionMain.lua
-Frames\MangFrames_SectionTele.lua
-Frames\MangFrames_SectionLog.lua
-Frames\MangFrames_SectionChar.lua
-Frames\MangFrames_SectionTicket.lua
-Frames\MangFrames_SectionMisc.lua
-Frames\MangFrames_SectionServer.lua
-Frames\MangFrames_SectionNpc.lua
-Frames\MangFrames_SectionGO.lua
-Frames\MangFrames_SectionWho.lua
-Frames\MangFrames.lua
+Frames\Frames_Start.lua
+Frames\Frames_Tabs.lua
+Frames\Frames_MiniMenu.lua
+Frames\Frames_LookupButtons.lua
+Frames\Frames_PopupFrames.lua
+Frames\Frames_SmallPopupFrames.lua
+Frames\Frames_SectionMain.lua
+Frames\Frames_SectionTele.lua
+Frames\Frames_SectionLog.lua
+Frames\Frames_SectionChar.lua
+Frames\Frames_SectionTicket.lua
+Frames\Frames_SectionMisc.lua
+Frames\Frames_SectionServer.lua
+Frames\Frames_SectionNpc.lua
+Frames\Frames_SectionGO.lua
+Frames\Frames.lua

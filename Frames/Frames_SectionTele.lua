@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_SectionMain.lua"
+-- This script must be listed in the .toc after "Frames_SectionMain.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateTeleSection()
@@ -36,7 +36,7 @@ function AzerothAdmin:CreateTeleSection()
     name = "ma_teleconttext",
     group = "tele",
     parent = ma_midframe,
-    text = "Continent Selection",
+    text = Locale["ma_ContinentSelection"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 5,
@@ -79,7 +79,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry1_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Eastern Kingdoms (N)",
+    text = Locale["ma_EasternKingdomsN"],
     size = {
       width = 181,
       height = 16
@@ -101,7 +101,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry2_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Eastern Kingdoms (S)",
+    text = Locale["ma_EasternKingdomsS"],
     size = {
       width = 181,
       height = 16
@@ -123,7 +123,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry3_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Kalimdor",
+    text = Locale["ma_Kalimdor"],
     size = {
       width = 181,
       height = 16
@@ -145,7 +145,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry4_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Outland",
+    text = Locale["ma_Outland"],
     size = {
       width = 181,
       height = 16
@@ -167,7 +167,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry5_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Northrend-Alliance",
+    text = Locale["ma_NorthrendAlliance"],
     size = {
       width = 181,
       height = 16
@@ -189,7 +189,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry6_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Northrend-Horde",
+    text = Locale["ma_NorthrendHorde"],
     size = {
       width = 181,
       height = 16
@@ -211,7 +211,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry7_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Battlegrounds/Arenas",
+    text = Locale["ma_BattlegroundsArenas"],
     size = {
       width = 181,
       height = 16
@@ -233,7 +233,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry8_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Instances: Eastern",
+    text = Locale["ma_InstancesEastern"],
     size = {
       width = 181,
       height = 16
@@ -255,7 +255,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry9_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Instances: Kalimdor",
+    text = Locale["ma_InstancesKalimdor"],
     size = {
       width = 181,
       height = 16
@@ -277,7 +277,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry10_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Instances: Outland",
+    text = Locale["ma_InstancesOutland"],
     size = {
       width = 181,
       height = 16
@@ -299,7 +299,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry11_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Instances: Northrend",
+    text = Locale["ma_InstancesNorthrend"],
     size = {
       width = 181,
       height = 16
@@ -321,7 +321,7 @@ function AzerothAdmin:CreateTeleSection()
       name = "ma_ContScrollBarEntry12_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
-    text = "Other",
+    text = Locale["ma_Other"],
     size = {
       width = 181,
       height = 16
@@ -333,7 +333,7 @@ function AzerothAdmin:CreateTeleSection()
     name = "ma_telezonetext",
     group = "tele",
     parent = ma_midframe,
-    text = "Zone Selection",
+    text = Locale["ma_ZoneSelection"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 220,
@@ -618,7 +618,7 @@ function AzerothAdmin:CreateTeleSection()
     name = "ma_telesubzonetext",
     group = "tele",
     parent = ma_midframe,
-    text = "Selected Subzone",
+    text = Locale["ma_SelectedSubzone"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 420,

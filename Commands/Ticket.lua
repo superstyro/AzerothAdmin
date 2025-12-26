@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -34,7 +34,6 @@ function RefreshOnlineTickets()
     ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
-    AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket onlinelist")
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
@@ -49,7 +48,6 @@ function RefreshTickets()
     ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate() end)
     AzerothAdmin.db.char.requests.ticket = true
-    AzerothAdmin:LogAction("Getting tickets.")
     AzerothAdmin:ChatMsg(".ticket list")
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
@@ -75,7 +73,6 @@ function ResetTickets()
     ma_ticketcreatedby:SetText(nil)
     ma_tickettimecreated:SetText(nil)
     ma_ticketlastchange:SetText(nil)
-    AzerothAdmin:LogAction("Reset/Cleared tickets.")
     ma_goticketbutton:Disable()
     ma_deleteticketbutton:Disable()
     ma_answerticketbutton:Disable()
@@ -97,7 +94,6 @@ end
     if tonumber(number) > 0 then
       self.db.account.tickets.count = tonumber(number)
       if self.db.char.requests.ticket then
-        self:LogAction("Load of tickets requested. Found "..number.." tickets!")
         self:RequestTickets()
         self:SetIcon(ROOT_PATH.."Textures\\icon.tga")
         --ma_resetsearchbutton:Enable()
@@ -111,7 +107,6 @@ end
     self.db.account.tickets.count = 0
     self.db.account.buffer.tickets = {}
     --self:ChatMsg(".ticket list")
-    --self:LogAction("Requesting ticket numberz!")
   end
   InlineScrollUpdate()
 end]]
@@ -123,13 +118,9 @@ end]]
   --ma_lookupresulttext:SetText(Locale["ma_TicketCount"]..count)
   ma_top2text:SetText(Locale["realm"].." "..Locale["tickets"]..self.db.account.tickets.count)
   local tnumber = self.db.account.tickets.count - ticketCount
-  --self:LogAction("tNumber = "..tnumber..", Tc = "..ticketCount)
   if tnumber > 0 then
     self:ChatMsg(".ticket "..tnumber)
-    --self:LogAction(".ticket "..tnumber)
-    self:LogAction("Loading ticket "..tnumber.."...")
   else
-    self:LogAction("Loaded all available tickets! No more to load...")
     ma_resetsearchbutton:Disable()
   end
 end]]
@@ -138,7 +129,6 @@ function Ticket(value)
   local ticket = AzerothAdmin.db.account.tickets.selected
   if value == "delete" then
     AzerothAdmin:ChatMsg(".ticket close "..ma_ticketid:GetText())
-    AzerothAdmin:LogAction("Closed ticket with number: "..ma_ticketid:GetText())
     wipe(AzerothAdmin.db.account.buffer.tickets)
     AzerothAdmin.db.account.buffer.tickets={}
 --    AzerothAdmin:ChatMsg(".ticket delete"..ma_ticketid:GetText())
@@ -175,12 +165,10 @@ end
 
 --[[function AzerothAdmin:ToggleTickets(value)
   AzerothAdmin:ChatMsg(".ticket "..value)
-  AzerothAdmin:LogAction("Turned receiving new tickets "..value..".")
 end]]
 
 
 function InlineScrollUpdate()
-    AzerothAdmin:LogAction("Showing tickets.")
     local ticketCount = 0
     for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
     if ticketCount > 0 then
@@ -229,7 +217,6 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     ma_ticketcreatedby:SetText(tChar)
     ma_tickettimecreated:SetText(tLCreate)
     ma_ticketlastchange:SetText(tLUpdate)
-    AzerothAdmin:LogAction("Displaying ticket number "..tNumber.." from player "..tChar)
     local ticketdetail = AzerothAdmin.db.account.buffer.ticketsfull
     ma_ticketdetail:Show();
     --AzerothAdmin:ChatMsg("???")

@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -169,7 +169,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_toptext",
     group = "bg",
     parent = ma_topframe,
-    text = "toptext, you should not see this!",
+    text = Locale["ma_TopText"],
     setpoint = {
       pos = "BOTTOMRIGHT",
       offX = -10,
@@ -193,7 +193,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_top2text",
     group = "bg",
     parent = ma_topframe,
-    text = "toptext, you should not see this!",
+    text = Locale["ma_Top2Text"],
     setpoint = {
       pos = "BOTTOMRIGHT",
       offX = -10,
@@ -205,7 +205,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infoonlinetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Players Online: ...",
+    text = Locale["ma_InfoOnlineText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -217,7 +217,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infomaxonlinetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Maximum Online: ...",
+    text = Locale["ma_InfoMaxOnlineText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -229,7 +229,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infouptimetext",
     group = "bg",
     parent = ma_rightframe,
-    text = "Server Uptime: ...",
+    text = Locale["ma_InfoUptimeText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -241,7 +241,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_inforevisiontext",
     group = "bg",
     parent = ma_rightframe,
-    text = "AzerothCore Revision: ...",
+    text = Locale["ma_InfoRevisionText"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
@@ -278,7 +278,7 @@ function AzerothAdmin:CreateStartFrames()
       offX = -10,
       offY = -10
     },
-    text = "Refresh"
+    text = Locale["ma_RefreshButton"]
   })
 
   FrameLib:BuildFrame({
@@ -292,7 +292,7 @@ function AzerothAdmin:CreateStartFrames()
     },
     inherits = "UIDropDownMenuTemplate"
   })
-
+  
   FrameLib:BuildButton({
     name = "ma_languagebutton",
     group = "bg",
@@ -312,4 +312,5 @@ function AzerothAdmin:CreateStartFrames()
     },
     text = Locale["ma_LanguageButton"]
   })
+
 end

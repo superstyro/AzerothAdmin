@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -30,7 +30,7 @@ fID = 0
 gettingGOBinfo=0
 gettingGOBinfoinfo=0
 
-MAJOR_VERSION = "AzerothAdmin-3.3.5"
+MAJOR_VERSION = "|cFF00FF00AzerothAdmin-3.3.5|r"
 MINOR_VERSION = tonumber(GetAddOnMetadata("AzerothAdmin", "Version")) or 0
 ROOT_PATH     = "Interface\\AddOns\\AzerothAdmin\\"
 local cont = ""
@@ -224,7 +224,6 @@ function AzerothAdmin:OnInitialize()
   self:InitButtons()  -- this prepares the actions and tooltips of nearly all AzerothAdmin buttons
   InitControls()
   self:SearchReset()
-  AzerothAdmin.db.account.buffer.who = {}
 
   -- make AzerothAdmin frames closable with escape key
   tinsert(UISpecialFrames,"ma_bgframe")
@@ -244,7 +243,6 @@ function AzerothAdmin:OnInitialize()
   ma_gobmovedistforwardback:SetText("1")
   ma_gobmovedistleftright:SetText("1")
   ma_gobmovedistupdown:SetText("1")
-  AzerothAdmin.db.account.buffer.who = {}
   --clear color buffer
   self.db.account.style.color.buffer = {}
   --altering the function setitemref, to make it possible to click links
@@ -273,10 +271,6 @@ function AzerothAdmin:OnEnable()
   self:RegisterEvent("PLAYER_ALIVE")
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
-
-  -- Hide Who buttons for FIX #11. Admin level 4 not possible ingame?
-  ma_tabbutton_who:Hide()
-  ma_mm_whobutton:Hide()
 
   -- Dissable unusable options in GM(main) tab WIP: FIX #10
   ma_hoveronbutton:Disable()
@@ -419,7 +413,6 @@ function AzerothAdmin:OnTooltipUpdate()
     end
     AzerothAdmin:SetIcon(ROOT_PATH.."Textures\\icon2")
   end
-  Tablet:SetHint(Locale["ma_IconHint"])
 end
 
 function AzerothAdmin:ToggleTabButton(group)
@@ -443,10 +436,6 @@ end
 function AzerothAdmin:InstantGroupToggle(group)
   if group == "ticket" then
     self.db.char.requests.ticket = false
-  end
-  if group== "who" then
-    AzerothAdmin:ChatMsg(".account onlinelist")
-    ResetWho()
   end
   FrameLib:HandleGroup("bg", function(frame) frame:Show() end)
   AzerothAdmin:ToggleTabButton(group)
@@ -580,8 +569,6 @@ function AzerothAdmin:HideAllGroups()
   FrameLib:HandleGroup("ticket", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("server", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("misc", function(frame) frame:Hide() end)
-  FrameLib:HandleGroup("log", function(frame) frame:Hide() end)
-  FrameLib:HandleGroup("who", function(frame) frame:Hide() end)
 end
 
 --[[function WaitLoop(seconds)
@@ -599,7 +586,6 @@ function AzerothAdmin:TicketHackTimer()
       self:RequestTickets()
     else
       self.db.char.msgDeltaTime = time()
-      self:LogAction("TicketHackTimer: Please be patient...")
       WaitLoop(1)
       self:TicketHackTimer()
     end
@@ -708,7 +694,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         if npc_guid_capture then
             AzerothAdmin:ID_Setting_Write(0, npc_guid_capture)
             ma_NPC_guidbutton:SetText(npc_guid_capture)
-            self:LogAction("NPC_GUID_Get id "..npc_guid_capture..".")
         end
 
         -- Match Entry ID from "Current Entry: 2470" or "Entry: 2470"
@@ -716,20 +701,17 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         if npc_entry_capture then
             AzerothAdmin:ID_Setting_Write(1, npc_entry_capture)
             ma_NPC_idbutton:SetText(npc_entry_capture)
-            self:LogAction("NPC_EntryID_Get id "..npc_entry_capture..".")
         end
 
         -- Match DisplayID from "DisplayID: 9232."
         local npc_displayid_capture = string.match(text, "DisplayID: (%d+)")
         if npc_displayid_capture then
             ma_npcdisplayid:SetText(npc_displayid_capture)
-            self:LogAction("NPC_DisplayID_Get id "..npc_displayid_capture..".")
         end
 
         local npc_distance_capture = string.match(text, "%(Exact 3D%) ([%d%.]+)")
         if npc_distance_capture then
             ma_npc_distance_box:SetText(npc_distance_capture)
-            self:LogAction("NPC_Distance_Get distance "..npc_distance_capture..".")
         end
 
         -- Reset listening state after processing all NPC info fields
@@ -744,25 +726,21 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
             AzerothAdmin:OID_Setting_Start_Write(0) -- Reset listening state after capturing GUID
             AzerothAdmin:OID_Setting_Write(0, obj_guid_capture)
             ma_Obj_guidbutton:SetText(obj_guid_capture)
-            self:LogAction("OBJECT_GUID_Get id "..obj_guid_capture..".")
         end
 
         local obj_entry_capture = string.match(text, " ID: (%d+)")
         if obj_entry_capture then
             ma_Obj_idbutton:SetText(obj_entry_capture)
-            self:LogAction("OBJECT_EntryID_Get id "..obj_entry_capture..".")
         end
 
         local obj_displayid_capture = string.match(text, "DisplayID: (%d+)")
         if obj_displayid_capture then
             ma_gobdisplayid:SetText(obj_displayid_capture)
-            self:LogAction("OBJECT DisplayID"..obj_displayid_capture..".")
         end
 
         local obj_phasemask_capture = string.match(text, "Phasemask (%d+)")
         if obj_phasemask_capture then
             ma_gobsetphaseinput:SetText(obj_phasemask_capture)
-            self:LogAction("OBJECT Phasemask "..obj_phasemask_capture..".")
         end
     end
 
@@ -773,7 +751,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
 
             local wnpc =	ma_NPC_guidbutton:GetText()
             self:ChatMsg(".wp show on "..wnpc)
-            self:LogAction("Waypoint set OK")
         else
         end
     end
@@ -856,39 +833,34 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         end
       end
     end
---     for diff in string.gmatch(text, Strings["ma_GmatchUpdateDiff"]) do
---         ma_difftext:SetText(diff)
---         catchedSth = true
---         output     = AzerothAdmin.db.account.style.showchat
---     end
+
     for difftime in string.gmatch(text, Strings["ma_GmatchUpdateDiffTime"]) do --We just want the Diff time number value
-      ma_difftext:SetText(difftime)
+      ma_difftext:SetText(difftime .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
 
     -- hook Last 500 diff info from .server info
     for mean in string.gmatch(text, Strings["ma_GmatchMean"]) do
-      ma_meantextoutput:SetText(mean .. " ms")
+      ma_meantextoutput:SetText(mean .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
     for median in string.gmatch(text, Strings["ma_GmatchMedian"]) do
-      ma_mediantextoutput:SetText(median .. " ms")
+      ma_mediantextoutput:SetText(median .. "ms")
       catchedSth = true
       output = AzerothAdmin.db.account.style.showchat
     end
     for p95, p99, pmax in string.gmatch(text, Strings["ma_GmatchPercentiles"]) do
       --print("Matched percentiles:", p95, p99, pmax) -- Debug print
       --ma_percentilestextoutput:SetText("95th: " .. p95 .. "ms, 99th: " .. p99 .. "ms, Max: " .. pmax .. "ms")
-      ma_percentilestextoutput:SetText("".. p95 .. " ms, " .. p99 .. " ms, " .. pmax .. " ms") -- simple output
+      ma_percentilestextoutput:SetText("".. p95 .. "ms, " .. p99 .. "ms, " .. pmax .. "ms") -- simple output
       catchedSth = true
     end
 
     -- hook all new tickets
     for name in string.gmatch(text, Strings["ma_GmatchNewTicket"]) do
       PlaySoundFile(ROOT_PATH.."Sound\\mail.wav")
-      self:LogAction("Got new ticket from: "..name)
     end
     -- hook player account info
     for status, char, guid, account, id, level, ip, login, latency in string.gmatch(text, Strings["ma_GmatchAccountInfo"]) do
@@ -955,11 +927,6 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.msgDeltaTime = time()
     end
     for msg in string.gmatch(text, Strings["ma_GmatchTicketMessage"]) do
-        if self.db.char.requests.ticketbody and self.db.char.requests.ticketbody ~= 0 then
-            self:LogAction("Ticket msg for ID " .. tostring(self.db.char.requests.ticketbody) .. ": " .. msg)
-        else
-            self:LogAction("Ticket msg (no specific ID context): " .. msg)
-        end
         ma_ticketdetail:SetText("|cffffff00"..msg)  -- Change to yellow to match formatting
         catchedSth = true
         output = AzerothAdmin.db.account.style.showchat
@@ -969,70 +936,25 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         output = AzerothAdmin.db.account.style.showchat
     end
 
-    for acc, char, ip, map, zone, exp, gmlevel in string.gmatch(text, Strings["ma_GmatchWho"]) do
-    	acc= string.gsub(acc, " ", "")
-    	char= string.gsub(char, " ", "")
-    	ip= string.gsub(ip, " ", "")
-        map=string.gsub(map, " ", "")
-        zone=string.gsub(zone, " ", "")
-    	exp= string.gsub(exp, " ", "")
-    	gmlevel= string.gsub(gmlevel, " ", "")
-        gmlevel=strtrim(gmlevel, "]-")
-        --self:ChatMsg("Matched Who")
-        if acc == "Account" then
-        else
-            table.insert(AzerothAdmin.db.account.buffer.who, {tAcc = acc, tChar = char, tIP = ip, tMap = map, tZone = zone, tExp = exp, tGMLevel = gmlevel})
-        end
-            catchedSth = true
-            output = AzerothAdmin.db.account.style.showchat
-            WhoUpdate()
-    end
---    ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
---    ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",
-    for charname, charguid, account, accountid, email, gmlvl, lastip, lastlogin, latency in string.gmatch(text, Strings["ma_GmatchAccountInfo"]) do
-       ma_whodetail:SetText("|c00ff00ffCharacter:|r"..charname.." |cffffffff("..charguid..")|r\n".."|c00ff0000Acct:|r|cffffffff"..account.." ("..accountid..")|r\n".."|c00ff0000IP:|r|cffffffff"..lastip.."|r\n".."|c00ff0000Login:|r|cffffffff"..lastlogin.."|r\n".."|c00ff0000Latency:|r|cffffffff"..latency.."ms|r\n")
-       catchedSth = true
-       output = AzerothAdmin.db.account.style.showchat
-    end
-
-    for race, class, playedtime, level, money in string.gmatch(text, Strings["ma_GmatchAccountInfo2"]) do
-        --self:ChatMsg("Matched Who")
-       ma_whodetail2:SetText("|c00ff0000Race:|r|cffffffff"..race.."|r\n".."|c00ff0000Class|r|cffffffff"..class.."|r\n".."|c00ff0000Level:|r|cffffffff"..level.."|r\n".."|c00ff0000Money:|r|cffffffff"..money.."|r\n".."|c00ff0000Played Time:|r|cffffffff"..playedtime.."|r\n")
-       catchedSth = true
-       output = AzerothAdmin.db.account.style.showchat
-    end
-    for mymatch in string.gmatch(text, "=====") do
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
-    end
-    for mymatch in string.gmatch(text, "Characters Online:") do
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
-    end
  --[[
     -- get ticket content
     if self.db.char.requests.ticket then
       local delta = time() - self.db.char.msgDeltaTime
-      --self:LogAction("Delta: "..delta)
       if self.db.char.requests.ticketbody > 0 then
         if delta <= 300 then
           if not catchedSth then
-            --self:LogAction(text)
             local ticketCount = 0
             for _ in pairs(AzerothAdmin.db.account.buffer.tickets) do ticketCount = ticketCount + 1 end
-            --self:LogAction("Prepare to add text to DB ticket: "..ticketCount)
             for k,v in ipairs(self.db.account.buffer.tickets) do
               if k == ticketCount then
                 local oldmsg = v.tMsg
                 self.db.account.buffer.tickets[k].tMsg = oldmsg..text.."\n"
-                --self:LogAction("Added text to ticket in DB: "..k.." Ticket id:"..self.db.account.buffer.tickets[k].tNumber)
               end
             end
             catchedSth = true
             output = false
           end
         else
-          --self:LogAction("Time passed. Getting next ticket...")
           --self:RequestTickets()
         end
       end
@@ -1077,10 +999,6 @@ end
     return true
   end
 end ]]
-
-function AzerothAdmin:LogAction(msg)
-  ma_logframe:AddMessage("|cFF00FF00["..date("%H:%M:%S").."]|r "..msg, 1.0, 1.0, 0.0)
-end
 
 function AzerothAdmin:ChatMsg(msg, msgt, recipient)
   if not msgt then msgt = "say" end
@@ -1158,7 +1076,6 @@ function AzerothAdmin:SetSkill(value, skill_arg, maxskill_arg) -- Renamed skill,
     else
         skill_val = tonumber(skill_text)
         if not skill_val then
-            self:LogAction("Error: Invalid skill value '"..skill_text.."' for SetSkill. Must be a number.")
             return
         end
     end
@@ -1169,7 +1086,6 @@ function AzerothAdmin:SetSkill(value, skill_arg, maxskill_arg) -- Renamed skill,
     else
         maxskill_val = tonumber(maxskill_text)
         if not maxskill_val then
-            self:LogAction("Error: Invalid maxskill value '"..maxskill_text.."' for SetSkill. Must be a number.")
             return
         end
     end
@@ -1177,11 +1093,9 @@ function AzerothAdmin:SetSkill(value, skill_arg, maxskill_arg) -- Renamed skill,
     -- value here is the skill ID or table of skill IDs
     if type(value) == "string" then
       self:ChatMsg(".setskill "..value.." "..skill_val.." "..maxskill_val)
-      self:LogAction("Set skill "..value.." of "..player.." to "..skill_val.." with a maximum of "..maxskill_val..".")
     elseif type(value) == "table" then
       for k,v_id in pairs(value) do -- Renamed 'v' to 'v_id'
         self:ChatMsg(".setskill "..v_id.." "..skill_val.." "..maxskill_val)
-        self:LogAction("Set skill "..v_id.." of "..player.." to "..skill_val.." with a maximum of "..maxskill_val..".")
       end
     end
   else
@@ -1203,15 +1117,12 @@ function AzerothAdmin:Quest(value, state)
     end
     if type(value) == "string" then
       self:ChatMsg(command.." "..value)
-      self:LogAction(logcmd.." quest with id "..value.." "..logcmd2.." "..player..".")
     elseif type(value) == "table" then
       for k,v in pairs(value) do
         self:ChatMsg(command.." "..v)
-        self:LogAction(logcmd.." quest with id "..value.." "..logcmd2.." "..player..".")
       end
     elseif type(value) == "number" then
       self:ChatMsg(command.." "..value)
-      self:LogAction(logcmd.." quest with id "..value.." "..logcmd2.." "..player..".")
     end
   else
     self:Print(Locale["selectionerror1"])
@@ -1227,15 +1138,12 @@ function AzerothAdmin:Creature(value, state)
     end
     if type(value) == "string" then
       self:ChatMsg(command.." "..value)
-      self:LogAction(logcmd.." creature with id "..value..".")
     elseif type(value) == "table" then
       for k,v in pairs(value) do
         self:ChatMsg(command.." "..v)
-        self:LogAction(logcmd.." creature with id "..value..".")
       end
     elseif type(value) == "number" then
       self:ChatMsg(command.." "..value)
-      self:LogAction(logcmd.." creature with id "..value..".")
     end
 end
 
@@ -1246,35 +1154,28 @@ function AzerothAdmin:AddItem(value, state)
     if state == "RightButton" then
       if amount == "" then
         self:ChatMsg(".additem "..value.." -1")
-        self:LogAction("Removed item with id "..value.." from "..player..".")
       else
         local amt_num = tonumber(amount)
         if not amt_num then
-          self:LogAction("Error: Invalid amount '"..amount.."' for AddItem (remove). Must be a number.")
           return
         end
         if amt_num > 0 then
            amt_num = amt_num * -1
         end
         self:ChatMsg(".additem "..value.." "..tostring(amt_num))
-        self:LogAction("Removed "..tostring(amt_num).." items with id "..value.." from "..player..".")
       end
     else
       if amount == "" then
         self:ChatMsg(".additem "..value)
-        self:LogAction("Added item with id "..value.." to "..player..".")
       else
         local amt_num = tonumber(amount)
         if not amt_num then
-          self:LogAction("Error: Invalid amount '"..amount.."' for AddItem (add). Must be a number.")
           return
         end
         if amt_num <= 0 then
-           self:LogAction("Error: Amount must be positive for AddItem (add). Got: "..amount)
            return
         end
         self:ChatMsg(".additem "..value.." "..tostring(amt_num))
-        self:LogAction("Added "..tostring(amt_num).." items with id "..value.." to "..player..".")
       end
     end
   else
@@ -1286,7 +1187,6 @@ function AzerothAdmin:AddItemSet(value)
   if self:Selection("player") or self:Selection("self") or self:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     self:ChatMsg(".additem set "..value)
-    self:LogAction("Added itemset with id "..value.." to "..player..".")
   else
     self:Print(Locale["selectionerror1"])
   end
@@ -1297,17 +1197,13 @@ function AzerothAdmin:AddObject(value, state)
   local _time = ma_var2editbox:GetText()
   if state == "RightButton" then
     self:ChatMsg(".gobject add "..value.." "..value)
-    self:LogAction("Added object id "..value.." with loot template.")
   else
     if loot ~= "" and _time == "" then
       self:ChatMsg(".gobject add "..value.. " "..loot)
-      self:LogAction("Added object id "..value.." with loot "..loot..".")
     elseif loot ~= "" and _time ~= "" then
       self:ChatMsg(".gobject add "..value.. " "..loot.." ".._time)
-      self:LogAction("Added object id "..value.." with loot "..loot.." and spawntime ".._time..".")
     else
       self:ChatMsg(".gobject add "..value)
-      self:LogAction("Added object id "..value..".")
     end
   end
 end
@@ -1315,10 +1211,8 @@ end
 function AzerothAdmin:TelePlayer(value, player)
   if value == "gochar" then
     self:ChatMsg(".appear "..player)
-    self:LogAction("Teleported to player "..player..".")
   elseif value == "getchar" then
     self:ChatMsg(".summon "..player)
-    self:LogAction("Summoned player "..player..".")
   end
 end
 
@@ -1404,13 +1298,11 @@ function AzerothAdmin:NPCAdd_Way_o()
     local npc =	ma_NPC_guidbutton:GetText()
     self:ChatMsg(".wp add "..npc)
     self:ChatMsg(".wp show on "..npc)
-    self:LogAction("WayPoint Add for player "..player..".")
 end
 
 function AzerothAdmin:WayModify()
     local player = UnitName("target") or UnitName("player")
     self:ChatMsg(".npc info")
-    self:LogAction("Got NPC info for player "..player..".")
 end
 
 function AzerothAdmin:NPC_GUID_Get_org()
@@ -1426,16 +1318,13 @@ function AzerothAdmin:NPC_GUID_Get_org()
 
     local str1 = ID_Setting_Read(0)
     ma_NPC_guidbutton:SetText(str1)
-    self:LogAction("NPC_GUID_Get for val "..str1..".")
 
     local str2 = ID_Setting_Read(1)
     ma_NPC_idbutton:SetText(str2)
-    self:LogAction("NPC_EntryID_Get for val "..str2..".")
 end
 
 function AzerothAdmin:CreateGuild(leader, name)
   self:ChatMsg(".guild create "..leader.." "..name)
-  self:LogAction("Created guild '"..name.."' with leader "..leader..".")
 end
 
 function AzerothAdmin:SendMail(recipient, subject, body)  --[TODO]:Mail-Update this to allow sending with items(mail) command
@@ -1445,7 +1334,6 @@ function AzerothAdmin:SendMail(recipient, subject, body)  --[TODO]:Mail-Update t
   subject = '"'..subject..'"'
   body = '"'..body..'"'
   self:ChatMsg(".send mail "..recipient.." "..subject.." "..body)
-  self:LogAction("Sent a mail to "..recipient..". Subject was: "..subject)
 end
 
 function AzerothAdmin:UpdateMailBytesLeft()
@@ -1616,7 +1504,6 @@ function AzerothAdmin:SendMailWithItems(recipient, subject, body)
 
   -- Send mail with items using .send items command
   self:ChatMsg(".send items "..recipient.." "..subject.." "..body.." "..itemList)
-  self:LogAction("Sent mail with items to "..recipient..". Subject: "..subject..", Items: "..itemList)
 
   -- Clear item slots
   for i = 1, 12 do
@@ -1642,7 +1529,6 @@ function AzerothAdmin:SendMailWithMoney(recipient, subject, gold, silver, copper
 
   -- Send mail with money using .send money command
   self:ChatMsg(".send money "..recipient.." "..subject.." "..body.." "..totalCopper)
-  self:LogAction("Sent mail with money to "..recipient..". Subject: "..subject..", Amount: "..gold.."g "..silver.."s "..copper.."c")
 end
 
 function AzerothAdmin:Favorites(value, searchtype)
@@ -1664,7 +1550,6 @@ function AzerothAdmin:Favorites(value, searchtype)
     elseif searchtype == "tele" then
       for k,v in pairs(self.db.account.buffer.teles) do if v["checked"] then table.insert(self.db.account.favorites.teles, {tName = v["tName"], checked = false}) end end
     end
-    self:LogAction("Added some "..searchtype.."s to the favorites.")
   elseif value == "remove" then
     if searchtype == "item" then
       for i = #self.db.account.favorites.items, 1, -1 do
@@ -1715,7 +1600,6 @@ function AzerothAdmin:Favorites(value, searchtype)
         end
       end
     end
-    self:LogAction("Removed some favorited "..searchtype.."s from the list.")
     PopupScrollUpdate()
   elseif value == "show" then
     if searchtype == "item" then
@@ -1830,7 +1714,6 @@ function AzerothAdmin:SearchStart(var, value)
     self:ChatMsg(".lookup tele "..value)
   end
   self.db.account.buffer.counter = 0
-  self:LogAction("Searching for "..var.."s with the keyword '"..value.."'.")
 end
 
 function AzerothAdmin:SearchReset()
@@ -1897,8 +1780,6 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_tabbutton_tele       , Locale["tt_TeleButton"]         , function() AzerothAdmin:InstantGroupToggle("tele"); end)
   self:PrepareScript(ma_tabbutton_misc       , Locale["tt_MiscButton"]         , function() AzerothAdmin:InstantGroupToggle("misc") end)
   self:PrepareScript(ma_tabbutton_server     , Locale["tt_ServerButton"]       , function() AzerothAdmin:InstantGroupToggle("server") end)
-  self:PrepareScript(ma_tabbutton_log        , Locale["tt_LogButton"]          , function() AzerothAdmin:InstantGroupToggle("log") end)
-  self:PrepareScript(ma_tabbutton_who        , Locale["tt_whotabmenubutton"]   , function() AzerothAdmin:InstantGroupToggle("who") end)
   --end tab buttons
   -- start mini buttons
   self:PrepareScript(ma_mm_logoframe         , nil                             , function() AzerothAdmin:OnClick() end)
@@ -1910,8 +1791,6 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_mm_ticketbutton      , Locale["tt_TicketButton"]       , function() ShowTicketTab() end)
   self:PrepareScript(ma_mm_miscbutton        , Locale["tt_MiscButton"]         , function() AzerothAdmin:InstantGroupToggle("misc") end)
   self:PrepareScript(ma_mm_serverbutton      , Locale["tt_ServerButton"]       , function() AzerothAdmin:InstantGroupToggle("server") end)
-  self:PrepareScript(ma_mm_logbutton         , Locale["tt_LogButton"]          , function() AzerothAdmin:InstantGroupToggle("log") end)
-  self:PrepareScript(ma_mm_whobutton         , Locale["tt_whotabmenubutton"]   , function() AzerothAdmin:InstantGroupToggle("who") end)
   --end mini buttons
   self:PrepareScript(ma_languagebutton       , Locale["tt_LanguageButton"]     , function() AzerothAdmin:ChangeLanguage(UIDropDownMenu_GetSelectedValue(ma_languagedropdown)) end)
   self:PrepareScript(ma_itembutton           , Locale["tt_ItemButton"]         , function() AzerothAdmin:TogglePopup("search", {type = "item"}) end)
@@ -1923,17 +1802,12 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_objectbutton         , Locale["tt_ObjectButton"]       , function() AzerothAdmin:TogglePopup("search", {type = "object"}) end)
   self:PrepareScript(ma_telesearchbutton     , Locale["ma_TeleSearchButton"]   , function() AzerothAdmin:TogglePopup("search", {type = "tele"}) end)
   self:PrepareScript(ma_sendmailbutton       , Locale["ma_Mail"]               , function() AzerothAdmin:TogglePopup("mail", {}) end)
-  --self:PrepareScript(ma_learnallbutton       , nil                             , function() AzerothAdmin:LearnSpell("all") end)
-  --self:PrepareScript(ma_learncraftsbutton    , nil                             , function() AzerothAdmin:LearnSpell("all_crafts") end)
-  --self:PrepareScript(ma_learngmbutton        , nil                             , function() AzerothAdmin:LearnSpell("all_gm") end)
-  --self:PrepareScript(ma_learnlangbutton      , nil                             , function() AzerothAdmin:LearnSpell("all_lang") end)
-  --self:PrepareScript(ma_learnclassbutton     , nil                             , function() AzerothAdmin:LearnSpell("all_myclass") end)
   self:PrepareScript(ma_searchbutton         , nil                             , function() AzerothAdmin:SearchStart("item", ma_searcheditbox:GetText()) end)
   self:PrepareScript(ma_resetsearchbutton    , nil                             , function() AzerothAdmin:SearchReset() end)
   self:PrepareScript(ma_closebutton          , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("bg") end)
   self:PrepareScript(ma_popupclosebutton     , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("popup") end)
   self:PrepareScript(ma_popup2closebutton    , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("popup2") end)
-  self:PrepareScript(ma_inforefreshbutton    , nil                             , function() AzerothAdmin:ChatMsg(".server info") end)
+  self:PrepareScript(ma_inforefreshbutton    , Locale["tt_RefreshButton"]      , function() AzerothAdmin:ChatMsg(".server info") end)
   self:PrepareScript(ma_frmtrslider          , Locale["tt_FrmTrSlider"]        , {{"OnMouseUp", function() AzerothAdmin:ChangeTransparency("frames") end},{"OnValueChanged", function() ma_frmtrsliderText:SetText(string.format("%.2f", ma_frmtrslider:GetValue())) end}})
   self:PrepareScript(ma_btntrslider          , Locale["tt_BtnTrSlider"]        , {{"OnMouseUp", function() AzerothAdmin:ChangeTransparency("buttons") end},{"OnValueChanged", function() ma_btntrsliderText:SetText(string.format("%.2f", ma_btntrslider:GetValue())) end}})
   self:PrepareScript(ma_mm_revivebutton      , nil                             , function() SendChatMessage(".revive", "GUILD", nil, nil) end)
@@ -1954,6 +1828,7 @@ function AzerothAdmin:InitDropDowns()
       {"All_quest","all quest"},
       {"All scripts","all scripts"},
       {"All spell","all spell"},
+      {"acore_string","acore_string"},
       {"areatrigger_tavern","areatrigger_tavern"},
       {"areatrigger_teleport","areatrigger_teleport"},
       {"autobroadcast","autobroadcast"},
@@ -1965,17 +1840,15 @@ function AzerothAdmin:InitDropDowns()
       {"creature_template","creature_template"},
       {"creature_text","creature_text"},
       {"disables","disables"},
-      {"game_graveyard_zone","game_graveyard_zone"},
+      {"game_graveyard","game_graveyard"},
       {"game_tele","game_tele"},
-      {"gm_tickets","gm_tickets"},
+      {"graveyard_zone","graveyard_zone"},
       {"item_set_names","item_set_names"},
-      {"lfg_dungeon_encounters","lfg_dungeon_encounters"},
       {"lfg_dungeon_rewards","lfg_dungeon_rewards"},
       {"reserved_name","reserved_name"},
       {"skill_discovery_template","skill_discovery_template"},
       {"skill_extra_item_template","skill_extra_item_template"},
       {"skill_fishing_base_level","skill_fishing_base_level"},
-      {"trinity_string","trinity_string"},
     }
     for k,v in pairs(buttons) do
       info.text = v[1]
@@ -2168,6 +2041,19 @@ function AzerothAdmin:InitDropDowns()
   UIDropDownMenu_SetButtonWidth(ma_languagedropdown, 20)
   UIDropDownMenu_SetSelectedValue(ma_languagedropdown, Locale:GetLocale())
 
+  -- Add tooltip to language dropdown
+  if self.db.account.style.showtooltips then
+    ma_languagedropdown:SetScript("OnEnter", function()
+      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+      GameTooltip:SetText("Language Locale future update planned")
+      GameTooltip:Show()
+    end)
+    ma_languagedropdown:SetScript("OnLeave", function()
+      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+      GameTooltip:Hide()
+    end)
+  end
+
   -- FRAME STRATA DROPDOWN
   local function FrameStrataDropDownInitialize()
     local level = 1
@@ -2229,8 +2115,6 @@ function AzerothAdmin:InitScrollFrames()
   --ma_ticketscrollframe1:SetText("No Data")
 --  ma_ticketscrollframe:SetScript("OnVerticalScroll", InlineScrollUpdate("onlinelist"), function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, InlineScrollUpdate("onlinelist")) end)
 --  ma_ticketscrollframe:SetScript("OnShow", function() InlineScrollUpdate("onlinelist") end)
-  ma_whoscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, WhoUpdate) end)
-  ma_whoscrollframe:SetScript("OnShow", function() WhoUpdate() end)
 
   --ma_ticketeditbox:SetScript("OnTextChanged", function() ScrollingEdit_OnTextChanged(self, ma_ticketeditbox) end)
   --ma_ticketeditbox:SetScript("OnCursorChanged", function() ScrollingEdit_OnCursorChanged(self, x, y, w, h) end)
@@ -2246,22 +2130,11 @@ function AzerothAdmin:InitScrollFrames()
     {"OnCursorChanged", function() ScrollingEdit_OnCursorChanged(self, x, y, w, h) end},
     {"OnUpdate", function() ScrollingEdit_OnUpdate(self, 0, ma_maileditbox) end}})
 ]]
-  ma_logframe:SetScript("OnUpdate", function() AzerothAdminLogOnUpdate(self, 0, ma_logframe) end)
-end
-
-function AzerothAdminLogOnUpdate(elapsedTime)
-  if ( ma_logscrollupbutton:GetButtonState() == "PUSHED" ) then
-    ma_logframe:ScrollUp()
-  end
-  if ( ma_logscrolldownbutton:GetButtonState() == "PUSHED" ) then
-    ma_logframe:ScrollDown()
-  end
 end
 
 function AzerothAdmin:NoResults(var)
   if var == "ticket" then
     -- Reset list and make an entry "No Tickets"
-    self:LogAction(Locale["ma_TicketsNoTickets"])
     --ma_ticketeditbox:SetText(Locale["ma_TicketsNoTickets"])
     FauxScrollFrame_Update(ma_ZoneScrollBar,12,12,30);
     for line = 1,12 do

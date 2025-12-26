@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -66,7 +66,6 @@ function RevivePlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".revive")
-    AzerothAdmin:LogAction("Revived player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -76,7 +75,6 @@ function SavePlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".save")
-    AzerothAdmin:LogAction("Saved player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -86,7 +84,6 @@ function KickPlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".kick")
-    AzerothAdmin:LogAction("Kicked player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -96,7 +93,6 @@ function Cooldown()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".cooldown")
-    AzerothAdmin:LogAction("Cooled player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -105,14 +101,12 @@ end
 function ShowGUID()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".guid")
-    AzerothAdmin:LogAction("Got GUID for player "..player..".")
 end
 
 function Pinfo()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".pinfo")
-    AzerothAdmin:LogAction("Got Player Info for player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -121,14 +115,12 @@ end
 function Distance()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".distance")
-    AzerothAdmin:LogAction("Got distance to player "..player..".")
 end
 
 function Recall()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".recall")
-    AzerothAdmin:LogAction("Recalled player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -137,23 +129,16 @@ end
 function Demorph()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".morph reset")
-    AzerothAdmin:LogAction("Demorphed player "..player..".")
 end
 
 function ToggleMapsChar(value)
   AzerothAdmin:ChatMsg(".explorecheat "..value)
-  if value == 1 then
-    AzerothAdmin:LogAction("Revealed all maps for selected player.")
-  else
-    AzerothAdmin:LogAction("Hide all unexplored maps for selected player.")
-  end
 end
 
 function GPS()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".gps")
-    AzerothAdmin:LogAction("Got GPS coordinates for player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -166,69 +151,48 @@ function LearnSpell(value, state)
     if type(value) == "string" then
       if value == "all" then
         AzerothAdmin:ChatMsg(".learn all")
-        AzerothAdmin:LogAction("Learned all spells to "..player..".")
       elseif value == "all_crafts" then
         AzerothAdmin:ChatMsg(".learn all crafts")
-        AzerothAdmin:LogAction("Learned all professions and recipes to "..player..".")
       elseif value == "all_default" then
         AzerothAdmin:ChatMsg(".learn all default")
-        AzerothAdmin:LogAction("Learned all default spells for race/class to "..player..".")
       elseif value == "all_gm" then
         AzerothAdmin:ChatMsg(".learn all gm")
-        AzerothAdmin:LogAction("Learned all default spells for Game Masters to "..player..".")
       elseif value == "all_lang" then
         AzerothAdmin:ChatMsg(".learn all lang")
-        AzerothAdmin:LogAction("Learned all languages to "..player..".")
       elseif value == "all_myclass" then
         AzerothAdmin:ChatMsg(".learn all my class")
-        AzerothAdmin:LogAction("Learned all spells and talents available to the "..class.."-class to "..player..".")
       elseif value == "all_mypettalents" then
         AzerothAdmin:ChatMsg(".learn all my pettalents")
-        AzerothAdmin:LogAction("Learned all pet talents to "..player..".")
       elseif value == "all_myspells" then
         AzerothAdmin:ChatMsg(".learn all my spells")
-        AzerothAdmin:LogAction("Learned all spells (except talents) available to the "..class.."-class to "..player..".")
       elseif value == "all_mytalents" then
         AzerothAdmin:ChatMsg(".learn all my talents")
-        AzerothAdmin:LogAction("Learned all talents available to the "..class.."-class to "..player..".")
       elseif value == "all_recipes_alchemy" then
         AzerothAdmin:ChatMsg(".learn all recipes alchemy")
-        AzerothAdmin:LogAction("Learned all Alchemy recipes to "..player..".")
       elseif value == "all_recipes_blacksmithing" then
         AzerothAdmin:ChatMsg(".learn all recipes blacksmithing")
-        AzerothAdmin:LogAction("Learned all Blacksmithing recipes to "..player..".")
       elseif value == "all_recipes_cooking" then
         AzerothAdmin:ChatMsg(".learn all recipes cooking")
-        AzerothAdmin:LogAction("Learned all Cooking recipes to "..player..".")
       elseif value == "all_recipes_enchanting" then
         AzerothAdmin:ChatMsg(".learn all recipes enchanting")
-        AzerothAdmin:LogAction("Learned all Enchanting recipes to "..player..".")
       elseif value == "all_recipes_engineering" then
         AzerothAdmin:ChatMsg(".learn all recipes engineering")
-        AzerothAdmin:LogAction("Learned all Engineering recipes to "..player..".")
       elseif value == "all_recipes_firstaid" then
         AzerothAdmin:ChatMsg(".learn all recipes firstaid")
-        AzerothAdmin:LogAction("Learned all First Aid recipes to "..player..".")
       elseif value == "all_recipes_inscription" then
         AzerothAdmin:ChatMsg(".learn all recipes inscription")
-        AzerothAdmin:LogAction("Learned all Inscription recipes to "..player..".")
       elseif value == "all_recipes_jewelcrafting" then
         AzerothAdmin:ChatMsg(".learn all recipes jewelcrafting")
-        AzerothAdmin:LogAction("Learned all Jewelcrafting recipes to "..player..".")
       elseif value == "all_recipes_leatherworking" then
         AzerothAdmin:ChatMsg(".learn all recipes leatherworking")
-        AzerothAdmin:LogAction("Learned all Leatherworking recipes to "..player..".")
       elseif value == "all_recipes_tailoring" then
         AzerothAdmin:ChatMsg(".learn all recipes tailoring")
-        AzerothAdmin:LogAction("Learned all Tailoring recipes to "..player..".")
       else
         AzerothAdmin:ChatMsg(".learn "..value)
-        AzerothAdmin:LogAction("Learned spell "..value.." to "..player..".")
       end
     elseif type(value) == "table" then
       for k,v in pairs(value) do
         AzerothAdmin:ChatMsg(".learn "..v)
-        AzerothAdmin:LogAction("Learned spell "..v.." to "..player..".")
       end
     end
   else
@@ -241,67 +205,46 @@ function Modify(case, value)
     local player = UnitName("target") or UnitName("player")
     if case == "money" then
       AzerothAdmin:ChatMsg(".modify money "..value)
-      AzerothAdmin:LogAction("Give player "..player.." "..value.." copper).")
     elseif case == "levelup" then
       AzerothAdmin:ChatMsg(".levelup "..value)
-      AzerothAdmin:LogAction("Leveled up player "..player.." by "..value.." levels.")
     elseif case == "leveldown" then
       AzerothAdmin:ChatMsg(".levelup "..(-value))
-      AzerothAdmin:LogAction("Leveled down player "..player.." by "..value.." levels.")
     elseif case == "energy" then
       AzerothAdmin:ChatMsg(".modify energy "..value)
-      AzerothAdmin:LogAction("Modified energy for "..player.." to "..value.." energy.")
     elseif case == "rage" then
       AzerothAdmin:ChatMsg(".modify rage "..value)
-      AzerothAdmin:LogAction("Modified rage for "..player.." to "..value.." rage.")
     elseif case == "health" then
       AzerothAdmin:ChatMsg(".modify hp "..value)
-      AzerothAdmin:LogAction("Modified hp for "..player.." to "..value.." healthpoints")
     elseif case == "mana" then
       AzerothAdmin:ChatMsg(".modify mana "..value)
-      AzerothAdmin:LogAction("Modified mana for "..player.." to "..value.." mana")
     elseif case == "aspeed" then
-      AzerothAdmin:ChatMsg(".modify aspeed "..value)
-      AzerothAdmin:LogAction("Modified AllSpeeds for "..player.." to "..value)
+      AzerothAdmin:ChatMsg(".modify speed all "..value)
     elseif case == "arena" then
       AzerothAdmin:ChatMsg(".modify arena "..value)
-      AzerothAdmin:LogAction("Modified Arena Points for "..player.." to "..value.." points")
     elseif case == "bwalk" then
-      AzerothAdmin:ChatMsg(".modify bwalk "..value)
-      AzerothAdmin:LogAction("Modified BackWalk for "..player.." to "..value)
+      AzerothAdmin:ChatMsg(".modify speed backwalk "..value)
     elseif case == "drunk" then
       AzerothAdmin:ChatMsg(".modify drunk "..value)
-      AzerothAdmin:LogAction("Modified Drunk for "..player.." to "..value)
     elseif case == "fly" then
-      AzerothAdmin:ChatMsg(".modify fly "..value)
-      AzerothAdmin:LogAction("Modified FlySpeed for "..player.." to "..value)
+      AzerothAdmin:ChatMsg(".modify speed fly "..value)
     elseif case == "gender" then
       AzerothAdmin:ChatMsg(".modify gender "..value)
-      AzerothAdmin:LogAction("Modified Gender for "..player.." to "..value)
     elseif case == "honor" then
       AzerothAdmin:ChatMsg(".modify honor "..value)
-      AzerothAdmin:LogAction("Modified Honor for "..player.." to "..value.." points")
     elseif case == "mount" then
       AzerothAdmin:ChatMsg(".modify mount "..value)
-      AzerothAdmin:LogAction("Modified MountSpeed for "..player.." to "..value)
     elseif case == "phase" then
       AzerothAdmin:ChatMsg(".modify phase "..value)
-      AzerothAdmin:LogAction("Modified Phase for "..player.." to "..value)
     elseif case == "runicpower" then
       AzerothAdmin:ChatMsg(".modify runicpower "..value)
-      AzerothAdmin:LogAction("Modified RunicPower for "..player.." to "..value)
     elseif case == "speed" then
-      AzerothAdmin:ChatMsg(".modify speed "..value)
-      AzerothAdmin:LogAction("Modified Speed for "..player.." to "..value)
+      AzerothAdmin:ChatMsg(".modify speed walk "..value)
     elseif case == "standstate" then
       AzerothAdmin:ChatMsg(".modify standstate "..value)
-      AzerothAdmin:LogAction("Modified StandState for "..player.." to "..value)
     elseif case == "swim" then
-      AzerothAdmin:ChatMsg(".modify swim "..value)
-      AzerothAdmin:LogAction("Modified SwimSpeed for "..player.." to "..value)
+      AzerothAdmin:ChatMsg(".modify speed swim "..value)
     elseif case == "tp" then
-      AzerothAdmin:ChatMsg(".modify tp "..value)
-      AzerothAdmin:LogAction("Modified TalentPoints for "..player.." to "..value.." points")
+      AzerothAdmin:ChatMsg(".modify talentpoints "..value)
     end
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
@@ -312,7 +255,6 @@ function Reset(value)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".reset "..value.." "..player)
-    AzerothAdmin:LogAction("Reset "..value.."' for player "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
@@ -432,229 +374,194 @@ end
 function CharBindSight()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".bindsight")
-    AzerothAdmin:LogAction("Sight bound to "..cname)
 end
 
 function CharUnBindSight()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".unbindsight")
-    AzerothAdmin:LogAction("Sight unbound to "..cname)
 end
 
 function CharRename()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character rename")
-    AzerothAdmin:LogAction("Forced rename of "..cname)
 end
 
 function CharCustomize()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character customize")
-    AzerothAdmin:LogAction("Forced customization of "..cname)
 end
 
 function CharChangeRace()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character changerace")
-    AzerothAdmin:LogAction("Forced race change of "..cname)
 end
 
 function CharChangeFaction()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character changefaction")
-    AzerothAdmin:LogAction("Forced faction change of "..cname)
 end
 
 function CharCombatStop()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".combatstop")
-    AzerothAdmin:LogAction("Forced combat stop on "..player)
 end
 
 function CharMaxSkill()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".maxskill")
-    AzerothAdmin:LogAction("Set player MaxSkill for "..player)
 end
 
 function CharFreeze()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".freeze")
-    AzerothAdmin:LogAction("Set Freeze for "..player)
 end
 
 function CharUnFreeze()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".unfreeze")
-    AzerothAdmin:LogAction("UnFroze "..player)
 end
 
 function CharListDeleted()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character deleted list")
-    AzerothAdmin:LogAction("Listed deleted characters")
 end
 
 function CharDeletedRestore()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character deleted restore "..cname)
-    AzerothAdmin:LogAction("Restores deleted character "..cname)
 end
 
 function CharPossess()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".possess")
-    AzerothAdmin:LogAction("Possessed "..player)
 end
 
 function CharUnPossess()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".unpossess")
-    AzerothAdmin:LogAction("UnPossessed "..player)
 end
 
 function CharRecall()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".recall")
-    AzerothAdmin:LogAction("Recalled "..player)
 end
 
 function CharRepair()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".gear repair")
-    AzerothAdmin:LogAction("Repaired  "..player.."'s items")
 end
 
 function BanButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".ban "..cname)
-  AzerothAdmin:LogAction("Banned player: "..cname..".")
 
 end
 
 function GoNameButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".appear "..cname)
-  AzerothAdmin:LogAction("Teleported TO player: "..cname..".")
 
 end
 
 function CreateGuildButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild create "..cname)
-  AzerothAdmin:LogAction("Created Guild: "..cname..".")
 
 end
 
 function BanInfoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".baninfo "..cname)
-  AzerothAdmin:LogAction("Listed .baninfo: "..cname..".")
 
 end
 
 function GroupGoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".groupsummon "..cname)
-  AzerothAdmin:LogAction("Teleported "..cname.." and his/her group to me.")
 
 end
 
 function GuildInviteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild invite "..cname)
-  AzerothAdmin:LogAction("Guild invitation: "..cname..".")
 
 end
 
 function BanlistButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".banlist "..cname)
-  AzerothAdmin:LogAction("Listed bans matching: "..cname..".")
 
 end
 
 function NameGoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".summon "..cname)
-  AzerothAdmin:LogAction("Teleported "..cname.." TO me.")
 
 end
 
 function GuildRankButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild rank "..cname)
-  AzerothAdmin:LogAction("Guild rank change: "..cname..".")
 
 end
 
 function TeleGroupButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".tele group "..cname)
-  AzerothAdmin:LogAction("Group teleported: "..cname..".")
 
 end
 
 function UnBanButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unban "..cname)
-  AzerothAdmin:LogAction("Unbanned "..cname..".")
 
 end
 
 function GuildDeleteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild delete "..cname)
-  AzerothAdmin:LogAction("Deleted guild: "..cname..".")
 
 end
 
 function GuildUninviteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild uninvite "..cname)
-  AzerothAdmin:LogAction("Removed from guild: "..cname..".")
 
 end
 
 function TeleNameButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".tele name "..cname)
-  AzerothAdmin:LogAction("Teleported: "..cname..".")
 
 end
 
 function MuteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".mute "..cname)
-  AzerothAdmin:LogAction("Muted "..cname..".")
 
 end
 
 function CharMorphButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".modify morph "..cname)
-  AzerothAdmin:LogAction(".modify morph "..cname..".")
 
 end
 
 function CharAuraButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".aura "..cname)
-  AzerothAdmin:LogAction(".aura "..cname..".")
 
 end
 
 function CharUnAuraButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unaura "..cname)
-  AzerothAdmin:LogAction(".unaura "..cname..".")
 
 end
 
 function JailA()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_AllianceJail")
-    AzerothAdmin:LogAction("Jailed player "..cname..".")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been found guilty and jailed.")
 end
 
@@ -662,75 +569,64 @@ function JailH()
     local cname = ma_charactertarget:GetText()
     --self:ChatMsg("Selected "..cname)
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_HordeJail")
-    AzerothAdmin:LogAction("Jailed player "..cname..".")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been found guilty and jailed.")
 end
 
 function UnJail()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".recall "..cname)
-    AzerothAdmin:LogAction("UnJailed player "..cname..".")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been pardoned and released from jail.")
 end
 
 function UnMuteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unmute "..cname)
-  AzerothAdmin:LogAction(".unmute "..cname..".")
 
 end
 
 function QuestAddButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest add "..cname)
-  AzerothAdmin:LogAction(".quest add "..cname..".")
 
 end
 
 function QuestCompleteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest complete "..cname)
-  AzerothAdmin:LogAction(".quest complete "..cname..".")
 
 end
 
 function QuestRemoveButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest remove "..cname)
-  AzerothAdmin:LogAction(".quest remove "..cname..".")
 
 end
 
 function DamageButton ()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".damage "..cname)
-  AzerothAdmin:LogAction(".damage "..cname..".")
 
 end
 
 function HideAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".hidearea "..cname)
-  AzerothAdmin:LogAction(".hidearea "..cname..".")
 end
 
 function ShowAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".showarea "..cname)
-  AzerothAdmin:LogAction(".showarea "..cname..".")
 end
 
 function HonorAddButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".honor add "..cname)
-  AzerothAdmin:LogAction("Honor add "..cname..".")
 end
 
 function HonorUpdateButton()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".honor update ")
-    AzerothAdmin:LogAction("Honor updated for "..player..".")
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end

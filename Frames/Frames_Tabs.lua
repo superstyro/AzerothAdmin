@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_Start.lua"
+-- This script must be listed in the .toc after "Frames_Start.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateTabs()
@@ -54,7 +54,7 @@ function AzerothAdmin:CreateTabs()
       pos = "TOPLEFT",
       relTo = "ma_menubgframe",
       relPos = "TOPLEFT",
-      offX = 0,
+      offX = 2,
       offY = -4
     },
     text = Locale["tabmenu_Main"]
@@ -244,58 +244,6 @@ function AzerothAdmin:CreateTabs()
     text = Locale["tabmenu_server"]
   })
 
-  FrameLib:BuildButton({
-    name = "ma_tabbutton_log",
-    group = "tabbuttons",
-    parent = ma_topframe,
-    texture = {
-      name = "ma_tabbutton_log_texture",
-      color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
-      gradient = {
-        orientation = "vertical",
-        min = {102,102,102,0},
-        max = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
-      }
-    },
-    size = {
-      width = 35,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      relTo = "ma_tabbutton_server",
-      relPos = "TOPRIGHT",
-      offX = 2
-    },
-    text = Locale["tabmenu_log"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_tabbutton_who",
-    group = "tabbuttons",
-    parent = ma_topframe,
-    texture = {
-      name = "ma_tabbutton_who_texture",
-      color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg},
-      gradient = {
-        orientation = "vertical",
-        min = {102,102,102,0},
-        max = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
-      }
-    },
-    size = {
-      width = 35,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      relTo = "ma_tabbutton_log",
-      relPos = "TOPRIGHT",
-      offX = 2
-    },
-    text = Locale["tabmenu_who"]
-  })
-
 --  FrameLib:BuildButton({
 --    name = "ma_tabbutton_changelog",
 --    group = "tabbuttons",
@@ -315,7 +263,7 @@ function AzerothAdmin:CreateTabs()
 --    },
 --    setpoint = {
 --      pos = "TOPLEFT",
---      relTo = "ma_tabbutton_who",
+--      relTo = "ma_tabbutton_log",
 --      relPos = "TOPRIGHT",
 --      offX = 2
 --    },

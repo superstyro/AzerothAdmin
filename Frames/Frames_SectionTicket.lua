@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_SectionChar.lua"
+-- This script must be listed in the .toc after "Frames_SectionChar.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateTicketSection()
@@ -49,7 +49,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 5,
         offY = -5
     },
-    text = "RESET"
+    text = Locale["ma_TicketResetButton"]
 })
 
   FrameLib:BuildButton({
@@ -69,7 +69,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 80,
         offY = 0
     },
-    text = "Load All"
+    text = Locale["ma_TicketLoadAllButton"]
 })
 
   FrameLib:BuildButton({
@@ -89,7 +89,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 80,
         offY = -15
     },
-    text = "Load Online"
+    text = Locale["ma_TicketLoadOnlineButton"]
 })
 
   FrameLib:BuildButton({
@@ -109,7 +109,7 @@ function AzerothAdmin:CreateTicketSection()
         offX = 200,
         offY = -5
     },
-    text = "SHOW"
+    text = Locale["ma_TicketShowButton"]
 })
 
   FrameLib:BuildButton({
@@ -129,7 +129,7 @@ function AzerothAdmin:CreateTicketSection()
       offX = 240,
       offY = -226
     },
-    text = "Go Ticket"
+    text = Locale["ma_TicketGoButton"]
   })
 
   FrameLib:BuildButton({

@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -55,7 +55,6 @@ function AcctDelete_Confirmed()
     return
   end
   AzerothAdmin:ChatMsg(".account delete "..param)
-  AzerothAdmin:LogAction("Deleted account: "..param)
 end
 
 -- Confirmed version of teleport location deletion (called after confirmation)
@@ -66,23 +65,19 @@ function TeleDelButton_Confirmed()
     return
   end
   AzerothAdmin:ChatMsg(".tele del "..cname)
-  AzerothAdmin:LogAction("Deleted .tele location: "..cname..".")
 end
 
 -- Confirmed version of toggle maps (called after confirmation)
 function ToggleMaps_Confirmed(value)
   AzerothAdmin:ChatMsg(".explorecheat "..value)
   if value == 1 then
-    AzerothAdmin:LogAction("Revealed all maps for selected player.")
   else
-    AzerothAdmin:LogAction("Hide all unexplored maps for selected player.")
   end
 end
 
 -- Confirmed version of account lock toggle (called after confirmation)
 function ToggleAccountlock_Confirmed(value)
   AzerothAdmin:ChatMsg(".account lock "..value)
-  AzerothAdmin:LogAction("Turned GM account lock to "..value..".")
 end
 
 -- Confirmed version of account creation (called after confirmation)
@@ -93,7 +88,6 @@ function AcctCreate_Confirmed()
     return
   end
   AzerothAdmin:ChatMsg(".account create "..param)
-  AzerothAdmin:LogAction("Created account: "..param)
 end
 
 -- NOTE: To enable confirmation dialogs, replace the direct function calls in Commands_Main.lua

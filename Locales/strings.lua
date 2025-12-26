@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -45,7 +45,6 @@ function ReturnStrings_enUS()
     ["ma_GmatchMaxConnections"] = "Connection peak: (%d+).",
     ["ma_GmatchUptime"] = "Server uptime: (.*)",
     ["ma_GmatchActiveConnections"] = "Active connections.*",
-    ["ma_GmatchWho"] = "%-%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]%[(.*)%]-",
 
     --linkifier
     ----------====~~GO Target Command Match Text ~~====----------

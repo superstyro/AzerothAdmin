@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -17,7 +17,7 @@
 -------------------------------------------------------------------------------------------------------------
 
 -- Initializing dynamic frames with LUA and FrameLib
--- This script must be listed in the .toc after "MangFrames_SectionTele.lua"
+-- This script must be listed in the .toc after "Frames_SectionTele.lua"
 -- Also some variables are globally taken from AzerothAdmin.lua
 
 function AzerothAdmin:CreateNpcSection()
@@ -66,7 +66,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = 28,
       offY = -35
     },
-    text = "<<="
+    text = Locale["ma_NPCRotateLeft"]
   })
 
   FrameLib:BuildButton({
@@ -86,7 +86,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = 54,
       offY = -35
     },
-    text = "=>>"
+    text = Locale["ma_NPCRotateRight"]
   })
 
   FrameLib:BuildButton({
@@ -106,7 +106,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = 81,
       offY = -35
     },
-    text = "+"
+    text = Locale["ma_NPCZoomIn"]
   })
 
   FrameLib:BuildButton({
@@ -126,7 +126,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = 97,
       offY = -35
     },
-    text = "-"
+    text = Locale["ma_NPCZoomOut"]
   })
 
   FrameLib:BuildButton({
@@ -382,14 +382,14 @@ function AzerothAdmin:CreateNpcSection()
       offX = 498, --charColFive
       offY = -204 --charRowNine
     },
-    text = "<<"
+    text = Locale["ma_NPCDisplayDown"]
     })
 
   FrameLib:BuildFontString({
     name = "ma_npcdisplayidboxtext",
     group = "npc",
     parent = ma_midframe,
-    text = "Display ID:",
+    text = Locale["ma_NPCDisplayIDLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -175, --Left of charColSix
@@ -431,14 +431,14 @@ function AzerothAdmin:CreateNpcSection()
       offX = -5, --charColSix
       offY = -204 --charRowNine
     },
-    text = ">>"
+    text = Locale["ma_NPCDisplayUp"]
     })
 
   FrameLib:BuildFontString({
     name = "ma_npcidboxtext",
     group = "npc",
     parent = ma_midframe,
-    text = "NPC ID:",
+    text = Locale["ma_NPCIDLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -175, --Left of charColSix
@@ -480,7 +480,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = -5, --charColSix
       offY = -182 --charRowEight
     },
-    text = ">>"
+    text = Locale["ma_NPCIDUp"]
   })
 
   FrameLib:BuildButton({
@@ -500,7 +500,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = 498, --charColFive
       offY = -182 --charRowEight
     },
-    text = "<<"
+    text = Locale["ma_NPCDisplayDown"]
   })
 
   FrameLib:BuildButton({
@@ -549,7 +549,7 @@ function AzerothAdmin:CreateNpcSection()
     name = "ma_npcguidboxtext",
     group = "npc",
     parent = ma_midframe,
-    text = "GUID:",
+    text = Locale["ma_NPCGUIDLabel"],
     setpoint = {
       pos = "TOPRIGHT",
       offX = -175, --Left of charColSix
@@ -1102,7 +1102,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = -5, --charColSeven
       offY = -139 --charRowSix
     },
-    text = "Clear"
+    text = Locale["ma_NPCClearButton"]
   })
 
   -- Make boxes read-only (display only)

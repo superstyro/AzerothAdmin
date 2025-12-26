@@ -3,8 +3,8 @@
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
 --
--- Copyright (C) 2024 Free Software Foundation, Inc.
--- License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+-- Copyright (C) 2007 Free Software Foundation, Inc.
+-- License GPLv3+: GNU GPL version 3 or later <https://www.gnu.org/licenses/gpl-3.0.en.html>
 -- This is free software: you are free to change and redistribute it.
 -- There is NO WARRANTY, to the extent permitted by law.
 --
@@ -145,12 +145,12 @@ function InitControls()
   UIDropDownMenu_Initialize(ma_modifydropdown , ModifyDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_modifydropdown             , 80)
   UIDropDownMenu_SetButtonWidth(ma_modifydropdown       , 20)
-  UIDropDownMenu_SetSelectedValue(ma_modifydropdown, "levelup")
+  UIDropDownMenu_SetSelectedValue(ma_modifydropdown, "aspeed")
   ResetDropDownInitialize()
   UIDropDownMenu_Initialize(ma_resetdropdown , ResetDropDownInitialize)
   UIDropDownMenu_SetWidth(ma_resetdropdown              , 80)
   UIDropDownMenu_SetButtonWidth(ma_resetdropdown        , 20)
-  UIDropDownMenu_SetSelectedValue(ma_resetdropdown, "talents")
+  UIDropDownMenu_SetSelectedValue(ma_resetdropdown, "honor")
 
   AzerothAdmin:PrepareScript(ma_banbutton                       , Locale["tt_banbutton"]                  , function() BanButton() end)
   AzerothAdmin:PrepareScript(ma_gonamebutton                    , Locale["tt_gonamebutton"]               , function() GoNameButton() end)
@@ -304,23 +304,9 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_announcebutton                  , Locale["tt_AnnounceButton"]             , function() Announce(ma_announceeditbox:GetText()) end)
   AzerothAdmin:PrepareScript(ma_resetannouncebutton             , nil                                     , function() ma_announceeditbox:SetText("") end)
   AzerothAdmin:PrepareScript(ma_shutdownbutton                  , Locale["tt_ShutdownButton"]             , function() Shutdown(ma_shutdowneditbox:GetText()) end)
+  AzerothAdmin:PrepareScript(ma_cancelshutdownbutton            , Locale["tt_CancelShutdownButton"]       , function() CancelShutdown() end)
   AzerothAdmin:PrepareScript(ma_loadtablebutton                 , nil                                     , function() ReloadTable(UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown)) end)
   AzerothAdmin:PrepareScript(ma_loadscriptsbutton               , nil                                     , function() ReloadScripts() end)
 
 --[[Log Tab]]
---[[Who Tab]]
-  AzerothAdmin:PrepareScript(ma_resetwhobutton                  , nil                                     , function() ResetWho() end)
-  AzerothAdmin:PrepareScript(ma_deletewhobutton                 , nil                                     , function() Who("delete") end)
-  AzerothAdmin:PrepareScript(ma_answerwhobutton                 , nil                                     , function() Who("answer") end)
-  AzerothAdmin:PrepareScript(ma_summonwhobutton                 , nil                                     , function() Who("getchar") end)
-  AzerothAdmin:PrepareScript(ma_gocharwhobutton                 , nil                                     , function() Who("gochar") end)
-  AzerothAdmin:PrepareScript(ma_whisperwhobutton                , nil                                     , function() Who("whisper") end)
-  AzerothAdmin:PrepareScript(ma_who_customizebutton             , Locale["tt_who_customize"]              , function() Who("customize") end)
-  AzerothAdmin:PrepareScript(ma_who_chardeletebutton            , Locale["tt_who_chardelete"]             , function() Who("chardelete") end)
-  AzerothAdmin:PrepareScript(ma_who_charrenamebutton            , Locale["tt_who_charrename"]             , function() Who("charrename") end)
-  AzerothAdmin:PrepareScript(ma_who_1daybanbutton               , Locale["tt_who_1daybanbutton"]          , function() Who("1dayban") end)
-  AzerothAdmin:PrepareScript(ma_who_permbanbutton               , Locale["tt_who_permbanbutton"]          , function() Who("permban") end)
-  AzerothAdmin:PrepareScript(ma_who_jailabutton                 , Locale["tt_who_jailabutton"]            , function() Who("jaila") end)
-  AzerothAdmin:PrepareScript(ma_who_jailhbutton                 , Locale["tt_who_jailhbutton"]            , function() Who("jailh") end)
-  AzerothAdmin:PrepareScript(ma_who_unjailbutton                , Locale["tt_who_unjailbutton"]           , function() Who("unjail") end)
 end

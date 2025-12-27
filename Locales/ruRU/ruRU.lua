@@ -108,8 +108,8 @@ function Return_ruRU()
   --[[Other]]
     ["slashcmds"]                     = { "/AzerothAdmin", "/aa" },
     ["lang"]                          = "Русский",
-    ["realm"]                         = "|cFF00FF00Realm:|r "..GetCVar("realmName"), --do not change this line!
-    ["char"]                          = "|cFF00FF00Char:|r "..UnitName("player"), --do not change this line!
+    ["realm"]                         = "|cFF00FF00Realm:|r "..GetCVar("realmName"), 
+    ["char"]                          = "|cFF00FF00Char:|r "..UnitName("player"), 
     ["guid"]                          = "|cFF00FF00Guid:|r ",
     ["tickets"]                       = "|cFF00FF00Tickets:|r ",
     ["selectionerror1"]               = "Please select only yourself, another player or nothing!",

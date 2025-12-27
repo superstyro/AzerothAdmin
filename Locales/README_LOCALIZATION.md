@@ -73,7 +73,6 @@ All locale files currently contain English text as placeholders. This allows the
    ```lua
    ["info_revision"] = "|cFF00FF00AzerothCore rev.|r "
    ["realm"] = "|cFF00FF00Realm:|r "..GetCVar("realmName")
-   ["char"] = "|cFF00FF00Char:|r "..UnitName("player")
    ```
 
    Only translate the text between the color codes:

@@ -146,43 +146,27 @@ AzerothAdmin:RegisterDefaults("account",
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()
 Locale:RegisterTranslations("enUS", function() return Return_enUS() end)
---Locale:RegisterTranslations("frFR", function() return Return_frFR() end)
---Locale:RegisterTranslations("svSV", function() return Return_svSV() end)
---Locale:RegisterTranslations("deDE", function() return Return_deDE() end)
---Locale:RegisterTranslations("ptBR", function() return Return_ptBR() end)
---Locale:RegisterTranslations("itIT", function() return Return_itIT() end)
---Locale:RegisterTranslations("fiFI", function() return Return_fiFI() end)
---Locale:RegisterTranslations("plPL", function() return Return_plPL() end)
---Locale:RegisterTranslations("liLI", function() return Return_liLI() end)
---Locale:RegisterTranslations("roRO", function() return Return_roRO() end)
---Locale:RegisterTranslations("csCZ", function() return Return_csCZ() end)
---Locale:RegisterTranslations("huHU", function() return Return_huHU() end)
---Locale:RegisterTranslations("esES", function() return Return_esES() end)
---Locale:RegisterTranslations("zhCN", function() return Return_zhCN() end)
---Locale:RegisterTranslations("ptPT", function() return Return_ptPT() end)
---Locale:RegisterTranslations("ruRU", function() return Return_ruRU() end)
---Locale:RegisterTranslations("nlNL", function() return Return_nlNL() end)
---Locale:RegisterTranslations("buBU", function() return Return_buBU() end)
+Locale:RegisterTranslations("frFR", function() return Return_frFR() end)
+Locale:RegisterTranslations("deDE", function() return Return_deDE() end)
+Locale:RegisterTranslations("esES", function() return Return_esES() end)
+Locale:RegisterTranslations("itIT", function() return Return_itIT() end)
+Locale:RegisterTranslations("ptPT", function() return Return_ptPT() end)
+Locale:RegisterTranslations("ruRU", function() return Return_ruRU() end)
+Locale:RegisterTranslations("koKR", function() return Return_koKR() end)
+Locale:RegisterTranslations("zhCN", function() return Return_zhCN() end)
+Locale:RegisterTranslations("zhTW", function() return Return_zhTW() end)
 -- Register String Traslations
 Strings:EnableDynamicLocales(true)
 Strings:RegisterTranslations("enUS", function() return ReturnStrings_enUS() end)
---Strings:RegisterTranslations("frFR", function() return ReturnStrings_frFR() end)
---Strings:RegisterTranslations("svSV", function() return ReturnStrings_svSV() end)
---Strings:RegisterTranslations("deDE", function() return ReturnStrings_deDE() end)
---Strings:RegisterTranslations("ptBR", function() return ReturnStrings_ptBR() end)
---Strings:RegisterTranslations("itIT", function() return ReturnStrings_itIT() end)
---Strings:RegisterTranslations("fiFI", function() return ReturnStrings_fiFI() end)
---Strings:RegisterTranslations("plPL", function() return ReturnStrings_plPL() end)
---Strings:RegisterTranslations("liLI", function() return ReturnStrings_liLI() end)
---Strings:RegisterTranslations("roRO", function() return ReturnStrings_roRO() end)
---Strings:RegisterTranslations("csCZ", function() return ReturnStrings_csCZ() end)
---Strings:RegisterTranslations("huHU", function() return ReturnStrings_huHU() end)
---Strings:RegisterTranslations("esES", function() return ReturnStrings_esES() end)
---Strings:RegisterTranslations("zhCN", function() return ReturnStrings_zhCN() end)
---Strings:RegisterTranslations("ptPT", function() return ReturnStrings_ptPT() end)
---Strings:RegisterTranslations("ruRU", function() return ReturnStrings_ruRU() end)
---Strings:RegisterTranslations("nlNL", function() return ReturnStrings_nlNL() end)
---Strings:RegisterTranslations("buBU", function() return ReturnStrings_buBU() end)
+Strings:RegisterTranslations("frFR", function() return ReturnStrings_frFR() end)
+Strings:RegisterTranslations("deDE", function() return ReturnStrings_deDE() end)
+Strings:RegisterTranslations("esES", function() return ReturnStrings_esES() end)
+Strings:RegisterTranslations("itIT", function() return ReturnStrings_itIT() end)
+Strings:RegisterTranslations("ptPT", function() return ReturnStrings_ptPT() end)
+Strings:RegisterTranslations("ruRU", function() return ReturnStrings_ruRU() end)
+Strings:RegisterTranslations("koKR", function() return ReturnStrings_koKR() end)
+Strings:RegisterTranslations("zhCN", function() return ReturnStrings_zhCN() end)
+Strings:RegisterTranslations("zhTW", function() return ReturnStrings_zhTW() end)
 --Locale:Debug()
 --Locale:SetLocale("enUS")
 
@@ -2007,23 +1991,16 @@ function AzerothAdmin:InitDropDowns()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
---      {"Ceský","csCZ"},
---      {"Deutsch","deDE"},
---      {"Dutch","nlNL"},
+      {"Deutsch","deDE"},
       {"English","enUS"},
---      {"Spanish","esES"},
---      {"Finnish","fiFI"},
---      {"Français","frFR"},
---      {"Magyar","huHU"},
---      {"Italiano","itIT"},
---      {"Lithuanian","liLI"},
---      {"Polski","plPL"},
---      {"Portuguese","ptPT"},
---      {"Romanian","roRO"},
---      {"Russkiy","ruRU"},
---      {"Svenska","svSV"},
---      {"Chinese","zhCN"},
---      {"Bulgarian", "buBU"}
+      {"Español","esES"},
+      {"Français","frFR"},
+      {"Italiano","itIT"},
+      {"Português","ptPT"},
+      {"Russian","ruRU"},               -- instead of "Русский"
+      {"Korean","koKR"},                -- instead of "한국어"
+      {"Chinese (Simplified)","zhCN"},  -- instead of "简体中文"
+      {"Chinese (Traditional)","zhTW"}  -- instead of "繁體中文"
     }
     for k,v in pairs(buttons) do
       info.text = v[1]

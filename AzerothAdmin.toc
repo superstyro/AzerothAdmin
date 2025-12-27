@@ -33,6 +33,8 @@ Locales\deDE\deDE.lua
 Locales\deDE\strings_deDE.lua
 Locales\esES\esES.lua
 Locales\esES\strings_esES.lua
+Locales\esMX\esMX.lua
+Locales\esMX\strings_esMX.lua
 Locales\itIT\itIT.lua
 Locales\itIT\strings_itIT.lua
 Locales\ptPT\ptPT.lua

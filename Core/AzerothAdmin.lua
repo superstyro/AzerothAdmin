@@ -149,6 +149,7 @@ Locale:RegisterTranslations("enUS", function() return Return_enUS() end)
 Locale:RegisterTranslations("frFR", function() return Return_frFR() end)
 Locale:RegisterTranslations("deDE", function() return Return_deDE() end)
 Locale:RegisterTranslations("esES", function() return Return_esES() end)
+Locale:RegisterTranslations("esMX", function() return Return_esMX() end)
 Locale:RegisterTranslations("itIT", function() return Return_itIT() end)
 Locale:RegisterTranslations("ptPT", function() return Return_ptPT() end)
 Locale:RegisterTranslations("ruRU", function() return Return_ruRU() end)
@@ -161,6 +162,7 @@ Strings:RegisterTranslations("enUS", function() return ReturnStrings_enUS() end)
 Strings:RegisterTranslations("frFR", function() return ReturnStrings_frFR() end)
 Strings:RegisterTranslations("deDE", function() return ReturnStrings_deDE() end)
 Strings:RegisterTranslations("esES", function() return ReturnStrings_esES() end)
+Strings:RegisterTranslations("esMX", function() return ReturnStrings_esMX() end)
 Strings:RegisterTranslations("itIT", function() return ReturnStrings_itIT() end)
 Strings:RegisterTranslations("ptPT", function() return ReturnStrings_ptPT() end)
 Strings:RegisterTranslations("ruRU", function() return ReturnStrings_ruRU() end)
@@ -1994,6 +1996,7 @@ function AzerothAdmin:InitDropDowns()
       {"Deutsch","deDE"},
       {"English","enUS"},
       {"Español","esES"},
+      {"Español (México)","esMX"},
       {"Français","frFR"},
       {"Italiano","itIT"},
       {"Português","ptPT"},

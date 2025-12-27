@@ -72,27 +72,29 @@ All locale files currently contain English text as placeholders. This allows the
 
    ```lua
    ["info_revision"] = "|cFF00FF00AzerothCore rev.|r "
+   ["realm"] = "|cFF00FF00Realm:|r "..GetCVar("realmName")
+   ["char"] = "|cFF00FF00Char:|r "..UnitName("player")
    ```
 
    Only translate the text between the color codes:
 
    ```lua
    ["info_revision"] = "|cFF00FF00Révision AzerothCore:|r "
+   ["realm"] = "|cFF00FF00Royaume:|r "..GetCVar("realmName")
    ```
 
    **DO NOT TRANSLATE:**
 
    ```lua
    ["slashcmds"] = { "/AzerothAdmin", "/aa" }  -- These are commands
-   ["realm"] = "|cFF00FF00Realm:|r "..GetCVar("realmName")  -- Contains code
-   ["char"] = "|cFF00FF00Char:|r "..UnitName("player")  -- Contains code
    ```
 
 4. **Pattern Files (Advanced)**
    - The `strings_<locale>.lua` files contain Lua pattern matching strings
    - These are used to parse server responses
    - **Only translate if the server responses are localized in your language**
-   - Most servers use English, so these files can usually remain unchanged
+   - Most servers use English, so these files can usually remain unchanged'
+   - You can use 'Show Text Output' in the MISC tab to see outputs for commands
 
 ### Translation Guidelines
 

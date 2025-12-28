@@ -37,7 +37,6 @@ function ReturnStrings_deDE()
     ["ma_GmatchMedian"] = "|- Median: (%d+)",
     ["ma_GmatchPercentiles"] = "|%- Percentiles %(95, 99, max%): (%d+)ms, (%d+)ms, (%d+)ms",
     ["ma_GmatchNewTicket"] = "New ticket from(.+)",
-    ["ma_GmatchTicketMessage"] = "Ticket Message.-:.-%[(.*).-%]",
     ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
     ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
     ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",

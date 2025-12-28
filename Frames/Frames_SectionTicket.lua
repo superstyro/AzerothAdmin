@@ -276,9 +276,11 @@ function AzerothAdmin:CreateTicketSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 35,
-      offY = -30
+      pos = "LEFT",
+      relTo = "ma_ticketidlabel",
+      relPos = "RIGHT",
+      offX = 5,
+      offY = 0
     }
   })
 
@@ -300,9 +302,11 @@ function AzerothAdmin:CreateTicketSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 57,  
-      offY = -42
+      pos = "LEFT",
+      relTo = "ma_ticketcreatedbylabel",
+      relPos = "RIGHT",
+      offX = 5,
+      offY = 0
     }
   })
 
@@ -313,8 +317,8 @@ function AzerothAdmin:CreateTicketSection()
     text = Locale["ma_tickettimecreatedlabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 115,
-      offY = -30
+      offX = 2,
+      offY = -54
     }
   })
 
@@ -324,9 +328,11 @@ function AzerothAdmin:CreateTicketSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 156,
-      offY = -30
+      pos = "LEFT",
+      relTo = "ma_tickettimecreatedlabel",
+      relPos = "RIGHT",
+      offX = 5,
+      offY = 0
     }
   })
 
@@ -337,8 +343,8 @@ function AzerothAdmin:CreateTicketSection()
     text = Locale["ma_ticketlastchangelabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 115,
-      offY = -42
+      offX = 2,
+      offY = -66
     }
   })
 
@@ -348,9 +354,11 @@ function AzerothAdmin:CreateTicketSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 177,
-      offY = -40
+      pos = "LEFT",
+      relTo = "ma_ticketlastchangelabel",
+      relPos = "RIGHT",
+      offX = 5,
+      offY = 0
     }
   })
 
@@ -362,7 +370,7 @@ function AzerothAdmin:CreateTicketSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,
-      offY = -58
+      offY = -82
     }
   })
   
@@ -377,12 +385,12 @@ function AzerothAdmin:CreateTicketSection()
     },
     size = {
       width = 260,
-      height = 165
+      height = 141
     },
     setpoint = {
       pos = "TOPLEFT",
       offX = 2,
-      offY = -72
+      offY = -96
     },
     maxletters = 623,
     multiline = true

@@ -8,16 +8,18 @@ AzerothAdmin now supports multiple languages! This document explains the localiz
 
 The addon currently includes support for the following WoW client locales:
 
-- **enUS** - English (US) - *Complete*
-- **frFR** - French - *Needs translation*
-- **deDE** - German - *Needs translation*
-- **esES** - Spanish - *Needs translation*
-- **itIT** - Italian - *Needs translation*
-- **ptPT** - Portuguese - *Needs translation*
-- **ruRU** - Russian - *Needs translation*
-- **koKR** - Korean - *Needs translation*
-- **zhCN** - Chinese (Simplified) - *Needs translation*
-- **zhTW** - Chinese (Traditional) - *Needs translation*
+- **enUS** - English (US)
+- **frFR** - French
+- **deDE** - German
+- **esES** - Spanish
+- **esMX** - Spanish (Mexican)
+- **itIT** - Italian
+- **ptPT** - Portuguese
+- **ptPT** - Portuguese (Brazilian)
+- **ruRU** - Russian
+- **koKR** - Korean
+- **zhCN** - Chinese (Simplified)
+- **zhTW** - Chinese (Traditional)
 
 ## File Structure
 

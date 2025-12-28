@@ -914,10 +914,48 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.requests.ticketbody = id
         self.db.char.msgDeltaTime = time()
     end
-    for msg in string.gmatch(text, Strings["ma_GmatchTicketMessage"]) do
-        ma_ticketdetail:SetText("|cffffff00"..msg)  -- Change to yellow to match formatting
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
+    -- Match ticket message - handle messages that may span multiple chat lines
+    if string.find(text, "Ticket Message") then
+        -- This is the start of a ticket message, extract the beginning
+        local ticketMsgStart = string.match(text, "Ticket Message.-:%s*%[(.*)$")
+        if ticketMsgStart then
+            -- Initialize the buffer with the first part
+            if not AzerothAdmin.db.account.buffer.ticketMessageBuffer then
+                AzerothAdmin.db.account.buffer.ticketMessageBuffer = ""
+            end
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = ticketMsgStart
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        end
+    elseif AzerothAdmin.db.account.buffer.ticketMessageBuffer then
+        -- We're collecting a multi-line ticket message
+        -- Check if this line ends the message (contains the closing bracket)
+        -- Pattern stops at ] to handle WoW color codes like |r that may follow
+        local endMatch = string.match(text, "^(.*)%]")
+        if endMatch then
+            -- This is the last line, append it and display the complete message
+            local fullMessage = AzerothAdmin.db.account.buffer.ticketMessageBuffer .. "\n" .. endMatch
+            ma_ticketdetail:SetText("|cffffff00"..fullMessage)
+            -- Store the message in the tickets buffer
+            local currentTicketId = ma_ticketid:GetText()
+            if currentTicketId and currentTicketId ~= "" then
+                for k, v in ipairs(AzerothAdmin.db.account.buffer.tickets) do
+                    if v.tNumber == currentTicketId then
+                        AzerothAdmin.db.account.buffer.tickets[k].tMsg = fullMessage
+                        break
+                    end
+                end
+            end
+            -- Clear the buffer
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = nil
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        else
+            -- This is a middle line, append it to the buffer
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = AzerothAdmin.db.account.buffer.ticketMessageBuffer .. "\n" .. text
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        end
     end
     for eraseme in string.gmatch(text, "Showing list of open tickets") do
         catchedSth = true

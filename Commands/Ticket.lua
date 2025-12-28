@@ -186,7 +186,7 @@ function InlineScrollUpdate()
             AzerothAdmin.db.account.tickets.selected = object
             _G["ma_ticketscrollframe"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
             _G["ma_ticketscrollframe"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
-            _G["ma_ticketscrollframe"..line]:SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"]) end)
+            _G["ma_ticketscrollframe"..line]:SetScript("OnClick", function() ReadTicket(object["tNumber"], object["tChar"], object["tLCreate"], object["tLUpdate"], object["tMsg"]) end)
             _G["ma_ticketscrollframe"..line]:Enable()
             _G["ma_ticketscrollframe"..line]:Show()
           end
@@ -203,7 +203,7 @@ function InlineScrollUpdate()
 --AzerothAdmin.db.char.requests.ticket = false
 end
 
-function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
+function ReadTicket(tNumber, tChar, tLCreate, tLUpdate, tMsg)
     AzerothAdmin.db.char.requests.ticket = false
     ma_goticketbutton:Enable()
     ma_deleteticketbutton:Enable()
@@ -217,15 +217,12 @@ function ReadTicket(tNumber, tChar, tLCreate, tLUpdate)
     ma_ticketcreatedby:SetText(tChar)
     ma_tickettimecreated:SetText(tLCreate)
     ma_ticketlastchange:SetText(tLUpdate)
-    local ticketdetail = AzerothAdmin.db.account.buffer.ticketsfull
-    ma_ticketdetail:Show();
-    --AzerothAdmin:ChatMsg("???")
-    --ma_ticketdetail:SetText("Hello")
-    --AzerothAdmin:ChatMsg(AzerothAdmin.db.account.buffer.ticketsfull["tMsg"])
-    --ma_ticketdetail:SetText(ticketdetail["tMsg"])
-    --_G["ma_ticketdetail"]:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
-    --ma_ticketdetail:SetText("Id: |cffffffff"..tNumber.."|r Who: |cffffffff"..tChar.."|r Msg: |cffffffff"..ticketdetail["tMsg"].."|r")
-    --ma_ticketdetail:SetText(ticketdetail["tMsg"].."|r")
-    --ma_ticketdetail:SetText("Hello")
+    -- Set the ticket message if available, otherwise it will be set when the server responds
+    if tMsg and tMsg ~= "" then
+        ma_ticketdetail:SetText(tMsg)
+    else
+        ma_ticketdetail:SetText("")
+    end
+    ma_ticketdetail:Show()
 end
  

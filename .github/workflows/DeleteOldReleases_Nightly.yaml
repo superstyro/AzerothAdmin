@@ -1,0 +1,22 @@
+name: Delete Old Releases
+
+on:
+  schedule:
+    # Run every day at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  delete-releases:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to delete releases and tags
+    steps:
+    - uses: actions/checkout@v4
+    - uses: Nats-ji/delete-old-releases@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        keep-count: 3
+        keep-old-minor-releases: false
+        remove-tags: true
+        dry-run: true

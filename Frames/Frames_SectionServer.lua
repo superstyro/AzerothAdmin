@@ -85,7 +85,7 @@ function AzerothAdmin:CreateServerSection()
       if not dropdownOpen then
           local down, up, lag = GetNetStats();
           g:AddBar(lag)
-          ma_lagmetertext:SetText(Locale["ma_ServerLatencyLabel"]..lag.."ms")
+          ma_lagmetertext:SetText(Locale["ma_ServerLatencyLabel"].." "..lag.."ms")
       end
       f.NextUpdate=f.NextUpdate + 1
     end)
@@ -299,9 +299,11 @@ function AzerothAdmin:CreateServerSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 238,
-      offY = -170
+      pos = "LEFT",
+      relTo = ma_lagmetertext2,
+      relPos = "RIGHT",
+      offX = 0,
+      offY = 0
     }
   })
 
@@ -323,9 +325,11 @@ function AzerothAdmin:CreateServerSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 365,
-      offY = -110
+      pos = "LEFT",
+      relTo = ma_meantext,
+      relPos = "RIGHT",
+      offX = 0,
+      offY = 0
     }
   })
 
@@ -347,9 +351,11 @@ function AzerothAdmin:CreateServerSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 375,
-      offY = -130
+      pos = "LEFT",
+      relTo = ma_mediantext,
+      relPos = "RIGHT",
+      offX = 0,
+      offY = 0
     }
   })
 
@@ -371,9 +377,11 @@ function AzerothAdmin:CreateServerSection()
     parent = ma_midframe,
     text = "",
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 395,
-      offY = -150
+      pos = "LEFT",
+      relTo = ma_percentilestext,
+      relPos = "RIGHT",
+      offX = 0,
+      offY = 0
     }
   })
 

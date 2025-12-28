@@ -16,7 +16,8 @@ jobs:
     - uses: Nats-ji/delete-old-releases@v1.0.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        keep-count: 3 # Number of most recent releases to keep
-        keep-old-minor-releases: false # Disable keeping old minor releases
+        keep-count: 1 # Keep the latest major version
+        keep-old-minor-releases: true # Enable keeping older releases
+        keep-old-minor-releases-count: 2 # Keep 2 additional older releases
         remove-tags: true # Also remove associated tags
         dry-run: true # Set to true for testing; change to false to enable deletion

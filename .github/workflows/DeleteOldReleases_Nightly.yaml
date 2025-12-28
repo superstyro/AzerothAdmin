@@ -5,6 +5,15 @@ on:
     # Run every day at midnight UTC
     - cron: '0 0 * * *'
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (true/false)'
+        required: false
+        default: 'true'
+      keep_count:
+        description: 'Number of releases to keep'
+        required: true
+        default: '3'
 
 jobs:
   delete-releases:
@@ -12,12 +21,67 @@ jobs:
     permissions:
       contents: write # Required to delete releases and tags
     steps:
-    - uses: actions/checkout@v4
-    - uses: Nats-ji/delete-old-releases@v1.0.1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        keep-count: 1 # Keep the latest major version
-        keep-old-minor-releases: true # Enable keeping older releases
-        keep-old-minor-releases-count: 2 # Keep 2 additional older releases
-        remove-tags: true # Also remove associated tags
-        dry-run: true # Set to true for testing; change to false to enable deletion
+    - name: Delete old releases
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DRY_RUN: ${{ github.event.inputs.dry_run || 'true' }}
+        KEEP_COUNT: ${{ github.event.inputs.keep_count || '3' }}
+      run: |
+        echo "Fetching all releases..."
+        releases=$(gh api repos/${{ github.repository }}/releases --paginate --jq '.[] | {id: .id, tag: .tag_name, created: .created_at, name: .name}')
+
+        # Count total releases
+        total=$(echo "$releases" | jq -s 'length')
+        echo "Total releases found: $total"
+
+        if [ "$total" -le "$KEEP_COUNT" ]; then
+          echo "Total releases ($total) is less than or equal to keep count ($KEEP_COUNT). Nothing to delete."
+          exit 0
+        fi
+
+        # Get releases sorted by creation date (newest first)
+        sorted_releases=$(echo "$releases" | jq -s 'sort_by(.created) | reverse')
+
+        # Get releases to keep
+        to_keep=$(echo "$sorted_releases" | jq -r ".[0:$KEEP_COUNT] | .[] | .tag")
+        echo ""
+        echo "Releases to KEEP (${KEEP_COUNT} most recent):"
+        echo "$to_keep"
+
+        # Get releases to delete
+        to_delete=$(echo "$sorted_releases" | jq -r ".[$KEEP_COUNT:] | .[] | {id: .id, tag: .tag, name: .name}")
+        delete_count=$(echo "$to_delete" | jq -s 'length')
+
+        echo ""
+        echo "Releases to DELETE ($delete_count):"
+        echo "$to_delete" | jq -r '.tag + " (" + .name + ")"'
+
+        if [ "$delete_count" -eq 0 ]; then
+          echo ""
+          echo "No releases to delete."
+          exit 0
+        fi
+
+        if [ "$DRY_RUN" = "true" ]; then
+          echo ""
+          echo "DRY RUN MODE - No releases will be deleted"
+          echo "Set dry_run to 'false' to actually delete releases"
+        else
+          echo ""
+          echo "Deleting releases..."
+          echo "$to_delete" | jq -r '.id' | while read -r release_id; do
+            release_tag=$(echo "$to_delete" | jq -r "select(.id == $release_id) | .tag")
+            echo "Deleting release: $release_tag (ID: $release_id)"
+
+            # Delete the release
+            gh api -X DELETE repos/${{ github.repository }}/releases/$release_id
+
+            # Delete the associated tag
+            echo "Deleting tag: $release_tag"
+            gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/$release_tag || echo "Tag $release_tag may not exist or already deleted"
+
+            echo "Deleted: $release_tag"
+          done
+          echo ""
+          echo "Deletion complete!"
+        fi

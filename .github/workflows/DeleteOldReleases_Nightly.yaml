@@ -1,4 +1,4 @@
-name: Delete Old Releases
+name: Delete Old Releases Nightly
 
 on:
   schedule:

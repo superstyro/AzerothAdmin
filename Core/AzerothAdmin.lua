@@ -146,43 +146,31 @@ AzerothAdmin:RegisterDefaults("account",
 Locale:EnableDynamicLocales(true)
 --Locale:EnableDebugging()
 Locale:RegisterTranslations("enUS", function() return Return_enUS() end)
---Locale:RegisterTranslations("frFR", function() return Return_frFR() end)
---Locale:RegisterTranslations("svSV", function() return Return_svSV() end)
---Locale:RegisterTranslations("deDE", function() return Return_deDE() end)
---Locale:RegisterTranslations("ptBR", function() return Return_ptBR() end)
---Locale:RegisterTranslations("itIT", function() return Return_itIT() end)
---Locale:RegisterTranslations("fiFI", function() return Return_fiFI() end)
---Locale:RegisterTranslations("plPL", function() return Return_plPL() end)
---Locale:RegisterTranslations("liLI", function() return Return_liLI() end)
---Locale:RegisterTranslations("roRO", function() return Return_roRO() end)
---Locale:RegisterTranslations("csCZ", function() return Return_csCZ() end)
---Locale:RegisterTranslations("huHU", function() return Return_huHU() end)
---Locale:RegisterTranslations("esES", function() return Return_esES() end)
---Locale:RegisterTranslations("zhCN", function() return Return_zhCN() end)
---Locale:RegisterTranslations("ptPT", function() return Return_ptPT() end)
---Locale:RegisterTranslations("ruRU", function() return Return_ruRU() end)
---Locale:RegisterTranslations("nlNL", function() return Return_nlNL() end)
---Locale:RegisterTranslations("buBU", function() return Return_buBU() end)
+Locale:RegisterTranslations("frFR", function() return Return_frFR() end)
+Locale:RegisterTranslations("deDE", function() return Return_deDE() end)
+Locale:RegisterTranslations("esES", function() return Return_esES() end)
+Locale:RegisterTranslations("esMX", function() return Return_esMX() end)
+Locale:RegisterTranslations("itIT", function() return Return_itIT() end)
+Locale:RegisterTranslations("ptPT", function() return Return_ptPT() end)
+Locale:RegisterTranslations("ptBR", function() return Return_ptBR() end)
+Locale:RegisterTranslations("ruRU", function() return Return_ruRU() end)
+Locale:RegisterTranslations("koKR", function() return Return_koKR() end)
+Locale:RegisterTranslations("zhCN", function() return Return_zhCN() end)
+Locale:RegisterTranslations("zhTW", function() return Return_zhTW() end)
 -- Register String Traslations
 Strings:EnableDynamicLocales(true)
 Strings:RegisterTranslations("enUS", function() return ReturnStrings_enUS() end)
---Strings:RegisterTranslations("frFR", function() return ReturnStrings_frFR() end)
---Strings:RegisterTranslations("svSV", function() return ReturnStrings_svSV() end)
---Strings:RegisterTranslations("deDE", function() return ReturnStrings_deDE() end)
---Strings:RegisterTranslations("ptBR", function() return ReturnStrings_ptBR() end)
---Strings:RegisterTranslations("itIT", function() return ReturnStrings_itIT() end)
---Strings:RegisterTranslations("fiFI", function() return ReturnStrings_fiFI() end)
---Strings:RegisterTranslations("plPL", function() return ReturnStrings_plPL() end)
---Strings:RegisterTranslations("liLI", function() return ReturnStrings_liLI() end)
---Strings:RegisterTranslations("roRO", function() return ReturnStrings_roRO() end)
---Strings:RegisterTranslations("csCZ", function() return ReturnStrings_csCZ() end)
---Strings:RegisterTranslations("huHU", function() return ReturnStrings_huHU() end)
---Strings:RegisterTranslations("esES", function() return ReturnStrings_esES() end)
---Strings:RegisterTranslations("zhCN", function() return ReturnStrings_zhCN() end)
---Strings:RegisterTranslations("ptPT", function() return ReturnStrings_ptPT() end)
---Strings:RegisterTranslations("ruRU", function() return ReturnStrings_ruRU() end)
---Strings:RegisterTranslations("nlNL", function() return ReturnStrings_nlNL() end)
---Strings:RegisterTranslations("buBU", function() return ReturnStrings_buBU() end)
+Strings:RegisterTranslations("frFR", function() return ReturnStrings_frFR() end)
+Strings:RegisterTranslations("deDE", function() return ReturnStrings_deDE() end)
+Strings:RegisterTranslations("esES", function() return ReturnStrings_esES() end)
+Strings:RegisterTranslations("esMX", function() return ReturnStrings_esMX() end)
+Strings:RegisterTranslations("itIT", function() return ReturnStrings_itIT() end)
+Strings:RegisterTranslations("ptPT", function() return ReturnStrings_ptPT() end)
+Strings:RegisterTranslations("ptBR", function() return ReturnStrings_ptBR() end)
+Strings:RegisterTranslations("ruRU", function() return ReturnStrings_ruRU() end)
+Strings:RegisterTranslations("koKR", function() return ReturnStrings_koKR() end)
+Strings:RegisterTranslations("zhCN", function() return ReturnStrings_zhCN() end)
+Strings:RegisterTranslations("zhTW", function() return ReturnStrings_zhTW() end)
 --Locale:Debug()
 --Locale:SetLocale("enUS")
 
@@ -926,10 +914,48 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.requests.ticketbody = id
         self.db.char.msgDeltaTime = time()
     end
-    for msg in string.gmatch(text, Strings["ma_GmatchTicketMessage"]) do
-        ma_ticketdetail:SetText("|cffffff00"..msg)  -- Change to yellow to match formatting
-        catchedSth = true
-        output = AzerothAdmin.db.account.style.showchat
+    -- Match ticket message - handle messages that may span multiple chat lines
+    if string.find(text, "Ticket Message") then
+        -- This is the start of a ticket message, extract the beginning
+        local ticketMsgStart = string.match(text, "Ticket Message.-:%s*%[(.*)$")
+        if ticketMsgStart then
+            -- Initialize the buffer with the first part
+            if not AzerothAdmin.db.account.buffer.ticketMessageBuffer then
+                AzerothAdmin.db.account.buffer.ticketMessageBuffer = ""
+            end
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = ticketMsgStart
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        end
+    elseif AzerothAdmin.db.account.buffer.ticketMessageBuffer then
+        -- We're collecting a multi-line ticket message
+        -- Check if this line ends the message (contains the closing bracket)
+        -- Pattern stops at ] to handle WoW color codes like |r that may follow
+        local endMatch = string.match(text, "^(.*)%]")
+        if endMatch then
+            -- This is the last line, append it and display the complete message
+            local fullMessage = AzerothAdmin.db.account.buffer.ticketMessageBuffer .. "\n" .. endMatch
+            ma_ticketdetail:SetText("|cffffff00"..fullMessage)
+            -- Store the message in the tickets buffer
+            local currentTicketId = ma_ticketid:GetText()
+            if currentTicketId and currentTicketId ~= "" then
+                for k, v in ipairs(AzerothAdmin.db.account.buffer.tickets) do
+                    if v.tNumber == currentTicketId then
+                        AzerothAdmin.db.account.buffer.tickets[k].tMsg = fullMessage
+                        break
+                    end
+                end
+            end
+            -- Clear the buffer
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = nil
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        else
+            -- This is a middle line, append it to the buffer
+            AzerothAdmin.db.account.buffer.ticketMessageBuffer = AzerothAdmin.db.account.buffer.ticketMessageBuffer .. "\n" .. text
+            catchedSth = true
+            output = AzerothAdmin.db.account.style.showchat
+        end
     end
     for eraseme in string.gmatch(text, "Showing list of open tickets") do
         catchedSth = true
@@ -2007,23 +2033,18 @@ function AzerothAdmin:InitDropDowns()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
---      {"Ceský","csCZ"},
---      {"Deutsch","deDE"},
---      {"Dutch","nlNL"},
+      {"Deutsch","deDE"},
       {"English","enUS"},
---      {"Spanish","esES"},
---      {"Finnish","fiFI"},
---      {"Français","frFR"},
---      {"Magyar","huHU"},
---      {"Italiano","itIT"},
---      {"Lithuanian","liLI"},
---      {"Polski","plPL"},
---      {"Portuguese","ptPT"},
---      {"Romanian","roRO"},
---      {"Russkiy","ruRU"},
---      {"Svenska","svSV"},
---      {"Chinese","zhCN"},
---      {"Bulgarian", "buBU"}
+      {"Español","esES"},
+      {"Español (México)","esMX"},
+      {"Français","frFR"},
+      {"Italiano","itIT"},
+      {"Português (Brasil)","ptBR"},
+      {"Português","ptPT"},
+      {"Russian","ruRU"},               -- instead of "Русский"
+      {"Korean","koKR"},                -- instead of "한국어"
+      {"Chinese (Simplified)","zhCN"},  -- instead of "简体中文"
+      {"Chinese (Traditional)","zhTW"}  -- instead of "繁體中文"
     }
     for k,v in pairs(buttons) do
       info.text = v[1]
@@ -2059,13 +2080,13 @@ function AzerothAdmin:InitDropDowns()
     local level = 1
     local info = {}
     local strataLevels = {
-      {value = "BACKGROUND", text = "Background"},
-      {value = "LOW", text = "Low"},
-      {value = "MEDIUM", text = "Medium (Default)"},
-      {value = "HIGH", text = "High"},
-      {value = "DIALOG", text = "Dialog"},
-      {value = "FULLSCREEN", text = "Fullscreen"},
-      {value = "FULLSCREEN_DIALOG", text = "Fullscreen Dialog"}
+      {value = "BACKGROUND", text = Locale["ma_FrameStrataBackground"]},
+      {value = "LOW", text = Locale["ma_FrameStrataLow"]},
+      {value = "MEDIUM", text = Locale["ma_FrameStrataMedium"]},
+      {value = "HIGH", text = Locale["ma_FrameStrataHigh"]},
+      {value = "DIALOG", text = Locale["ma_FrameStrataDialog"]},
+      {value = "FULLSCREEN", text = Locale["ma_FrameStrataFullscreen"]},
+      {value = "FULLSCREEN_DIALOG", text = Locale["ma_FrameStrataFullscreenDialog"]}
     }
     for _, strata in ipairs(strataLevels) do
       info.text = strata.text

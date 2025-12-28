@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 18
+## Version: 19
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3
@@ -25,8 +25,30 @@ Libraries\DewDrop-2.0\DewDrop-2.0.lua
 Libraries\FrameLib-1.0\FrameLib-1.0.lua
 Libraries\Graph-1.0\Graph-1.0.lua
 Libraries\LibStub\LibStub.lua
-Locales\enUS.lua
-Locales\strings.lua
+Locales\enUS\enUS.lua
+Locales\enUS\strings_enUS.lua
+Locales\frFR\frFR.lua
+Locales\frFR\strings_frFR.lua
+Locales\deDE\deDE.lua
+Locales\deDE\strings_deDE.lua
+Locales\esES\esES.lua
+Locales\esES\strings_esES.lua
+Locales\esMX\esMX.lua
+Locales\esMX\strings_esMX.lua
+Locales\itIT\itIT.lua
+Locales\itIT\strings_itIT.lua
+Locales\ptPT\ptPT.lua
+Locales\ptPT\strings_ptPT.lua
+Locales\ptBR\ptBR.lua
+Locales\ptBR\strings_ptBR.lua
+Locales\ruRU\ruRU.lua
+Locales\ruRU\strings_ruRU.lua
+Locales\koKR\koKR.lua
+Locales\koKR\strings_koKR.lua
+Locales\zhCN\zhCN.lua
+Locales\zhCN\strings_zhCN.lua
+Locales\zhTW\zhTW.lua
+Locales\zhTW\strings_zhTW.lua
 # Data\Models.lua moved to separate AzerothAdmin_Models addon (LoadOnDemand) - saves 5.6 MB
 Commands\Main.lua
 Commands\Tele.lua

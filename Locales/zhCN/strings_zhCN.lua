@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -18,7 +18,7 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function ReturnStrings_enUS()
+function ReturnStrings_zhCN()
   return {
     ["ma_GmatchRevision"] = "AzerothCore rev. (%S*)",
     ["ma_GmatchGPS"] = "X: (.*) Y: (.*) Z",
@@ -37,7 +37,6 @@ function ReturnStrings_enUS()
     ["ma_GmatchMedian"] = "|- Median: (%d+)",
     ["ma_GmatchPercentiles"] = "|%- Percentiles %(95, 99, max%): (%d+)ms, (%d+)ms, (%d+)ms",
     ["ma_GmatchNewTicket"] = "New ticket from(.+)",
-    ["ma_GmatchTicketMessage"] = "Ticket Message.-:.-%[(.*).-%]",
     ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
     ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
     ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",

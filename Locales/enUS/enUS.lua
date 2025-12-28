@@ -108,8 +108,8 @@ function Return_enUS()
   --[[Other]]
     ["slashcmds"]                     = { "/AzerothAdmin", "/aa" },
     ["lang"]                          = "English",
-    ["realm"]                         = "|cFF00FF00Realm:|r "..GetCVar("realmName"), --do not change this line!
-    ["char"]                          = "|cFF00FF00Char:|r "..UnitName("player"), --do not change this line!
+    ["realm"]                         = "|cFF00FF00Realm:|r "..GetCVar("realmName"), 
+    ["char"]                          = "|cFF00FF00Char:|r "..UnitName("player"), 
     ["guid"]                          = "|cFF00FF00Guid:|r ",
     ["tickets"]                       = "|cFF00FF00Tickets:|r ",
     ["selectionerror1"]               = "Please select only yourself, another player or nothing!",
@@ -732,6 +732,13 @@ function Return_enUS()
     ["ma_EnableTooltips"]             = "Enable Tooltips",
     ["ma_ShowChatOutput"]             = "Show Chat Output",
     ["ma_FrameStrataLabel"]           = "Frame Strata Level:",
+    ["ma_FrameStrataBackground"]      = "Background",
+    ["ma_FrameStrataLow"]             = "Low",
+    ["ma_FrameStrataMedium"]          = "Medium (Default)",
+    ["ma_FrameStrataHigh"]            = "High",
+    ["ma_FrameStrataDialog"]          = "Dialog",
+    ["ma_FrameStrataFullscreen"]      = "Fullscreen",
+    ["ma_FrameStrataFullscreenDialog"] = "Fullscreen Dialog",
     ["ma_UpdateFrequencyLabel"]       = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes",
     ["ma_BackgroundColorLabel"]       = "Backgroundcolor",
     ["ma_FrameColorLabel"]            = "Framecolor",

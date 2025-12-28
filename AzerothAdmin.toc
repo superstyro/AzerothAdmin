@@ -39,6 +39,8 @@ Locales\itIT\itIT.lua
 Locales\itIT\strings_itIT.lua
 Locales\ptPT\ptPT.lua
 Locales\ptPT\strings_ptPT.lua
+Locales\ptBR\ptBR.lua
+Locales\ptBR\strings_ptBR.lua
 Locales\ruRU\ruRU.lua
 Locales\ruRU\strings_ruRU.lua
 Locales\koKR\koKR.lua

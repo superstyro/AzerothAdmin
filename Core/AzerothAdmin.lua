@@ -2042,13 +2042,13 @@ function AzerothAdmin:InitDropDowns()
     local level = 1
     local info = {}
     local strataLevels = {
-      {value = "BACKGROUND", text = "Background"},
-      {value = "LOW", text = "Low"},
-      {value = "MEDIUM", text = "Medium (Default)"},
-      {value = "HIGH", text = "High"},
-      {value = "DIALOG", text = "Dialog"},
-      {value = "FULLSCREEN", text = "Fullscreen"},
-      {value = "FULLSCREEN_DIALOG", text = "Fullscreen Dialog"}
+      {value = "BACKGROUND", text = Locale["ma_FrameStrataBackground"]},
+      {value = "LOW", text = Locale["ma_FrameStrataLow"]},
+      {value = "MEDIUM", text = Locale["ma_FrameStrataMedium"]},
+      {value = "HIGH", text = Locale["ma_FrameStrataHigh"]},
+      {value = "DIALOG", text = Locale["ma_FrameStrataDialog"]},
+      {value = "FULLSCREEN", text = Locale["ma_FrameStrataFullscreen"]},
+      {value = "FULLSCREEN_DIALOG", text = Locale["ma_FrameStrataFullscreenDialog"]}
     }
     for _, strata in ipairs(strataLevels) do
       info.text = strata.text

@@ -13,7 +13,7 @@ jobs:
       contents: write # Required to delete releases and tags
     steps:
     - uses: actions/checkout@v4
-    - uses: Nats-ji/delete-old-releases@v1
+    - uses: Nats-ji/delete-old-releases@v1.0.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         keep-count: 1 # Number of releases to keep

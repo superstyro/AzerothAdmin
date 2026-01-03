@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_frFR()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "frFR")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Déplacez votre curseur sur un élément pour afficher l'info-bulle !",
@@ -624,6 +625,11 @@ function Return_frFR()
     ["ma_GOShowButton"]               = "Afficher",
     ["ma_GOUnloadButton"]             = "Décharger",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Êtes-vous sûr de vouloir basculer toutes les cartes ? Cela peut geler le client pendant quelques secondes.",
+    ["msg_account_lock_confirm"]      = "Êtes-vous sûr de vouloir %s ce compte ?",
+    ["msg_acct_create_confirm"]       = "Êtes-vous sûr de vouloir créer le compte '%s' ?",
+    ["msg_acct_delete_confirm"]       = "Êtes-vous sûr de vouloir SUPPRIMER le compte '%s' ?",
+    ["msg_tele_del_confirm"]          = "Êtes-vous sûr de vouloir supprimer la destination de téléportation '%s' ?",
 
 
 
@@ -864,4 +870,5 @@ function Return_frFR()
     ["lfer_Error"]                    = "Erreur : chaîne de recherche correspondante mais une erreur s'est produite ou type introuvable"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

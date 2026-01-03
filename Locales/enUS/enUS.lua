@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_enUS()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "enUS", true)
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
@@ -624,6 +625,11 @@ function Return_enUS()
     ["ma_GOShowButton"]               = "Show",
     ["ma_GOUnloadButton"]             = "Unload",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Are you sure you want to toggle all maps? This may freeze the client for a few seconds.",
+    ["msg_account_lock_confirm"]      = "Are you sure you want to %s this account?",
+    ["msg_acct_create_confirm"]       = "Are you sure you want to create account '%s'?",
+    ["msg_acct_delete_confirm"]       = "Are you sure you want to DELETE account '%s'?",
+    ["msg_tele_del_confirm"]          = "Are you sure you want to delete teleport location '%s'?",
 
 
 
@@ -873,4 +879,5 @@ function Return_enUS()
     ["lfer_Error"]                    = "Error Search String Matched but an error occured or unable to find type"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

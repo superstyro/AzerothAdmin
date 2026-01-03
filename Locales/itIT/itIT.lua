@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_itIT()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "itIT")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Muovi il cursore su un elemento per attivare il tooltip!",
@@ -624,6 +625,11 @@ function Return_itIT()
     ["ma_GOShowButton"]               = "Mostra",
     ["ma_GOUnloadButton"]             = "Scarica",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Sei sicuro di voler attivare/disattivare tutte le mappe? Questo potrebbe bloccare il client per alcuni secondi.",
+    ["msg_account_lock_confirm"]      = "Sei sicuro di voler %s questo account?",
+    ["msg_acct_create_confirm"]       = "Sei sicuro di voler creare l'account '%s'?",
+    ["msg_acct_delete_confirm"]       = "Sei sicuro di voler ELIMINARE l'account '%s'?",
+    ["msg_tele_del_confirm"]          = "Sei sicuro di voler eliminare la posizione di teletrasporto '%s'?",
 
 
 
@@ -873,4 +879,5 @@ function Return_itIT()
     ["lfer_Error"]                    = "Errore Stringa di Ricerca Corrispondente ma si è verificato un errore o impossibile trovare il tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

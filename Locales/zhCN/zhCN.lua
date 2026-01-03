@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_zhCN()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "zhCN")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "将光标移动到元素上以切换工具提示！",
@@ -624,6 +625,11 @@ function Return_zhCN()
     ["ma_GOShowButton"]               = "显示",
     ["ma_GOUnloadButton"]             = "卸载",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "你确定要切换所有地图吗？这可能会导致客户端冻结几秒钟。",
+    ["msg_account_lock_confirm"]      = "你确定要 %s 这个账号吗？",
+    ["msg_acct_create_confirm"]       = "你确定要创建账号 '%s' 吗？",
+    ["msg_acct_delete_confirm"]       = "你确定要删除账号 '%s' 吗？",
+    ["msg_tele_del_confirm"]          = "你确定要删除传送点 '%s' 吗？",
 
 
 
@@ -873,4 +879,5 @@ function Return_zhCN()
     ["lfer_Error"]                    = "错误：搜索字符串匹配但发生错误或无法找到类型"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

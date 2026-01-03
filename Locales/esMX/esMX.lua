@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_esMX()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "esMX")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "¡Mueve el cursor sobre un elemento para mostrar la información!",
@@ -622,6 +623,11 @@ function Return_esMX()
     ["ma_GOShowButton"]               = "Ver",
     ["ma_GOUnloadButton"]             = "Descargar",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "¿Estás seguro de que quieres cambiar todos los mapas? Esto puede congelar el cliente por unos segundos.",
+    ["msg_account_lock_confirm"]      = "¿Estás seguro de que quieres %s esta cuenta?",
+    ["msg_acct_create_confirm"]       = "¿Estás seguro de que quieres crear la cuenta '%s'?",
+    ["msg_acct_delete_confirm"]       = "¿Estás seguro de que quieres ELIMINAR la cuenta '%s'?",
+    ["msg_tele_del_confirm"]          = "¿Estás seguro de que quieres eliminar la ubicación de teletransporte '%s'?",
 
 
 
@@ -861,4 +867,5 @@ function Return_esMX()
     ["lfer_Error"]                    = "Error: La cadena de búsqueda coincidió pero ocurrió un error o no se pudo encontrar el tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

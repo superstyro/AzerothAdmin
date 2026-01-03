@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_ptPT()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "ptPT")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Mova o cursor sobre um elemento para alternar a dica!",
@@ -624,6 +625,11 @@ function Return_ptPT()
     ["ma_GOShowButton"]               = "Mostrar",
     ["ma_GOUnloadButton"]             = "Descarregar",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Tem certeza que deseja alternar todos os mapas? Isso pode congelar o cliente por alguns segundos.",
+    ["msg_account_lock_confirm"]      = "Tem certeza que deseja %s este conta?",
+    ["msg_acct_create_confirm"]       = "Tem certeza que deseja criar a conta '%s'?",
+    ["msg_acct_delete_confirm"]       = "Tem certeza que deseja EXCLUIR a conta '%s'?",
+    ["msg_tele_del_confirm"]          = "Tem certeza que deseja excluir o local de teletransporte '%s'?",
 
 
 
@@ -873,4 +879,5 @@ function Return_ptPT()
     ["lfer_Error"]                    = "Erro String de Pesquisa Correspondeu mas ocorreu um erro ou não foi possível encontrar o tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

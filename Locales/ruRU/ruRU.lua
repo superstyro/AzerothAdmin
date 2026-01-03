@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_ruRU()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "ruRU")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Наведите курсор на элемент, чтобы увидеть подсказку!",
@@ -624,6 +625,11 @@ function Return_ruRU()
     ["ma_GOShowButton"]               = "Показать",
     ["ma_GOUnloadButton"]             = "Выгрузить",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Вы уверены, что хотите переключить все карты? Это может заморозить клиент на несколько секунд.",
+    ["msg_account_lock_confirm"]      = "Вы уверены, что хотите %s эту учетную запись?",
+    ["msg_acct_create_confirm"]       = "Вы уверены, что хотите создать учетную запись '%s'?",
+    ["msg_acct_delete_confirm"]       = "Вы уверены, что хотите УДАЛИТЬ учетную запись '%s'?",
+    ["msg_tele_del_confirm"]          = "Вы уверены, что хотите удалить место телепортации '%s'?",
 
 
 
@@ -873,4 +879,5 @@ function Return_ruRU()
     ["lfer_Error"]                    = "Ошибка: строка поиска совпала, но произошла ошибка или не удается найти тип"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_koKR()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "koKR")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "요소 위에 커서를 올려 툴팁을 토글하세요!",
@@ -624,6 +625,11 @@ function Return_koKR()
     ["ma_GOShowButton"]               = "표시",
     ["ma_GOUnloadButton"]             = "언로드",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "모든 지도를 전환하시겠습니까? 클라이언트가 몇 초 동안 멈출 수 있습니다.",
+    ["msg_account_lock_confirm"]      = "이 계정을 %s 하시겠습니까?",
+    ["msg_acct_create_confirm"]       = "계정 '%s'을(를) 생성하시겠습니까?",
+    ["msg_acct_delete_confirm"]       = "계정 '%s'을(를) 삭제하시겠습니까?",
+    ["msg_tele_del_confirm"]          = "텔레포트 위치 '%s'을(를) 삭제하시겠습니까?",
 
 
 
@@ -873,4 +879,5 @@ function Return_koKR()
     ["lfer_Error"]                    = "오류 검색 문자열이 일치했지만 오류가 발생했거나 유형을 찾을 수 없습니다"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_deDE()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "deDE")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Bewegen Sie den Cursor über ein Element, um den Tooltip anzuzeigen!",
@@ -624,6 +625,11 @@ function Return_deDE()
     ["ma_GOShowButton"]               = "Anzeigen",
     ["ma_GOUnloadButton"]             = "Entladen",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Seid Ihr sicher, dass Ihr alle Karten umschalten wollt? Dies kann den Client für einige Sekunden einfrieren.",
+    ["msg_account_lock_confirm"]      = "Seid Ihr sicher, dass Ihr diesen Account %s wollt?",
+    ["msg_acct_create_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' erstellen wollt?",
+    ["msg_acct_delete_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' LÖSCHEN wollt?",
+    ["msg_tele_del_confirm"]          = "Seid Ihr sicher, dass Ihr den Teleport-Ort '%s' löschen wollt?",
 
 
 
@@ -864,4 +870,5 @@ function Return_deDE()
     ["lfer_Error"]                    = "Fehler: Suchstring gefunden, aber ein Fehler trat auf oder Typ konnte nicht gefunden werden"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

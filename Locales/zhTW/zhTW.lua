@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_zhTW()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "zhTW")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "將游標移動到元素上以切換工具提示！",
@@ -624,6 +625,11 @@ function Return_zhTW()
     ["ma_GOShowButton"]               = "顯示",
     ["ma_GOUnloadButton"]             = "卸載",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "你確定要切換所有地圖嗎？這可能會導致客戶端凍結幾秒鐘。",
+    ["msg_account_lock_confirm"]      = "你確定要 %s 這個帳號嗎？",
+    ["msg_acct_create_confirm"]       = "你確定要創建帳號 '%s' 嗎？",
+    ["msg_acct_delete_confirm"]       = "你確定要刪除帳號 '%s' 嗎？",
+    ["msg_tele_del_confirm"]          = "你確定要刪除傳送點 '%s' 嗎？",
 
 
 
@@ -873,4 +879,5 @@ function Return_zhTW()
     ["lfer_Error"]                    = "錯誤：搜尋字串符合但發生錯誤或無法找到類型"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

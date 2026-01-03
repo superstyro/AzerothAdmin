@@ -12,10 +12,9 @@ Description: Allows for easy creation of graphs
 
 local major, minor = "Graph-1.0", "$Revision: 58333 $"
 
-if not AceLibrary then error(major .. " requires AceLibrary.") end
-if not AceLibrary:IsNewVersion(major, minor) then return end
+local lib = LibStub:NewLibrary(major, minor)
+if not lib then return end
 
-local lib={}
 local GraphFunctions={}
 
 --Search for just Addon\\ at the front since the interface part often gets trimmed
@@ -2006,7 +2005,9 @@ end
 
 
 
-AceLibrary:Register(lib, major, minor)
+
+-- AceLibrary:Register(lib, major, minor) -- Removed for LibStub compatibility
+
 
 
 

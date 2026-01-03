@@ -20,15 +20,22 @@
 local MAJOR_VERSION = "FrameLib-1.0"
 local MINOR_VERSION = "$Revision: 1 $"
 
-if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
-if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
+local MAJOR, MINOR = "FrameLib-1.0", 1
+local FrameLib = LibStub:NewLibrary(MAJOR, MINOR)
+if not FrameLib then return end
+local tinsert = table.insert
+local CreateFrame = CreateFrame
+local UIParent = UIParent
+local pairs = pairs
+local type = type
+local error = error
 
-local FrameLib = { group = {} }
+FrameLib.group = FrameLib.group or {}
 
 --[[ADD FRAME TO GROUP]]
 function FrameLib:AddGroupFrame(group, frame)
   if type(self.group[group]) ~= "table" then
-    self.group[group] = {}
+      self.group[group] = {}
   end
   tinsert(self.group[group], frame)	
 end
@@ -37,7 +44,7 @@ end
 function FrameLib:HandleGroup(group, func)
   if group then
     if type(self.group[group]) ~= "table" then
-      self:error("No frame group with the name '"..group.."' is available!")
+      error("No frame group with the name '"..group.."' is available!")
       return
     else
       for k, v in pairs(self.group[group]) do
@@ -45,7 +52,7 @@ function FrameLib:HandleGroup(group, func)
       end
     end
   else
-    self:error("Argument 'group' not given!")
+    error("Argument 'group' not given!")
     return
   end
 end
@@ -346,5 +353,4 @@ function FrameLib:BuildEditBox(def)
 end
 
 -- register this lib
-AceLibrary:Register(FrameLib, MAJOR_VERSION, MINOR_VERSION, activate)
-FrameLib = nil
+-- register this lib (Handled by LibStub NewLibrary)

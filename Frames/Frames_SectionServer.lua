@@ -22,14 +22,14 @@
 
 function AzerothAdmin:CreateServerSection()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   FrameLib:BuildFrame({
@@ -73,6 +73,7 @@ function AzerothAdmin:CreateServerSection()
   g:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- GREEN
   --g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0}) -- RED
   local f = CreateFrame("Frame", "ma_lagmeter_frame", ma_netgraphframe)
+  FrameLib:AddGroupFrame("server", f)
   f.frames=0
   f.NextUpdate=GetTime()
   f:SetScript("OnUpdate",function()
@@ -394,6 +395,7 @@ function AzerothAdmin:CreateServerSection()
   z:SetMode("RAW")
   z:SetBarColors({0.2,0.0,0.0,0.4},{0.0,0.0,1.0,1.0})
   local x = CreateFrame("Frame", "ma_diff_frame", ma_netgraphframe2)
+  FrameLib:AddGroupFrame("server", x)
   x.frames = 0
   x.NextUpdate=GetTime()
   local q = 0

@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -22,14 +22,14 @@
 
 function AzerothAdmin:CreateStartFrames()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   -- [[ Main Elements ]]
@@ -52,7 +52,7 @@ function AzerothAdmin:CreateStartFrames()
   })
 
   -- Set the frame strata for the main frame
-  ma_bgframe:SetFrameStrata(AzerothAdmin.db.account.style.framestrata)
+  ma_bgframe:SetFrameStrata(AzerothAdmin.db.profile.style.framestrata)
 
   FrameLib:BuildFrame({ --Main Window Menu Frame
     name = "ma_menubgframe",

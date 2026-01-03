@@ -22,20 +22,20 @@
 
 function AzerothAdmin:CreatePopupFrames()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   -- [[Popup Frame]]
   -- Calculate popup strata to be one level above main frame
   local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG"}
-  local mainStrata = AzerothAdmin.db.account.style.framestrata or "MEDIUM"
+  local mainStrata = AzerothAdmin.db.profile.style.framestrata or "MEDIUM"
   local popupStrata = "DIALOG" -- Default fallback
   local popupFrameLevel = nil
 

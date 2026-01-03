@@ -1,0 +1,158 @@
+------------------------------------------------------------------------
+r961 | nevcairiel | 2010-07-20 17:54:28 +0000 (Tue, 20 Jul 2010) | 1 line
+Changed paths:
+   A /tags/Release-r960 (from /trunk:960)
+
+Tag r960 as Release
+------------------------------------------------------------------------
+r960 | nevcairiel | 2010-07-20 17:53:14 +0000 (Tue, 20 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/changelog.txt
+
+Update changelog
+------------------------------------------------------------------------
+r959 | nevcairiel | 2010-07-16 21:35:46 +0000 (Fri, 16 Jul 2010) | 1 line
+Changed paths:
+   D /trunk/split.bat
+   D /trunk/unsplit.bat
+
+Remove split/unsplit.bat
+------------------------------------------------------------------------
+r958 | nevcairiel | 2010-07-03 10:22:29 +0000 (Sat, 03 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua
+
+AceConfigDialog-3.0: Upvalues!
+------------------------------------------------------------------------
+r957 | nevcairiel | 2010-07-03 10:22:02 +0000 (Sat, 03 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-TabGroup.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-TreeGroup.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-Icon.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-Slider.lua
+
+AceGUI-3.0: more widget cleanups
+------------------------------------------------------------------------
+r956 | nevcairiel | 2010-07-03 07:11:21 +0000 (Sat, 03 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-DropDownGroup.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-TabGroup.lua
+
+AceGUI-3.0: More cleanups in the containers
+------------------------------------------------------------------------
+r955 | nevcairiel | 2010-07-02 18:18:08 +0000 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-ScrollFrame.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-SimpleGroup.lua
+
+AceGUI-3.0: more cleanups
+------------------------------------------------------------------------
+r954 | nevcairiel | 2010-07-02 17:12:55 +0000 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua
+
+AceGUI-3.0: Bump MLEB just to make sure.
+------------------------------------------------------------------------
+r953 | nevcairiel | 2010-07-02 17:11:01 +0000 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua
+
+AceGUI-3.0: Fix a typo in the SetMaxLetters function causing a nil error
+------------------------------------------------------------------------
+r952 | nevcairiel | 2010-07-02 17:08:31 +0000 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-SimpleGroup.lua
+
+AceGUI-3.0: Cleanups in Inline- and SimpleGroup
+------------------------------------------------------------------------
+r951 | nevcairiel | 2010-07-02 16:37:40 +0000 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua
+
+AceGUI-3.0: InlineGroup: Cleanup and change to use new widget layout
+------------------------------------------------------------------------
+r950 | nevcairiel | 2010-07-01 19:41:28 +0000 (Thu, 01 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua
+
+AceConfigDialog-3.0: Don't close frames in CloseAll that are being opened after the CloseAll event was dispatched. (Ticket #132). Also, cleanups. 
+------------------------------------------------------------------------
+r949 | nevcairiel | 2010-07-01 19:14:19 +0000 (Thu, 01 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIContainer-Frame.lua
+
+AceGUI-3.0: Frame: Add events for OnEnter/OnLeave of the statusbar (Ticket #139)
+------------------------------------------------------------------------
+r948 | nevcairiel | 2010-07-01 19:07:24 +0000 (Thu, 01 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-EditBox.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua
+
+AceGUI-3.0: Add SetMaxLetters APIs to EB and MLEB (Ticket #135)
+------------------------------------------------------------------------
+r947 | nevcairiel | 2010-06-29 16:44:48 +0000 (Tue, 29 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceTab-3.0/AceTab-3.0.lua
+
+AceTab-3.0: Another fix for nil related problems
+------------------------------------------------------------------------
+r946 | nevcairiel | 2010-06-28 17:51:36 +0000 (Mon, 28 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceTab-3.0/AceTab-3.0.lua
+
+AceTab-3.0: Hopefully fix the nil-index issue and make tab completion work again
+------------------------------------------------------------------------
+r945 | nevcairiel | 2010-06-27 09:01:12 +0000 (Sun, 27 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceTab-3.0/AceTab-3.0.lua
+
+AceTab-3.0: Dynamically create the list of editboxes based on NUM_CHAT_WINDOWS
+------------------------------------------------------------------------
+r944 | nevcairiel | 2010-06-27 08:53:25 +0000 (Sun, 27 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceTab-3.0/AceTab-3.0.lua
+
+AceTab-3.0: Make this thing "work" with 3.3.3 and 3.3.5
+------------------------------------------------------------------------
+r943 | nevcairiel | 2010-06-26 07:58:49 +0000 (Sat, 26 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-Keybinding.lua
+
+AceGUI-3.0: Keybinding: Fix button height
+------------------------------------------------------------------------
+r942 | nevcairiel | 2010-06-20 10:27:11 +0000 (Sun, 20 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-Keybinding.lua
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-Slider.lua
+
+AceGUI-3.0: Cleanup keybinding and slider widgets
+------------------------------------------------------------------------
+r941 | nevcairiel | 2010-06-19 12:18:22 +0000 (Sat, 19 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceGUI-3.0/widgets/AceGUIWidget-CheckBox.lua
+
+AceGUI-3.0: CheckBox: Fix alignment of the text in OnMouseDown when an image is set. (Ticket #142)
+------------------------------------------------------------------------
+r940 | nevcairiel | 2010-06-19 08:01:47 +0000 (Sat, 19 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceDB-3.0/AceDB-3.0.lua
+   M /trunk/tests/AceDB-3.0-namespaces.lua
+
+AceDB-3.0: Switch all functions over to the dynamic "self.profiles" proxy instead of using sv.profiles directly, which may not always exist (Ticket #144)
+------------------------------------------------------------------------
+r939 | nevcairiel | 2010-06-19 07:26:17 +0000 (Sat, 19 Jun 2010) | 3 lines
+Changed paths:
+   M /trunk/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua
+
+AceConfigDialog-3.0: Improve min/max/step logic for slider controls.
+
+Step checking is now always performed when at least min is specified, and min/max checking is independent of each other.
+------------------------------------------------------------------------
+r938 | nevcairiel | 2010-06-13 07:21:38 +0000 (Sun, 13 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/AceDBOptions-3.0/AceDBOptions-3.0.lua
+
+AceDBOptions-3.0.lua: Fix a string typo (Ticket #141 - Thanks Allara)
+------------------------------------------------------------------------

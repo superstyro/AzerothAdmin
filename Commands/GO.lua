@@ -156,7 +156,7 @@ end
 --ma_gobjectmodel:SetRotation((RotValSlider:GetValue() * Radian))
 
 function AzerothAdminCommands.InitGobModelFrame()
-  ma_gobjectmodel:SetScript("OnUpdate", function() AzerothAdminCommands.AzerothAdminModelOnUpdate(arg1) end)
+  ma_gobjectmodel:SetScript("OnUpdate", function(self, elapsed) AzerothAdminCommands.AzerothAdminModelOnUpdate(self, elapsed) end)
   ma_gobjectmodel.rotation = 0.61
   ma_gobjectmodel:SetRotation(0.61)
   --ma_gobjectmodel:SetUnit("player")

@@ -19,7 +19,7 @@
 AzerothAdminCommands = AzerothAdminCommands or {}
 
 function AzerothAdminCommands.InitModelFrameNPC()
-  ma_npcmodelframe:SetScript("OnUpdate", function() AzerothAdminCommands.AzerothAdminNpcModelOnUpdate(arg1) end)
+  ma_npcmodelframe:SetScript("OnUpdate", function(self, elapsed) AzerothAdminCommands.AzerothAdminNpcModelOnUpdate(self, elapsed) end)
   ma_npcmodelframe.rotation = 0.61;
   ma_npcmodelframe:SetRotation(ma_npcmodelframe.rotation)
   ma_npcmodelframe:SetUnit("player")
@@ -38,20 +38,20 @@ function AzerothAdminCommands.NpcModelRotateRight()
   PlaySound("igInventoryRotateCharacter")
 end
 
-function AzerothAdminCommands.AzerothAdminNpcModelOnUpdate(elapsedTime)
+function AzerothAdminCommands.AzerothAdminNpcModelOnUpdate(frame, elapsedTime)
   if ( ma_npcmodelrotatelbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation < 0 ) then
-      this.rotation = this.rotation + (2 * PI)
+    frame.rotation = frame.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation < 0 ) then
+      frame.rotation = frame.rotation + (2 * PI)
     end
-    this:SetRotation(this.rotation);
+    frame:SetRotation(frame.rotation);
   end
   if ( ma_npcmodelrotaterbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation > (2 * PI) ) then
-      this.rotation = this.rotation - (2 * PI)
+    frame.rotation = frame.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation > (2 * PI) ) then
+      frame.rotation = frame.rotation - (2 * PI)
     end
-    this:SetRotation(this.rotation);
+    frame:SetRotation(frame.rotation);
   end
 end
 

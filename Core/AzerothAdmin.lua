@@ -1922,7 +1922,7 @@ function AzerothAdmin:InitDropDowns()
       info.text = v[1]
       info.value = v[2]
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown) == v[2])
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_reloadtabledropdown, self.value) end
       info.icon = nil
       info.keepShownOnClick = nil
       UIDropDownMenu_AddButton(info, level)
@@ -1947,7 +1947,7 @@ function AzerothAdmin:InitDropDowns()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_weatherdropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_weatherdropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
@@ -2002,7 +2002,7 @@ function AzerothAdmin:InitDropDowns()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_npcemotedropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
@@ -2057,7 +2057,7 @@ function AzerothAdmin:InitDropDowns()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_npcemotedropdown_a, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_npcemotedropdown_a) == v[2])
       --info.notCheckable = true
       info.icon = nil
@@ -2091,7 +2091,7 @@ function AzerothAdmin:InitDropDowns()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_languagedropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_languagedropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_languagedropdown) == v[2])
       --info.notCheckable = true
       info.icon = nil
@@ -2106,13 +2106,13 @@ function AzerothAdmin:InitDropDowns()
 
   -- Add tooltip to language dropdown
   if self.db.profile.style.showtooltips then
-    ma_languagedropdown:SetScript("OnEnter", function()
-      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+    ma_languagedropdown:SetScript("OnEnter", function(self)
+      GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
       GameTooltip:SetText("Language Locale future update planned")
       GameTooltip:Show()
     end)
-    ma_languagedropdown:SetScript("OnLeave", function()
-      GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+    ma_languagedropdown:SetScript("OnLeave", function(self)
+      GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
       GameTooltip:Hide()
     end)
   end
@@ -2289,15 +2289,15 @@ function PopupScrollUpdate()
           local key = lineplusoffset
           --item icons
           _G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetItemIcon(item["itId"]))
-          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
-          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
-          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddItem(item["itId"], button) end)
           _G["ma_PopupScrollBarEntryIcon"..line]:Show()
           --item description
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..item["itId"].."|r Name: |cffffffff"..item["itName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddItem(item["itId"], arg1) end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() GameTooltip:SetOwner(this, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddItem(item["itId"], button) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.item then
@@ -2408,7 +2408,7 @@ function PopupScrollUpdate()
           end
           local key = lineplusoffset
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:Quest(quest["qsId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:Quest(quest["qsId"], button) end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
@@ -2464,7 +2464,7 @@ function PopupScrollUpdate()
           end
           local key = lineplusoffset
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..creature["crId"].."|r Name: |cffffffff"..creature["crName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:Creature(creature["crId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:Creature(creature["crId"], button) end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
@@ -2525,7 +2525,7 @@ function PopupScrollUpdate()
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..spell["spId"].."|r Name: |cffffffff"..spell["spName"].."|r")
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() LearnSpell(spell["spId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) LearnSpell(spell["spId"], button) end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.spell then
@@ -2635,7 +2635,7 @@ function PopupScrollUpdate()
           end
           local key = lineplusoffset
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..object["objId"].."|r Name: |cffffffff"..object["objName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddObject(object["objId"], arg1) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddObject(object["objId"], button) end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()

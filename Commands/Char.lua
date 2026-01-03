@@ -30,25 +30,25 @@ function AzerothAdminCommands.ModelRotateRight()
   PlaySound("igInventoryRotateCharacter")
 end
 
-function AzerothAdminCommands.AzerothAdminModelOnUpdate(elapsedTime)
+function AzerothAdminCommands.AzerothAdminModelOnUpdate(frame, elapsedTime)
   if ( ma_modelrotatelbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation < 0 ) then
-      this.rotation = this.rotation + (2 * PI)
+    frame.rotation = frame.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation < 0 ) then
+      frame.rotation = frame.rotation + (2 * PI)
     end
-    this:SetRotation(this.rotation);
+    frame:SetRotation(frame.rotation);
   end
   if ( ma_modelrotaterbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation > (2 * PI) ) then
-      this.rotation = this.rotation - (2 * PI)
+    frame.rotation = frame.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation > (2 * PI) ) then
+      frame.rotation = frame.rotation - (2 * PI)
     end
-    this:SetRotation(this.rotation);
+    frame:SetRotation(frame.rotation);
   end
 end
 
 function AzerothAdminCommands.InitModelFrame()
-  ma_modelframe:SetScript("OnUpdate", function() AzerothAdminCommands.AzerothAdminModelOnUpdate(arg1) end)
+  ma_modelframe:SetScript("OnUpdate", function(self, elapsed) AzerothAdminCommands.AzerothAdminModelOnUpdate(self, elapsed) end)
   ma_modelframe.rotation = 0.61;
   ma_modelframe:SetRotation(ma_modelframe.rotation)
   ma_modelframe:SetUnit("player")
@@ -289,7 +289,7 @@ function AzerothAdminCommands.LearnDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
@@ -327,7 +327,7 @@ function AzerothAdminCommands.ModifyDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_modifydropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_modifydropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_modifydropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
@@ -349,7 +349,7 @@ function AzerothAdminCommands.ResetDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_resetdropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_resetdropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_resetdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil

@@ -107,10 +107,10 @@ function AzerothAdminCommands.UpdateChanges()
   else
     AzerothAdmin.db.profile.style.transparency.backgrounds = 1.0
   end
-  AzerothAdmin.db.profile.localesearchstring = ma_checklocalsearchstringsbutton:GetChecked()
-  AzerothAdmin.db.profile.style.showtooltips = ma_showtooltipsbutton:GetChecked()
-  AzerothAdmin.db.profile.style.showchat = ma_showchatoutputbutton:GetChecked()
-  AzerothAdmin.db.profile.style.showminimenu = ma_showminimenubutton:GetChecked()
+  AzerothAdmin.db.profile.localesearchstring = ma_checklocalsearchstringsbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showtooltips = ma_showtooltipsbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showchat = ma_showchatoutputbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showminimenu = ma_showminimenubutton:GetChecked() and true or false
   if ma_delayparam then
     AzerothAdmin.db.profile.style.delayparam = ma_delayparam:GetText()
   end

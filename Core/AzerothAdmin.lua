@@ -321,7 +321,7 @@ function AzerothAdmin:PLAYER_TARGET_CHANGED()
     else
       if self.db.char.instantKillMode then
         if not UnitIsFriend("player", "target") then
-          KillSomething()
+          AzerothAdminCommands.KillSomething()
         end
       end
       --ma_respawnbutton:Disable()

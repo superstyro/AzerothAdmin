@@ -16,7 +16,9 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function TeleScrollUpdate()
+AzerothAdminCommands = AzerothAdminCommands or {}
+
+function AzerothAdminCommands.TeleScrollUpdate()
     if not ma_ZoneScrollBar then
       AzerothAdmin:ChatMsg("Lost ma_ZoneScrollBar")
     end
@@ -44,7 +46,7 @@ function TeleScrollUpdate()
 
       FauxScrollFrame_Update(ma_ZoneScrollBar, zoneCount, 12, 16);
       for line = 1,12 do
-        --lineplusoffset = line + ((AzerothAdmin.db.account.tickets.page - 1) * 4)  --for paged mode
+        --lineplusoffset = line + ((AzerothAdmin.db.profile.tickets.page - 1) * 4)  --for paged mode
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_ZoneScrollBar)
         --self:ChatMsg("L+O:" ..lineplusoffset)
         if lineplusoffset <= zoneCount then
@@ -57,9 +59,9 @@ function TeleScrollUpdate()
           _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnClick", function()
             AzerothAdmin.db.char.selectedZone = teleobj.name
             --AzerothAdmin.db.char.selectedCont = cont
-            TeleScrollUpdate()
+            AzerothAdminCommands.TeleScrollUpdate()
             --InlineScrollUpdate(cont)
-            SubzoneScrollUpdate()
+            AzerothAdminCommands.SubzoneScrollUpdate()
           end)
           _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnEnter", function() cont = AzerothAdmin.db.char.selectedCont end)
           _G["ma_ZoneScrollBarEntry"..line]:SetScript("OnLeave", function() cont = AzerothAdmin.db.char.selectedCont end)
@@ -74,7 +76,7 @@ function TeleScrollUpdate()
     end
 end
 
-function SubzoneScrollUpdate()
+function AzerothAdminCommands.SubzoneScrollUpdate()
  local cont_temp = AzerothAdmin.db.char.selectedCont
  if cont_temp ~= nil then
     cont = cont_temp
@@ -103,7 +105,7 @@ function SubzoneScrollUpdate()
   if subzoneCount > 0 then
     FauxScrollFrame_Update(ma_SubzoneScrollBar,subzoneCount,12,16);
     for line = 1,12 do
-      --lineplusoffset = line + ((AzerothAdmin.db.account.tickets.page - 1) * 4)  --for paged mode
+      --lineplusoffset = line + ((AzerothAdmin.db.profile.tickets.page - 1) * 4)  --for paged mode
       lineplusoffset = line + FauxScrollFrame_GetOffset(ma_SubzoneScrollBar)
       if lineplusoffset <= subzoneCount then
         local teleobj = TeleTable[lineplusoffset]

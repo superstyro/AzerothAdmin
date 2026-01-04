@@ -671,7 +671,7 @@ if L then
     ["tt_ResetTickets"]               = "Geladene Tickets zurücksetzen",
     ["tt_LoadAllTickets"]             = "Alle Tickets laden",
     ["tt_LoadOnlineTickets"]          = "Tickets von Online-Spielern laden",
-    ["tt_DeleteTicket"]               = "Ticket löschen",
+    ["tt_DeleteTicket"]               = "Ticket schließen und aus der Liste entfernen",
     ["tt_AnswerTicket"]               = "Ticket beantworten",
     ["tt_GetCharTicket"]              = "Ticket-Charakter beschwören",
     ["tt_GoCharTicket"]               = "Zu Ticket-Charakter gehen",

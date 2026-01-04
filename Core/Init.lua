@@ -275,16 +275,13 @@ function InitControls()
 
 --[[Tickets Tab]]
   AzerothAdmin:PrepareScript(ma_tabbutton_ticket                , Locale["tt_TicketButton"]               , function() AzerothAdminCommands.ShowTicketTab() end)
-  AzerothAdmin:PrepareScript(ma_resetticketsbutton              , Locale["tt_ResetTickets"]               , function() AzerothAdminCommands.ResetTickets() end)
-  AzerothAdmin:PrepareScript(ma_loadallticktsbutton             , Locale["tt_LoadAllTickets"]             , function() AzerothAdminCommands.RefreshTickets() end)
-  AzerothAdmin:PrepareScript(ma_loadonlineticketsbutton         , Locale["tt_LoadOnlineTickets"]          , function() AzerothAdminCommands.RefreshOnlineTickets() end)
+  AzerothAdmin:PrepareScript(ma_resetticketsbutton              , Locale["tt_LoadTickets"]                , function() AzerothAdminCommands.RefreshTickets() end)
   AzerothAdmin:PrepareScript(ma_deleteticketbutton              , Locale["tt_DeleteTicket"]               , function() AzerothAdminCommands.Ticket("delete") end)
   AzerothAdmin:PrepareScript(ma_answerticketbutton              , Locale["tt_AnswerTicket"]               , function() AzerothAdminCommands.Ticket("answer") end)
   AzerothAdmin:PrepareScript(ma_getcharticketbutton             , Locale["tt_GetCharTicket"]              , function() AzerothAdminCommands.Ticket("getchar") end)
   AzerothAdmin:PrepareScript(ma_gocharticketbutton              , Locale["tt_GoCharTicket"]               , function() AzerothAdminCommands.Ticket("gochar") end)
   AzerothAdmin:PrepareScript(ma_whisperticketbutton             , Locale["tt_WhisperTicket"]              , function() AzerothAdminCommands.Ticket("whisper") end)
   AzerothAdmin:PrepareScript(ma_goticketbutton                  , Locale["tt_GoTicket"]                   , function() AzerothAdminCommands.Ticket("goticket") end)
-  AzerothAdmin:PrepareScript(ma_showbutton                      , Locale["tt_ShowTickets"]                , function() AzerothAdminCommands.ShowTickets() end)
 
 --[[Misc Tab]]
   AzerothAdmin:PrepareScript(ma_checktransparencybutton         , nil                                     , function() AzerothAdminCommands.ToggleTransparencyCheckbox() end)

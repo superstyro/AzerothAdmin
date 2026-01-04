@@ -671,7 +671,7 @@ if L then
     ["tt_ResetTickets"]               = "重置已加载的工单",
     ["tt_LoadAllTickets"]             = "加载所有工单",
     ["tt_LoadOnlineTickets"]          = "加载在线玩家工单",
-    ["tt_DeleteTicket"]               = "删除工单",
+    ["tt_DeleteTicket"]               = "关闭工单并从列表中删除",
     ["tt_AnswerTicket"]               = "回复工单",
     ["tt_GetCharTicket"]              = "召唤工单角色",
     ["tt_GoCharTicket"]               = "前往工单角色",

@@ -947,8 +947,22 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         output = AzerothAdmin.db.profile.style.showchat
     end
     -- get results of ticket list. In Trinity, everything will be constructed off the list
+    local foundTickets = false
     for id, char, create, update in string.gmatch(text, Strings["ma_GmatchTickets"]) do
-        table.insert(AzerothAdmin.db.profile.buffer.tickets, {tNumber = id, tChar = char, tLCreate = create, tLUpdate = update, tMsg = ""})
+        -- Clean up the ticket ID by removing non-numeric characters
+        id = string.match(id, "%d+") or id
+        -- Check if this ticket already exists to prevent duplicates
+        local isDuplicate = false
+        for _, ticket in ipairs(self.db.profile.buffer.tickets) do
+            if ticket.tNumber == id then
+                isDuplicate = true
+                break
+            end
+        end
+        if not isDuplicate then
+            table.insert(AzerothAdmin.db.profile.buffer.tickets, {tNumber = id, tChar = char, tLCreate = create, tLUpdate = update, tMsg = ""})
+            foundTickets = true
+        end
         local ticketCount = 0
         for _ in pairs(AzerothAdmin.db.profile.buffer.tickets) do ticketCount = ticketCount + 1 end
         ticketCount = 0
@@ -957,18 +971,34 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         self.db.char.requests.ticketbody = id
         self.db.char.msgDeltaTime = time()
     end
+    -- Update the display after parsing all tickets in this message
+    if foundTickets and AzerothAdminCommands and AzerothAdminCommands.InlineScrollUpdate then
+        AzerothAdminCommands.InlineScrollUpdate()
+    end
     -- Match ticket message - handle messages that may span multiple chat lines
     if string.find(text, "Ticket Message") then
-        -- This is the start of a ticket message, extract the beginning
-        local ticketMsgStart = string.match(text, "Ticket Message.-:%s*%[(.*)$")
-        if ticketMsgStart then
-            -- Initialize the buffer with the first part
-            if not AzerothAdmin.db.profile.buffer.ticketMessageBuffer then
-                AzerothAdmin.db.profile.buffer.ticketMessageBuffer = ""
-            end
-            AzerothAdmin.db.profile.buffer.ticketMessageBuffer = ticketMsgStart
+        -- Check if it's a complete single-line message first
+        local singleLineMsg = string.match(text, "Ticket Message.-:%s*%[(.*)%]")
+        if singleLineMsg then
+            ma_ticketdetail.originalText = "|cffffff00"..singleLineMsg
+            ma_ticketdetail:SetText("|cffffff00"..singleLineMsg)
+            ma_ticketdetail:SetCursorPosition(0)
+            ma_ticketdetail:ClearFocus()
+            ma_ticketdetailscrollframe:SetVerticalScroll(0)
             catchedSth = true
             output = AzerothAdmin.db.profile.style.showchat
+        else
+            -- This is the start of a multiline ticket message, extract the beginning
+            local ticketMsgStart = string.match(text, "Ticket Message.-:%s*%[(.*)$")
+            if ticketMsgStart then
+                -- Initialize the buffer with the first part
+                if not AzerothAdmin.db.profile.buffer.ticketMessageBuffer then
+                    AzerothAdmin.db.profile.buffer.ticketMessageBuffer = ""
+                end
+                AzerothAdmin.db.profile.buffer.ticketMessageBuffer = ticketMsgStart
+                catchedSth = true
+                output = AzerothAdmin.db.profile.style.showchat
+            end
         end
     elseif AzerothAdmin.db.profile.buffer.ticketMessageBuffer then
         -- We're collecting a multi-line ticket message
@@ -978,7 +1008,13 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         if endMatch then
             -- This is the last line, append it and display the complete message
             local fullMessage = AzerothAdmin.db.profile.buffer.ticketMessageBuffer .. "\n" .. endMatch
+            print("Server response - Setting ticket message:", fullMessage, "Length:", string.len(fullMessage))
+            ma_ticketdetail.originalText = "|cffffff00"..fullMessage
             ma_ticketdetail:SetText("|cffffff00"..fullMessage)
+            ma_ticketdetail:SetCursorPosition(0)
+            ma_ticketdetail:ClearFocus()
+            ma_ticketdetailscrollframe:SetVerticalScroll(0)
+            print("EditBox text after server set:", ma_ticketdetail:GetText())
             -- Store the message in the tickets buffer
             local currentTicketId = ma_ticketid:GetText()
             if currentTicketId and currentTicketId ~= "" then
@@ -1003,6 +1039,8 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
     for eraseme in string.gmatch(text, "Showing list of open tickets") do
         catchedSth = true
         output = AzerothAdmin.db.profile.style.showchat
+        -- Don't call InlineScrollUpdate here - it's called after each ticket is parsed
+        -- This message appears BEFORE the ticket data, so calling it here would show 0 tickets
     end
 
  --[[

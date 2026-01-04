@@ -671,7 +671,7 @@ if L then
     ["tt_ResetTickets"]               = "로드된 티켓을 초기화합니다",
     ["tt_LoadAllTickets"]             = "모든 티켓을 로드합니다",
     ["tt_LoadOnlineTickets"]          = "온라인 플레이어 티켓을 로드합니다",
-    ["tt_DeleteTicket"]               = "티켓을 삭제합니다",
+    ["tt_DeleteTicket"]               = "티켓을 닫고 목록에서 제거합니다",
     ["tt_AnswerTicket"]               = "티켓에 답변합니다",
     ["tt_GetCharTicket"]              = "티켓 캐릭터를 소환합니다",
     ["tt_GoCharTicket"]               = "티켓 캐릭터에게 이동합니다",

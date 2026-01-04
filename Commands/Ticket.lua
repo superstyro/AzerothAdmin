@@ -19,33 +19,21 @@
 AzerothAdminCommands = AzerothAdminCommands or {}
 
 function AzerothAdminCommands.ShowTicketTab()
-  wipe(AzerothAdmin.db.profile.buffer.tickets)
   ma_goticketbutton:Disable()
   ma_deleteticketbutton:Disable()
   ma_answerticketbutton:Disable()
   ma_getcharticketbutton:Disable()
   ma_gocharticketbutton:Disable()
   ma_whisperticketbutton:Disable()
-  ma_resetticketsbutton:Disable()
-  ma_showbutton:Disable()
+  ma_resetticketsbutton:Enable()
   AzerothAdmin:InstantGroupToggle("ticket")
   AzerothAdminCommands.ResetTickets()
 end
 
-function AzerothAdminCommands.RefreshOnlineTickets()
-    ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) AzerothAdminCommands.InlineScrollUpdate() end)
-    ma_ticketscrollframe:SetScript("OnShow", function() AzerothAdminCommands.InlineScrollUpdate() end)
-    AzerothAdmin.db.char.requests.ticket = true
-    AzerothAdmin:ChatMsg(".ticket onlinelist")
-    for i=1,12 do
-       _G["ma_ticketscrollframe"..i]:Hide()
-    end
-    ma_loadonlineticketsbutton:Disable()
-    ma_loadallticktsbutton:Hide()
-    ma_showbutton:Enable()
-end
-
 function AzerothAdminCommands.RefreshTickets()
+    -- Clear existing tickets to prevent duplicates
+    wipe(AzerothAdmin.db.profile.buffer.tickets)
+    AzerothAdmin.db.profile.buffer.tickets = {}
 
     ma_ticketscrollframe:SetScript("OnVerticalScroll", function(self, offset) FauxScrollFrame_OnVerticalScroll(self, offset-1, 16, 16) AzerothAdminCommands.InlineScrollUpdate() end)
     ma_ticketscrollframe:SetScript("OnShow", function() AzerothAdminCommands.InlineScrollUpdate() end)
@@ -54,9 +42,7 @@ function AzerothAdminCommands.RefreshTickets()
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
     end
-    ma_loadallticktsbutton:Disable()
-    ma_loadonlineticketsbutton:Hide()
-    ma_showbutton:Enable()
+    -- Don't call InlineScrollUpdate here - it will be called when server responds
 end
 
 function AzerothAdminCommands.ResetTickets()
@@ -66,15 +52,10 @@ function AzerothAdminCommands.ResetTickets()
     for i=1,12 do
        _G["ma_ticketscrollframe"..i]:Hide()
     end
-    ma_loadallticktsbutton:Enable()
-    ma_loadonlineticketsbutton:Enable()
-    ma_loadallticktsbutton:Show()
-    ma_loadonlineticketsbutton:Show()
     ma_ticketdetail:Hide();
     ma_ticketid:SetText(nil)
     ma_ticketcreatedby:SetText(nil)
     ma_tickettimecreated:SetText(nil)
-    ma_ticketlastchange:SetText(nil)
     ma_goticketbutton:Disable()
     ma_deleteticketbutton:Disable()
     ma_answerticketbutton:Disable()
@@ -83,11 +64,6 @@ function AzerothAdminCommands.ResetTickets()
     ma_whisperticketbutton:Disable()
 end
 
-function AzerothAdminCommands.ShowTickets()
-  ma_resetticketsbutton:Enable()
-  ma_showbutton:Disable()
- AzerothAdminCommands.InlineScrollUpdate()
-end
 
 --[[function AzerothAdmin:LoadTickets(number)
   self.db.char.newTicketQueue = {}
@@ -184,7 +160,7 @@ function AzerothAdminCommands.InlineScrollUpdate()
         if lineplusoffset <= ticketCount then
           local object = AzerothAdmin.db.profile.buffer.tickets[lineplusoffset]
           if object then
-            _G["ma_ticketscrollframe"..line]:SetText("Ticket:|cffffffff"..object["tNumber"].."|r Created by: |cffffffff"..object["tChar"].."|r Last change:|cffffffff"..object["tLUpdate"].."|r")
+            _G["ma_ticketscrollframe"..line]:SetText("|cff00ff00Ticket:|r |cffffff00"..object["tNumber"].."|r  |cff00ff00Created by:|r |cffffff00"..object["tChar"].."|r")
             AzerothAdmin.db.profile.tickets.selected = object
             _G["ma_ticketscrollframe"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
             _G["ma_ticketscrollframe"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
@@ -218,13 +194,19 @@ function AzerothAdminCommands.ReadTicket(tNumber, tChar, tLCreate, tLUpdate, tMs
     ma_ticketid:SetText(tNumber)
     ma_ticketcreatedby:SetText(tChar)
     ma_tickettimecreated:SetText(tLCreate)
-    ma_ticketlastchange:SetText(tLUpdate)
     -- Set the ticket message if available, otherwise it will be set when the server responds
     if tMsg and tMsg ~= "" then
+        ma_ticketdetail.originalText = tMsg
         ma_ticketdetail:SetText(tMsg)
+        ma_ticketdetail:SetCursorPosition(0)
     else
+        ma_ticketdetail.originalText = ""
         ma_ticketdetail:SetText("")
+        ma_ticketdetail:SetCursorPosition(0)
     end
+    ma_ticketdetail:ClearFocus()
+    -- Scroll to top of the scroll frame
+    ma_ticketdetailscrollframe:SetVerticalScroll(0)
     ma_ticketdetail:Show()
 end
  

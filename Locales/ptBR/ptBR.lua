@@ -671,7 +671,7 @@ if L then
     ["tt_ResetTickets"]               = "Resetar tickets carregados",
     ["tt_LoadAllTickets"]             = "Carregar Todos os tickets",
     ["tt_LoadOnlineTickets"]          = "Carregar tickets de jogadores online",
-    ["tt_DeleteTicket"]               = "Excluir ticket",
+    ["tt_DeleteTicket"]               = "Fechar ticket e remover da lista",
     ["tt_AnswerTicket"]               = "Responder ticket",
     ["tt_GetCharTicket"]              = "Invocar personagem do ticket",
     ["tt_GoCharTicket"]               = "Ir para personagem do ticket",

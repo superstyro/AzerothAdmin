@@ -671,7 +671,7 @@ if L then
     ["tt_ResetTickets"]               = "Сбросить загруженные тикеты",
     ["tt_LoadAllTickets"]             = "Загрузить все тикеты",
     ["tt_LoadOnlineTickets"]          = "Загрузить тикеты игроков онлайн",
-    ["tt_DeleteTicket"]               = "Удалить тикет",
+    ["tt_DeleteTicket"]               = "Закрыть тикет и удалить из списка",
     ["tt_AnswerTicket"]               = "Ответить на тикет",
     ["tt_GetCharTicket"]              = "Призвать персонажа тикета",
     ["tt_GoCharTicket"]               = "Перейти к персонажу тикета",

@@ -1,9 +1,9 @@
-name: Delete Old Releases Nightly
+name: Delete Old Releases Weekly
 
 on:
   schedule:
-    # Run every day at midnight UTC
-    - cron: '0 0 * * *'
+    # Run every Sunday at midnight UTC
+    - cron: '0 0 * * 0'
   workflow_dispatch:
     inputs:
       dry_run:

@@ -89,6 +89,44 @@ function AzerothAdminCommands.ToggleShowChatOutputCheckbox()
   print(Locale["msg_chatoutput_saved"])
 end
 
+function AzerothAdminCommands.ToggleMinimapButtonCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_showminimapbutton:GetChecked() and true or false
+
+  -- Initialize minimap table if it doesn't exist
+  if not AzerothAdminDb.minimap then
+    AzerothAdminDb.minimap = {}
+  end
+
+  -- Save the setting (inverted: checked = show, unchecked = hide)
+  AzerothAdminDb.minimap.hide = not isChecked
+
+  -- Apply the setting immediately
+  local icon = LibStub and LibStub("LibDBIcon-1.0", true)
+  if icon and icon:IsRegistered("AzerothAdmin") then
+    -- Using LibDBIcon
+    if isChecked then
+      icon:Show("AzerothAdmin")
+      print("Minimap button shown")
+    else
+      icon:Hide("AzerothAdmin")
+      print("Minimap button hidden")
+    end
+  else
+    -- Fallback for manual minimap button
+    local minimapButton = _G["AzerothAdminMinimapButton"]
+    if minimapButton then
+      if isChecked then
+        minimapButton:Show()
+        print("Minimap button shown")
+      else
+        minimapButton:Hide()
+        print("Minimap button hidden")
+      end
+    end
+  end
+end
+
 function AzerothAdminCommands.UpdateChanges()
   if AzerothAdmin.db.profile.style.color.buffer.backgrounds then
     AzerothAdmin.db.profile.style.color.backgrounds = AzerothAdmin.db.profile.style.color.buffer.backgrounds

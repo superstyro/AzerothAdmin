@@ -174,6 +174,12 @@ AzerothAdmin.consoleOpts = {
       desc = "Toggle the toolbar/minimenu",
       type = 'execute',
       func = function() AzerothAdmin:ToggleMinimenu() end
+    },
+    minimap = {
+      name = "minimap",
+      desc = "Toggle the minimap button visibility",
+      type = 'execute',
+      func = function() AzerothAdmin:ToggleMinimapButton() end
     }
   }
 }
@@ -2895,6 +2901,12 @@ function AzerothAdmin:InitCheckButtons()
   ma_showminimenubutton:SetChecked(self.db.profile.style.showminimenu)
   ma_showtooltipsbutton:SetChecked(self.db.profile.style.showtooltips)
   ma_showchatoutputbutton:SetChecked(self.db.profile.style.showchat)
+  -- Set minimap button checkbox state (inverted: hide=false means show=true)
+  if AzerothAdminDb.minimap then
+    ma_showminimapbutton:SetChecked(not AzerothAdminDb.minimap.hide)
+  else
+    ma_showminimapbutton:SetChecked(true) -- Default to shown
+  end
   local dp = AzerothAdmin.db.profile.style.delayparam
   if dp == Nil or dp == "" then dp = "10000" end --10k is close 1 minute of in-game time FIX #13
   ma_delayparam:SetText(dp)
@@ -2971,6 +2983,11 @@ local function CreateMinimapButton()
 
     -- Register with LibDBIcon
     icon:Register("AzerothAdmin", AzerothAdminLDB, AzerothAdminDb.minimap)
+
+    -- Respect the hide setting
+    if AzerothAdminDb.minimap.hide then
+        icon:Hide("AzerothAdmin")
+    end
 else
     -- Fallback: Create manual minimap button
     local minimapButton = CreateFrame("Button", "AzerothAdminMinimapButton", Minimap)
@@ -3014,6 +3031,51 @@ else
     minimapButton:SetScript("OnLeave", function(self)
         GameTooltip:Hide()
     end)
+
+    -- Respect the hide setting for fallback button
+    if AzerothAdminDb.minimap and AzerothAdminDb.minimap.hide then
+        minimapButton:Hide()
+    end
+    end
+end
+
+-- Function to toggle minimap button visibility
+function AzerothAdmin:ToggleMinimapButton()
+    local icon = LibStub and LibStub("LibDBIcon-1.0", true)
+
+    if icon and icon:IsRegistered("AzerothAdmin") then
+        -- Using LibDBIcon
+        if AzerothAdminDb.minimap.hide then
+            icon:Show("AzerothAdmin")
+            AzerothAdminDb.minimap.hide = false
+            self:Print("Minimap button shown")
+        else
+            icon:Hide("AzerothAdmin")
+            AzerothAdminDb.minimap.hide = true
+            self:Print("Minimap button hidden")
+        end
+    else
+        -- Fallback for manual minimap button
+        local minimapButton = _G["AzerothAdminMinimapButton"]
+        if minimapButton then
+            if minimapButton:IsShown() then
+                minimapButton:Hide()
+                if not AzerothAdminDb.minimap then
+                    AzerothAdminDb.minimap = {}
+                end
+                AzerothAdminDb.minimap.hide = true
+                self:Print("Minimap button hidden")
+            else
+                minimapButton:Show()
+                if not AzerothAdminDb.minimap then
+                    AzerothAdminDb.minimap = {}
+                end
+                AzerothAdminDb.minimap.hide = false
+                self:Print("Minimap button shown")
+            end
+        else
+            self:Print("Minimap button not found")
+        end
     end
 end
 

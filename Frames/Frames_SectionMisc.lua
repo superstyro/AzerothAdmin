@@ -103,28 +103,18 @@ function AzerothAdmin:CreateMiscSection()
     inherits = "OptionsCheckButtonTemplate"
   })
 
-  FrameLib:BuildFontString({
-    name = "ma_framestratalabel",
-    group = "misc",
-    parent = ma_midframe,
-    text = Locale["ma_FrameStrataLabel"],
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 165,
-      offY = -125
-    }
-  })
-
-  FrameLib:BuildFrame({
-    name = "ma_framestratadropdown",
+  FrameLib:BuildButton({
+    type = "CheckButton",
+    name = "ma_showminimapbutton",
     group = "misc",
     parent = ma_midframe,
     setpoint = {
       pos = "TOPLEFT",
-      offX = 327,
-      offY = -140
+      offX = 160,
+      offY = -124
     },
-    inherits = "UIDropDownMenuTemplate"
+    text = "Show Minimap Button",
+    inherits = "OptionsCheckButtonTemplate"
   })
 
   FrameLib:BuildFontString({
@@ -137,6 +127,30 @@ function AzerothAdmin:CreateMiscSection()
       offX = 165,
       offY = -155
     }
+  })
+
+  FrameLib:BuildFontString({
+    name = "ma_framestratalabel",
+    group = "misc",
+    parent = ma_midframe,
+    text = Locale["ma_FrameStrataLabel"],
+    setpoint = {
+      pos = "BOTTOMRIGHT",
+      offX = -140,
+      offY = 18
+    }
+  })
+
+  FrameLib:BuildFrame({
+    name = "ma_framestratadropdown",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "BOTTOMRIGHT",
+      offX = -10,
+      offY = 10
+    },
+    inherits = "UIDropDownMenuTemplate"
   })
 
   FrameLib:BuildFrame({

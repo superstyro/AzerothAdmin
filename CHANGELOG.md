@@ -1,5 +1,57 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 20 - 01/20/2026]=-
+
+**NOTE:** Ace3 localization system automatically detects and uses your WoW client's language setting. No manual configuration needed - your language is set automatically in version 20 and newer.
+
+- MIGRATE Complete Ace2 to Ace3 library migration
+  - Removed deprecated Ace2 libraries from codebase
+  - Added Ace3 libraries (Release r960) for modern WoW addon development
+  - Migrated all core files to use Ace3 framework (Init.lua, AzerothAdmin.lua)
+  - Migrated all command modules to Ace3 (Main.lua, Tele.lua, Char.lua, Ticket.lua, Misc.lua, Server.lua, NPC.lua, GO.lua)
+  - Migrated all frame modules to Ace3 architecture
+  - Migrated localization system to use AceLocale-3.0
+  - Updated TOC file with Ace3 dependencies and new library structure
+  - Ensures compatibility with modern addon ecosystem and better performance
+
+- FIX Deprecated function usage for WoW 3.3.5 compatibility
+  - Replaced deprecated 'this' references with proper self parameters in frame scripts
+  - Replaced deprecated 'arg1' references with proper function parameters
+  - Improved code quality and eliminated deprecation warnings
+  - Affects multiple frame and command files
+
+- FIX Killsomething function
+  - Corrected function implementation to work properly with server commands
+  - Fixed bugs preventing proper execution
+
+- IMPROVE Ticket system UI and functionality
+  - Enhanced ticket interface with better layout and organization
+  - Improved ticket message display and handling
+  - Better user experience for ticket management
+
+- ADD Enhanced quest search functionality
+  - Added new quest search window with improved interface
+  - Added confirmation dialogs for quest operations to prevent accidental actions
+  - Added new action buttons for better quest management workflow
+  - Provides safer and more user-friendly quest search experience
+
+- ADD Teleport confirmation and warnings
+  - Added dialog warning system for teleport operations
+  - Added confirmation option before executing teleports
+  - Prevents accidental teleportation and improves safety
+
+- ADD Server diff graph update controls
+  - Added setting to control diff graph update frequency on Server tab
+  - Added manual update button for on-demand diff graph refresh
+  - Gives users control over performance vs real-time data trade-off
+  - Settings properly organized on Server tab
+
+- IMPROVE Minimap button settings organization
+  - Moved minimap button settings from Misc tab to appropriate location
+  - Moved frame strata settings to Misc tab for better organization
+  - Corrected minimap setting text in locale files
+  - Improved overall settings layout and discoverability
+
 ## -=[ Version 19 - 12/28/2025]=-
 
 - ADD Multi-language support system

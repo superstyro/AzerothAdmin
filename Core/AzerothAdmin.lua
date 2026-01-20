@@ -523,6 +523,12 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_modfavsbutton:SetScript("OnClick", function() self:Favorites("add", param.type) end)
     ma_modfavsbutton:SetText(Locale["ma_FavAdd"])
     ma_modfavsbutton:Enable()
+    -- Hide quest action buttons by default (shown only for quest searches)
+    ma_questaddbutton:Hide()
+    ma_questcompletebutton:Hide()
+    ma_questremovebutton:Hide()
+    ma_questrewardbutton:Hide()
+    ma_queststatusbutton:Hide()
     self:SearchReset()
     self.db.char.requests.toggle = true
     if param.type == "item" then
@@ -544,6 +550,22 @@ function AzerothAdmin:TogglePopup(value, param)
       ma_var2text:SetText(Locale["ma_SkillVar2Button"])
     elseif param.type == "quest" then
       ma_ptabbutton_1:SetText(Locale["ma_QuestButton"])
+      -- Hide favorites tab for quest searches
+      ma_ptabbutton_2:Hide()
+      -- Hide select/deselect/add buttons for quests
+      ma_selectallbutton:Hide()
+      ma_deselectallbutton:Hide()
+      ma_modfavsbutton:Hide()
+      -- Show quest action buttons
+      ma_questaddbutton:Show()
+      ma_questcompletebutton:Show()
+      ma_questremovebutton:Show()
+      ma_questrewardbutton:Show()
+      ma_queststatusbutton:Show()
+      -- Initialize quest selection
+      self.selectedQuest = nil
+      -- Setup quest action button handlers
+      self:SetupQuestActionButtons()
     elseif param.type == "creature" then
       ma_ptabbutton_1:SetText(Locale["ma_CreatureButton"])
     elseif param.type == "object" then
@@ -849,11 +871,62 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         end
       elseif self.db.char.requests.quest then
         -- hook all quest lookups
+        local foundQuest = false
+        -- Try primary pattern (hyperlink format)
         for id, name in string.gmatch(text, Strings["ma_GmatchQuest"]) do
             table.insert(self.db.profile.buffer.quests, {qsId = id, qsName = name, checked = false})
             PopupScrollUpdate()
             catchedSth = true
+            foundQuest = true
             output = AzerothAdmin.db.profile.style.showchat
+        end
+        -- Fallback 1: Server format with status flags
+        -- Matches: "1167 - [Quest Name]  [rewarded]" or "970 - [Quest Name]  [active]"
+        if not foundQuest then
+          for id, name, status in string.gmatch(text, "(%d+)%s*%-%s*%[(.-)%]%s*%[(.-)%]") do
+            table.insert(self.db.profile.buffer.quests, {qsId = id, qsName = name, qsStatus = status, checked = false})
+            PopupScrollUpdate()
+            catchedSth = true
+            foundQuest = true
+            output = AzerothAdmin.db.profile.style.showchat
+          end
+        end
+        -- Fallback 1b: Server format without status flags
+        -- Matches: "11579 - [Quest Name]" (no status)
+        if not foundQuest then
+          for id, name in string.gmatch(text, "(%d+)%s*%-%s*%[(.-)%]") do
+            table.insert(self.db.profile.buffer.quests, {qsId = id, qsName = name, qsStatus = nil, checked = false})
+            PopupScrollUpdate()
+            catchedSth = true
+            foundQuest = true
+            output = AzerothAdmin.db.profile.style.showchat
+          end
+        end
+        -- Fallback 2: Plain text format "Quest 123: Quest Name"
+        if not foundQuest then
+          for id, name in string.gmatch(text, "Quest (%d+): (.+)") do
+            table.insert(self.db.profile.buffer.quests, {qsId = id, qsName = name, checked = false})
+            PopupScrollUpdate()
+            catchedSth = true
+            foundQuest = true
+            output = AzerothAdmin.db.profile.style.showchat
+          end
+        end
+        -- Fallback 3: Simple "ID - Name" format without brackets
+        if not foundQuest then
+          for id, name in string.gmatch(text, "^(%d+)%s*%-%s*(.+)$") do
+            table.insert(self.db.profile.buffer.quests, {qsId = id, qsName = name, checked = false})
+            PopupScrollUpdate()
+            catchedSth = true
+            foundQuest = true
+            output = AzerothAdmin.db.profile.style.showchat
+          end
+        end
+        -- Handle "No quests found!" message from server
+        if not foundQuest and (string.find(text, "No quest") or string.find(text, "not found")) then
+          PopupScrollUpdate()
+          catchedSth = true
+          output = AzerothAdmin.db.profile.style.showchat
         end
       elseif self.db.char.requests.tele then
         -- hook all tele lookups
@@ -1239,6 +1312,141 @@ function AzerothAdmin:Quest(value, state)
   else
     self:Print(Locale["selectionerror1"])
   end
+end
+
+-- Setup quest action button handlers
+function AzerothAdmin:SetupQuestActionButtons()
+  -- Disable all buttons initially (until quest is selected)
+  ma_questaddbutton:Disable()
+  ma_questcompletebutton:Disable()
+  ma_questremovebutton:Disable()
+  ma_questrewardbutton:Disable()
+  ma_queststatusbutton:Disable()
+
+  -- Add Quest button
+  ma_questaddbutton:SetScript("OnClick", function()
+    if self.selectedQuest then
+      self:QuestActionWithConfirm("add", self.selectedQuest)
+    else
+      self:Print(Locale["ma_QuestSelectFirst"])
+    end
+  end)
+
+  -- Complete Quest button
+  ma_questcompletebutton:SetScript("OnClick", function()
+    if self.selectedQuest then
+      self:QuestActionWithConfirm("complete", self.selectedQuest)
+    else
+      self:Print(Locale["ma_QuestSelectFirst"])
+    end
+  end)
+
+  -- Abandon/Remove Quest button
+  ma_questremovebutton:SetScript("OnClick", function()
+    if self.selectedQuest then
+      self:QuestActionWithConfirm("remove", self.selectedQuest)
+    else
+      self:Print(Locale["ma_QuestSelectFirst"])
+    end
+  end)
+
+  -- Reward Quest button
+  ma_questrewardbutton:SetScript("OnClick", function()
+    if self.selectedQuest then
+      self:QuestActionWithConfirm("reward", self.selectedQuest)
+    else
+      self:Print(Locale["ma_QuestSelectFirst"])
+    end
+  end)
+
+  -- Quest Status button
+  ma_queststatusbutton:SetScript("OnClick", function()
+    if self.selectedQuest then
+      self:QuestActionWithConfirm("status", self.selectedQuest)
+    else
+      self:Print(Locale["ma_QuestSelectFirst"])
+    end
+  end)
+end
+
+-- Quest action with confirmation dialog
+function AzerothAdmin:QuestActionWithConfirm(action, questData)
+  if not self:Selection("player") and not self:Selection("self") and not self:Selection("none") then
+    self:Print(Locale["selectionerror1"])
+    return
+  end
+
+  local player = UnitName("target") or UnitName("player")
+  local questId = questData.qsId
+  local questName = questData.qsName
+  local confirmMsg = ""
+
+  -- Build confirmation message based on action
+  if action == "add" then
+    confirmMsg = string.format(Locale["ma_QuestConfirmAdd"], questName, player)
+  elseif action == "complete" then
+    confirmMsg = string.format(Locale["ma_QuestConfirmComplete"], questName, player)
+  elseif action == "remove" then
+    confirmMsg = string.format(Locale["ma_QuestConfirmRemove"], questName, player)
+  elseif action == "reward" then
+    confirmMsg = string.format(Locale["ma_QuestConfirmReward"], questName, player)
+  elseif action == "status" then
+    confirmMsg = string.format(Locale["ma_QuestConfirmStatus"], questName, player)
+  end
+
+  -- Show confirmation dialog
+  StaticPopupDialogs["AZEROTH_ADMIN_QUEST_CONFIRM"] = {
+    text = confirmMsg,
+    button1 = "Yes",
+    button2 = "No",
+    OnAccept = function()
+      AzerothAdmin:ExecuteQuestAction(action, questId)
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+  }
+  StaticPopup_Show("AZEROTH_ADMIN_QUEST_CONFIRM")
+end
+
+-- Execute quest action after confirmation
+function AzerothAdmin:ExecuteQuestAction(action, questId)
+  local command = ""
+
+  if action == "add" then
+    command = ".quest add "..questId
+  elseif action == "complete" then
+    command = ".quest complete "..questId
+  elseif action == "remove" then
+    command = ".quest remove "..questId
+  elseif action == "reward" then
+    command = ".quest reward "..questId
+  elseif action == "status" then
+    command = ".quest status "..questId
+  end
+
+  if command ~= "" then
+    self:ChatMsg(command)
+  end
+end
+
+-- Select a quest and enable action buttons
+function AzerothAdmin:SelectQuest(questData)
+  self.selectedQuest = questData
+
+  -- Enable all quest action buttons
+  ma_questaddbutton:Enable()
+  ma_questcompletebutton:Enable()
+  ma_questremovebutton:Enable()
+  ma_questrewardbutton:Enable()
+  ma_queststatusbutton:Enable()
+
+  -- Update the display to show the selected quest with highlighting
+  PopupScrollUpdate()
+
+  -- Update status text to show selected quest
+  ma_lookupresulttext:SetText("Selected: "..questData.qsName)
 end
 
 function AzerothAdmin:Creature(value, state)
@@ -2451,28 +2659,37 @@ function PopupScrollUpdate()
             quest = AzerothAdmin.db.profile.favorites.quests[lineplusoffset]
           end
           local key = lineplusoffset
-          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:Quest(quest["qsId"], button) end)
+          -- Build display text with status flags
+          local displayText = "Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r"
+
+          -- Add status flag with color coding
+          if quest["qsStatus"] then
+            if quest["qsStatus"] == "rewarded" then
+              displayText = displayText .. " |cff808080[rewarded]|r"  -- Gray for rewarded quests
+            elseif quest["qsStatus"] == "active" then
+              displayText = displayText .. " |cffffff00[active]|r"  -- Yellow for active quests
+            elseif quest["qsStatus"] == "complete" then
+              displayText = displayText .. " |cff00ff00[complete]|r"  -- Green for completed quests (ready to turn in)
+            else
+              displayText = displayText .. " |cffaaaaaa["..quest["qsStatus"].."]|r"  -- Light gray for other statuses
+            end
+          end
+
+          -- Highlight selected quest
+          if AzerothAdmin.selectedQuest and AzerothAdmin.selectedQuest.qsId == quest["qsId"] then
+            displayText = "|cff00ff00> " .. displayText .. " <|r"  -- Green highlight for selected quest
+          end
+          _G["ma_PopupScrollBarEntry"..line]:SetText(displayText)
+          -- Click to select quest (no longer auto-adds)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button)
+            AzerothAdmin:SelectQuest(quest)
+          end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.quest then
-            if quest["checked"] then
-              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.quests[key]["checked"] = false; PopupScrollUpdate() end)
-            else
-              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.quests[key]["checked"] = true; PopupScrollUpdate() end)
-            end
-          elseif AzerothAdmin.db.char.requests.favquest then
-            if quest["checked"] then
-              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.quests[key]["checked"] = false; PopupScrollUpdate() end)
-            else
-              _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.quests[key]["checked"] = true; PopupScrollUpdate() end)
-            end
-          end
-          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetChecked(quest["checked"])
-          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Enable()
-          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Show()
+          -- Hide checkboxes for quest searches (no favorites system)
+          _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
         else
           _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
           _G["ma_PopupScrollBarEntry"..line]:Hide()

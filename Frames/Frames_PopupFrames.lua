@@ -961,6 +961,108 @@ function AzerothAdmin:CreatePopupFrames()
     },
     text = Locale["ma_DeselectAllButton"]
   })
+
+  -- Quest Action Buttons (5 buttons in bottom frame)
+  FrameLib:BuildButton({
+    name = "ma_questaddbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questaddbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -10
+    },
+    text = Locale["ma_QuestAddButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_questremovebutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questremovebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 118,
+      offY = -10
+    },
+    text = Locale["ma_QuestRemoveButton"]
+  })
+
+  
+  FrameLib:BuildButton({
+    name = "ma_questcompletebutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questcompletebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -34
+    },
+    text = Locale["ma_QuestCompleteButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_questrewardbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questrewardbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 118,
+      offY = -34
+    },
+    text = Locale["ma_QuestRewardButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_queststatusbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_queststatusbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 226,
+      offY = -34
+    },
+    text = Locale["ma_QuestStatusButton"]
+  })
 end
 
 -- Setup Mail Popup UI

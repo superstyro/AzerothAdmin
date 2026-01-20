@@ -81,6 +81,10 @@ function AzerothAdminCommands.InstantKill()
   AzerothAdmin.db.char.instantKillMode = ma_instantkillbutton:GetChecked()
 end
 
+function AzerothAdminCommands.ToggleInstantTeleport()
+  AzerothAdmin.db.profile.instantTeleport = ma_instantteleportbutton:GetChecked()
+end
+
 function AzerothAdminCommands.SetSpeed()
   local value = string.format("%.1f", ma_speedslider:GetValue())
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then

@@ -69,7 +69,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -34
+      offY = -24
     },
     text = Locale["ma_EnableMinimenu"],
     inherits = "OptionsCheckButtonTemplate"
@@ -83,7 +83,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -64
+      offY = -44
     },
     text = Locale["ma_EnableTooltips"],
     inherits = "OptionsCheckButtonTemplate"
@@ -97,7 +97,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -94
+      offY = -64
     },
     text = Locale["ma_ShowChatOutput"],
     inherits = "OptionsCheckButtonTemplate"
@@ -111,9 +111,23 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -124
+      offY = -84
     },
     text = Locale["ma_ShowMinimapButton"],
+    inherits = "OptionsCheckButtonTemplate"
+  })
+
+  FrameLib:BuildButton({
+    type = "CheckButton",
+    name = "ma_instantteleportbutton",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 160,
+      offY = -104
+    },
+    text = Locale["ma_InstantTeleport"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -121,12 +135,29 @@ function AzerothAdmin:CreateMiscSection()
     name = "ma_delayparamlabel2",
     group = "misc",
     parent = ma_midframe,
-    text = Locale["ma_UpdateFrequencyLabel"], -- FIX #13
+    text = Locale["ma_UpdateFrequencyLabel"],
     setpoint = {
       pos = "TOPLEFT",
       offX = 165,
-      offY = -155
+      offY = -195
     }
+  })
+  
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_delayparam",
+    group = "misc",
+    parent = ma_midframe,
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 195,
+      offY = -225
+    },
+    inherits = "InputBoxTemplate"
   })
 
   FrameLib:BuildFontString({
@@ -151,23 +182,6 @@ function AzerothAdmin:CreateMiscSection()
       offY = 10
     },
     inherits = "UIDropDownMenuTemplate"
-  })
-
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_delayparam",
-    group = "misc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 195,
-      offY = -180
-    },
-    inherits = "InputBoxTemplate"
   })
 
   FrameLib:BuildFrame({

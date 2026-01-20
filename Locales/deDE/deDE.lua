@@ -738,6 +738,7 @@ if L then
     ["ma_EnableTooltips"]             = "Tooltips aktivieren",
     ["ma_ShowChatOutput"]             = "Chat-Ausgabe anzeigen",
     ["ma_ShowMinimapButton"]          = "Minimap-Schaltfläche anzeigen",
+    ["ma_InstantTeleport"]            = "Warnung vor Teleportation anzeigen",
     ["ma_FrameStrataLabel"]           = "Fenster-Strata-Stufe:",
     ["ma_FrameStrataBackground"]      = "Hintergrund",
     ["ma_FrameStrataLow"]             = "Niedrig",

@@ -295,6 +295,7 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_updatechangesbutton             , Locale["tt_updatechanges"]              , function() AzerothAdminCommands.UpdateChanges() end)
   AzerothAdmin:PrepareScript(ma_showminimenubutton              , nil                                     , function() AzerothAdminCommands.ToggleMinimenuCheckbox() end)
   AzerothAdmin:PrepareScript(ma_showtooltipsbutton              , nil                                     , function() AzerothAdminCommands.ToggleTooltipsCheckbox() end)
+  AzerothAdmin:PrepareScript(ma_instantteleportbutton           , nil                                     , function() AzerothAdminCommands.ToggleInstantTeleport() end)
   --AzerothAdmin:PrepareScript(ma_windowismovable                 , nil                                     , function() AllowMovableWindow() end)
   AzerothAdmin:PrepareScript(ma_changeweatherbutton             , nil                                     , function() AzerothAdminCommands.ChangeWeather(UIDropDownMenu_GetSelectedValue(ma_weatherdropdown)) end)
 

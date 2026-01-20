@@ -78,6 +78,7 @@ local defaults = {
     -- Was "account" defaults
     language = nil,
     localesearchstring = true,
+    instantTeleport = false,
     favorites = {
       items = {},
       itemsets = {},
@@ -3118,6 +3119,7 @@ function AzerothAdmin:InitCheckButtons()
   ma_showminimenubutton:SetChecked(self.db.profile.style.showminimenu)
   ma_showtooltipsbutton:SetChecked(self.db.profile.style.showtooltips)
   ma_showchatoutputbutton:SetChecked(self.db.profile.style.showchat)
+  ma_instantteleportbutton:SetChecked(self.db.profile.instantTeleport)
   -- Set minimap button checkbox state (inverted: hide=false means show=true)
   if AzerothAdminDb.minimap then
     ma_showminimapbutton:SetChecked(not AzerothAdminDb.minimap.hide)

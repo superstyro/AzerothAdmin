@@ -738,6 +738,7 @@ if L then
     ["ma_EnableTooltips"]             = "Abilita Tooltip",
     ["ma_ShowChatOutput"]             = "Mostra Output Chat",
     ["ma_ShowMinimapButton"]          = "Mostra Pulsante Minimappa",
+    ["ma_InstantTeleport"]            = "Mostra avviso prima del teletrasporto",
     ["ma_FrameStrataLabel"]           = "Livello Strato Cornice:",
     ["ma_FrameStrataBackground"]      = "Sfondo",
     ["ma_FrameStrataLow"]             = "Basso",

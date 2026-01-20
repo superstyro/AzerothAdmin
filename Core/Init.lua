@@ -306,6 +306,12 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_cancelshutdownbutton            , Locale["tt_CancelShutdownButton"]       , function() AzerothAdminCommands.CancelShutdown() end)
   AzerothAdmin:PrepareScript(ma_loadtablebutton                 , nil                                     , function() AzerothAdminCommands.ReloadTable(UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown)) end)
   AzerothAdmin:PrepareScript(ma_loadscriptsbutton               , nil                                     , function() AzerothAdminCommands.ReloadScripts() end)
+  AzerothAdmin:PrepareScript(ma_updatedelaybutton               , nil                                     , function()
+    if ma_delayparam then
+      AzerothAdmin.db.profile.style.delayparam = ma_delayparam:GetText()
+      AzerothAdmin:Print("Update frequency saved: " .. ma_delayparam:GetText())
+    end
+  end)
 
 --[[Log Tab]]
 end

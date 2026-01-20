@@ -780,6 +780,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "Cancelar Apagado",
     ["ma_ReloadTableButton"]          = "Recargar Tabla",
     ["ma_ReloadScriptsButton"]        = "Recargar Scripts",
+    ["ma_UpdateButton"]               = "Actualizar",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latencia del Servidor:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Diferencia de Actualización:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Media:|r",

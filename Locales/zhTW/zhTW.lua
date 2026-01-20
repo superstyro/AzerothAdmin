@@ -782,6 +782,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "取消關閉",
     ["ma_ReloadTableButton"]          = "重載表",
     ["ma_ReloadScriptsButton"]        = "重載指令碼",
+    ["ma_UpdateButton"]               = "更新",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^伺服器延遲:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^更新差異:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00平均值:|r",

@@ -782,6 +782,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "Отменить выключение",
     ["ma_ReloadTableButton"]          = "Перезагрузить таблицу",
     ["ma_ReloadScriptsButton"]        = "Перезагрузить скрипты",
+    ["ma_UpdateButton"]               = "Обновить",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Задержка сервера:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Разница обновления:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Среднее:|r",

@@ -109,7 +109,7 @@ local defaults = {
       loading = false
     },
     style = {
-      updatedelay = "100000", -- Set to approx. 10 Minutes
+      delayparam = "50000", -- Default delay for diff graph updates (approx. 5 minutes)
       showtooltips = true,
       showchat = false,
       showminimenu = true,
@@ -3127,7 +3127,7 @@ function AzerothAdmin:InitCheckButtons()
     ma_showminimapbutton:SetChecked(true) -- Default to shown
   end
   local dp = AzerothAdmin.db.profile.style.delayparam
-  if dp == Nil or dp == "" then dp = "10000" end --10k is close 1 minute of in-game time FIX #13
+  if dp == nil or dp == "" then dp = "50000" end --50k is approx 5 minutes of in-game time
   ma_delayparam:SetText(dp)
 end
 

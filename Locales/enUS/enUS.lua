@@ -796,6 +796,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "Cancel Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
+    ["ma_UpdateButton"]               = "Update",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server Latency:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Mean:|r",

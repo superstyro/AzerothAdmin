@@ -340,6 +340,26 @@ function AzerothAdmin:CreateServerSection()
   ma_delayparam:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
   ma_delayparam:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
 
+  FrameLib:BuildButton({
+    name = "ma_updatedelaybutton",
+    group = "server",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_updatedelaybutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 60,
+      height = 20
+    },
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 260,
+      offY = 45
+    },
+    text = Locale["ma_UpdateButton"]
+  })
+
   FrameLib:BuildFontString({
     name = "ma_meantext",
     group = "server",

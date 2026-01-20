@@ -782,6 +782,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "Herunterfahren abbrechen",
     ["ma_ReloadTableButton"]          = "Tabelle neu laden",
     ["ma_ReloadScriptsButton"]        = "Skripte neu laden",
+    ["ma_UpdateButton"]               = "Aktualisieren",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server-Latenz:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Mittelwert:|r",

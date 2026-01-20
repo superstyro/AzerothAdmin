@@ -149,9 +149,6 @@ function AzerothAdminCommands.UpdateChanges()
   AzerothAdmin.db.profile.style.showtooltips = ma_showtooltipsbutton:GetChecked() and true or false
   AzerothAdmin.db.profile.style.showchat = ma_showchatoutputbutton:GetChecked() and true or false
   AzerothAdmin.db.profile.style.showminimenu = ma_showminimenubutton:GetChecked() and true or false
-  if ma_delayparam then
-    AzerothAdmin.db.profile.style.delayparam = ma_delayparam:GetText()
-  end
   ReloadUI()
 end
 

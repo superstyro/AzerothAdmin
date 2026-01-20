@@ -782,6 +782,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "Cancelar Desligamento",
     ["ma_ReloadTableButton"]          = "Recarregar Tabela",
     ["ma_ReloadScriptsButton"]        = "Recarregar Scripts",
+    ["ma_UpdateButton"]               = "Atualizar",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latência do Servidor:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Média:|r",

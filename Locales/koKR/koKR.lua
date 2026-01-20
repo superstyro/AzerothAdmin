@@ -782,6 +782,7 @@ if L then
     ["ma_CancelShutdownButton"]       = "종료 취소",
     ["ma_ReloadTableButton"]          = "테이블 다시 로드",
     ["ma_ReloadScriptsButton"]        = "스크립트 다시 로드",
+    ["ma_UpdateButton"]               = "업데이트",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^서버 지연 시간:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^업데이트 차이:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00평균:|r",

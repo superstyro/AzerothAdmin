@@ -737,6 +737,7 @@ if L then
     ["ma_EnableMinimenu"]             = "Activer le minimenu/barre d'outils",
     ["ma_EnableTooltips"]             = "Activer les info-bulles",
     ["ma_ShowChatOutput"]             = "Afficher la sortie du chat",
+    ["ma_ShowMinimapButton"]          = "Afficher le bouton de la minicarte",
     ["ma_FrameStrataLabel"]           = "Niveau de strate de fenêtre :",
     ["ma_FrameStrataBackground"]      = "Arrière-plan",
     ["ma_FrameStrataLow"]             = "Bas",

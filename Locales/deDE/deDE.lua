@@ -737,6 +737,7 @@ if L then
     ["ma_EnableMinimenu"]             = "Minimenü/Toolbar aktivieren",
     ["ma_EnableTooltips"]             = "Tooltips aktivieren",
     ["ma_ShowChatOutput"]             = "Chat-Ausgabe anzeigen",
+    ["ma_ShowMinimapButton"]          = "Minimap-Schaltfläche anzeigen",
     ["ma_FrameStrataLabel"]           = "Fenster-Strata-Stufe:",
     ["ma_FrameStrataBackground"]      = "Hintergrund",
     ["ma_FrameStrataLow"]             = "Niedrig",

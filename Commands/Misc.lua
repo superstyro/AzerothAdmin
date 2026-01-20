@@ -107,10 +107,10 @@ function AzerothAdminCommands.ToggleMinimapButtonCheckbox()
     -- Using LibDBIcon
     if isChecked then
       icon:Show("AzerothAdmin")
-      print("Minimap button shown")
+      --print("Minimap button shown")
     else
       icon:Hide("AzerothAdmin")
-      print("Minimap button hidden")
+      --print("Minimap button hidden")
     end
   else
     -- Fallback for manual minimap button
@@ -118,10 +118,10 @@ function AzerothAdminCommands.ToggleMinimapButtonCheckbox()
     if minimapButton then
       if isChecked then
         minimapButton:Show()
-        print("Minimap button shown")
+        --print("Minimap button shown")
       else
         minimapButton:Hide()
-        print("Minimap button hidden")
+        --print("Minimap button hidden")
       end
     end
   end

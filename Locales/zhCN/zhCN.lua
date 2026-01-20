@@ -737,6 +737,7 @@ if L then
     ["ma_EnableMinimenu"]             = "启用迷你菜单/工具栏",
     ["ma_EnableTooltips"]             = "启用工具提示",
     ["ma_ShowChatOutput"]             = "显示聊天输出",
+    ["ma_ShowMinimapButton"]          = "显示小地图按钮",
     ["ma_FrameStrataLabel"]           = "框架层级:",
     ["ma_FrameStrataBackground"]      = "背景",
     ["ma_FrameStrataLow"]             = "低",

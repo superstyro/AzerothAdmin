@@ -737,6 +737,7 @@ if L then
     ["ma_EnableMinimenu"]             = "Включить минименю/панель",
     ["ma_EnableTooltips"]             = "Включить подсказки",
     ["ma_ShowChatOutput"]             = "Показывать вывод чата",
+    ["ma_ShowMinimapButton"]          = "Показать кнопку миникарты",
     ["ma_FrameStrataLabel"]           = "Уровень слоя фрейма:",
     ["ma_FrameStrataBackground"]      = "Фон",
     ["ma_FrameStrataLow"]             = "Низкий",

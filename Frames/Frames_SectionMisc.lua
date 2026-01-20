@@ -113,7 +113,7 @@ function AzerothAdmin:CreateMiscSection()
       offX = 160,
       offY = -124
     },
-    text = "Show Minimap Button",
+    text = Locale["ma_ShowMinimapButton"],
     inherits = "OptionsCheckButtonTemplate"
   })
 

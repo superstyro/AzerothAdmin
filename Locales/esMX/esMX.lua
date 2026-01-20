@@ -735,6 +735,7 @@ if L then
     ["ma_EnableMinimenu"]             = "Activar Minimenú",
     ["ma_EnableTooltips"]             = "Activar Tooltips",
     ["ma_ShowChatOutput"]             = "Mostrar Chat Out",
+    ["ma_ShowMinimapButton"]          = "Mostrar Botón del Minimapa",
     ["ma_FrameStrataLabel"]           = "Nivel Estrato Marco:",
     ["ma_FrameStrataBackground"]      = "Fondo",
     ["ma_FrameStrataLow"]             = "Bajo",

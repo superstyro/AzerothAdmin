@@ -132,35 +132,6 @@ function AzerothAdmin:CreateMiscSection()
   })
 
   FrameLib:BuildFontString({
-    name = "ma_delayparamlabel2",
-    group = "misc",
-    parent = ma_midframe,
-    text = Locale["ma_UpdateFrequencyLabel"],
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 165,
-      offY = -195
-    }
-  })
-  
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_delayparam",
-    group = "misc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 195,
-      offY = -225
-    },
-    inherits = "InputBoxTemplate"
-  })
-
-  FrameLib:BuildFontString({
     name = "ma_framestratalabel",
     group = "misc",
     parent = ma_midframe,

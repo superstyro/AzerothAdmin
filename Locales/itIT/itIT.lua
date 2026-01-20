@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Cambia trasparenza pulsante",
     ["tt_windowismovable"]            = "Permetti una finestra mobile",
     ["tt_updatechanges"]              = "Applica le modifiche apportate alle impostazioni. Ricarica l'UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minuti",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Attiva/disattiva la finestra principale",
     ["cmd_transparency"]              = "Attiva/disattiva la trasparenza di base (0.5 o 1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Dialogo",
     ["ma_FrameStrataFullscreen"]      = "Schermo Intero",
     ["ma_FrameStrataFullscreenDialog"] = "Dialogo Schermo Intero",
-    ["ma_UpdateFrequencyLabel"]       = "Specifica la frequenza di aggiornamento del grafico Diff sulla scheda Server.\n10000 = ~1 minuto, 50000 = ~5 minuti",
+    ["ma_UpdateFrequencyLabel"]       = "Frequenza di aggiornamento del grafico Diff:",
     ["ma_BackgroundColorLabel"]       = "Colore Sfondo",
     ["ma_FrameColorLabel"]            = "Colore Cornice",
     ["ma_ButtonColorLabel"]           = "Colore Pulsante",

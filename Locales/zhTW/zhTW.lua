@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "更改按鈕透明度",
     ["tt_windowismovable"]            = "允許移動視窗",
     ["tt_updatechanges"]              = "套用設定更改。重新載入介面。",
+    ["tt_UpdateFrequency"]            = "10000 = ~1分鐘, 50000 = ~5分鐘",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "切換主視窗",
     ["cmd_transparency"]              = "切換基礎透明度(0.5或1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "對話框",
     ["ma_FrameStrataFullscreen"]      = "全螢幕",
     ["ma_FrameStrataFullscreenDialog"] = "全螢幕對話框",
-    ["ma_UpdateFrequencyLabel"]       = "指定伺服器標籤上差異圖的更新頻率。\n10000 = ~1分鐘, 50000 = ~5分鐘",
+    ["ma_UpdateFrequencyLabel"]       = "差異圖更新頻率：",
     ["ma_BackgroundColorLabel"]       = "背景顏色",
     ["ma_FrameColorLabel"]            = "框架顏色",
     ["ma_ButtonColorLabel"]           = "按鈕顏色",

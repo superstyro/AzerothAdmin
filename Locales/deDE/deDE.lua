@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Button-Transparenz ändern",
     ["tt_windowismovable"]            = "Bewegbares Fenster erlauben",
     ["tt_updatechanges"]              = "Änderungen an Einstellungen übernehmen. Lädt UI neu.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 Minute, 50000 = ~5 Minuten",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Hauptfenster umschalten",
     ["cmd_transparency"]              = "Basistransparenz umschalten (0.5 oder 1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Dialog",
     ["ma_FrameStrataFullscreen"]      = "Vollbild",
     ["ma_FrameStrataFullscreenDialog"] = "Vollbild-Dialog",
-    ["ma_UpdateFrequencyLabel"]       = "Gibt Aktualisierungsfrequenz des Diff-Graphen im Server-Tab an.\n10000 = ~1 Minute, 50000 = ~5 Minuten",
+    ["ma_UpdateFrequencyLabel"]       = "Aktualisierungsfrequenz des Diff-Graphen:",
     ["ma_BackgroundColorLabel"]       = "Hintergrundfarbe",
     ["ma_FrameColorLabel"]            = "Fensterfarbe",
     ["ma_ButtonColorLabel"]           = "Button-Farbe",

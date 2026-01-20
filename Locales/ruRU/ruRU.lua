@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Изменить прозрачность кнопок",
     ["tt_windowismovable"]            = "Разрешить перемещаемое окно",
     ["tt_updatechanges"]              = "Применить изменения настроек. Перезагружает UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 минута, 50000 = ~5 минут",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Переключить главное окно",
     ["cmd_transparency"]              = "Переключить базовую прозрачность (0.5 или 1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Диалог",
     ["ma_FrameStrataFullscreen"]      = "Полный экран",
     ["ma_FrameStrataFullscreenDialog"] = "Диалог полного экрана",
-    ["ma_UpdateFrequencyLabel"]       = "Указывает частоту обновления графика Diff на вкладке Сервер.\n10000 = ~1 минута, 50000 = ~5 минут",
+    ["ma_UpdateFrequencyLabel"]       = "Частота обновления графика Diff:",
     ["ma_BackgroundColorLabel"]       = "Цвет фона",
     ["ma_FrameColorLabel"]            = "Цвет фрейма",
     ["ma_ButtonColorLabel"]           = "Цвет кнопок",

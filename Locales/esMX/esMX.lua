@@ -726,6 +726,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Cambiar transparencia de los botones",
     ["tt_windowismovable"]            = "Permitir que la ventana sea movible",
     ["tt_updatechanges"]              = "Aplicar cambios realizados en la configuración. Recarga la UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minutos",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Mostrar/Ocultar la ventana principal",
     ["cmd_transparency"]              = "Alternar la transparencia básica (0.5 o 1.0)",
@@ -745,7 +746,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Diálogo",
     ["ma_FrameStrataFullscreen"]      = "Pantalla Completa",
     ["ma_FrameStrataFullscreenDialog"] = "Diálogo Pantalla Completa",
-    ["ma_UpdateFrequencyLabel"]       = "Especifica la frecuencia de actualización del gráfico Diff en la pestaña Servidor.\n10000 = ~1 minuto, 50000 = ~5 minutos",
+    ["ma_UpdateFrequencyLabel"]       = "Frecuencia de actualización del gráfico Diff:",
     ["ma_BackgroundColorLabel"]       = "Color de Fondo",
     ["ma_FrameColorLabel"]            = "Color del Marco",
     ["ma_ButtonColorLabel"]           = "Color de Botones",

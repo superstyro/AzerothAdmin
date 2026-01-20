@@ -742,6 +742,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Change button transparency",
     ["tt_windowismovable"]            = "Allow a movable window",
     ["tt_updatechanges"]              = "Apply changes made to settings. Reloads UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minute, 50000 = ~5 minutes",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Toggle the main window",
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",
@@ -761,7 +762,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Dialog",
     ["ma_FrameStrataFullscreen"]      = "Fullscreen",
     ["ma_FrameStrataFullscreenDialog"] = "Fullscreen Dialog",
-    ["ma_UpdateFrequencyLabel"]       = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes",
+    ["ma_UpdateFrequencyLabel"]       = "Update frequency of Diff graph:",
     ["ma_BackgroundColorLabel"]       = "Backgroundcolor",
     ["ma_FrameColorLabel"]            = "Framecolor",
     ["ma_ButtonColorLabel"]           = "Buttoncolor",

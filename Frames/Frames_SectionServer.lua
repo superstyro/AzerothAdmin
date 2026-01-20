@@ -309,6 +309,38 @@ function AzerothAdmin:CreateServerSection()
   })
 
   FrameLib:BuildFontString({
+    name = "ma_delayparamlabel2",
+    group = "server",
+    parent = ma_midframe,
+    text = Locale["ma_UpdateFrequencyLabel"],
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 10,
+      offY = 50
+    }
+  })
+
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_delayparam",
+    group = "server",
+    parent = ma_midframe,
+    size = {
+      width = 60,
+      height = 20
+    },
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 195,
+      offY = 45
+    },
+    inherits = "InputBoxTemplate"
+  })
+
+  ma_delayparam:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
+  ma_delayparam:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+
+  FrameLib:BuildFontString({
     name = "ma_meantext",
     group = "server",
     parent = ma_midframe,

@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "버튼 투명도 변경",
     ["tt_windowismovable"]            = "이동 가능한 창 허용",
     ["tt_updatechanges"]              = "설정 변경 사항을 적용합니다. UI를 다시 로드합니다.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1분, 50000 = ~5분",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "메인 창 토글",
     ["cmd_transparency"]              = "기본 투명도 토글 (0.5 또는 1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "대화 상자",
     ["ma_FrameStrataFullscreen"]      = "전체 화면",
     ["ma_FrameStrataFullscreenDialog"] = "전체 화면 대화 상자",
-    ["ma_UpdateFrequencyLabel"]       = "서버 탭의 차이 그래프 업데이트 빈도를 지정합니다.\n10000 = ~1분, 50000 = ~5분",
+    ["ma_UpdateFrequencyLabel"]       = "차이 그래프 업데이트 빈도:",
     ["ma_BackgroundColorLabel"]       = "배경색",
     ["ma_FrameColorLabel"]            = "프레임색",
     ["ma_ButtonColorLabel"]           = "버튼색",

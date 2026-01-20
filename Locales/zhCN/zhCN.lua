@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "更改按钮透明度",
     ["tt_windowismovable"]            = "允许移动窗口",
     ["tt_updatechanges"]              = "应用设置更改。重新加载界面。",
+    ["tt_UpdateFrequency"]            = "10000 = ~1分钟, 50000 = ~5分钟",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "切换主窗口",
     ["cmd_transparency"]              = "切换基础透明度(0.5或1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "对话框",
     ["ma_FrameStrataFullscreen"]      = "全屏",
     ["ma_FrameStrataFullscreenDialog"] = "全屏对话框",
-    ["ma_UpdateFrequencyLabel"]       = "指定服务器标签上差异图的更新频率。\n10000 = ~1分钟, 50000 = ~5分钟",
+    ["ma_UpdateFrequencyLabel"]       = "差异图更新频率：",
     ["ma_BackgroundColorLabel"]       = "背景颜色",
     ["ma_FrameColorLabel"]            = "框架颜色",
     ["ma_ButtonColorLabel"]           = "按钮颜色",

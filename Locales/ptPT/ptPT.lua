@@ -728,6 +728,7 @@ if L then
     ["tt_BtnTrSlider"]                = "Alterar transparência dos botões",
     ["tt_windowismovable"]            = "Permitir uma janela movível",
     ["tt_updatechanges"]              = "Aplicar alterações feitas às definições. Recarrega a UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minutos",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Alternar a janela principal",
     ["cmd_transparency"]              = "Alternar a transparência básica (0.5 ou 1.0)",
@@ -747,7 +748,7 @@ if L then
     ["ma_FrameStrataDialog"]          = "Diálogo",
     ["ma_FrameStrataFullscreen"]      = "Ecrã Completo",
     ["ma_FrameStrataFullscreenDialog"] = "Diálogo Ecrã Completo",
-    ["ma_UpdateFrequencyLabel"]       = "Especifica a frequência de atualização do gráfico Diff no separador Servidor.\n10000 = ~1 minuto, 50000 = ~5 minutos",
+    ["ma_UpdateFrequencyLabel"]       = "Frequência de atualização do gráfico Diff:",
     ["ma_BackgroundColorLabel"]       = "Cor de Fundo",
     ["ma_FrameColorLabel"]            = "Cor da Moldura",
     ["ma_ButtonColorLabel"]           = "Cor dos Botões",

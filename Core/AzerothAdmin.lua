@@ -2787,7 +2787,7 @@ function PopupScrollUpdate()
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..spell["spId"].."|r Name: |cffffffff"..spell["spName"].."|r")
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) LearnSpell(spell["spId"], button) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdminCommands.LearnSpell(spell["spId"], button) end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
           if AzerothAdmin.db.char.requests.spell then

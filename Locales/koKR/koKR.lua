@@ -739,7 +739,7 @@ if L then
     ["ma_EnableTooltips"]             = "툴팁 활성화",
     ["ma_ShowChatOutput"]             = "채팅 출력 표시",
     ["ma_ShowMinimapButton"]          = "미니맵 버튼 표시",
-    ["ma_InstantTeleport"]            = "순간이동 전 경고 표시",
+    ["ma_InstantTeleport"]            = "순간이동 전 경고 없음",
     ["ma_FrameStrataLabel"]           = "프레임 계층 레벨:",
     ["ma_FrameStrataBackground"]      = "배경",
     ["ma_FrameStrataLow"]             = "낮음",

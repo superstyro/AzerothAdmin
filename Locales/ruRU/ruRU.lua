@@ -739,7 +739,7 @@ if L then
     ["ma_EnableTooltips"]             = "Включить подсказки",
     ["ma_ShowChatOutput"]             = "Показывать вывод чата",
     ["ma_ShowMinimapButton"]          = "Показать кнопку миникарты",
-    ["ma_InstantTeleport"]            = "Показывать предупреждение перед телепортацией",
+    ["ma_InstantTeleport"]            = "Нет предупреждения перед телепортацией",
     ["ma_FrameStrataLabel"]           = "Уровень слоя фрейма:",
     ["ma_FrameStrataBackground"]      = "Фон",
     ["ma_FrameStrataLow"]             = "Низкий",

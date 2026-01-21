@@ -753,7 +753,7 @@ if L then
     ["ma_EnableTooltips"]             = "Enable Tooltips",
     ["ma_ShowChatOutput"]             = "Show Chat Output",
     ["ma_ShowMinimapButton"]          = "Show Minimap Button",
-    ["ma_InstantTeleport"]            = "Show warning before teleport",
+    ["ma_InstantTeleport"]            = "No warning before teleport",
     ["ma_FrameStrataLabel"]           = "Frame Strata Level:",
     ["ma_FrameStrataBackground"]      = "Background",
     ["ma_FrameStrataLow"]             = "Low",

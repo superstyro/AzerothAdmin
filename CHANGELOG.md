@@ -46,6 +46,11 @@
   - Gives users control over performance vs real-time data trade-off
   - Settings properly organized on Server tab
 
+- FIX Spell search learning functionality
+  - Fixed spell learning from search window after Ace3 migration
+  - Corrected LearnSpell function call to use proper AzerothAdminCommands namespace
+  - Spell search results now properly execute learn commands when clicked
+
 - IMPROVE Minimap button settings organization
   - Moved minimap button settings from Misc tab to appropriate location
   - Moved frame strata settings to Misc tab for better organization

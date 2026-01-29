@@ -271,7 +271,7 @@ if L then
     ["tt_GUIDButton"]                 = "顯示所選角色的GUID。",
     ["tt_PinfoButton"]                = "獲取所選玩家的資訊。",
     ["tt_DistanceButton"]             = "獲取到所選生物的距離。",
-    ["tt_RecallButton"]               = "將所選生物召回到上次傳送前的位置。",
+    ["tt_RecallButton"]               = "將所選玩家召回到上次傳送前的位置。",
     ["tt_DemorphButton"]              = "移除所選角色的任何變形。",
     ["tt_ShowMapsCharButton"]         = "為所選角色顯示地圖。",
     ["tt_HideMapsCharButton"]         = "為所選角色隱藏地圖。",

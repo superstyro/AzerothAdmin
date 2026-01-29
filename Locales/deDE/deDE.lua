@@ -271,7 +271,7 @@ if L then
     ["tt_GUIDButton"]                 = "Zeigt die GUID des ausgewählten Charakters an.",
     ["tt_PinfoButton"]                = "Informationen über den ausgewählten SPIELER abrufen.",
     ["tt_DistanceButton"]             = "Entfernung zur ausgewählten Kreatur ermitteln.",
-    ["tt_RecallButton"]               = "Ruft ausgewählte Kreatur zum Ort vor dem letzten Teleport zurück.",
+    ["tt_RecallButton"]               = "Ruft ausgewählten Spieler zum Ort vor dem letzten Teleport zurück.",
     ["tt_DemorphButton"]              = "Entfernt alle Verwandlungen des ausgewählten Charakters.",
     ["tt_ShowMapsCharButton"]         = "Zeigt Karten für den ausgewählten Charakter an.",
     ["tt_HideMapsCharButton"]         = "Verbirgt Karten für den ausgewählten Charakter.",

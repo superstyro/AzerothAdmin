@@ -269,7 +269,7 @@ if L then
     ["tt_GUIDButton"]                 = "Muestra el GUID del personaje seleccionado.",
     ["tt_PinfoButton"]                = "Obtener información sobre el JUGADOR seleccionado.",
     ["tt_DistanceButton"]             = "Obtener distancia a la criatura seleccionada.",
-    ["tt_RecallButton"]               = "Devuelve la criatura seleccionada a la ubicación antes del último teletransporte.",
+    ["tt_RecallButton"]               = "Devuelve al jugador seleccionado a la ubicación antes del último teletransporte.",
     ["tt_DemorphButton"]              = "Elimina cualquier transformación del personaje seleccionado.",
     ["tt_ShowMapsCharButton"]         = "Revela mapas para el personaje seleccionado.",
     ["tt_HideMapsCharButton"]         = "Oculta mapas para el personaje seleccionado.",

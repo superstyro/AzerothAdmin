@@ -271,7 +271,7 @@ if L then
     ["tt_GUIDButton"]                 = "선택한 캐릭터의 GUID를 표시합니다.",
     ["tt_PinfoButton"]                = "선택한 플레이어의 정보를 가져옵니다.",
     ["tt_DistanceButton"]             = "선택한 생명체까지의 거리를 가져옵니다.",
-    ["tt_RecallButton"]               = "선택한 생명체를 마지막 순간이동 전 위치로 소환합니다.",
+    ["tt_RecallButton"]               = "선택한 플레이어를 마지막 순간이동 전 위치로 소환합니다.",
     ["tt_DemorphButton"]              = "선택한 캐릭터의 모든 변신을 제거합니다.",
     ["tt_ShowMapsCharButton"]         = "선택한 캐릭터의 지도를 공개합니다.",
     ["tt_HideMapsCharButton"]         = "선택한 캐릭터의 지도를 숨깁니다.",

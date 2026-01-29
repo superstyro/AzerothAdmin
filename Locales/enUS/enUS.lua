@@ -271,7 +271,7 @@ if L then
     ["tt_GUIDButton"]                 = "Shows the GUID of the selected character.",
     ["tt_PinfoButton"]                = "Get information on the selected PLAYER.",
     ["tt_DistanceButton"]             = "Get distance to the selected creature.",
-    ["tt_RecallButton"]               = "Recalls selected creature to location before last teleport.",
+    ["tt_RecallButton"]               = "Recalls selected player to location before last teleport.",
     ["tt_DemorphButton"]              = "Removes any morphs on the selected character.",
     ["tt_ShowMapsCharButton"]         = "Reveals maps for the selected character.",
     ["tt_HideMapsCharButton"]         = "Hides maps for the selected character.",

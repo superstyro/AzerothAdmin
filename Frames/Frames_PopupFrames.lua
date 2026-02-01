@@ -1086,6 +1086,13 @@ function AzerothAdmin:SetupMailPopup(param)
   ma_var2editbox:Hide()
   ma_var2text:Hide()
 
+  -- Hide quest action buttons (not used in mail mode)
+  ma_questaddbutton:Hide()
+  ma_questcompletebutton:Hide()
+  ma_questremovebutton:Hide()
+  ma_questrewardbutton:Hide()
+  ma_queststatusbutton:Hide()
+
   -- Setup tab buttons
   ma_ptabbutton_1:SetText("Send Mail")
   ma_ptabbutton_2:SetText("Send Items")

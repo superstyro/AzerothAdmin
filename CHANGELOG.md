@@ -51,6 +51,11 @@
   - Corrected LearnSpell function call to use proper AzerothAdminCommands namespace
   - Spell search results now properly execute learn commands when clicked
 
+- FIX Character target name not populating on player select
+  - Fixed PLAYER_TARGET_CHANGED handler not setting ma_charactertarget text field
+  - Buttons relying on character name (Summon, Appear, Recall, etc.) now work correctly when a player is targeted
+  - Commands were sending empty player name, causing server to return syntax help instead of executing
+
 - IMPROVE Minimap button settings organization
   - Moved minimap button settings from Misc tab to appropriate location
   - Moved frame strata settings to Misc tab for better organization

@@ -298,6 +298,7 @@ function AzerothAdmin:PLAYER_TARGET_CHANGED()
     AzerothAdminCommands.NpcModelChanged()
   end
   if UnitIsPlayer("target") then
+    ma_charactertarget:SetText(UnitName("target"))
     ma_savebutton:Enable()
     if UnitIsDead("target") then
       ma_revivebutton:Enable()

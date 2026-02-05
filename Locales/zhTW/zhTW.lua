@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_zhTW()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "zhTW")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "將游標移動到元素上以切換工具提示！",
@@ -270,7 +271,7 @@ function Return_zhTW()
     ["tt_GUIDButton"]                 = "顯示所選角色的GUID。",
     ["tt_PinfoButton"]                = "獲取所選玩家的資訊。",
     ["tt_DistanceButton"]             = "獲取到所選生物的距離。",
-    ["tt_RecallButton"]               = "將所選生物召回到上次傳送前的位置。",
+    ["tt_RecallButton"]               = "將所選玩家召回到上次傳送前的位置。",
     ["tt_DemorphButton"]              = "移除所選角色的任何變形。",
     ["tt_ShowMapsCharButton"]         = "為所選角色顯示地圖。",
     ["tt_HideMapsCharButton"]         = "為所選角色隱藏地圖。",
@@ -624,6 +625,11 @@ function Return_zhTW()
     ["ma_GOShowButton"]               = "顯示",
     ["ma_GOUnloadButton"]             = "卸載",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "你確定要切換所有地圖嗎？這可能會導致客戶端凍結幾秒鐘。",
+    ["msg_account_lock_confirm"]      = "你確定要 %s 這個帳號嗎？",
+    ["msg_acct_create_confirm"]       = "你確定要創建帳號 '%s' 嗎？",
+    ["msg_acct_delete_confirm"]       = "你確定要刪除帳號 '%s' 嗎？",
+    ["msg_tele_del_confirm"]          = "你確定要刪除傳送點 '%s' 嗎？",
 
 
 
@@ -665,7 +671,7 @@ function Return_zhTW()
     ["tt_ResetTickets"]               = "重置已載入的工單",
     ["tt_LoadAllTickets"]             = "載入所有工單",
     ["tt_LoadOnlineTickets"]          = "載入線上玩家工單",
-    ["tt_DeleteTicket"]               = "刪除工單",
+    ["tt_DeleteTicket"]               = "關閉工單並從清單中移除",
     ["tt_AnswerTicket"]               = "回覆工單",
     ["tt_GetCharTicket"]              = "召喚工單角色",
     ["tt_GoCharTicket"]               = "前往工單角色",
@@ -722,6 +728,7 @@ function Return_zhTW()
     ["tt_BtnTrSlider"]                = "更改按鈕透明度",
     ["tt_windowismovable"]            = "允許移動視窗",
     ["tt_updatechanges"]              = "套用設定更改。重新載入介面。",
+    ["tt_UpdateFrequency"]            = "10000 = ~1分鐘, 50000 = ~5分鐘",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "切換主視窗",
     ["cmd_transparency"]              = "切換基礎透明度(0.5或1.0)",
@@ -731,6 +738,8 @@ function Return_zhTW()
     ["ma_EnableMinimenu"]             = "啟用迷你選單/工具列",
     ["ma_EnableTooltips"]             = "啟用工具提示",
     ["ma_ShowChatOutput"]             = "顯示聊天輸出",
+    ["ma_ShowMinimapButton"]          = "顯示小地圖按鈕",
+    ["ma_InstantTeleport"]            = "傳送前無警告",
     ["ma_FrameStrataLabel"]           = "框架層級:",
     ["ma_FrameStrataBackground"]      = "背景",
     ["ma_FrameStrataLow"]             = "低",
@@ -739,7 +748,7 @@ function Return_zhTW()
     ["ma_FrameStrataDialog"]          = "對話框",
     ["ma_FrameStrataFullscreen"]      = "全螢幕",
     ["ma_FrameStrataFullscreenDialog"] = "全螢幕對話框",
-    ["ma_UpdateFrequencyLabel"]       = "指定伺服器標籤上差異圖的更新頻率。\n10000 = ~1分鐘, 50000 = ~5分鐘",
+    ["ma_UpdateFrequencyLabel"]       = "差異圖更新頻率：",
     ["ma_BackgroundColorLabel"]       = "背景顏色",
     ["ma_FrameColorLabel"]            = "框架顏色",
     ["ma_ButtonColorLabel"]           = "按鈕顏色",
@@ -773,6 +782,7 @@ function Return_zhTW()
     ["ma_CancelShutdownButton"]       = "取消關閉",
     ["ma_ReloadTableButton"]          = "重載表",
     ["ma_ReloadScriptsButton"]        = "重載指令碼",
+    ["ma_UpdateButton"]               = "更新",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^伺服器延遲:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^更新差異:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00平均值:|r",
@@ -873,4 +883,5 @@ function Return_zhTW()
     ["lfer_Error"]                    = "錯誤：搜尋字串符合但發生錯誤或無法找到類型"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

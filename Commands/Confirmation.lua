@@ -20,6 +20,8 @@
 -- This provides a foundation for implementing confirmation dialogs for operations
 -- such as account deletion, teleport location deletion, and map reveals.
 
+AzerothAdminCommands = AzerothAdminCommands or {}
+
 if not StaticPopupDialogs["AZEROTHADMIN_CONFIRM_DIALOG"] then
   StaticPopupDialogs["AZEROTHADMIN_CONFIRM_DIALOG"] = {
     text = "",
@@ -48,7 +50,7 @@ end
 -- These demonstrate how to wrap existing functions with confirmation dialogs
 
 -- Confirmed version of account deletion (called after confirmation)
-function AcctDelete_Confirmed()
+function AzerothAdminCommands.AcctDelete_Confirmed()
   local param = ma_parameter:GetText()
   if param == "" then
     AzerothAdmin:Print("Error: Parameter cannot be empty")
@@ -58,7 +60,7 @@ function AcctDelete_Confirmed()
 end
 
 -- Confirmed version of teleport location deletion (called after confirmation)
-function TeleDelButton_Confirmed()
+function AzerothAdminCommands.TeleDelButton_Confirmed()
   local cname = ma_parameter:GetText()
   if cname == "" then
     AzerothAdmin:Print("Error: Parameter cannot be empty")
@@ -68,7 +70,7 @@ function TeleDelButton_Confirmed()
 end
 
 -- Confirmed version of toggle maps (called after confirmation)
-function ToggleMaps_Confirmed(value)
+function AzerothAdminCommands.ToggleMaps_Confirmed(value)
   AzerothAdmin:ChatMsg(".explorecheat "..value)
   if value == 1 then
   else
@@ -76,12 +78,12 @@ function ToggleMaps_Confirmed(value)
 end
 
 -- Confirmed version of account lock toggle (called after confirmation)
-function ToggleAccountlock_Confirmed(value)
+function AzerothAdminCommands.ToggleAccountlock_Confirmed(value)
   AzerothAdmin:ChatMsg(".account lock "..value)
 end
 
 -- Confirmed version of account creation (called after confirmation)
-function AcctCreate_Confirmed()
+function AzerothAdminCommands.AcctCreate_Confirmed()
   local param = ma_parameter:GetText()
   if param == "" then
     AzerothAdmin:Print("Error: Parameter cannot be empty")

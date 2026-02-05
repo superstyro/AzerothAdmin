@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_ruRU()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "ruRU")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Наведите курсор на элемент, чтобы увидеть подсказку!",
@@ -270,7 +271,7 @@ function Return_ruRU()
     ["tt_GUIDButton"]                 = "Показать GUID выбранного персонажа.",
     ["tt_PinfoButton"]                = "Получить информацию о выбранном ИГРОКЕ.",
     ["tt_DistanceButton"]             = "Получить расстояние до выбранного существа.",
-    ["tt_RecallButton"]               = "Вернуть выбранное существо в позицию до последнего телепорта.",
+    ["tt_RecallButton"]               = "Вернуть выбранного игрока в позицию до последнего телепорта.",
     ["tt_DemorphButton"]              = "Удалить любые морфы с выбранного персонажа.",
     ["tt_ShowMapsCharButton"]         = "Открыть карты для выбранного персонажа.",
     ["tt_HideMapsCharButton"]         = "Скрыть карты для выбранного персонажа.",
@@ -624,6 +625,11 @@ function Return_ruRU()
     ["ma_GOShowButton"]               = "Показать",
     ["ma_GOUnloadButton"]             = "Выгрузить",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Вы уверены, что хотите переключить все карты? Это может заморозить клиент на несколько секунд.",
+    ["msg_account_lock_confirm"]      = "Вы уверены, что хотите %s эту учетную запись?",
+    ["msg_acct_create_confirm"]       = "Вы уверены, что хотите создать учетную запись '%s'?",
+    ["msg_acct_delete_confirm"]       = "Вы уверены, что хотите УДАЛИТЬ учетную запись '%s'?",
+    ["msg_tele_del_confirm"]          = "Вы уверены, что хотите удалить место телепортации '%s'?",
 
 
 
@@ -665,7 +671,7 @@ function Return_ruRU()
     ["tt_ResetTickets"]               = "Сбросить загруженные тикеты",
     ["tt_LoadAllTickets"]             = "Загрузить все тикеты",
     ["tt_LoadOnlineTickets"]          = "Загрузить тикеты игроков онлайн",
-    ["tt_DeleteTicket"]               = "Удалить тикет",
+    ["tt_DeleteTicket"]               = "Закрыть тикет и удалить из списка",
     ["tt_AnswerTicket"]               = "Ответить на тикет",
     ["tt_GetCharTicket"]              = "Призвать персонажа тикета",
     ["tt_GoCharTicket"]               = "Перейти к персонажу тикета",
@@ -722,6 +728,7 @@ function Return_ruRU()
     ["tt_BtnTrSlider"]                = "Изменить прозрачность кнопок",
     ["tt_windowismovable"]            = "Разрешить перемещаемое окно",
     ["tt_updatechanges"]              = "Применить изменения настроек. Перезагружает UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 минута, 50000 = ~5 минут",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Переключить главное окно",
     ["cmd_transparency"]              = "Переключить базовую прозрачность (0.5 или 1.0)",
@@ -731,6 +738,8 @@ function Return_ruRU()
     ["ma_EnableMinimenu"]             = "Включить минименю/панель",
     ["ma_EnableTooltips"]             = "Включить подсказки",
     ["ma_ShowChatOutput"]             = "Показывать вывод чата",
+    ["ma_ShowMinimapButton"]          = "Показать кнопку миникарты",
+    ["ma_InstantTeleport"]            = "Нет предупреждения перед телепортацией",
     ["ma_FrameStrataLabel"]           = "Уровень слоя фрейма:",
     ["ma_FrameStrataBackground"]      = "Фон",
     ["ma_FrameStrataLow"]             = "Низкий",
@@ -739,7 +748,7 @@ function Return_ruRU()
     ["ma_FrameStrataDialog"]          = "Диалог",
     ["ma_FrameStrataFullscreen"]      = "Полный экран",
     ["ma_FrameStrataFullscreenDialog"] = "Диалог полного экрана",
-    ["ma_UpdateFrequencyLabel"]       = "Указывает частоту обновления графика Diff на вкладке Сервер.\n10000 = ~1 минута, 50000 = ~5 минут",
+    ["ma_UpdateFrequencyLabel"]       = "Частота обновления графика Diff:",
     ["ma_BackgroundColorLabel"]       = "Цвет фона",
     ["ma_FrameColorLabel"]            = "Цвет фрейма",
     ["ma_ButtonColorLabel"]           = "Цвет кнопок",
@@ -773,6 +782,7 @@ function Return_ruRU()
     ["ma_CancelShutdownButton"]       = "Отменить выключение",
     ["ma_ReloadTableButton"]          = "Перезагрузить таблицу",
     ["ma_ReloadScriptsButton"]        = "Перезагрузить скрипты",
+    ["ma_UpdateButton"]               = "Обновить",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Задержка сервера:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Разница обновления:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Среднее:|r",
@@ -873,4 +883,5 @@ function Return_ruRU()
     ["lfer_Error"]                    = "Ошибка: строка поиска совпала, но произошла ошибка или не удается найти тип"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

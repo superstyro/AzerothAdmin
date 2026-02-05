@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -16,21 +16,23 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function ToggleTransparencyCheckbox()
+AzerothAdminCommands = AzerothAdminCommands or {}
+
+function AzerothAdminCommands.ToggleTransparencyCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_checktransparencybutton:GetChecked() and true or false
 
   -- Save the setting
   if isChecked then
-    AzerothAdmin.db.account.style.transparency.backgrounds = 0.5
+    AzerothAdmin.db.profile.style.transparency.backgrounds = 0.5
   else
-    AzerothAdmin.db.account.style.transparency.backgrounds = 1.0
+    AzerothAdmin.db.profile.style.transparency.backgrounds = 1.0
   end
 
   -- Apply immediately to background frames
   FrameLib:HandleGroup("bg", function(frame)
     if frame.texture then
-      frame.texture:SetAlpha(AzerothAdmin.db.account.style.transparency.backgrounds)
+      frame.texture:SetAlpha(AzerothAdmin.db.profile.style.transparency.backgrounds)
     end
   end)
 
@@ -38,23 +40,23 @@ function ToggleTransparencyCheckbox()
   print(Locale["msg_transparency_saved"])
 end
 
-function ToggleLocalSearchStringsCheckbox()
+function AzerothAdminCommands.ToggleLocalSearchStringsCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_checklocalsearchstringsbutton:GetChecked() and true or false
 
   -- Save the setting immediately
-  AzerothAdmin.db.account.localesearchstring = isChecked
+  AzerothAdmin.db.profile.localesearchstring = isChecked
 
   -- Inform user that a UI reload is needed
   print(Locale["msg_localsearch_saved"])
 end
 
-function ToggleMinimenuCheckbox()
+function AzerothAdminCommands.ToggleMinimenuCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_showminimenubutton:GetChecked() and true or false
 
   -- Save the setting
-  AzerothAdmin.db.account.style.showminimenu = isChecked
+  AzerothAdmin.db.profile.style.showminimenu = isChecked
 
   -- Toggle visibility immediately
   if isChecked then
@@ -66,52 +68,87 @@ function ToggleMinimenuCheckbox()
   print(Locale["msg_minimenu_saved"])
 end
 
-function ToggleTooltipsCheckbox()
+function AzerothAdminCommands.ToggleTooltipsCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_showtooltipsbutton:GetChecked() and true or false
 
   -- Save the setting immediately
-  AzerothAdmin.db.account.style.showtooltips = isChecked
+  AzerothAdmin.db.profile.style.showtooltips = isChecked
 
   -- Inform user that a UI reload is needed
   print(Locale["msg_tooltip_saved"])
 end
 
-function ToggleShowChatOutputCheckbox()
+function AzerothAdminCommands.ToggleShowChatOutputCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_showchatoutputbutton:GetChecked() and true or false
 
   -- Save the setting immediately
-  AzerothAdmin.db.account.style.showchat = isChecked
+  AzerothAdmin.db.profile.style.showchat = isChecked
 
   print(Locale["msg_chatoutput_saved"])
 end
 
-function UpdateChanges()
-  if AzerothAdmin.db.account.style.color.buffer.backgrounds then
-    AzerothAdmin.db.account.style.color.backgrounds = AzerothAdmin.db.account.style.color.buffer.backgrounds
+function AzerothAdminCommands.ToggleMinimapButtonCheckbox()
+  -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
+  local isChecked = ma_showminimapbutton:GetChecked() and true or false
+
+  -- Initialize minimap table if it doesn't exist
+  if not AzerothAdminDb.minimap then
+    AzerothAdminDb.minimap = {}
   end
-  if AzerothAdmin.db.account.style.color.buffer.frames then
-    AzerothAdmin.db.account.style.color.frames = AzerothAdmin.db.account.style.color.buffer.frames
+
+  -- Save the setting (inverted: checked = show, unchecked = hide)
+  AzerothAdminDb.minimap.hide = not isChecked
+
+  -- Apply the setting immediately
+  local icon = LibStub and LibStub("LibDBIcon-1.0", true)
+  if icon and icon:IsRegistered("AzerothAdmin") then
+    -- Using LibDBIcon
+    if isChecked then
+      icon:Show("AzerothAdmin")
+      --print("Minimap button shown")
+    else
+      icon:Hide("AzerothAdmin")
+      --print("Minimap button hidden")
+    end
+  else
+    -- Fallback for manual minimap button
+    local minimapButton = _G["AzerothAdminMinimapButton"]
+    if minimapButton then
+      if isChecked then
+        minimapButton:Show()
+        --print("Minimap button shown")
+      else
+        minimapButton:Hide()
+        --print("Minimap button hidden")
+      end
+    end
   end
-  if AzerothAdmin.db.account.style.color.buffer.buttons then
-    AzerothAdmin.db.account.style.color.buttons = AzerothAdmin.db.account.style.color.buffer.buttons
+end
+
+function AzerothAdminCommands.UpdateChanges()
+  if AzerothAdmin.db.profile.style.color.buffer.backgrounds then
+    AzerothAdmin.db.profile.style.color.backgrounds = AzerothAdmin.db.profile.style.color.buffer.backgrounds
   end
-  if AzerothAdmin.db.account.style.color.buffer.linkifier then
-    AzerothAdmin.db.account.style.color.linkifier = AzerothAdmin.db.account.style.color.buffer.linkifier
+  if AzerothAdmin.db.profile.style.color.buffer.frames then
+    AzerothAdmin.db.profile.style.color.frames = AzerothAdmin.db.profile.style.color.buffer.frames
+  end
+  if AzerothAdmin.db.profile.style.color.buffer.buttons then
+    AzerothAdmin.db.profile.style.color.buttons = AzerothAdmin.db.profile.style.color.buffer.buttons
+  end
+  if AzerothAdmin.db.profile.style.color.buffer.linkifier then
+    AzerothAdmin.db.profile.style.color.linkifier = AzerothAdmin.db.profile.style.color.buffer.linkifier
   end
   if ma_checktransparencybutton:GetChecked() then
-    AzerothAdmin.db.account.style.transparency.backgrounds = 0.5
+    AzerothAdmin.db.profile.style.transparency.backgrounds = 0.5
   else
-    AzerothAdmin.db.account.style.transparency.backgrounds = 1.0
+    AzerothAdmin.db.profile.style.transparency.backgrounds = 1.0
   end
-  AzerothAdmin.db.account.localesearchstring = ma_checklocalsearchstringsbutton:GetChecked()
-  AzerothAdmin.db.account.style.showtooltips = ma_showtooltipsbutton:GetChecked()
-  AzerothAdmin.db.account.style.showchat = ma_showchatoutputbutton:GetChecked()
-  AzerothAdmin.db.account.style.showminimenu = ma_showminimenubutton:GetChecked()
-  if ma_delayparam then
-    AzerothAdmin.db.account.style.delayparam = ma_delayparam:GetText()
-  end
+  AzerothAdmin.db.profile.localesearchstring = ma_checklocalsearchstringsbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showtooltips = ma_showtooltipsbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showchat = ma_showchatoutputbutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.showminimenu = ma_showminimenubutton:GetChecked() and true or false
   ReloadUI()
 end
 
@@ -134,7 +171,7 @@ local function ProtectColorPickerFromElvUI()
   end
 end
 
-function ShowColorPicker(t)
+function AzerothAdminCommands.ShowColorPicker(t)
   -- Hook the ColorPickerFrame's OnShow to protect against ElvUI
   if not ColorPickerFrame.elvUIProtectionHooked then
     ColorPickerFrame:HookScript("OnShow", function()
@@ -148,14 +185,14 @@ function ShowColorPicker(t)
 
   if t == "bg" then
     local r,g,b
-    if AzerothAdmin.db.account.style.color.buffer.backgrounds then
-      r = AzerothAdmin.db.account.style.color.buffer.backgrounds.r
-      g = AzerothAdmin.db.account.style.color.buffer.backgrounds.g
-      b = AzerothAdmin.db.account.style.color.buffer.backgrounds.b
+    if AzerothAdmin.db.profile.style.color.buffer.backgrounds then
+      r = AzerothAdmin.db.profile.style.color.buffer.backgrounds.r
+      g = AzerothAdmin.db.profile.style.color.buffer.backgrounds.g
+      b = AzerothAdmin.db.profile.style.color.buffer.backgrounds.b
     else
-      r = AzerothAdmin.db.account.style.color.backgrounds.r
-      g = AzerothAdmin.db.account.style.color.backgrounds.g
-      b = AzerothAdmin.db.account.style.color.backgrounds.b
+      r = AzerothAdmin.db.profile.style.color.backgrounds.r
+      g = AzerothAdmin.db.profile.style.color.backgrounds.g
+      b = AzerothAdmin.db.profile.style.color.backgrounds.b
     end
     ColorPickerFrame.cancelFunc = function(prev)
       local r,g,b = unpack(prev)
@@ -164,23 +201,23 @@ function ShowColorPicker(t)
     ColorPickerFrame.func = function()
       local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_bgcolorshowbutton_texture:SetTexture(r,g,b)
-      AzerothAdmin.db.account.style.color.buffer.backgrounds = {}
-      AzerothAdmin.db.account.style.color.buffer.backgrounds.r = r
-      AzerothAdmin.db.account.style.color.buffer.backgrounds.g = g
-      AzerothAdmin.db.account.style.color.buffer.backgrounds.b = b
+      AzerothAdmin.db.profile.style.color.buffer.backgrounds = {}
+      AzerothAdmin.db.profile.style.color.buffer.backgrounds.r = r
+      AzerothAdmin.db.profile.style.color.buffer.backgrounds.g = g
+      AzerothAdmin.db.profile.style.color.buffer.backgrounds.b = b
     end
     ColorPickerFrame:SetColorRGB(r,g,b)
     ColorPickerFrame.previousValues = {r,g,b}
   elseif t == "frm" then
     local r,g,b
-    if AzerothAdmin.db.account.style.color.buffer.frames then
-      r = AzerothAdmin.db.account.style.color.buffer.frames.r
-      g = AzerothAdmin.db.account.style.color.buffer.frames.g
-      b = AzerothAdmin.db.account.style.color.buffer.frames.b
+    if AzerothAdmin.db.profile.style.color.buffer.frames then
+      r = AzerothAdmin.db.profile.style.color.buffer.frames.r
+      g = AzerothAdmin.db.profile.style.color.buffer.frames.g
+      b = AzerothAdmin.db.profile.style.color.buffer.frames.b
     else
-      r = AzerothAdmin.db.account.style.color.frames.r
-      g = AzerothAdmin.db.account.style.color.frames.g
-      b = AzerothAdmin.db.account.style.color.frames.b
+      r = AzerothAdmin.db.profile.style.color.frames.r
+      g = AzerothAdmin.db.profile.style.color.frames.g
+      b = AzerothAdmin.db.profile.style.color.frames.b
     end
     ColorPickerFrame.cancelFunc = function(prev)
       local r,g,b = unpack(prev)
@@ -189,23 +226,23 @@ function ShowColorPicker(t)
     ColorPickerFrame.func = function()
       local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_frmcolorshowbutton_texture:SetTexture(r,g,b)
-      AzerothAdmin.db.account.style.color.buffer.frames = {}
-      AzerothAdmin.db.account.style.color.buffer.frames.r = r
-      AzerothAdmin.db.account.style.color.buffer.frames.g = g
-      AzerothAdmin.db.account.style.color.buffer.frames.b = b
+      AzerothAdmin.db.profile.style.color.buffer.frames = {}
+      AzerothAdmin.db.profile.style.color.buffer.frames.r = r
+      AzerothAdmin.db.profile.style.color.buffer.frames.g = g
+      AzerothAdmin.db.profile.style.color.buffer.frames.b = b
     end
     ColorPickerFrame:SetColorRGB(r,g,b)
     ColorPickerFrame.previousValues = {r,g,b}
   elseif t == "btn" then
     local r,g,b
-    if AzerothAdmin.db.account.style.color.buffer.buttons then
-      r = AzerothAdmin.db.account.style.color.buffer.buttons.r
-      g = AzerothAdmin.db.account.style.color.buffer.buttons.g
-      b = AzerothAdmin.db.account.style.color.buffer.buttons.b
+    if AzerothAdmin.db.profile.style.color.buffer.buttons then
+      r = AzerothAdmin.db.profile.style.color.buffer.buttons.r
+      g = AzerothAdmin.db.profile.style.color.buffer.buttons.g
+      b = AzerothAdmin.db.profile.style.color.buffer.buttons.b
     else
-      r = AzerothAdmin.db.account.style.color.buttons.r
-      g = AzerothAdmin.db.account.style.color.buttons.g
-      b = AzerothAdmin.db.account.style.color.buttons.b
+      r = AzerothAdmin.db.profile.style.color.buttons.r
+      g = AzerothAdmin.db.profile.style.color.buttons.g
+      b = AzerothAdmin.db.profile.style.color.buttons.b
     end
     ColorPickerFrame.cancelFunc = function(prev)
       local r,g,b = unpack(prev)
@@ -214,23 +251,23 @@ function ShowColorPicker(t)
     ColorPickerFrame.func = function()
       local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_btncolorshowbutton_texture:SetTexture(r,g,b)
-      AzerothAdmin.db.account.style.color.buffer.buttons = {}
-      AzerothAdmin.db.account.style.color.buffer.buttons.r = r
-      AzerothAdmin.db.account.style.color.buffer.buttons.g = g
-      AzerothAdmin.db.account.style.color.buffer.buttons.b = b
+      AzerothAdmin.db.profile.style.color.buffer.buttons = {}
+      AzerothAdmin.db.profile.style.color.buffer.buttons.r = r
+      AzerothAdmin.db.profile.style.color.buffer.buttons.g = g
+      AzerothAdmin.db.profile.style.color.buffer.buttons.b = b
     end
     ColorPickerFrame:SetColorRGB(r,g,b)
     ColorPickerFrame.previousValues = {r,g,b}
   elseif t == "linkifier" then
     local r,g,b
-    if AzerothAdmin.db.account.style.color.buffer.linkifier then
-      r = AzerothAdmin.db.account.style.color.buffer.linkifier.r
-      g = AzerothAdmin.db.account.style.color.buffer.linkifier.g
-      b = AzerothAdmin.db.account.style.color.buffer.linkifier.b
+    if AzerothAdmin.db.profile.style.color.buffer.linkifier then
+      r = AzerothAdmin.db.profile.style.color.buffer.linkifier.r
+      g = AzerothAdmin.db.profile.style.color.buffer.linkifier.g
+      b = AzerothAdmin.db.profile.style.color.buffer.linkifier.b
     else
-      r = AzerothAdmin.db.account.style.color.linkifier.r
-      g = AzerothAdmin.db.account.style.color.linkifier.g
-      b = AzerothAdmin.db.account.style.color.linkifier.b
+      r = AzerothAdmin.db.profile.style.color.linkifier.r
+      g = AzerothAdmin.db.profile.style.color.linkifier.g
+      b = AzerothAdmin.db.profile.style.color.linkifier.b
     end
     ColorPickerFrame.cancelFunc = function(prev)
       local r,g,b = unpack(prev)
@@ -239,10 +276,10 @@ function ShowColorPicker(t)
     ColorPickerFrame.func = function()
       local r,g,b = ColorPickerFrame:GetColorRGB()
       ma_linkifiercolorbutton_texture:SetTexture(r,g,b)
-      AzerothAdmin.db.account.style.color.buffer.linkifier = {}
-      AzerothAdmin.db.account.style.color.buffer.linkifier.r = r
-      AzerothAdmin.db.account.style.color.buffer.linkifier.g = g
-      AzerothAdmin.db.account.style.color.buffer.linkifier.b = b
+      AzerothAdmin.db.profile.style.color.buffer.linkifier = {}
+      AzerothAdmin.db.profile.style.color.buffer.linkifier.r = r
+      AzerothAdmin.db.profile.style.color.buffer.linkifier.g = g
+      AzerothAdmin.db.profile.style.color.buffer.linkifier.b = b
     end
     ColorPickerFrame:SetColorRGB(r,g,b)
     ColorPickerFrame.previousValues = {r,g,b}
@@ -251,7 +288,7 @@ function ShowColorPicker(t)
   ColorPickerFrame:Show()
 end
 
-function ChangeWeather(status)
+function AzerothAdminCommands.ChangeWeather(status)
   if not (status == "") then
     AzerothAdmin:ChatMsg(".wchange "..status)
   end

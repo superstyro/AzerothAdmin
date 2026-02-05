@@ -22,15 +22,15 @@
 
 function AzerothAdmin:CreateMiscSection()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames,
-    linkifier = AzerothAdmin.db.account.style.color.linkifier
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames,
+    linkifier = AzerothAdmin.db.profile.style.color.linkifier
   }
 
   FrameLib:BuildButton({
@@ -69,7 +69,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -34
+      offY = -24
     },
     text = Locale["ma_EnableMinimenu"],
     inherits = "OptionsCheckButtonTemplate"
@@ -83,7 +83,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -64
+      offY = -44
     },
     text = Locale["ma_EnableTooltips"],
     inherits = "OptionsCheckButtonTemplate"
@@ -97,9 +97,37 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -94
+      offY = -64
     },
     text = Locale["ma_ShowChatOutput"],
+    inherits = "OptionsCheckButtonTemplate"
+  })
+
+  FrameLib:BuildButton({
+    type = "CheckButton",
+    name = "ma_showminimapbutton",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 160,
+      offY = -84
+    },
+    text = Locale["ma_ShowMinimapButton"],
+    inherits = "OptionsCheckButtonTemplate"
+  })
+
+  FrameLib:BuildButton({
+    type = "CheckButton",
+    name = "ma_instantteleportbutton",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 160,
+      offY = -104
+    },
+    text = Locale["ma_InstantTeleport"],
     inherits = "OptionsCheckButtonTemplate"
   })
 
@@ -109,9 +137,9 @@ function AzerothAdmin:CreateMiscSection()
     parent = ma_midframe,
     text = Locale["ma_FrameStrataLabel"],
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 165,
-      offY = -125
+      pos = "BOTTOMRIGHT",
+      offX = -140,
+      offY = 18
     }
   })
 
@@ -120,40 +148,11 @@ function AzerothAdmin:CreateMiscSection()
     group = "misc",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 327,
-      offY = -140
+      pos = "BOTTOMRIGHT",
+      offX = -10,
+      offY = 10
     },
     inherits = "UIDropDownMenuTemplate"
-  })
-
-  FrameLib:BuildFontString({
-    name = "ma_delayparamlabel2",
-    group = "misc",
-    parent = ma_midframe,
-    text = Locale["ma_UpdateFrequencyLabel"], -- FIX #13
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 165,
-      offY = -155
-    }
-  })
-
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_delayparam",
-    group = "misc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 195,
-      offY = -180
-    },
-    inherits = "InputBoxTemplate"
   })
 
   FrameLib:BuildFrame({

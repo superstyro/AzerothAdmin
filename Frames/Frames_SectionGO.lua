@@ -22,15 +22,15 @@
 
 function AzerothAdmin:CreateGOSection()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
 
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   FrameLib:BuildButton({

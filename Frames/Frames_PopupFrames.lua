@@ -22,20 +22,20 @@
 
 function AzerothAdmin:CreatePopupFrames()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   -- [[Popup Frame]]
   -- Calculate popup strata to be one level above main frame
   local strataOrder = {"BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG"}
-  local mainStrata = AzerothAdmin.db.account.style.framestrata or "MEDIUM"
+  local mainStrata = AzerothAdmin.db.profile.style.framestrata or "MEDIUM"
   local popupStrata = "DIALOG" -- Default fallback
   local popupFrameLevel = nil
 
@@ -961,6 +961,108 @@ function AzerothAdmin:CreatePopupFrames()
     },
     text = Locale["ma_DeselectAllButton"]
   })
+
+  -- Quest Action Buttons (5 buttons in bottom frame)
+  FrameLib:BuildButton({
+    name = "ma_questaddbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questaddbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -10
+    },
+    text = Locale["ma_QuestAddButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_questremovebutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questremovebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 118,
+      offY = -10
+    },
+    text = Locale["ma_QuestRemoveButton"]
+  })
+
+  
+  FrameLib:BuildButton({
+    name = "ma_questcompletebutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questcompletebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -34
+    },
+    text = Locale["ma_QuestCompleteButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_questrewardbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_questrewardbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 118,
+      offY = -34
+    },
+    text = Locale["ma_QuestRewardButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_queststatusbutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_queststatusbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 104,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 226,
+      offY = -34
+    },
+    text = Locale["ma_QuestStatusButton"]
+  })
 end
 
 -- Setup Mail Popup UI
@@ -983,6 +1085,13 @@ function AzerothAdmin:SetupMailPopup(param)
   ma_deselectallbutton:Hide()
   ma_var2editbox:Hide()
   ma_var2text:Hide()
+
+  -- Hide quest action buttons (not used in mail mode)
+  ma_questaddbutton:Hide()
+  ma_questcompletebutton:Hide()
+  ma_questremovebutton:Hide()
+  ma_questrewardbutton:Hide()
+  ma_queststatusbutton:Hide()
 
   -- Setup tab buttons
   ma_ptabbutton_1:SetText("Send Mail")

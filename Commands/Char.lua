@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -16,44 +16,46 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function ModelRotateLeft()
+AzerothAdminCommands = AzerothAdminCommands or {}
+
+function AzerothAdminCommands.ModelRotateLeft()
   ma_modelframe.rotation = ma_modelframe.rotation - 0.03
   ma_modelframe:SetRotation(ma_modelframe.rotation)
   PlaySound("igInventoryRotateCharacter")
 end
 
-function ModelRotateRight()
+function AzerothAdminCommands.ModelRotateRight()
   ma_modelframe.rotation = ma_modelframe.rotation + 0.03
   ma_modelframe:SetRotation(ma_modelframe.rotation)
   PlaySound("igInventoryRotateCharacter")
 end
 
-function InitModelFrame()
-  ma_modelframe:SetScript("OnUpdate", function() AzerothAdminModelOnUpdate(arg1) end)
+function AzerothAdminCommands.AzerothAdminModelOnUpdate(frame, elapsedTime)
+  if ( ma_modelrotatelbutton:GetButtonState() == "PUSHED" ) then
+    frame.rotation = frame.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation < 0 ) then
+      frame.rotation = frame.rotation + (2 * PI)
+    end
+    frame:SetRotation(frame.rotation);
+  end
+  if ( ma_modelrotaterbutton:GetButtonState() == "PUSHED" ) then
+    frame.rotation = frame.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
+    if ( frame.rotation > (2 * PI) ) then
+      frame.rotation = frame.rotation - (2 * PI)
+    end
+    frame:SetRotation(frame.rotation);
+  end
+end
+
+function AzerothAdminCommands.InitModelFrame()
+  ma_modelframe:SetScript("OnUpdate", function(self, elapsed) AzerothAdminCommands.AzerothAdminModelOnUpdate(self, elapsed) end)
   ma_modelframe.rotation = 0.61;
   ma_modelframe:SetRotation(ma_modelframe.rotation)
   ma_modelframe:SetUnit("player")
 
 end
 
-function AzerothAdminModelOnUpdate(elapsedTime)
-  if ( ma_modelrotatelbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation + (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation < 0 ) then
-      this.rotation = this.rotation + (2 * PI)
-    end
-    this:SetRotation(this.rotation);
-  end
-  if ( ma_modelrotaterbutton:GetButtonState() == "PUSHED" ) then
-    this.rotation = this.rotation - (elapsedTime * 2 * PI * ROTATIONS_PER_SECOND)
-    if ( this.rotation > (2 * PI) ) then
-      this.rotation = this.rotation - (2 * PI)
-    end
-    this:SetRotation(this.rotation);
-  end
-end
-
-function ModelChanged()
+function AzerothAdminCommands.ModelChanged()
   if not AzerothAdmin:Selection("none") then
     ma_modelframe:SetUnit("target")
   else
@@ -62,7 +64,7 @@ function ModelChanged()
   ma_modelframe:RefreshUnit()
 end
 
-function RevivePlayer()
+function AzerothAdminCommands.RevivePlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".revive")
@@ -71,7 +73,7 @@ function RevivePlayer()
   end
 end
 
-function SavePlayer()
+function AzerothAdminCommands.SavePlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".save")
@@ -80,7 +82,7 @@ function SavePlayer()
   end
 end
 
-function KickPlayer()
+function AzerothAdminCommands.KickPlayer()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".kick")
@@ -89,7 +91,7 @@ function KickPlayer()
   end
 end
 
-function Cooldown()
+function AzerothAdminCommands.Cooldown()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".cooldown")
@@ -98,12 +100,12 @@ function Cooldown()
   end
 end
 
-function ShowGUID()
+function AzerothAdminCommands.ShowGUID()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".guid")
 end
 
-function Pinfo()
+function AzerothAdminCommands.Pinfo()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".pinfo")
@@ -112,12 +114,12 @@ function Pinfo()
   end
 end
 
-function Distance()
+function AzerothAdminCommands.Distance()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".distance")
 end
 
-function Recall()
+function AzerothAdminCommands.Recall()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".recall")
@@ -126,16 +128,16 @@ function Recall()
   end
 end
 
-function Demorph()
+function AzerothAdminCommands.Demorph()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".morph reset")
 end
 
-function ToggleMapsChar(value)
+function AzerothAdminCommands.ToggleMapsChar(value)
   AzerothAdmin:ChatMsg(".explorecheat "..value)
 end
 
-function GPS()
+function AzerothAdminCommands.GPS()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".gps")
@@ -144,7 +146,7 @@ function GPS()
   end
 end
 
-function LearnSpell(value, state)
+function AzerothAdminCommands.LearnSpell(value, state)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     local class = UnitClass("target") or UnitClass("player")
@@ -200,7 +202,7 @@ function LearnSpell(value, state)
   end
 end
 
-function Modify(case, value)
+function AzerothAdminCommands.Modify(case, value)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     if case == "money" then
@@ -251,7 +253,7 @@ function Modify(case, value)
   end
 end
 
-function Reset(value)
+function AzerothAdminCommands.Reset(value)
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".reset "..value.." "..player)
@@ -261,7 +263,7 @@ function Reset(value)
 end
 
   -- LEARN LANG
-function LearnDropDownInitialize()
+function AzerothAdminCommands.LearnDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
@@ -287,7 +289,7 @@ function LearnDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_learnlangdropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_learnlangdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
@@ -296,7 +298,7 @@ function LearnDropDownInitialize()
 end
 
   -- MODIFY
-function ModifyDropDownInitialize()
+function AzerothAdminCommands.ModifyDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
@@ -325,7 +327,7 @@ function ModifyDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_modifydropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_modifydropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_modifydropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
@@ -334,7 +336,7 @@ function ModifyDropDownInitialize()
 end
 
   -- RESET
-function ResetDropDownInitialize()
+function AzerothAdminCommands.ResetDropDownInitialize()
     local level = 1
     local info = UIDropDownMenu_CreateInfo()
     local buttons = {
@@ -347,7 +349,7 @@ function ResetDropDownInitialize()
     for k,v in pairs(buttons) do
       info.text = v[1]
       info.value = v[2]
-      info.func = function() UIDropDownMenu_SetSelectedValue(ma_resetdropdown, this.value) end
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_resetdropdown, self.value) end
       info.checked = (UIDropDownMenu_GetSelectedValue(ma_resetdropdown) == v[2])
       info.icon = nil
       info.keepShownOnClick = nil
@@ -355,14 +357,14 @@ function ResetDropDownInitialize()
     end
 end
 
-function CharModelZoomIn()
+function AzerothAdminCommands.CharModelZoomIn()
     ma_modelframe:SetCamera(0)
     --ma_modelframe:SetModelScale(ma_modelframe:GetModelScale() + .1)
     --ma_modelframe:SetPosition(1,ma_modelframe:GetModelScale()*3,0)
     --ma_modelframe:RefreshUnit()
 end
 
-function CharModelZoomOut()
+function AzerothAdminCommands.CharModelZoomOut()
     ma_modelframe:SetCamera(1)
     ma_modelframe:RefreshUnit()
    -- ma_modelframe:SetCamera(2)
@@ -371,259 +373,259 @@ function CharModelZoomOut()
     --ma_modelframe:RefreshUnit()
 end
 
-function CharBindSight()
+function AzerothAdminCommands.CharBindSight()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".bindsight")
 end
 
-function CharUnBindSight()
+function AzerothAdminCommands.CharUnBindSight()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".unbindsight")
 end
 
-function CharRename()
+function AzerothAdminCommands.CharRename()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character rename")
 end
 
-function CharCustomize()
+function AzerothAdminCommands.CharCustomize()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character customize")
 end
 
-function CharChangeRace()
+function AzerothAdminCommands.CharChangeRace()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character changerace")
 end
 
-function CharChangeFaction()
+function AzerothAdminCommands.CharChangeFaction()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character changefaction")
 end
 
-function CharCombatStop()
+function AzerothAdminCommands.CharCombatStop()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".combatstop")
 end
 
-function CharMaxSkill()
+function AzerothAdminCommands.CharMaxSkill()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".maxskill")
 end
 
-function CharFreeze()
+function AzerothAdminCommands.CharFreeze()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".freeze")
 end
 
-function CharUnFreeze()
+function AzerothAdminCommands.CharUnFreeze()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".unfreeze")
 end
 
-function CharListDeleted()
+function AzerothAdminCommands.CharListDeleted()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character deleted list")
 end
 
-function CharDeletedRestore()
+function AzerothAdminCommands.CharDeletedRestore()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".character deleted restore "..cname)
 end
 
-function CharPossess()
+function AzerothAdminCommands.CharPossess()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".possess")
 end
 
-function CharUnPossess()
+function AzerothAdminCommands.CharUnPossess()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".unpossess")
 end
 
-function CharRecall()
+function AzerothAdminCommands.CharRecall()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".recall")
 end
 
-function CharRepair()
+function AzerothAdminCommands.CharRepair()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".gear repair")
 end
 
-function BanButton()
+function AzerothAdminCommands.BanButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".ban "..cname)
 
 end
 
-function GoNameButton()
+function AzerothAdminCommands.GoNameButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".appear "..cname)
 
 end
 
-function CreateGuildButton()
+function AzerothAdminCommands.CreateGuildButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild create "..cname)
 
 end
 
-function BanInfoButton()
+function AzerothAdminCommands.BanInfoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".baninfo "..cname)
 
 end
 
-function GroupGoButton()
+function AzerothAdminCommands.GroupGoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".groupsummon "..cname)
 
 end
 
-function GuildInviteButton()
+function AzerothAdminCommands.GuildInviteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild invite "..cname)
 
 end
 
-function BanlistButton()
+function AzerothAdminCommands.BanlistButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".banlist "..cname)
 
 end
 
-function NameGoButton()
+function AzerothAdminCommands.NameGoButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".summon "..cname)
 
 end
 
-function GuildRankButton()
+function AzerothAdminCommands.GuildRankButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild rank "..cname)
 
 end
 
-function TeleGroupButton()
+function AzerothAdminCommands.TeleGroupButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".tele group "..cname)
 
 end
 
-function UnBanButton()
+function AzerothAdminCommands.UnBanButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unban "..cname)
 
 end
 
-function GuildDeleteButton()
+function AzerothAdminCommands.GuildDeleteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild delete "..cname)
 
 end
 
-function GuildUninviteButton()
+function AzerothAdminCommands.GuildUninviteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".guild uninvite "..cname)
 
 end
 
-function TeleNameButton()
+function AzerothAdminCommands.TeleNameButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".tele name "..cname)
 
 end
 
-function MuteButton()
+function AzerothAdminCommands.MuteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".mute "..cname)
 
 end
 
-function CharMorphButton()
+function AzerothAdminCommands.CharMorphButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".modify morph "..cname)
 
 end
 
-function CharAuraButton()
+function AzerothAdminCommands.CharAuraButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".aura "..cname)
 
 end
 
-function CharUnAuraButton()
+function AzerothAdminCommands.CharUnAuraButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unaura "..cname)
 
 end
 
-function JailA()
+function AzerothAdminCommands.JailA()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_AllianceJail")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been found guilty and jailed.")
 end
 
-function JailH()
+function AzerothAdminCommands.JailH()
     local cname = ma_charactertarget:GetText()
     --self:ChatMsg("Selected "..cname)
     AzerothAdmin:ChatMsg(".tele name "..cname.." ma_HordeJail")
     AzerothAdmin:ChatMsg(".notify "..cname.." has been found guilty and jailed.")
 end
 
-function UnJail()
+function AzerothAdminCommands.UnJail()
     local cname = ma_charactertarget:GetText()
     AzerothAdmin:ChatMsg(".recall "..cname)
     AzerothAdmin:ChatMsg(".notify "..cname.." has been pardoned and released from jail.")
 end
 
-function UnMuteButton()
+function AzerothAdminCommands.UnMuteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".unmute "..cname)
 
 end
 
-function QuestAddButton()
+function AzerothAdminCommands.QuestAddButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest add "..cname)
 
 end
 
-function QuestCompleteButton()
+function AzerothAdminCommands.QuestCompleteButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest complete "..cname)
 
 end
 
-function QuestRemoveButton()
+function AzerothAdminCommands.QuestRemoveButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".quest remove "..cname)
 
 end
 
-function DamageButton ()
+function AzerothAdminCommands.DamageButton ()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".damage "..cname)
 
 end
 
-function HideAreaButton()
+function AzerothAdminCommands.HideAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".hidearea "..cname)
 end
 
-function ShowAreaButton()
+function AzerothAdminCommands.ShowAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".showarea "..cname)
 end
 
-function HonorAddButton()
+function AzerothAdminCommands.HonorAddButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".honor add "..cname)
 end
 
-function HonorUpdateButton()
+function AzerothAdminCommands.HonorUpdateButton()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".honor update ")

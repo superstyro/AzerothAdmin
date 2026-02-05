@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_ptPT()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "ptPT")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Mova o cursor sobre um elemento para alternar a dica!",
@@ -270,7 +271,7 @@ function Return_ptPT()
     ["tt_GUIDButton"]                 = "Mostra o GUID do personagem selecionado.",
     ["tt_PinfoButton"]                = "Obter informações sobre o JOGADOR selecionado.",
     ["tt_DistanceButton"]             = "Obter distância à criatura selecionada.",
-    ["tt_RecallButton"]               = "Retorna a criatura selecionada à localização antes do último teletransporte.",
+    ["tt_RecallButton"]               = "Retorna o jogador selecionado à localização antes do último teletransporte.",
     ["tt_DemorphButton"]              = "Remove quaisquer transformações no personagem selecionado.",
     ["tt_ShowMapsCharButton"]         = "Revela mapas para o personagem selecionado.",
     ["tt_HideMapsCharButton"]         = "Oculta mapas para o personagem selecionado.",
@@ -624,6 +625,11 @@ function Return_ptPT()
     ["ma_GOShowButton"]               = "Mostrar",
     ["ma_GOUnloadButton"]             = "Descarregar",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Tem certeza que deseja alternar todos os mapas? Isso pode congelar o cliente por alguns segundos.",
+    ["msg_account_lock_confirm"]      = "Tem certeza que deseja %s este conta?",
+    ["msg_acct_create_confirm"]       = "Tem certeza que deseja criar a conta '%s'?",
+    ["msg_acct_delete_confirm"]       = "Tem certeza que deseja EXCLUIR a conta '%s'?",
+    ["msg_tele_del_confirm"]          = "Tem certeza que deseja excluir o local de teletransporte '%s'?",
 
 
 
@@ -665,7 +671,7 @@ function Return_ptPT()
     ["tt_ResetTickets"]               = "Repor tickets carregados",
     ["tt_LoadAllTickets"]             = "Carregar Todos os tickets",
     ["tt_LoadOnlineTickets"]          = "Carregar tickets de jogadores online",
-    ["tt_DeleteTicket"]               = "Eliminar ticket",
+    ["tt_DeleteTicket"]               = "Fechar ticket e remover da lista",
     ["tt_AnswerTicket"]               = "Responder ticket",
     ["tt_GetCharTicket"]              = "Invocar personagem do ticket",
     ["tt_GoCharTicket"]               = "Ir para personagem do ticket",
@@ -722,6 +728,7 @@ function Return_ptPT()
     ["tt_BtnTrSlider"]                = "Alterar transparência dos botões",
     ["tt_windowismovable"]            = "Permitir uma janela movível",
     ["tt_updatechanges"]              = "Aplicar alterações feitas às definições. Recarrega a UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minutos",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Alternar a janela principal",
     ["cmd_transparency"]              = "Alternar a transparência básica (0.5 ou 1.0)",
@@ -731,6 +738,8 @@ function Return_ptPT()
     ["ma_EnableMinimenu"]             = "Ativar Minimenú/Barra de Ferramentas",
     ["ma_EnableTooltips"]             = "Ativar Dicas",
     ["ma_ShowChatOutput"]             = "Mostrar Saída do Chat",
+    ["ma_ShowMinimapButton"]          = "Mostrar Botão do Minimapa",
+    ["ma_InstantTeleport"]            = "Sem aviso antes de teletransporte",
     ["ma_FrameStrataLabel"]           = "Nível de Estrato da Moldura:",
     ["ma_FrameStrataBackground"]      = "Fundo",
     ["ma_FrameStrataLow"]             = "Baixo",
@@ -739,7 +748,7 @@ function Return_ptPT()
     ["ma_FrameStrataDialog"]          = "Diálogo",
     ["ma_FrameStrataFullscreen"]      = "Ecrã Completo",
     ["ma_FrameStrataFullscreenDialog"] = "Diálogo Ecrã Completo",
-    ["ma_UpdateFrequencyLabel"]       = "Especifica a frequência de atualização do gráfico Diff no separador Servidor.\n10000 = ~1 minuto, 50000 = ~5 minutos",
+    ["ma_UpdateFrequencyLabel"]       = "Frequência de atualização do gráfico Diff:",
     ["ma_BackgroundColorLabel"]       = "Cor de Fundo",
     ["ma_FrameColorLabel"]            = "Cor da Moldura",
     ["ma_ButtonColorLabel"]           = "Cor dos Botões",
@@ -773,6 +782,7 @@ function Return_ptPT()
     ["ma_CancelShutdownButton"]       = "Cancelar Desligamento",
     ["ma_ReloadTableButton"]          = "Recarregar Tabela",
     ["ma_ReloadScriptsButton"]        = "Recarregar Scripts",
+    ["ma_UpdateButton"]               = "Atualizar",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latência do Servidor:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Média:|r",
@@ -873,4 +883,5 @@ function Return_ptPT()
     ["lfer_Error"]                    = "Erro String de Pesquisa Correspondeu mas ocorreu um erro ou não foi possível encontrar o tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

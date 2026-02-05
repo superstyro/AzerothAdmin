@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_frFR()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "frFR")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Déplacez votre curseur sur un élément pour afficher l'info-bulle !",
@@ -270,7 +271,7 @@ function Return_frFR()
     ["tt_GUIDButton"]                 = "Affiche le GUID du personnage sélectionné.",
     ["tt_PinfoButton"]                = "Obtenir des informations sur le JOUEUR sélectionné.",
     ["tt_DistanceButton"]             = "Obtenir la distance jusqu'à la créature sélectionnée.",
-    ["tt_RecallButton"]               = "Rappelle la créature sélectionnée à sa position avant la dernière téléportation.",
+    ["tt_RecallButton"]               = "Rappelle le joueur sélectionné à sa position avant la dernière téléportation.",
     ["tt_DemorphButton"]              = "Supprime toutes les transformations sur le personnage sélectionné.",
     ["tt_ShowMapsCharButton"]         = "Révèle les cartes pour le personnage sélectionné.",
     ["tt_HideMapsCharButton"]         = "Masque les cartes pour le personnage sélectionné.",
@@ -624,6 +625,11 @@ function Return_frFR()
     ["ma_GOShowButton"]               = "Afficher",
     ["ma_GOUnloadButton"]             = "Décharger",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Êtes-vous sûr de vouloir basculer toutes les cartes ? Cela peut geler le client pendant quelques secondes.",
+    ["msg_account_lock_confirm"]      = "Êtes-vous sûr de vouloir %s ce compte ?",
+    ["msg_acct_create_confirm"]       = "Êtes-vous sûr de vouloir créer le compte '%s' ?",
+    ["msg_acct_delete_confirm"]       = "Êtes-vous sûr de vouloir SUPPRIMER le compte '%s' ?",
+    ["msg_tele_del_confirm"]          = "Êtes-vous sûr de vouloir supprimer la destination de téléportation '%s' ?",
 
 
 
@@ -665,7 +671,7 @@ function Return_frFR()
     ["tt_ResetTickets"]               = "Réinitialiser les tickets chargés",
     ["tt_LoadAllTickets"]             = "Charger tous les tickets",
     ["tt_LoadOnlineTickets"]          = "Charger les tickets des joueurs en ligne",
-    ["tt_DeleteTicket"]               = "Supprimer le ticket",
+    ["tt_DeleteTicket"]               = "Fermer le ticket et le retirer de la liste",
     ["tt_AnswerTicket"]               = "Répondre au ticket",
     ["tt_GetCharTicket"]              = "Invoquer le personnage du ticket",
     ["tt_GoCharTicket"]               = "Aller au personnage du ticket",
@@ -722,6 +728,7 @@ function Return_frFR()
     ["tt_BtnTrSlider"]                = "Modifier la transparence des boutons",
     ["tt_windowismovable"]            = "Autoriser une fenêtre déplaçable",
     ["tt_updatechanges"]              = "Appliquer les modifications apportées aux paramètres. Recharge l'UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minute, 50000 = ~5 minutes",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Basculer la fenêtre principale",
     ["cmd_transparency"]              = "Basculer la transparence de base (0.5 ou 1.0)",
@@ -731,6 +738,8 @@ function Return_frFR()
     ["ma_EnableMinimenu"]             = "Activer le minimenu/barre d'outils",
     ["ma_EnableTooltips"]             = "Activer les info-bulles",
     ["ma_ShowChatOutput"]             = "Afficher la sortie du chat",
+    ["ma_ShowMinimapButton"]          = "Afficher le bouton de la minicarte",
+    ["ma_InstantTeleport"]            = "Pas d'avertissement avant la téléportation",
     ["ma_FrameStrataLabel"]           = "Niveau de strate de fenêtre :",
     ["ma_FrameStrataBackground"]      = "Arrière-plan",
     ["ma_FrameStrataLow"]             = "Bas",
@@ -739,7 +748,7 @@ function Return_frFR()
     ["ma_FrameStrataDialog"]          = "Dialogue",
     ["ma_FrameStrataFullscreen"]      = "Plein écran",
     ["ma_FrameStrataFullscreenDialog"] = "Dialogue Plein écran",
-    ["ma_UpdateFrequencyLabel"]       = "Spécifie la fréquence de mise à jour du graphique Diff dans l'onglet Serveur.\n10000 = ~1 minute, 50000 = ~5 minutes",
+    ["ma_UpdateFrequencyLabel"]       = "Fréquence de mise à jour du graphique Diff :",
     ["ma_BackgroundColorLabel"]       = "Couleur de fond",
     ["ma_FrameColorLabel"]            = "Couleur de cadre",
     ["ma_ButtonColorLabel"]           = "Couleur de bouton",
@@ -773,6 +782,7 @@ function Return_frFR()
     ["ma_CancelShutdownButton"]       = "Annuler arrêt",
     ["ma_ReloadTableButton"]          = "Recharger table",
     ["ma_ReloadScriptsButton"]        = "Recharger scripts",
+    ["ma_UpdateButton"]               = "Mettre à jour",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latence serveur :|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Diff. de mise à jour :|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Moyenne :|r",
@@ -864,4 +874,5 @@ function Return_frFR()
     ["lfer_Error"]                    = "Erreur : chaîne de recherche correspondante mais une erreur s'est produite ou type introuvable"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

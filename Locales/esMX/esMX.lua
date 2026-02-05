@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_esMX()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "esMX")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "¡Mueve el cursor sobre un elemento para mostrar la información!",
@@ -268,7 +269,7 @@ function Return_esMX()
     ["tt_GUIDButton"]                 = "Muestra el GUID del personaje seleccionado.",
     ["tt_PinfoButton"]                = "Obtener información sobre el JUGADOR seleccionado.",
     ["tt_DistanceButton"]             = "Obtener distancia a la criatura seleccionada.",
-    ["tt_RecallButton"]               = "Devuelve la criatura seleccionada a la ubicación antes del último teletransporte.",
+    ["tt_RecallButton"]               = "Devuelve al jugador seleccionado a la ubicación antes del último teletransporte.",
     ["tt_DemorphButton"]              = "Elimina cualquier transformación del personaje seleccionado.",
     ["tt_ShowMapsCharButton"]         = "Revela mapas para el personaje seleccionado.",
     ["tt_HideMapsCharButton"]         = "Oculta mapas para el personaje seleccionado.",
@@ -622,6 +623,11 @@ function Return_esMX()
     ["ma_GOShowButton"]               = "Ver",
     ["ma_GOUnloadButton"]             = "Descargar",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "¿Estás seguro de que quieres cambiar todos los mapas? Esto puede congelar el cliente por unos segundos.",
+    ["msg_account_lock_confirm"]      = "¿Estás seguro de que quieres %s esta cuenta?",
+    ["msg_acct_create_confirm"]       = "¿Estás seguro de que quieres crear la cuenta '%s'?",
+    ["msg_acct_delete_confirm"]       = "¿Estás seguro de que quieres ELIMINAR la cuenta '%s'?",
+    ["msg_tele_del_confirm"]          = "¿Estás seguro de que quieres eliminar la ubicación de teletransporte '%s'?",
 
 
 
@@ -663,7 +669,7 @@ function Return_esMX()
     ["tt_ResetTickets"]               = "Resetear tickets cargados",
     ["tt_LoadAllTickets"]             = "Cargar todos los tickets",
     ["tt_LoadOnlineTickets"]          = "Cargar tickets de jugadores conectados",
-    ["tt_DeleteTicket"]               = "Eliminar ticket",
+    ["tt_DeleteTicket"]               = "Cerrar ticket y eliminar de la lista",
     ["tt_AnswerTicket"]               = "Responder ticket",
     ["tt_GetCharTicket"]              = "Invocar personaje del ticket",
     ["tt_GoCharTicket"]               = "Ir al personaje del ticket",
@@ -720,6 +726,7 @@ function Return_esMX()
     ["tt_BtnTrSlider"]                = "Cambiar transparencia de los botones",
     ["tt_windowismovable"]            = "Permitir que la ventana sea movible",
     ["tt_updatechanges"]              = "Aplicar cambios realizados en la configuración. Recarga la UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minutos",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Mostrar/Ocultar la ventana principal",
     ["cmd_transparency"]              = "Alternar la transparencia básica (0.5 o 1.0)",
@@ -729,6 +736,8 @@ function Return_esMX()
     ["ma_EnableMinimenu"]             = "Activar Minimenú",
     ["ma_EnableTooltips"]             = "Activar Tooltips",
     ["ma_ShowChatOutput"]             = "Mostrar Chat Out",
+    ["ma_ShowMinimapButton"]          = "Mostrar Botón del Minimapa",
+    ["ma_InstantTeleport"]            = "Sin advertencia antes de teletransportarse",
     ["ma_FrameStrataLabel"]           = "Nivel Estrato Marco:",
     ["ma_FrameStrataBackground"]      = "Fondo",
     ["ma_FrameStrataLow"]             = "Bajo",
@@ -737,7 +746,7 @@ function Return_esMX()
     ["ma_FrameStrataDialog"]          = "Diálogo",
     ["ma_FrameStrataFullscreen"]      = "Pantalla Completa",
     ["ma_FrameStrataFullscreenDialog"] = "Diálogo Pantalla Completa",
-    ["ma_UpdateFrequencyLabel"]       = "Especifica la frecuencia de actualización del gráfico Diff en la pestaña Servidor.\n10000 = ~1 minuto, 50000 = ~5 minutos",
+    ["ma_UpdateFrequencyLabel"]       = "Frecuencia de actualización del gráfico Diff:",
     ["ma_BackgroundColorLabel"]       = "Color de Fondo",
     ["ma_FrameColorLabel"]            = "Color del Marco",
     ["ma_ButtonColorLabel"]           = "Color de Botones",
@@ -771,6 +780,7 @@ function Return_esMX()
     ["ma_CancelShutdownButton"]       = "Cancelar Apagado",
     ["ma_ReloadTableButton"]          = "Recargar Tabla",
     ["ma_ReloadScriptsButton"]        = "Recargar Scripts",
+    ["ma_UpdateButton"]               = "Actualizar",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latencia del Servidor:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Diferencia de Actualización:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Media:|r",
@@ -861,4 +871,5 @@ function Return_esMX()
     ["lfer_Error"]                    = "Error: La cadena de búsqueda coincidió pero ocurrió un error o no se pudo encontrar el tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

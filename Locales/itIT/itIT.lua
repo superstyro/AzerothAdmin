@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_itIT()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "itIT")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Muovi il cursore su un elemento per attivare il tooltip!",
@@ -270,7 +271,7 @@ function Return_itIT()
     ["tt_GUIDButton"]                 = "Mostra il GUID del personaggio selezionato.",
     ["tt_PinfoButton"]                = "Ottieni informazioni sul GIOCATORE selezionato.",
     ["tt_DistanceButton"]             = "Ottieni la distanza dalla creatura selezionata.",
-    ["tt_RecallButton"]               = "Richiama la creatura selezionata alla posizione prima dell'ultimo teletrasporto.",
+    ["tt_RecallButton"]               = "Richiama il giocatore selezionato alla posizione prima dell'ultimo teletrasporto.",
     ["tt_DemorphButton"]              = "Rimuove qualsiasi trasformazione sul personaggio selezionato.",
     ["tt_ShowMapsCharButton"]         = "Rivela le mappe per il personaggio selezionato.",
     ["tt_HideMapsCharButton"]         = "Nascondi le mappe per il personaggio selezionato.",
@@ -624,6 +625,11 @@ function Return_itIT()
     ["ma_GOShowButton"]               = "Mostra",
     ["ma_GOUnloadButton"]             = "Scarica",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Sei sicuro di voler attivare/disattivare tutte le mappe? Questo potrebbe bloccare il client per alcuni secondi.",
+    ["msg_account_lock_confirm"]      = "Sei sicuro di voler %s questo account?",
+    ["msg_acct_create_confirm"]       = "Sei sicuro di voler creare l'account '%s'?",
+    ["msg_acct_delete_confirm"]       = "Sei sicuro di voler ELIMINARE l'account '%s'?",
+    ["msg_tele_del_confirm"]          = "Sei sicuro di voler eliminare la posizione di teletrasporto '%s'?",
 
 
 
@@ -665,7 +671,7 @@ function Return_itIT()
     ["tt_ResetTickets"]               = "Ripristina i ticket caricati",
     ["tt_LoadAllTickets"]             = "Carica tutti i ticket",
     ["tt_LoadOnlineTickets"]          = "Carica i ticket dei giocatori online",
-    ["tt_DeleteTicket"]               = "Elimina ticket",
+    ["tt_DeleteTicket"]               = "Chiudi il ticket e rimuovilo dalla lista",
     ["tt_AnswerTicket"]               = "Rispondi al ticket",
     ["tt_GetCharTicket"]              = "Evoca il personaggio del ticket",
     ["tt_GoCharTicket"]               = "Vai al personaggio del ticket",
@@ -722,6 +728,7 @@ function Return_itIT()
     ["tt_BtnTrSlider"]                = "Cambia trasparenza pulsante",
     ["tt_windowismovable"]            = "Permetti una finestra mobile",
     ["tt_updatechanges"]              = "Applica le modifiche apportate alle impostazioni. Ricarica l'UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minuto, 50000 = ~5 minuti",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Attiva/disattiva la finestra principale",
     ["cmd_transparency"]              = "Attiva/disattiva la trasparenza di base (0.5 o 1.0)",
@@ -731,6 +738,8 @@ function Return_itIT()
     ["ma_EnableMinimenu"]             = "Abilita Minimenu/Toolbar",
     ["ma_EnableTooltips"]             = "Abilita Tooltip",
     ["ma_ShowChatOutput"]             = "Mostra Output Chat",
+    ["ma_ShowMinimapButton"]          = "Mostra Pulsante Minimappa",
+    ["ma_InstantTeleport"]            = "Nessun avviso prima del teletrasporto",
     ["ma_FrameStrataLabel"]           = "Livello Strato Cornice:",
     ["ma_FrameStrataBackground"]      = "Sfondo",
     ["ma_FrameStrataLow"]             = "Basso",
@@ -739,7 +748,7 @@ function Return_itIT()
     ["ma_FrameStrataDialog"]          = "Dialogo",
     ["ma_FrameStrataFullscreen"]      = "Schermo Intero",
     ["ma_FrameStrataFullscreenDialog"] = "Dialogo Schermo Intero",
-    ["ma_UpdateFrequencyLabel"]       = "Specifica la frequenza di aggiornamento del grafico Diff sulla scheda Server.\n10000 = ~1 minuto, 50000 = ~5 minuti",
+    ["ma_UpdateFrequencyLabel"]       = "Frequenza di aggiornamento del grafico Diff:",
     ["ma_BackgroundColorLabel"]       = "Colore Sfondo",
     ["ma_FrameColorLabel"]            = "Colore Cornice",
     ["ma_ButtonColorLabel"]           = "Colore Pulsante",
@@ -773,6 +782,7 @@ function Return_itIT()
     ["ma_CancelShutdownButton"]       = "Annulla Spegnimento",
     ["ma_ReloadTableButton"]          = "Ricarica Tabella",
     ["ma_ReloadScriptsButton"]        = "Ricarica Script",
+    ["ma_UpdateButton"]               = "Aggiorna",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Latenza Server:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Media:|r",
@@ -873,4 +883,5 @@ function Return_itIT()
     ["lfer_Error"]                    = "Errore Stringa di Ricerca Corrispondente ma si è verificato un errore o impossibile trovare il tipo"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

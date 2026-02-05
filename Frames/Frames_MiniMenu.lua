@@ -27,7 +27,7 @@ function AzerothAdmin:CreateMiniMenu()
     return
   end
 
-  if not AzerothAdmin.db or not AzerothAdmin.db.account or not AzerothAdmin.db.account.style then
+  if not AzerothAdmin.db or not AzerothAdmin.db.profile or not AzerothAdmin.db.profile.style then
     error("AzerothAdmin: Style database not initialized")
     return
   end
@@ -38,14 +38,14 @@ function AzerothAdmin:CreateMiniMenu()
   end
 
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   -- [[ MiniMenu Elements ]]
@@ -104,7 +104,7 @@ function AzerothAdmin:CreateMiniMenu()
     self:SetPoint(side, UIParent, side, 0, yOffset)
 
     -- Save position to database (create new table or replace old string)
-    AzerothAdmin.db.account.minimenuPosition = {
+    AzerothAdmin.db.profile.minimenuPosition = {
       side = side,
       yOffset = yOffset
     }
@@ -406,7 +406,7 @@ function AzerothAdmin:CreateMiniMenu()
     ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
 
     -- Save position to database
-    AzerothAdmin.db.account.minimenuPosition = {
+    AzerothAdmin.db.profile.minimenuPosition = {
       side = side,
       yOffset = yOffset
     }
@@ -459,22 +459,22 @@ function AzerothAdmin:CreateMiniMenu()
   end)
 
   -- Restore saved position
-  if AzerothAdmin.db.account.minimenuPosition then
+  if AzerothAdmin.db.profile.minimenuPosition then
     ma_minibgframe:ClearAllPoints()
     -- Handle both old (string) and new (table) format
-    if type(AzerothAdmin.db.account.minimenuPosition) == "string" then
+    if type(AzerothAdmin.db.profile.minimenuPosition) == "string" then
       -- Old format: just "LEFT" or "RIGHT"
-      ma_minibgframe:SetPoint(AzerothAdmin.db.account.minimenuPosition, UIParent, AzerothAdmin.db.account.minimenuPosition, 0, 0)
+      ma_minibgframe:SetPoint(AzerothAdmin.db.profile.minimenuPosition, UIParent, AzerothAdmin.db.profile.minimenuPosition, 0, 0)
     else
       -- New format: table with side and yOffset
-      local side = AzerothAdmin.db.account.minimenuPosition.side or "RIGHT"
-      local yOffset = AzerothAdmin.db.account.minimenuPosition.yOffset or 0
+      local side = AzerothAdmin.db.profile.minimenuPosition.side or "RIGHT"
+      local yOffset = AzerothAdmin.db.profile.minimenuPosition.yOffset or 0
       ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
     end
   end
 
   -- Apply visibility based on showminimenu setting
-  if AzerothAdmin.db.account.style.showminimenu == false then
+  if AzerothAdmin.db.profile.style.showminimenu == false then
     FrameLib:HandleGroup("minimenu", function(frame) frame:Hide() end)
   end
 end

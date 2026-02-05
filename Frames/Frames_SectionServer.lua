@@ -22,14 +22,14 @@
 
 function AzerothAdmin:CreateServerSection()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   FrameLib:BuildFrame({
@@ -73,6 +73,7 @@ function AzerothAdmin:CreateServerSection()
   g:SetBarColors({0.0,1.0,0.0,1.0},{0.0,1.0,0.0,1.0}) -- GREEN
   --g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0}) -- RED
   local f = CreateFrame("Frame", "ma_lagmeter_frame", ma_netgraphframe)
+  FrameLib:AddGroupFrame("server", f)
   f.frames=0
   f.NextUpdate=GetTime()
   f:SetScript("OnUpdate",function()
@@ -308,6 +309,58 @@ function AzerothAdmin:CreateServerSection()
   })
 
   FrameLib:BuildFontString({
+    name = "ma_delayparamlabel2",
+    group = "server",
+    parent = ma_midframe,
+    text = Locale["ma_UpdateFrequencyLabel"],
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 10,
+      offY = 50
+    }
+  })
+
+  FrameLib:BuildFrame({
+    type = "EditBox",
+    name = "ma_delayparam",
+    group = "server",
+    parent = ma_midframe,
+    size = {
+      width = 60,
+      height = 20
+    },
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 195,
+      offY = 45
+    },
+    inherits = "InputBoxTemplate"
+  })
+
+  ma_delayparam:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
+  ma_delayparam:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+
+  FrameLib:BuildButton({
+    name = "ma_updatedelaybutton",
+    group = "server",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_updatedelaybutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 60,
+      height = 20
+    },
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 260,
+      offY = 45
+    },
+    text = Locale["ma_UpdateButton"]
+  })
+
+  FrameLib:BuildFontString({
     name = "ma_meantext",
     group = "server",
     parent = ma_midframe,
@@ -394,6 +447,7 @@ function AzerothAdmin:CreateServerSection()
   z:SetMode("RAW")
   z:SetBarColors({0.2,0.0,0.0,0.4},{0.0,0.0,1.0,1.0})
   local x = CreateFrame("Frame", "ma_diff_frame", ma_netgraphframe2)
+  FrameLib:AddGroupFrame("server", x)
   x.frames = 0
   x.NextUpdate=GetTime()
   local q = 0

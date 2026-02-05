@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_deDE()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "deDE")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Bewegen Sie den Cursor über ein Element, um den Tooltip anzuzeigen!",
@@ -270,7 +271,7 @@ function Return_deDE()
     ["tt_GUIDButton"]                 = "Zeigt die GUID des ausgewählten Charakters an.",
     ["tt_PinfoButton"]                = "Informationen über den ausgewählten SPIELER abrufen.",
     ["tt_DistanceButton"]             = "Entfernung zur ausgewählten Kreatur ermitteln.",
-    ["tt_RecallButton"]               = "Ruft ausgewählte Kreatur zum Ort vor dem letzten Teleport zurück.",
+    ["tt_RecallButton"]               = "Ruft ausgewählten Spieler zum Ort vor dem letzten Teleport zurück.",
     ["tt_DemorphButton"]              = "Entfernt alle Verwandlungen des ausgewählten Charakters.",
     ["tt_ShowMapsCharButton"]         = "Zeigt Karten für den ausgewählten Charakter an.",
     ["tt_HideMapsCharButton"]         = "Verbirgt Karten für den ausgewählten Charakter.",
@@ -624,6 +625,11 @@ function Return_deDE()
     ["ma_GOShowButton"]               = "Anzeigen",
     ["ma_GOUnloadButton"]             = "Entladen",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Seid Ihr sicher, dass Ihr alle Karten umschalten wollt? Dies kann den Client für einige Sekunden einfrieren.",
+    ["msg_account_lock_confirm"]      = "Seid Ihr sicher, dass Ihr diesen Account %s wollt?",
+    ["msg_acct_create_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' erstellen wollt?",
+    ["msg_acct_delete_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' LÖSCHEN wollt?",
+    ["msg_tele_del_confirm"]          = "Seid Ihr sicher, dass Ihr den Teleport-Ort '%s' löschen wollt?",
 
 
 
@@ -665,7 +671,7 @@ function Return_deDE()
     ["tt_ResetTickets"]               = "Geladene Tickets zurücksetzen",
     ["tt_LoadAllTickets"]             = "Alle Tickets laden",
     ["tt_LoadOnlineTickets"]          = "Tickets von Online-Spielern laden",
-    ["tt_DeleteTicket"]               = "Ticket löschen",
+    ["tt_DeleteTicket"]               = "Ticket schließen und aus der Liste entfernen",
     ["tt_AnswerTicket"]               = "Ticket beantworten",
     ["tt_GetCharTicket"]              = "Ticket-Charakter beschwören",
     ["tt_GoCharTicket"]               = "Zu Ticket-Charakter gehen",
@@ -722,6 +728,7 @@ function Return_deDE()
     ["tt_BtnTrSlider"]                = "Button-Transparenz ändern",
     ["tt_windowismovable"]            = "Bewegbares Fenster erlauben",
     ["tt_updatechanges"]              = "Änderungen an Einstellungen übernehmen. Lädt UI neu.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 Minute, 50000 = ~5 Minuten",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Hauptfenster umschalten",
     ["cmd_transparency"]              = "Basistransparenz umschalten (0.5 oder 1.0)",
@@ -731,6 +738,8 @@ function Return_deDE()
     ["ma_EnableMinimenu"]             = "Minimenü/Toolbar aktivieren",
     ["ma_EnableTooltips"]             = "Tooltips aktivieren",
     ["ma_ShowChatOutput"]             = "Chat-Ausgabe anzeigen",
+    ["ma_ShowMinimapButton"]          = "Minimap-Schaltfläche anzeigen",
+    ["ma_InstantTeleport"]            = "Keine Warnung vor Teleportation",
     ["ma_FrameStrataLabel"]           = "Fenster-Strata-Stufe:",
     ["ma_FrameStrataBackground"]      = "Hintergrund",
     ["ma_FrameStrataLow"]             = "Niedrig",
@@ -739,7 +748,7 @@ function Return_deDE()
     ["ma_FrameStrataDialog"]          = "Dialog",
     ["ma_FrameStrataFullscreen"]      = "Vollbild",
     ["ma_FrameStrataFullscreenDialog"] = "Vollbild-Dialog",
-    ["ma_UpdateFrequencyLabel"]       = "Gibt Aktualisierungsfrequenz des Diff-Graphen im Server-Tab an.\n10000 = ~1 Minute, 50000 = ~5 Minuten",
+    ["ma_UpdateFrequencyLabel"]       = "Aktualisierungsfrequenz des Diff-Graphen:",
     ["ma_BackgroundColorLabel"]       = "Hintergrundfarbe",
     ["ma_FrameColorLabel"]            = "Fensterfarbe",
     ["ma_ButtonColorLabel"]           = "Button-Farbe",
@@ -773,6 +782,7 @@ function Return_deDE()
     ["ma_CancelShutdownButton"]       = "Herunterfahren abbrechen",
     ["ma_ReloadTableButton"]          = "Tabelle neu laden",
     ["ma_ReloadScriptsButton"]        = "Skripte neu laden",
+    ["ma_UpdateButton"]               = "Aktualisieren",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server-Latenz:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Mittelwert:|r",
@@ -864,4 +874,5 @@ function Return_deDE()
     ["lfer_Error"]                    = "Fehler: Suchstring gefunden, aber ein Fehler trat auf oder Typ konnte nicht gefunden werden"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

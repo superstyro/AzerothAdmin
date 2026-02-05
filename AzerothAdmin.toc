@@ -1,30 +1,28 @@
 ## Interface: 30300
 ## Title: AzerothAdmin
 ## Author: SuperStyro Dev team + Manground Dev Team
-## Version: 19
+## Version: 20
 ## Notes: This addon works with Azerothcore 3.3.5
 ## Name: AzerothAdmin
 ## License: GPLv3
-## OptionalDeps: AceLibrary,AceEvent-2.0,AceHook-2.1,AceDebug-2.0,AceLocale-2.2,AceConsole-2.0,AceAddon-2.0
+## OptionalDeps: Ace3
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariables: AzerothAdminDb
 ## SavedVariablesPerCharacter: AzerothAdminDbPerChar
 
-Libraries\AceLibrary\AceLibrary.lua
-Libraries\AceOO-2.0\AceOO-2.0.lua
-Libraries\AceEvent-2.0\AceEvent-2.0.lua
-Libraries\AceHook-2.1\AceHook-2.1.lua
-Libraries\AceDB-2.0\AceDB-2.0.lua
-Libraries\AceDebug-2.0\AceDebug-2.0.lua
-Libraries\AceLocale-2.2\AceLocale-2.2.lua
-Libraries\AceConsole-2.0\AceConsole-2.0.lua
-Libraries\AceAddon-2.0\AceAddon-2.0.lua
-Libraries\Tablet-2.0\Tablet-2.0.lua
-Libraries\DewDrop-2.0\DewDrop-2.0.lua
+Libraries\LibStub\LibStub.lua
+Libraries\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libraries\AceAddon-3.0\AceAddon-3.0.xml
+Libraries\AceEvent-3.0\AceEvent-3.0.xml
+Libraries\AceDB-3.0\AceDB-3.0.xml
+Libraries\AceLocale-3.0\AceLocale-3.0.xml
+Libraries\AceConsole-3.0\AceConsole-3.0.xml
+Libraries\AceHook-3.0\AceHook-3.0.xml
+Libraries\AceGUI-3.0\AceGUI-3.0.xml
+Libraries\AceConfig-3.0\AceConfig-3.0.xml
 Libraries\FrameLib-1.0\FrameLib-1.0.lua
 Libraries\Graph-1.0\Graph-1.0.lua
-Libraries\LibStub\LibStub.lua
 Locales\enUS\enUS.lua
 Locales\enUS\strings_enUS.lua
 Locales\frFR\frFR.lua

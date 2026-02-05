@@ -18,8 +18,9 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function ReturnStrings_ptBR()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin-Strings", "ptBR")
+if L then
+  local translations = {
     ["ma_GmatchRevision"] = "AzerothCore rev. (%S*)",
     ["ma_GmatchGPS"] = "X: (.*) Y: (.*) Z",
     ["ma_GmatchItem"] = "%|cffffffff%|Hitem:(%d+).*%[(.*)%]%|h%|r",
@@ -84,4 +85,5 @@ function ReturnStrings_ptBR()
     ["lfer_GPSxyz2"] = "X: ([%p%d.%d]+) Y: ([%p%d.%d]+) Z: ([%p%d.%d]+)",
     ["lfer_GPSxyz3"] = "X: %1 Y: %2 Z: %3"
   }
+  for k,v in pairs(translations) do L[k] = v end
 end

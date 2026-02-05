@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_koKR()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "koKR")
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "요소 위에 커서를 올려 툴팁을 토글하세요!",
@@ -270,7 +271,7 @@ function Return_koKR()
     ["tt_GUIDButton"]                 = "선택한 캐릭터의 GUID를 표시합니다.",
     ["tt_PinfoButton"]                = "선택한 플레이어의 정보를 가져옵니다.",
     ["tt_DistanceButton"]             = "선택한 생명체까지의 거리를 가져옵니다.",
-    ["tt_RecallButton"]               = "선택한 생명체를 마지막 순간이동 전 위치로 소환합니다.",
+    ["tt_RecallButton"]               = "선택한 플레이어를 마지막 순간이동 전 위치로 소환합니다.",
     ["tt_DemorphButton"]              = "선택한 캐릭터의 모든 변신을 제거합니다.",
     ["tt_ShowMapsCharButton"]         = "선택한 캐릭터의 지도를 공개합니다.",
     ["tt_HideMapsCharButton"]         = "선택한 캐릭터의 지도를 숨깁니다.",
@@ -624,6 +625,11 @@ function Return_koKR()
     ["ma_GOShowButton"]               = "표시",
     ["ma_GOUnloadButton"]             = "언로드",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "모든 지도를 전환하시겠습니까? 클라이언트가 몇 초 동안 멈출 수 있습니다.",
+    ["msg_account_lock_confirm"]      = "이 계정을 %s 하시겠습니까?",
+    ["msg_acct_create_confirm"]       = "계정 '%s'을(를) 생성하시겠습니까?",
+    ["msg_acct_delete_confirm"]       = "계정 '%s'을(를) 삭제하시겠습니까?",
+    ["msg_tele_del_confirm"]          = "텔레포트 위치 '%s'을(를) 삭제하시겠습니까?",
 
 
 
@@ -665,7 +671,7 @@ function Return_koKR()
     ["tt_ResetTickets"]               = "로드된 티켓을 초기화합니다",
     ["tt_LoadAllTickets"]             = "모든 티켓을 로드합니다",
     ["tt_LoadOnlineTickets"]          = "온라인 플레이어 티켓을 로드합니다",
-    ["tt_DeleteTicket"]               = "티켓을 삭제합니다",
+    ["tt_DeleteTicket"]               = "티켓을 닫고 목록에서 제거합니다",
     ["tt_AnswerTicket"]               = "티켓에 답변합니다",
     ["tt_GetCharTicket"]              = "티켓 캐릭터를 소환합니다",
     ["tt_GoCharTicket"]               = "티켓 캐릭터에게 이동합니다",
@@ -722,6 +728,7 @@ function Return_koKR()
     ["tt_BtnTrSlider"]                = "버튼 투명도 변경",
     ["tt_windowismovable"]            = "이동 가능한 창 허용",
     ["tt_updatechanges"]              = "설정 변경 사항을 적용합니다. UI를 다시 로드합니다.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1분, 50000 = ~5분",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "메인 창 토글",
     ["cmd_transparency"]              = "기본 투명도 토글 (0.5 또는 1.0)",
@@ -731,6 +738,8 @@ function Return_koKR()
     ["ma_EnableMinimenu"]             = "미니메뉴/도구 모음 활성화",
     ["ma_EnableTooltips"]             = "툴팁 활성화",
     ["ma_ShowChatOutput"]             = "채팅 출력 표시",
+    ["ma_ShowMinimapButton"]          = "미니맵 버튼 표시",
+    ["ma_InstantTeleport"]            = "순간이동 전 경고 없음",
     ["ma_FrameStrataLabel"]           = "프레임 계층 레벨:",
     ["ma_FrameStrataBackground"]      = "배경",
     ["ma_FrameStrataLow"]             = "낮음",
@@ -739,7 +748,7 @@ function Return_koKR()
     ["ma_FrameStrataDialog"]          = "대화 상자",
     ["ma_FrameStrataFullscreen"]      = "전체 화면",
     ["ma_FrameStrataFullscreenDialog"] = "전체 화면 대화 상자",
-    ["ma_UpdateFrequencyLabel"]       = "서버 탭의 차이 그래프 업데이트 빈도를 지정합니다.\n10000 = ~1분, 50000 = ~5분",
+    ["ma_UpdateFrequencyLabel"]       = "차이 그래프 업데이트 빈도:",
     ["ma_BackgroundColorLabel"]       = "배경색",
     ["ma_FrameColorLabel"]            = "프레임색",
     ["ma_ButtonColorLabel"]           = "버튼색",
@@ -773,6 +782,7 @@ function Return_koKR()
     ["ma_CancelShutdownButton"]       = "종료 취소",
     ["ma_ReloadTableButton"]          = "테이블 다시 로드",
     ["ma_ReloadScriptsButton"]        = "스크립트 다시 로드",
+    ["ma_UpdateButton"]               = "업데이트",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^서버 지연 시간:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^업데이트 차이:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00평균:|r",
@@ -873,4 +883,5 @@ function Return_koKR()
     ["lfer_Error"]                    = "오류 검색 문자열이 일치했지만 오류가 발생했거나 유형을 찾을 수 없습니다"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

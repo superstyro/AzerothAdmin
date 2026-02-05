@@ -16,11 +16,13 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-function Announce(value)
+AzerothAdminCommands = AzerothAdminCommands or {}
+
+function AzerothAdminCommands.Announce(value)
   AzerothAdmin:ChatMsg(".announce "..value)
 end
 
-function Shutdown(value)
+function AzerothAdminCommands.Shutdown(value)
   if value == "" then
     AzerothAdmin:Print(Locale["msg_shutdown_time_required"])
     return
@@ -29,30 +31,30 @@ function Shutdown(value)
   local confirmMsg = string.format(Locale["msg_shutdown_confirm"], value)
 
   AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
-    Shutdown_Confirmed(value)
+    AzerothAdminCommands.Shutdown_Confirmed(value)
   end)
 end
 
-function Shutdown_Confirmed(value)
+function AzerothAdminCommands.Shutdown_Confirmed(value)
   AzerothAdmin:ChatMsg(".server shutdown "..value)
   -- Show the cancel button and hide the shutdown button
   ma_shutdownbutton:Hide()
   ma_cancelshutdownbutton:Show()
 end
 
-function CancelShutdown()
+function AzerothAdminCommands.CancelShutdown()
   AzerothAdmin:ChatMsg(".server shutdown cancel")
   -- Hide the cancel button and show the shutdown button
   ma_cancelshutdownbutton:Hide()
   ma_shutdownbutton:Show()
 end
 
-function ReloadTable(tablename)
+function AzerothAdminCommands.ReloadTable(tablename)
   if tablename ~= "" then
     AzerothAdmin:ChatMsg(".reload "..tablename)
   end
 end
 
-function ReloadScripts()
+function AzerothAdminCommands.ReloadScripts()
   AzerothAdmin:ChatMsg(".reload smart_scripts")
 end

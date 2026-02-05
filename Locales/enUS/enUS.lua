@@ -82,8 +82,9 @@ SEXHOTPINK	   |cffFF6EB4
 
 ]]--
 
-function Return_enUS()
-  return {
+local L = LibStub("AceLocale-3.0"):NewLocale("AzerothAdmin", "enUS", true)
+if L then
+  local translations = {
 --[[General]]
   --[[Tooltips]]
     ["tt_Default"]                    = "Move your cursor over an element to toggle the tooltip!",
@@ -270,7 +271,7 @@ function Return_enUS()
     ["tt_GUIDButton"]                 = "Shows the GUID of the selected character.",
     ["tt_PinfoButton"]                = "Get information on the selected PLAYER.",
     ["tt_DistanceButton"]             = "Get distance to the selected creature.",
-    ["tt_RecallButton"]               = "Recalls selected creature to location before last teleport.",
+    ["tt_RecallButton"]               = "Recalls selected player to location before last teleport.",
     ["tt_DemorphButton"]              = "Removes any morphs on the selected character.",
     ["tt_ShowMapsCharButton"]         = "Reveals maps for the selected character.",
     ["tt_HideMapsCharButton"]         = "Hides maps for the selected character.",
@@ -384,9 +385,19 @@ function Return_enUS()
     ["ma_JailHButton"]                = "Jail (H)",
     ["ma_UnJailButton"]               = "UnJail",
     ["ma_UnMuteButton"]               = "UnMute",
-    ["ma_QuestAddButton"]             = "QuestAdd",
-    ["ma_QuestCompleteButton"]        = "QuestCompl",
-    ["ma_QuestRemoveButton"]          = "QuestRem",
+    ["ma_QuestAddButton"]             = "Add Quest",
+    ["ma_QuestCompleteButton"]        = "Complete Quest",
+    ["ma_QuestRemoveButton"]          = "Abandon Quest",
+    ["ma_QuestRewardButton"]          = "Reward Quest",
+    ["ma_QuestStatusButton"]          = "Quest Status",
+    ["ma_QuestConfirmTitle"]          = "Confirm Quest Action",
+    ["ma_QuestConfirmAdd"]            = "Add quest '%s' to %s?",
+    ["ma_QuestConfirmComplete"]       = "Complete quest '%s' for %s?",
+    ["ma_QuestConfirmRemove"]         = "Abandon quest '%s' for %s?",
+    ["ma_QuestConfirmReward"]         = "Give quest reward for '%s' to %s?",
+    ["ma_QuestConfirmStatus"]         = "Check quest status of '%s' for %s?",
+    ["ma_QuestSelectFirst"]           = "Please select a quest from the list first.",
+    ["ma_QuestNoSelection"]           = "No quest selected.",
     ["ma_DamageButton"]               = "Damage",
     ["ma_HideAreaButton"]             = "HideArea",
     ["ma_ShowAreaButton"]             = "ShowArea",
@@ -624,6 +635,11 @@ function Return_enUS()
     ["ma_GOShowButton"]               = "Show",
     ["ma_GOUnloadButton"]             = "Unload",
   --[[Other]]
+    ["msg_toggle_maps_confirm"]       = "Are you sure you want to toggle all maps? This may freeze the client for a few seconds.",
+    ["msg_account_lock_confirm"]      = "Are you sure you want to %s this account?",
+    ["msg_acct_create_confirm"]       = "Are you sure you want to create account '%s'?",
+    ["msg_acct_delete_confirm"]       = "Are you sure you want to DELETE account '%s'?",
+    ["msg_tele_del_confirm"]          = "Are you sure you want to delete teleport location '%s'?",
 
 
 
@@ -663,9 +679,11 @@ function Return_enUS()
     ["tt_TicketOn"]                   = "Announce new tickets.",
     ["tt_TicketOff"]                  = "Don't announce new tickets.",
     ["tt_ResetTickets"]               = "Reset loaded tickets",
+    ["tt_ReloadTickets"]              = "Reload tickets and check for new ones",
+    ["tt_LoadTickets"]                = "Load tickets from server",
     ["tt_LoadAllTickets"]             = "Load All tickets",
     ["tt_LoadOnlineTickets"]          = "Load online player tickets",
-    ["tt_DeleteTicket"]               = "Delete ticket",
+    ["tt_DeleteTicket"]               = "Close ticket and remove from list",
     ["tt_AnswerTicket"]               = "Answer ticket",
     ["tt_GetCharTicket"]              = "Summon ticket character",
     ["tt_GoCharTicket"]               = "Go to ticket character",
@@ -702,6 +720,8 @@ function Return_enUS()
     ["ma_TicketsNotLoaded"]           = "No ticket loaded...",
     ["ma_TicketsNoTickets"]           = "No tickets available!",
     ["ma_TicketResetButton"]          = "RESET",
+    ["ma_TicketReloadButton"]         = "RELOAD",
+    ["ma_TicketLoadButton"]           = "LOAD",
     ["ma_TicketLoadAllButton"]        = "Load All",
     ["ma_TicketLoadOnlineButton"]     = "Load Online",
     ["ma_TicketShowButton"]           = "SHOW",
@@ -722,6 +742,7 @@ function Return_enUS()
     ["tt_BtnTrSlider"]                = "Change button transparency",
     ["tt_windowismovable"]            = "Allow a movable window",
     ["tt_updatechanges"]              = "Apply changes made to settings. Reloads UI.",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minute, 50000 = ~5 minutes",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Toggle the main window",
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",
@@ -731,6 +752,8 @@ function Return_enUS()
     ["ma_EnableMinimenu"]             = "Enable Minimenu/Toolbar",
     ["ma_EnableTooltips"]             = "Enable Tooltips",
     ["ma_ShowChatOutput"]             = "Show Chat Output",
+    ["ma_ShowMinimapButton"]          = "Show Minimap Button",
+    ["ma_InstantTeleport"]            = "No warning before teleport",
     ["ma_FrameStrataLabel"]           = "Frame Strata Level:",
     ["ma_FrameStrataBackground"]      = "Background",
     ["ma_FrameStrataLow"]             = "Low",
@@ -739,7 +762,7 @@ function Return_enUS()
     ["ma_FrameStrataDialog"]          = "Dialog",
     ["ma_FrameStrataFullscreen"]      = "Fullscreen",
     ["ma_FrameStrataFullscreenDialog"] = "Fullscreen Dialog",
-    ["ma_UpdateFrequencyLabel"]       = "Specifies update frequency of Diff graph on Server tab.\n10000 = ~1 minute, 50000 = ~5 minutes",
+    ["ma_UpdateFrequencyLabel"]       = "Update frequency of Diff graph:",
     ["ma_BackgroundColorLabel"]       = "Backgroundcolor",
     ["ma_FrameColorLabel"]            = "Framecolor",
     ["ma_ButtonColorLabel"]           = "Buttoncolor",
@@ -773,6 +796,7 @@ function Return_enUS()
     ["ma_CancelShutdownButton"]       = "Cancel Shutdown",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
+    ["ma_UpdateButton"]               = "Update",
     ["ma_ServerLatencyLabel"]         = "|cFF00FF00^Server Latency:|r",
     ["ma_UpdateDiffLabel"]            = "|cFF00FF00^Update Diff:|r",
     ["ma_MeanLabel"]                  = "|cFF00FF00Mean:|r",
@@ -873,4 +897,5 @@ function Return_enUS()
     ["lfer_Error"]                    = "Error Search String Matched but an error occured or unable to find type"
 
 }
+  for k,v in pairs(translations) do L[k] = v end
 end

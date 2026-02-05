@@ -1,4 +1,4 @@
-﻿-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 --
 -- AzerothAdmin Version 3.x
 -- AzerothAdmin is a derivative of TrinityAdmin/MangAdmin.
@@ -22,14 +22,14 @@
 
 function AzerothAdmin:CreateTicketSection()
   local transparency = {
-    bg = AzerothAdmin.db.account.style.transparency.backgrounds,
-    btn = AzerothAdmin.db.account.style.transparency.buttons,
-    frm = AzerothAdmin.db.account.style.transparency.frames
+    bg = AzerothAdmin.db.profile.style.transparency.backgrounds,
+    btn = AzerothAdmin.db.profile.style.transparency.buttons,
+    frm = AzerothAdmin.db.profile.style.transparency.frames
   }
   local color = {
-    bg = AzerothAdmin.db.account.style.color.backgrounds,
-    btn = AzerothAdmin.db.account.style.color.buttons,
-    frm = AzerothAdmin.db.account.style.color.frames
+    bg = AzerothAdmin.db.profile.style.color.backgrounds,
+    btn = AzerothAdmin.db.profile.style.color.buttons,
+    frm = AzerothAdmin.db.profile.style.color.frames
   }
 
   FrameLib:BuildButton({
@@ -41,76 +41,17 @@ function AzerothAdmin:CreateTicketSection()
         color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
-        width = 60,
-        height = 15
+        width = 70,
+        height = 20
     },
     setpoint = {
         pos = "TOPLEFT",
         offX = 5,
-        offY = -5
+        offY = -226
     },
-    text = Locale["ma_TicketResetButton"]
+    text = Locale["ma_TicketLoadButton"]
 })
 
-  FrameLib:BuildButton({
-    name = "ma_loadallticktsbutton",
-    group = "ticket",
-    parent = ma_midframe,
-    texture = {
-        name = "ma_loadticketsbutton_texture",
-        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-        width = 100,
-        height = 15
-    },
-    setpoint = {
-        pos = "TOPLEFT",
-        offX = 80,
-        offY = 0
-    },
-    text = Locale["ma_TicketLoadAllButton"]
-})
-
-  FrameLib:BuildButton({
-    name = "ma_loadonlineticketsbutton",
-    group = "ticket",
-    parent = ma_midframe,
-    texture = {
-        name = "ma_loadticketsbutton_texture",
-        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-        width = 100,
-        height = 15
-    },
-    setpoint = {
-        pos = "TOPLEFT",
-        offX = 80,
-        offY = -15
-    },
-    text = Locale["ma_TicketLoadOnlineButton"]
-})
-
-  FrameLib:BuildButton({
-    name = "ma_showbutton",
-    group = "ticket",
-    parent = ma_midframe,
-    texture = {
-        name = "ma_showbutton_texture",
-        color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-        width = 60,
-        height = 15
-    },
-    setpoint = {
-        pos = "TOPLEFT",
-        offX = 200,
-        offY = -5
-    },
-    text = Locale["ma_TicketShowButton"]
-})
 
   FrameLib:BuildButton({
     name = "ma_goticketbutton",
@@ -126,7 +67,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 240,
+      offX = 80,
       offY = -226
     },
     text = Locale["ma_TicketGoButton"]
@@ -146,7 +87,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 325,
+      offX = 165,
       offY = -226
     },
     text = Locale["ma_ticketwhisperbutton"]
@@ -166,7 +107,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 410,
+      offX = 250,
       offY = -226
     },
     text = Locale["ma_GetCharTicketButton"]
@@ -186,7 +127,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 495,
+      offX = 335,
       offY = -226
     },
     text = Locale["ma_GoCharTicketButton"]
@@ -206,7 +147,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 580,
+      offX = 420,
       offY = -226
     },
     text = Locale["ma_AnswerButton"]
@@ -226,7 +167,7 @@ function AzerothAdmin:CreateTicketSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 665,
+      offX = 505,
       offY = -226
     },
     text = Locale["ma_DeleteButton"]
@@ -241,13 +182,13 @@ function AzerothAdmin:CreateTicketSection()
       color = {0,0,0,0.7}
     },
     size = {
-      width = 450,
-      height = 200
+      width = 300,
+      height = 215
     },
     setpoint = {
-      pos = "TOPLEFT",
-      offX = 270,
-      offY = -10
+      pos = "TOPRIGHT",
+      offX = -25,
+      offY = -5
     },
     --[[setpoint2 = {
       pos = "BOTTOMRIGHT",
@@ -265,8 +206,8 @@ function AzerothAdmin:CreateTicketSection()
     text = Locale["ma_ticketidlabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 2,
-      offY = -30
+      offX = 5,
+      offY = -5
     }
   })
 
@@ -291,8 +232,8 @@ function AzerothAdmin:CreateTicketSection()
     text = Locale["ma_ticketcreatedbylabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 2,
-      offY = -42
+      offX = 5,
+      offY = -20
     }
   })
 
@@ -317,8 +258,8 @@ function AzerothAdmin:CreateTicketSection()
     text = Locale["ma_tickettimecreatedlabel"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 2,
-      offY = -54
+      offX = 5,
+      offY = -35
     }
   })
 
@@ -336,65 +277,68 @@ function AzerothAdmin:CreateTicketSection()
     }
   })
 
-  FrameLib:BuildFontString({
-    name = "ma_ticketlastchangelabel",
+  FrameLib:BuildFrame({
+    type = "ScrollFrame",
+    name = "ma_ticketdetailscrollframe",
     group = "ticket",
     parent = ma_midframe,
-    text = Locale["ma_ticketlastchangelabel"],
+    texture = {
+      color = {0,0,0,0.7}
+    },
+    size = {
+      width = 380,
+      height = 170
+    },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 2,
-      offY = -66
-    }
-  })
-
-  FrameLib:BuildFontString({
-    name = "ma_ticketlastchange",
-    group = "ticket",
-    parent = ma_midframe,
-    text = "",
-    setpoint = {
-      pos = "LEFT",
-      relTo = "ma_ticketlastchangelabel",
-      relPos = "RIGHT",
       offX = 5,
-      offY = 0
-    }
+      offY = -50
+    },
+    inherits = "UIPanelScrollFrameTemplate"
   })
 
-  FrameLib:BuildFontString({
-    name = "ma_ticketmessagelabel",
-    group = "ticket",
-    parent = ma_midframe,
-    text = Locale["ma_ticketmessagelabel"],
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 2,
-      offY = -82
-    }
-  })
-  
   FrameLib:BuildFrame({
     type = "EditBox",
     name = "ma_ticketdetail",
     group = "ticket",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
+    parent = ma_ticketdetailscrollframe,
     size = {
-      width = 260,
-      height = 141
+      width = 360,
+      height = 500  -- Make it much taller than the scroll frame to ensure text appears
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 2,
-      offY = -96
+      offX = 0,
+      offY = 0
     },
     maxletters = 623,
-    multiline = true
+    multiline = true,
+    autoFocus = false,
+    script = {
+      {"OnEscapePressed", function(self) self:ClearFocus() end}
+    }
   })
+
+  -- Make the EditBox non-editable by preventing all text changes
+  ma_ticketdetail.originalText = ""
+  ma_ticketdetail:SetScript("OnTextChanged", function(self, userInput)
+    if userInput then
+      self:SetText(self.originalText)
+    end
+  end)
+  ma_ticketdetail:SetScript("OnEditFocusGained", function(self)
+    self:HighlightText()
+  end)
+
+  -- Set text color to white to ensure visibility
+  ma_ticketdetail:SetTextColor(1, 1, 1, 1)
+  -- Set text to align at top-left
+  ma_ticketdetail:SetJustifyH("LEFT")
+  ma_ticketdetail:SetJustifyV("TOP")
+  -- Add text insets to ensure text is visible (left, right, top, bottom)
+  ma_ticketdetail:SetTextInsets(5, 5, 5, 5)
+  -- Set the EditBox as the scroll child
+  ma_ticketdetailscrollframe:SetScrollChild(ma_ticketdetail)
 
   FrameLib:BuildButton({
     name = "ma_ticketscrollframe1",
@@ -402,18 +346,15 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe",
-      relPos = "TOPLEFT",
+      relPos = "TOPRIGHT",
+      offX = -20,
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -424,18 +365,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe1",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -446,18 +383,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe2",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -468,18 +401,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe3",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -490,18 +419,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe4",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -512,18 +437,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe5",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -534,18 +455,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe6",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -556,18 +473,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe7",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -578,18 +491,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe8",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -600,18 +509,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe9",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -622,18 +527,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe10",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
@@ -644,18 +545,14 @@ function AzerothAdmin:CreateTicketSection()
     group = "ticket",
     parent = ma_midframe,
     setpoint = {
-      pos = "TOPLEFT",
+      pos = "TOPRIGHT",
       relTo = "ma_ticketscrollframe11",
-      relPos = "BOTTOMLEFT",
+      relPos = "BOTTOMRIGHT",
       offY = -1
-    },
-    texture = {
-      name = "ma_ticketeditbox_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     text = "",
     size = {
-      width = 440,
+      width = 270,
       height = 16
     },
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}

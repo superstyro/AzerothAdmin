@@ -8,6 +8,12 @@
   - Removed AcctDelete and AcctDelete_Confirmed command functions and confirmation dialog
   - Cleaned up related locale strings, tooltips, and script references across all 11 locale files
 
+- REMOVE Acct Passwd button and reorganize Main tab layout
+  - Removed Acct Passwd button from Main tab
+  - Moved GMs InGame and GM List buttons into the first column (offX=333)
+  - Moved TeleAdd and TeleDel buttons to where GMs InGame and GM List were (offX=578)
+  - Cleaned up related PrepareScript reference in Init.lua
+
 - REPLACE Hover-mode button with Spectator mode on GM tab
   - Replaced non-functional Hover-mode on/off buttons with Spectator mode (.gm spectator on/off)
   - Spectator mode allows GM characters to use /follow on members of the opposite faction (requires .gm on)

@@ -753,8 +753,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -10
+      offX = 333,
+      offY = -75
     },
     text = Locale["ma_gmingame"]
   })
@@ -773,8 +773,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -32
+      offX = 333,
+      offY = -97
     },
     text = Locale["ma_gmlist"]
   })
@@ -1180,26 +1180,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_acctpasswdbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctpasswdbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -54
-    },
-    text = Locale["ma_acctpasswd"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_gmnotifybutton",
     group = "main",
     parent = ma_midframe,
@@ -1214,7 +1194,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -75
+      offY = -54
     },
     text = Locale["ma_gmnotify"]
   })
@@ -1233,8 +1213,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 333,
-      offY = -97
+      offX = 578,
+      offY = -10
     },
     text = Locale["ma_teleaddbutton"]
     })
@@ -1253,8 +1233,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 415,
-      offY = -140
+      offX = 578,
+      offY = -32
     },
     text = Locale["ma_teledelbutton"]
     })

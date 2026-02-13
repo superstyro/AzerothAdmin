@@ -2,6 +2,12 @@
 
 ## -=[ Version 21 - 02/12/2026]=-
 
+- REMOVE Acct Create and Acct Delete buttons from GM tab
+  - Removed non-functional Acct Create and Acct Delete buttons
+  - Moved Acct Addon to the top position of the column and shifted remaining buttons up
+  - Removed AcctDelete and AcctDelete_Confirmed command functions and confirmation dialog
+  - Cleaned up related locale strings, tooltips, and script references across all 11 locale files
+
 - REPLACE Hover-mode button with Spectator mode on GM tab
   - Replaced non-functional Hover-mode on/off buttons with Spectator mode (.gm spectator on/off)
   - Spectator mode allows GM characters to use /follow on members of the opposite faction (requires .gm on)

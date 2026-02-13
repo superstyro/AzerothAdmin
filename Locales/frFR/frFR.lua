@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "La créature sélectionnée lance le sort [SpellID] sur sa cible. [[Paramètres : #SpellID]]",
     ["tt_gmclearbutton"]              = "Efface la boîte de paramètres.",
     ["tt_listitembutton"]             = "Liste toutes les occurrences de [#itemID]. [[Paramètres : #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Crée un compte joueur [[Paramètres : $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Supprime un compte joueur et tous les personnages [[Paramètres : $accountname]]",
     ["tt_acctaddonbutton"]            = "Définit $account pour utiliser #addon(0=WoW, 1=TBC, 2=WotLK) [[Paramètres : $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Définit $account au #gmlevel (0=Joueur, 1=Assistant, 2=Aide, 3=GM, 4=Admin) [[Paramètres : $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Définit le mot de passe de $account [[Paramètres : $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Lancer Cible",
     ["ma_listitem"]                   = "Lister Objet",
     ["ma_GmClear"]                    = "Effacer Params",
-    ["ma_acctcreate"]                 = "Créer Compte",
-    ["ma_acctdelete"]                 = "Suppr. Compte",
     ["ma_acctaddon"]                  = "Addon Compte",
     ["ma_acctgmlvl"]                  = "Niveau GM",
     ["ma_acctpasswd"]                 = "MdP Compte",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Êtes-vous sûr de vouloir basculer toutes les cartes ? Cela peut geler le client pendant quelques secondes.",
     ["msg_account_lock_confirm"]      = "Êtes-vous sûr de vouloir %s ce compte ?",
     ["msg_acct_create_confirm"]       = "Êtes-vous sûr de vouloir créer le compte '%s' ?",
-    ["msg_acct_delete_confirm"]       = "Êtes-vous sûr de vouloir SUPPRIMER le compte '%s' ?",
     ["msg_tele_del_confirm"]          = "Êtes-vous sûr de vouloir supprimer la destination de téléportation '%s' ?",
 
 

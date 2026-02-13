@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "Ausgewählte Kreatur wirkt Zauber [SpellID] auf ihr Ziel. [[Parameter: #SpellID]]",
     ["tt_gmclearbutton"]              = "Löscht das Parameterfeld.",
     ["tt_listitembutton"]             = "Listet alle Vorkommen von [#itemID] auf. [[Parameter: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Erstellt einen Spieler-Account [[Parameter: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Löscht einen Spieler-Account und alle Charaktere [[Parameter: $accountname]]",
     ["tt_acctaddonbutton"]            = "Setzt $account auf #addon (0=WoW, 1=TBC, 2=WotLK) [[Parameter: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Setzt $account auf #gmlevel (0=Spieler, 1=Helfer, 2=Assistent, 3=GM, 4=Admin) [[Parameter: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Setzt Passwort für $account [[Parameter: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Ziel wirken",
     ["ma_listitem"]                   = "Gegenstand auflisten",
     ["ma_GmClear"]                    = "Parameter löschen",
-    ["ma_acctcreate"]                 = "Account erstellen",
-    ["ma_acctdelete"]                 = "Account löschen",
     ["ma_acctaddon"]                  = "Account Addon",
     ["ma_acctgmlvl"]                  = "Account GM-Stufe",
     ["ma_acctpasswd"]                 = "Account Passwort",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Seid Ihr sicher, dass Ihr alle Karten umschalten wollt? Dies kann den Client für einige Sekunden einfrieren.",
     ["msg_account_lock_confirm"]      = "Seid Ihr sicher, dass Ihr diesen Account %s wollt?",
     ["msg_acct_create_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' erstellen wollt?",
-    ["msg_acct_delete_confirm"]       = "Seid Ihr sicher, dass Ihr den Account '%s' LÖSCHEN wollt?",
     ["msg_tele_del_confirm"]          = "Seid Ihr sicher, dass Ihr den Teleport-Ort '%s' löschen wollt?",
 
 

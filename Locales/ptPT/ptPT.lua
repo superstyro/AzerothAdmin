@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "A criatura selecionada lança o feitiço [SpellID] no seu alvo. [[Parâmetros: #SpellID]]",
     ["tt_gmclearbutton"]              = "Limpa a caixa de parâmetros.",
     ["tt_listitembutton"]             = "Lista todas as ocorrências de [#itemID]. [[Parâmetros: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Cria uma conta de jogador [[Parâmetros: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Elimina uma conta de jogador e todos os personagens [[Parâmetros: $accountname]]",
     ["tt_acctaddonbutton"]            = "Define $account para usar #addon(0=WoW, 1=TBC, 2=WotLK) [[Parâmetros: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Define $account para #gmlevel (0=Jogador, 1=Ajudante, 2=Assistente, 3=GM, 4=Admin) [[Parâmetros: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Define $account $password [[Parâmetros: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Lançar Alvo",
     ["ma_listitem"]                   = "Listar Item",
     ["ma_GmClear"]                    = "Limpar Params",
-    ["ma_acctcreate"]                 = "Criar Conta",
-    ["ma_acctdelete"]                 = "Eliminar Conta",
     ["ma_acctaddon"]                  = "Addon Conta",
     ["ma_acctgmlvl"]                  = "NívelGM Conta",
     ["ma_acctpasswd"]                 = "Senha Conta",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Tem certeza que deseja alternar todos os mapas? Isso pode congelar o cliente por alguns segundos.",
     ["msg_account_lock_confirm"]      = "Tem certeza que deseja %s este conta?",
     ["msg_acct_create_confirm"]       = "Tem certeza que deseja criar a conta '%s'?",
-    ["msg_acct_delete_confirm"]       = "Tem certeza que deseja EXCLUIR a conta '%s'?",
     ["msg_tele_del_confirm"]          = "Tem certeza que deseja excluir o local de teletransporte '%s'?",
 
 

@@ -251,10 +251,6 @@ function AzerothAdmin:OnEnable()
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
 
-  -- Dissable unusable options in GM(main) tab WIP: FIX #10
-  ma_acctcreatebutton:Disable()
-  ma_acctdeletebutton:Disable()
-
   -- Dissable unusable options in Char tab WIP: FIX #9
   ma_mapsonbutton:Disable()
   ma_mapsoffbutton:Disable()

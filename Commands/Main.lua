@@ -296,18 +296,6 @@ function AzerothAdminCommands.AcctCreate()
   end)
 end
 
-function AzerothAdminCommands.AcctDelete()
-  local param = ma_parameter:GetText()
-  if param == "" then
-    AzerothAdmin:Print("Error: Parameter cannot be empty")
-    return
-  end
-  local confirmMsg = string.format(Locale["msg_acct_delete_confirm"] or "Are you sure you want to DELETE account '%s'?", param)
-  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
-    AzerothAdminCommands.AcctDelete_Confirmed()
-  end)
-end
-
 function AzerothAdminCommands.AcctAddon()
   local param = ma_parameter:GetText()
   if param == "" then

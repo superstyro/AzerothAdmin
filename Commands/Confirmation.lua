@@ -38,25 +38,11 @@ if not StaticPopupDialogs["AZEROTHADMIN_CONFIRM_DIALOG"] then
 end
 
 -- Helper function to show confirmation dialog
--- Usage: AzerothAdmin:ShowConfirmDialog("Delete account?", function() AcctDelete_Confirmed() end)
 function AzerothAdmin:ShowConfirmDialog(message, onConfirmFunc)
   local dialog = StaticPopupDialogs["AZEROTHADMIN_CONFIRM_DIALOG"]
   dialog.text = message
   dialog.OnAccept = onConfirmFunc
   StaticPopup_Show("AZEROTHADMIN_CONFIRM_DIALOG")
-end
-
--- Example wrapper functions for destructive operations
--- These demonstrate how to wrap existing functions with confirmation dialogs
-
--- Confirmed version of account deletion (called after confirmation)
-function AzerothAdminCommands.AcctDelete_Confirmed()
-  local param = ma_parameter:GetText()
-  if param == "" then
-    AzerothAdmin:Print("Error: Parameter cannot be empty")
-    return
-  end
-  AzerothAdmin:ChatMsg(".account delete "..param)
 end
 
 -- Confirmed version of teleport location deletion (called after confirmation)

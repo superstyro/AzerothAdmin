@@ -1140,46 +1140,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_acctcreatebutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctcreatebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -10
-    },
-    text = Locale["ma_acctcreate"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_acctdeletebutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctdeletebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -32
-    },
-    text = Locale["ma_acctdelete"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_acctaddonbutton",
     group = "main",
     parent = ma_midframe,
@@ -1194,7 +1154,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -54
+      offY = -10
     },
     text = Locale["ma_acctaddon"]
   })
@@ -1214,7 +1174,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -75
+      offY = -32
     },
     text = Locale["ma_acctgmlvl"]
   })
@@ -1234,7 +1194,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -97
+      offY = -54
     },
     text = Locale["ma_acctpasswd"]
   })
@@ -1254,7 +1214,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -119
+      offY = -75
     },
     text = Locale["ma_gmnotify"]
   })
@@ -1274,7 +1234,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -140
+      offY = -97
     },
     text = Locale["ma_teleaddbutton"]
     })

@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "Выбранное существо сотворит заклинание [SpellID] на свою цель. [[Параметры: #SpellID]]",
     ["tt_gmclearbutton"]              = "Очистить поле параметров.",
     ["tt_listitembutton"]             = "Список всех вхождений [#itemID]. [[Параметры: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Создать аккаунт игрока [[Параметры: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Удалить аккаунт игрока и всех персонажей [[Параметры: $accountname]]",
     ["tt_acctaddonbutton"]            = "Установить $account для использования #addon(0=WoW, 1=TBC, 2=WotLK) [[Параметры: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Установить $account уровень #gmlevel (0=Игрок, 1=Помощник, 2=Ассистент, 3=GM, 4=Админ) [[Параметры: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Установить $account пароль $password [[Параметры: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Применить на цель",
     ["ma_listitem"]                   = "Список предметов",
     ["ma_GmClear"]                    = "Очистить парам",
-    ["ma_acctcreate"]                 = "Создать акк",
-    ["ma_acctdelete"]                 = "Удалить акк",
     ["ma_acctaddon"]                  = "Аддон акк",
     ["ma_acctgmlvl"]                  = "GMУровень акк",
     ["ma_acctpasswd"]                 = "Пароль акк",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Вы уверены, что хотите переключить все карты? Это может заморозить клиент на несколько секунд.",
     ["msg_account_lock_confirm"]      = "Вы уверены, что хотите %s эту учетную запись?",
     ["msg_acct_create_confirm"]       = "Вы уверены, что хотите создать учетную запись '%s'?",
-    ["msg_acct_delete_confirm"]       = "Вы уверены, что хотите УДАЛИТЬ учетную запись '%s'?",
     ["msg_tele_del_confirm"]          = "Вы уверены, что хотите удалить место телепортации '%s'?",
 
 

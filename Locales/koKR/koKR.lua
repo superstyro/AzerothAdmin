@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "선택한 생명체가 대상에게 주문 [SpellID]를 시전합니다. [[매개변수: #SpellID]]",
     ["tt_gmclearbutton"]              = "매개변수 상자를 지웁니다.",
     ["tt_listitembutton"]             = "[#itemID]의 모든 발생을 나열합니다. [[매개변수: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "플레이어 계정을 생성합니다 [[매개변수: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "플레이어 계정과 모든 캐릭터를 삭제합니다 [[매개변수: $accountname]]",
     ["tt_acctaddonbutton"]            = "$account를 #addon(0=WoW, 1=TBC, 2=WotLK)으로 설정합니다 [[매개변수: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "$account를 #gmlevel (0=플레이어, 1=도우미, 2=보조, 3=GM, 4=관리자)로 설정합니다 [[매개변수: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "$account $password를 설정합니다 [[매개변수: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "대상 시전",
     ["ma_listitem"]                   = "아이템 목록",
     ["ma_GmClear"]                    = "매개변수 지우기",
-    ["ma_acctcreate"]                 = "계정 생성",
-    ["ma_acctdelete"]                 = "계정 삭제",
     ["ma_acctaddon"]                  = "계정 애드온",
     ["ma_acctgmlvl"]                  = "계정 GM레벨",
     ["ma_acctpasswd"]                 = "계정 비밀번호",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "모든 지도를 전환하시겠습니까? 클라이언트가 몇 초 동안 멈출 수 있습니다.",
     ["msg_account_lock_confirm"]      = "이 계정을 %s 하시겠습니까?",
     ["msg_acct_create_confirm"]       = "계정 '%s'을(를) 생성하시겠습니까?",
-    ["msg_acct_delete_confirm"]       = "계정 '%s'을(를) 삭제하시겠습니까?",
     ["msg_tele_del_confirm"]          = "텔레포트 위치 '%s'을(를) 삭제하시겠습니까?",
 
 

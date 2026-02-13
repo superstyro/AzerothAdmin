@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "Selected creature casts spell [SpellID] at it's target. [[Parameters: #SpellID]]",
     ["tt_gmclearbutton"]              = "Clears the parameter box.",
     ["tt_listitembutton"]             = "Lists all occurences of [#itemID]. [[Parameters: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Creates a player account [[Parameters: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Deletes a player account and all characters [[Parameters: $accountname]]",
     ["tt_acctaddonbutton"]            = "Sets $account to use #addon(0=WoW, 1=TBC, 2=WotLK) [[Parameters: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Sets $account to #gmlevel (0=Player, 1=Helper, 2=Assistant, 3=GM, 4=Admin) [[Parameters: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Sets $account $password [[Parameters: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Cast Target",
     ["ma_listitem"]                   = "List Item",
     ["ma_GmClear"]                    = "Clear Params",
-    ["ma_acctcreate"]                 = "Acct Create",
-    ["ma_acctdelete"]                 = "Acct Delete",
     ["ma_acctaddon"]                  = "Acct Addon",
     ["ma_acctgmlvl"]                  = "Acct GMLvl",
     ["ma_acctpasswd"]                 = "Acct Passwd",
@@ -638,7 +634,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Are you sure you want to toggle all maps? This may freeze the client for a few seconds.",
     ["msg_account_lock_confirm"]      = "Are you sure you want to %s this account?",
     ["msg_acct_create_confirm"]       = "Are you sure you want to create account '%s'?",
-    ["msg_acct_delete_confirm"]       = "Are you sure you want to DELETE account '%s'?",
     ["msg_tele_del_confirm"]          = "Are you sure you want to delete teleport location '%s'?",
 
 

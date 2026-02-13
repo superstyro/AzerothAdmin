@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "所選生物對其目標施放法術[SpellID]。 [[參數: #SpellID]]",
     ["tt_gmclearbutton"]              = "清空參數框。",
     ["tt_listitembutton"]             = "列出所有[#itemID]的出現。 [[參數: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "建立玩家帳號 [[參數: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "刪除玩家帳號及所有角色 [[參數: $accountname]]",
     ["tt_acctaddonbutton"]            = "設定$account使用#addon(0=WoW, 1=TBC, 2=WotLK) [[參數: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "設定$account為#gmlevel (0=玩家, 1=助手, 2=協助者, 3=GM, 4=管理員) [[參數: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "設定$account密碼 [[參數: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "目標施法",
     ["ma_listitem"]                   = "列出物品",
     ["ma_GmClear"]                    = "清空參數",
-    ["ma_acctcreate"]                 = "建立帳號",
-    ["ma_acctdelete"]                 = "刪除帳號",
     ["ma_acctaddon"]                  = "帳號資料片",
     ["ma_acctgmlvl"]                  = "帳號GM等級",
     ["ma_acctpasswd"]                 = "帳號密碼",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "你確定要切換所有地圖嗎？這可能會導致客戶端凍結幾秒鐘。",
     ["msg_account_lock_confirm"]      = "你確定要 %s 這個帳號嗎？",
     ["msg_acct_create_confirm"]       = "你確定要創建帳號 '%s' 嗎？",
-    ["msg_acct_delete_confirm"]       = "你確定要刪除帳號 '%s' 嗎？",
     ["msg_tele_del_confirm"]          = "你確定要刪除傳送點 '%s' 嗎？",
 
 

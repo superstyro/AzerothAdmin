@@ -185,8 +185,6 @@ if L then
     ["tt_casttargetbutton"]           = "La creatura selezionata lancia l'incantesimo [SpellID] sul suo bersaglio. [[Parametri: #SpellID]]",
     ["tt_gmclearbutton"]              = "Cancella il campo parametri.",
     ["tt_listitembutton"]             = "Elenca tutte le occorrenze di [#itemID]. [[Parametri: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Crea un account giocatore [[Parametri: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Elimina un account giocatore e tutti i personaggi [[Parametri: $accountname]]",
     ["tt_acctaddonbutton"]            = "Imposta $account per usare #addon(0=WoW, 1=TBC, 2=WotLK) [[Parametri: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Imposta $account al #gmlevel (0=Giocatore, 1=Helper, 2=Assistente, 3=GM, 4=Admin) [[Parametri: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Imposta $account $password [[Parametri: $accountname $password $password]]",
@@ -237,8 +235,6 @@ if L then
     ["ma_casttarget"]                 = "Lancia Target",
     ["ma_listitem"]                   = "Lista Oggetto",
     ["ma_GmClear"]                    = "Cancella Param",
-    ["ma_acctcreate"]                 = "Crea Account",
-    ["ma_acctdelete"]                 = "Elimina Account",
     ["ma_acctaddon"]                  = "Addon Account",
     ["ma_acctgmlvl"]                  = "Livello GM Account",
     ["ma_acctpasswd"]                 = "Password Account",
@@ -628,7 +624,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "Sei sicuro di voler attivare/disattivare tutte le mappe? Questo potrebbe bloccare il client per alcuni secondi.",
     ["msg_account_lock_confirm"]      = "Sei sicuro di voler %s questo account?",
     ["msg_acct_create_confirm"]       = "Sei sicuro di voler creare l'account '%s'?",
-    ["msg_acct_delete_confirm"]       = "Sei sicuro di voler ELIMINARE l'account '%s'?",
     ["msg_tele_del_confirm"]          = "Sei sicuro di voler eliminare la posizione di teletrasporto '%s'?",
 
 

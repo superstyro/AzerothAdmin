@@ -183,8 +183,6 @@ if L then
     ["tt_casttargetbutton"]           = "La criatura seleccionada lanza el hechizo [SpellID] sobre su objetivo. [[Parámetros: #SpellID]]",
     ["tt_gmclearbutton"]              = "Limpia el cuadro de parámetros.",
     ["tt_listitembutton"]             = "Lista todas las apariciones de [#itemID]. [[Parámetros: #ItemID]]",
-    ["tt_acctcreatebutton"]           = "Crea una cuenta de jugador [[Parámetros: $accountname $password]]",
-    ["tt_acctdeletebutton"]           = "Elimina una cuenta de jugador y todos los personajes [[Parámetros: $accountname]]",
     ["tt_acctaddonbutton"]            = "Establece $account para usar #addon(0=WoW, 1=TBC, 2=WotLK) [[Parámetros: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Establece $account a #gmlevel (0=Jugador, 1=Ayudante, 2=Asistente, 3=GM, 4=Admin) [[Parámetros: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Establece $account $password [[Parámetros: $accountname $password $password]]",
@@ -235,8 +233,6 @@ if L then
     ["ma_casttarget"]                 = "Lanzar Objetivo",
     ["ma_listitem"]                   = "Listar Objeto",
     ["ma_GmClear"]                    = "Limpiar Params",
-    ["ma_acctcreate"]                 = "Crear Cuenta",
-    ["ma_acctdelete"]                 = "Eliminar Cuenta",
     ["ma_acctaddon"]                  = "Addon Cuenta",
     ["ma_acctgmlvl"]                  = "GM Lvl Cuenta",
     ["ma_acctpasswd"]                 = "Pass Cuenta",
@@ -626,7 +622,6 @@ if L then
     ["msg_toggle_maps_confirm"]       = "¿Estás seguro de que quieres cambiar todos los mapas? Esto puede congelar el cliente por unos segundos.",
     ["msg_account_lock_confirm"]      = "¿Estás seguro de que quieres %s esta cuenta?",
     ["msg_acct_create_confirm"]       = "¿Estás seguro de que quieres crear la cuenta '%s'?",
-    ["msg_acct_delete_confirm"]       = "¿Estás seguro de que quieres ELIMINAR la cuenta '%s'?",
     ["msg_tele_del_confirm"]          = "¿Estás seguro de que quieres eliminar la ubicación de teletransporte '%s'?",
 
 

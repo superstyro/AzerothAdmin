@@ -1133,8 +1133,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -140
+      offX = 470,
+      offY = -231
     },
     text = Locale["ma_GmClear"]
   })

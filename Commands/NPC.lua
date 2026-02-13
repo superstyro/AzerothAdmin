@@ -336,3 +336,7 @@ function AzerothAdminCommands.ShowMove()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".movegens")
 end
+
+function AzerothAdminCommands.NpcClearParams()
+  ma_npccharactertarget:SetText("")
+end

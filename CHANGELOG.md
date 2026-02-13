@@ -2,6 +2,13 @@
 
 ## -=[ Version 21 - 02/12/2026]=-
 
+- ADD Clear Params button to Char and NPC tabs
+  - Moved existing Clear Params button on Main tab inline with the Parameters input box
+  - Added Clear Params button to Char tab (ma_charclearbutton) inline with the Parameters input box
+  - Added Clear Params button to NPC tab (ma_npcclearparamsbutton) inline with the Parameters input box
+  - Each button clears its own tab's parameter input box
+  - Registered button scripts in Init.lua with shared tooltip
+
 - REMOVE Acct Create and Acct Delete buttons from GM tab
   - Removed non-functional Acct Create and Acct Delete buttons
   - Moved Acct Addon to the top position of the column and shifted remaining buttons up

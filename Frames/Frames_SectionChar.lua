@@ -1442,4 +1442,24 @@ function AzerothAdmin:CreateCharSection()
     inherits = "InputBoxTemplate"
   })
 
+  FrameLib:BuildButton({
+    name = "ma_charclearbutton",
+    group = "char",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_charclearbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 470,
+      offY = -231
+    },
+    text = Locale["ma_GmClear"]
+  })
+
 end

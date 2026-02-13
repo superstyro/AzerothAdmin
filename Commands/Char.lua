@@ -633,3 +633,7 @@ function AzerothAdminCommands.HonorUpdateButton()
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
 end
+
+function AzerothAdminCommands.CharClearParams()
+  ma_charactertarget:SetText("")
+end

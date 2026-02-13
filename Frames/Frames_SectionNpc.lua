@@ -604,6 +604,26 @@ function AzerothAdmin:CreateNpcSection()
     inherits = "InputBoxTemplate"
   })
 
+  FrameLib:BuildButton({
+    name = "ma_npcclearparamsbutton",
+    group = "npc",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_npcclearparamsbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 470,
+      offY = -231
+    },
+    text = Locale["ma_GmClear"]
+  })
+
   FrameLib:BuildButton({ --Morph
     name = "ma_npcmorphbutton",
     group = "npc",

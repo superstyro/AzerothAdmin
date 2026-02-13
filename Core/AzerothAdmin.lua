@@ -252,8 +252,6 @@ function AzerothAdmin:OnEnable()
   --ma_mm_revivebutton:Show()
 
   -- Dissable unusable options in GM(main) tab WIP: FIX #10
-  ma_hoveronbutton:Disable()
-  ma_hoveroffbutton:Disable()
   ma_acctcreatebutton:Disable()
   ma_acctdeletebutton:Disable()
 

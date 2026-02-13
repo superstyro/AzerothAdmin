@@ -150,7 +150,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 10,
       offY = -70
     },
-    text = Locale["ma_HoverOnButton"]
+    text = Locale["ma_SpectatorOnButton"]
   })
 
   FrameLib:BuildButton({

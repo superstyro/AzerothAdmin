@@ -1,5 +1,14 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 21 - 02/12/2026]=-
+
+- REPLACE Hover-mode button with Spectator mode on GM tab
+  - Replaced non-functional Hover-mode on/off buttons with Spectator mode (.gm spectator on/off)
+  - Spectator mode allows GM characters to use /follow on members of the opposite faction (requires .gm on)
+  - Enabled buttons that were previously disabled
+  - Added descriptive tooltip explaining usage and zone reload requirement
+  - Updated all 12 locale files with translated button labels and tooltips
+
 ## -=[ Version 20 - 01/20/2026]=-
 
 **NOTE:** Ace3 localization system automatically detects and uses your WoW client's language setting. No manual configuration needed - your language is set automatically in version 20 and newer.

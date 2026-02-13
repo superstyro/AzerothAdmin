@@ -32,14 +32,8 @@ function AzerothAdminCommands.ToggleFlyMode(value)
   AzerothAdmin:ChatMsg(".gm fly "..value)
 end
 
-function AzerothAdminCommands.ToggleHoverMode(value)
-  --AzerothAdmin:ChatMsg("hover command not used "..value) --TODO: Change to another function.
-  local status
-  if value == 1 then
-    status = "on"
-  else
-    status = "off"
-  end
+function AzerothAdminCommands.ToggleSpectatorMode(value)
+  AzerothAdmin:ChatMsg(".gm spectator "..value)
 end
 
 function AzerothAdminCommands.ToggleWhisper(value)

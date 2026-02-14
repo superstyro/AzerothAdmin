@@ -76,6 +76,48 @@ Buttons in `Frames/Frames_Section*.lua` are positioned using `offX` (column) and
 
 Standard button size is 80x20. Columns 1-3 overlap with the player model area (bottom-left). The parameter box and clear button sit at `offY = -231`.
 
+### Char Tab Button Map
+
+Current button positions (Label = locale display text):
+
+| Position     | Col1 (140)   | Col2 (222)   | Col3 (303)    | Col4 (385)  | Col5 (467)  | Col6 (548)  |
+|--------------|--------------|--------------|---------------|-------------|-------------|-------------|
+| Row1 (-30)   | Kill         | Revive       | GPS           | Jail (A)    | Jail (H)    | UnJail      |
+| Row2 (-52)   | Show GUID    | PLAYER Info  | Distance      | Ban         | Appear      | G Create    |
+| Row3 (-74)   | MaxSkill     | Repair       | CombatStop    | BanInfo     | Recall      | G Invite    |
+| Row4 (-95)   | Kick         | BindSight    | UnBindSight   | BanList     | Summon      | G Rank      |
+| Row5 (-117)  | Cooldown     | Morph        | Demorph       | UnBan       | GroupSumn   | G UnInv     |
+| Row6 (-139)  | Rename       | Aura         | UnAura        | Mute        | Bank        | G Delete    |
+| Row7 (-160)  | Chng Faction | Freeze       | UnFreeze      | UnMute      | Dismount    |             |
+| Row8 (-182)  | Chng Race    | Possess      | UnPossess     | Damage      |             |             |
+| Row9 (-204)  | Customize    | ShowArea     | HideArea      | Save        |             |             |
+
+Top bar (offY -1 to -4): LearnLang dropdown + Learn button, Reset dropdown + Reset button, Modify dropdown + EditBox + Modify button.
+Bottom bar (offY -231): Parameter label, EditBox (240x20), Clear button.
+
+### UI Grid Layouts (Other Tabs)
+
+Most tabs use free-form positioning rather than a strict grid. Key patterns:
+
+- **Main Tab:** Left sidebar (offX 10-134) for GM toggles and display controls. Right columns (offX 333-660) for command buttons. Speed/Scale sliders at offX 205. No strict grid.
+- **Tele Tab:** Three-column scroll list layout (offX 5/220/420) with FauxScrollFrames. Action buttons at offX 660. Vertical chaining with offY -2 gaps.
+- **Ticket Tab:** Horizontal bottom button bar at offY -226 (offX 5-505 in 85px steps). Top area has scroll lists and detail panels.
+- **Misc Tab:** Left-aligned settings column (offX 6-160) with checkboxes, sliders, color swatches. Dropdowns at TOPRIGHT/BOTTOMRIGHT.
+- **Server Tab:** Left area with network graphs (offX 10, 170). Right sidebar buttons at TOPRIGHT. Bottom bar for announce/settings.
+- **NPC Tab:** Uses same grid system as Char tab (same column/row offsets). Has model viewer at BOTTOMLEFT, emote dropdowns at top. ColFive is 498, ColSix is 585 (different from Char).
+- **GO Tab:** Three zones — left controls (offX 5-105), center model (offX 182-262), right movement panel (offX 584-706). Free-form positioning throughout.
+
+### Button Name-to-Label Mapping
+
+Button frame names (e.g., `ma_namegobutton`) often do not match their visible UI labels (e.g., "Summon"). The source of truth for button labels is `Locales/enUS/enUS.lua`, where locale keys map to display text. When looking for a button by its visible label, search the locale file first, then trace the locale key back to the frame definition in `Frames_Section*.lua`.
+
+Common non-obvious mappings:
+
+- `ma_namegobutton` = "Summon" (`.summon` command)
+- `ma_gonamebutton` = "Appear" (`.appear` command)
+- `ma_groupgobutton` = "GroupSumn" (`.groupsummon` command)
+- `ma_charchnagefaction` = "Chng Faction" (note: typo in key name is intentional/legacy)
+
 ### Button Enable/Disable Logic
 
 Some buttons (Kill, Kick, Revive, Save) are dynamically enabled/disabled in `Core/AzerothAdmin.lua` via the `PLAYER_TARGET_CHANGED` event based on target state (alive/dead, player/NPC, self/other).
@@ -83,6 +125,7 @@ Some buttons (Kill, Kick, Revive, Save) are dynamically enabled/disabled in `Cor
 ## Adding a New Command Button
 
 Four steps (see `Docs/Adding.txt`):
+
 1. Add localized tooltip and button text in `Locales/<locale>/<locale>.lua`
 2. Write the command function in `Commands/<section>.lua`
 3. Register the button, function, text, and tooltip in `Core/Init.lua`

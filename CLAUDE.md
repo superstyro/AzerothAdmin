@@ -62,3 +62,8 @@ Four steps (see `Docs/Adding.txt`):
 - **Backslash paths** in the `.toc` file — WoW requires backslash separators in `.toc` load lists.
 - **Interface version** is `30300` (WoW 3.3.5). Do not change this.
 - Commands are sent to the server by writing to the chat frame (e.g., `SendChatMessage(".gm on")`).
+
+## AzerothCore Command References
+
+- **GM Commands:** <https://www.azerothcore.org/wiki/gm-commands>
+- **Wiki Home:** <https://www.azerothcore.org/wiki/home>

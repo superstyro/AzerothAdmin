@@ -733,7 +733,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
     for x, y in string.gmatch(text, Strings["ma_GmatchGPS"]) do
       for k,v in pairs(self.db.char.functionQueue) do
         if v == "GridNavigate" then
-          GridNavigate(string.format("%.1f", x), string.format("%.1f", y), nil)
+          AzerothAdminCommands.GridNavigate(string.format("%.1f", x), string.format("%.1f", y), nil)
           table.remove(self.db.char.functionQueue, k)
           break
         end

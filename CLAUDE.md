@@ -48,6 +48,38 @@ There is no traditional build system. This is a pure Lua addon loaded directly b
 
 The addon has 8 tabs, each with a matching `Frames/Frames_Section*.lua` (layout) and `Commands/*.lua` (logic): Main, Tele, Char, Ticket, Misc, Server, NPC, GO. There is also a Log tab (Frames only, no Commands file).
 
+### UI Grid Layout (Char Tab)
+
+Buttons in `Frames/Frames_Section*.lua` are positioned using `offX` (column) and `offY` (row) offsets from `TOPLEFT` of `ma_midframe`. The Char tab uses this grid:
+
+| Column   | offX |
+|----------|------|
+| ColOne   | 140  |
+| ColTwo   | 222  |
+| ColThree | 303  |
+| ColFour  | 385  |
+| ColFive  | 467  |
+| ColSix   | 548  |
+| ColSeven | 630  |
+
+| Row      | offY |
+|----------|------|
+| RowOne   | -30  |
+| RowTwo   | -52  |
+| RowThree | -74  |
+| RowFour  | -95  |
+| RowFive  | -117 |
+| RowSix   | -139 |
+| RowSeven | -160 |
+| RowEight | -182 |
+| RowNine  | -204 |
+
+Standard button size is 80x20. Columns 1-3 overlap with the player model area (bottom-left). The parameter box and clear button sit at `offY = -231`.
+
+### Button Enable/Disable Logic
+
+Some buttons (Kill, Kick, Revive, Save) are dynamically enabled/disabled in `Core/AzerothAdmin.lua` via the `PLAYER_TARGET_CHANGED` event based on target state (alive/dead, player/NPC, self/other).
+
 ## Adding a New Command Button
 
 Four steps (see `Docs/Adding.txt`):

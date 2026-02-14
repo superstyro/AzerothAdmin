@@ -1040,6 +1040,46 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_charlistdeletedbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_charlistdeletedbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 415,
+      offY = -141
+    },
+    text = Locale["ma_charlistdeleted"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_chardeletedrestorebutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_chardeletedrestorebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 415,
+      offY = -163
+    },
+    text = Locale["ma_chardeletedrestore"]
+  })
+
+  FrameLib:BuildButton({
     name = "ma_gmclearbutton",
     group = "main",
     parent = ma_midframe,

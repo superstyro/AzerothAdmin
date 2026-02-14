@@ -133,10 +133,6 @@ function AzerothAdminCommands.Demorph()
     AzerothAdmin:ChatMsg(".morph reset")
 end
 
-function AzerothAdminCommands.ToggleMapsChar(value)
-  AzerothAdmin:ChatMsg(".explorecheat "..value)
-end
-
 function AzerothAdminCommands.GPS()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")

@@ -294,46 +294,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_mapsonbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_mapsonbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 120,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 10,
-      offY = -150
-    },
-    text = Locale["ma_mapsbutton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_mapsoffbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_mapsoffbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 40,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 134,
-      offY = -150
-    },
-    text = Locale["ma_OffButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_waterwalkonbutton",
     group = "main",
     parent = ma_midframe,
@@ -348,7 +308,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
-      offY = -170
+      offY = -150
     },
     text = Locale["ma_waterwalkbutton"]
   })
@@ -368,47 +328,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 134,
-      offY = -170
-    },
-    text = Locale["ma_OffButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_accountlockonbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_accountlockonbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 120,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 10,
-      offY = -190
-    },
-    text = Locale["ma_accountlockbutton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_accountlockoffbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_accountlockoffbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 40,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 134,
-      offY = -190
+      offY = -150
     },
     text = Locale["ma_OffButton"]
   })

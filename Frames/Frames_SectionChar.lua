@@ -250,46 +250,6 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_showmapsbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_showmapsbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -30 --charRowOne
-    },
-    text = Locale["ma_ShowMapsCharButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_hidemapsbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_hidemapsbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 385, --charColFour offX = 303, --charColThree
-      offY = -30 --charRowOne offY = -52 --charRowTwo
-    },
-    text = Locale["ma_HideMapsButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_gpsbutton",
     group = "char",
     parent = ma_midframe,
@@ -304,7 +264,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -74 --charRowThree
+      offY = -30 --charRowOne
     },
     text = Locale["ma_GPSButton"]
   })
@@ -526,7 +486,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -95 --charRowFour
+      offY = -74 --charRowThree
     },
     text = Locale["ma_CharBindsight"]
   })
@@ -546,7 +506,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -117 --charRowFive
+      offY = -95 --charRowFour
     },
     text = Locale["ma_CharUnBindsight"]
   })

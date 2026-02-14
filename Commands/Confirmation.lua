@@ -55,14 +55,6 @@ function AzerothAdminCommands.TeleDelButton_Confirmed()
   AzerothAdmin:ChatMsg(".tele del "..cname)
 end
 
--- Confirmed version of toggle maps (called after confirmation)
-function AzerothAdminCommands.ToggleMaps_Confirmed(value)
-  AzerothAdmin:ChatMsg(".explorecheat "..value)
-  if value == 1 then
-  else
-  end
-end
-
 -- Confirmed version of account lock toggle (called after confirmation)
 function AzerothAdminCommands.ToggleAccountlock_Confirmed(value)
   AzerothAdmin:ChatMsg(".account lock "..value)

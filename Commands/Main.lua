@@ -59,13 +59,6 @@ function AzerothAdminCommands.ToggleCheatTaxi(value)
   end
 end
 
-function AzerothAdminCommands.ToggleMaps(value)
-  local confirmMsg = Locale["msg_toggle_maps_confirm"] or "Are you sure you want to toggle all maps? This may freeze the client for a few seconds."
-  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
-    AzerothAdminCommands.ToggleMaps_Confirmed(value)
-  end)
-end
-
 function AzerothAdminCommands.KillSomething()
   local target = UnitName("target") or UnitName("player")
   AzerothAdmin:ChatMsg(".die")

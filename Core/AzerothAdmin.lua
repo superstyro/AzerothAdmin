@@ -252,10 +252,6 @@ function AzerothAdmin:OnEnable()
   --ma_mm_revivebutton:Show()
 
   -- Dissable unusable options in Char tab WIP: FIX #9
-  ma_mapsonbutton:Disable()
-  ma_mapsoffbutton:Disable()
-  ma_showmapsbutton:Disable()
-  ma_hidemapsbutton:Disable()
 end
 
 --events

@@ -774,7 +774,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -97
+      offY = -54
     },
     text = Locale["ma_gmlist"]
   })
@@ -1194,7 +1194,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -54
+      offY = -97
     },
     text = Locale["ma_gmnotify"]
   })

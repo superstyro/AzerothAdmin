@@ -849,7 +849,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -95  --charRowFour
+      offY = -117  --charRowFive
     },
     text = Locale["ma_groupgobutton"]
   })
@@ -909,7 +909,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -117 --charRowFive
+      offY = -95 --charRowFour
     },
     text = Locale["ma_namegobutton"]
   })

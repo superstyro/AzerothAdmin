@@ -1175,66 +1175,6 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_questaddbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_questaddbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -182 --charRowEight
-    },
-    text = Locale["ma_QuestAddButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_questcompletebutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_questcompletebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 467, --charColFive
-      offY = -182 --charRowEight
-    },
-    text = Locale["ma_QuestCompleteButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_questremovebutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_questremovebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
-      offY = -182 --charRowEight
-    },
-    text = Locale["ma_QuestRemoveButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_damagebutton",
     group = "char",
     parent = ma_midframe,
@@ -1292,46 +1232,6 @@ function AzerothAdmin:CreateCharSection()
       offY = -204 --charRowNine
     },
     text = Locale["ma_ShowAreaButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_honoraddbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_honoraddbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 467, --charColFive
-      offY = -204 --charRowNine
-    },
-    text = Locale["ma_HonorAddButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_honorupdatebutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_honorupdatebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 548, --charColSix
-      offY = -204 --charRowNine
-    },
-    text = Locale["ma_HonorUpdateButton"]
   })
 
   FrameLib:BuildFontString({

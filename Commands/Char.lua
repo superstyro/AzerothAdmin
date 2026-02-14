@@ -582,24 +582,6 @@ function AzerothAdminCommands.UnMuteButton()
 
 end
 
-function AzerothAdminCommands.QuestAddButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest add "..cname)
-
-end
-
-function AzerothAdminCommands.QuestCompleteButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest complete "..cname)
-
-end
-
-function AzerothAdminCommands.QuestRemoveButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest remove "..cname)
-
-end
-
 function AzerothAdminCommands.DamageButton ()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".damage "..cname)
@@ -614,20 +596,6 @@ end
 function AzerothAdminCommands.ShowAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".showarea "..cname)
-end
-
-function AzerothAdminCommands.HonorAddButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".honor add "..cname)
-end
-
-function AzerothAdminCommands.HonorUpdateButton()
-  if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
-    local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".honor update ")
-  else
-    AzerothAdmin:Print(Locale["selectionerror1"])
-  end
 end
 
 function AzerothAdminCommands.CharClearParams()

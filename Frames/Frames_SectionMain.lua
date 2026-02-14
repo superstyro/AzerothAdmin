@@ -354,46 +354,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_bankbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_bankbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 660,
-      offY = -32
-    },
-    text = Locale["ma_BankButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_dismountbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_dismountbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 660,
-      offY = -54
-    },
-    text = Locale["ma_DismountButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_setjail_a_button",
     group = "main",
     parent = ma_midframe,
@@ -408,7 +368,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 660,
-      offY = -75
+      offY = -32
     },
     text = Locale["ma_SetJail_A_Button"]
   })
@@ -428,7 +388,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 660,
-      offY = -97
+      offY = -54
     },
     text = Locale["ma_SetJail_H_Button"]
   })

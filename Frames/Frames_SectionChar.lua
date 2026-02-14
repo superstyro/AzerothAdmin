@@ -915,6 +915,46 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_bankbutton",
+    group = "char",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_bankbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 467, --charColFive
+      offY = -139 --charRowSix
+    },
+    text = Locale["ma_BankButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_dismountbutton",
+    group = "char",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_dismountbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 467, --charColFive
+      offY = -160 --charRowSeven
+    },
+    text = Locale["ma_DismountButton"]
+  })
+
+  FrameLib:BuildButton({
     name = "ma_guildrankbutton",
     group = "char",
     parent = ma_midframe,

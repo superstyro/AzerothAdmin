@@ -163,8 +163,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
-      offY = -52 --charRowTwo
+      offX = 222, --charColTwo
+      offY = -30 --charRowOne
     },
     text = Locale["ma_ReviveButton"]
   })
@@ -183,8 +183,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 140, --charColOne
-      offY = -74  --charRowThree
+      offX = 385, --charColFour
+      offY = -204 --charRowNine
     },
     text = Locale["ma_SaveButton"]
   })
@@ -283,8 +283,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -30 --charRowOne
+      offX = 140, --charColOne
+      offY = -52 --charRowTwo
     },
     text = Locale["ma_GUIDButton"]
   })
@@ -323,8 +323,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 222, --charColTwo
-      offY = -74 --charRowThree
+      offX = 303, --charColThree
+      offY = -52 --charRowTwo
     },
     text = Locale["ma_DistanceButton"]
   })
@@ -344,7 +344,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -52 --charRowTwo
+      offY = -74 --charRowThree
     },
     text = Locale["ma_RecallButton"]
   })
@@ -625,8 +625,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -204 --charRowNine
+      offX = 140, --charColOne
+      offY = -74  --charRowThree
     },
     text = Locale["ma_charmaxskill"]
   })
@@ -727,8 +727,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -52 --charRowTwo [[offY = -225 --charRowTen]]
+      offX = 222, --charColTwo
+      offY = -74 --charRowThree
     },
     text = Locale["ma_charrepair"]
   })
@@ -789,7 +789,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -30 --charRowOne
+      offY = -52 --charRowTwo
     },
     text = Locale["ma_gonamebutton"]
   })
@@ -849,7 +849,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -74  --charRowThree
+      offY = -95  --charRowFour
     },
     text = Locale["ma_groupgobutton"]
   })
@@ -909,7 +909,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -95 --charRowFour
+      offY = -117 --charRowFive
     },
     text = Locale["ma_namegobutton"]
   })
@@ -932,26 +932,6 @@ function AzerothAdmin:CreateCharSection()
       offY = -95 --charRowFour
     },
     text = Locale["ma_guildrankbutton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_telegroupbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_telegroupbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 630, --charColSeven
-      offY = -30 --charRowOne
-    },
-    text = Locale["ma_telegroupbutton"]
   })
 
   FrameLib:BuildButton({
@@ -1015,26 +995,6 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_telenamebutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_telenamebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 630, --charColSeven
-      offY = -52 --charRowTwo
-    },
-    text = Locale["ma_telenamebutton"]
-    })
-
-  FrameLib:BuildButton({
     name = "ma_mutebutton",
     group = "char",
     parent = ma_midframe,
@@ -1048,8 +1008,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 630, --charColSeven
-      offY = -74  --charRowThree
+      offX = 385, --charColFour
+      offY = -139  --charRowSix
     },
     text = Locale["ma_mutebutton"]
 })
@@ -1109,7 +1069,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -160 --charRowSeven
+      offY = -30 --charRowOne
     },
     text = Locale["ma_JailAButton"]
     })
@@ -1129,7 +1089,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -160 --charRowSeven
+      offY = -30 --charRowOne
     },
     text = Locale["ma_JailHButton"]
   })
@@ -1149,7 +1109,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 548, --charColSix
-      offY = -160 --charRowSeven
+      offY = -30 --charRowOne
     },
     text = Locale["ma_UnJailButton"]
   })
@@ -1168,8 +1128,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 630, --charColSeven
-      offY = -95 --charRowFour
+      offX = 385, --charColFour
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_UnMuteButton"]
   })
@@ -1189,7 +1149,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 385, --charColFour
-      offY = -30 --charRowOne
+      offY = -182 --charRowEight
     },
     text = Locale["ma_DamageButton"]
   })

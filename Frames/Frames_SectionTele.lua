@@ -899,4 +899,44 @@ function AzerothAdmin:CreateTeleSection()
     script = {{"OnShow", function(self) self:RegisterForClicks("LeftButtonDown", "RightButtonDown") end}}
   })
 
+  FrameLib:BuildButton({
+    name = "ma_telenamebutton",
+    group = "tele",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_telenamebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 660,
+      offY = -25
+    },
+    text = Locale["ma_telenamebutton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_telegroupbutton",
+    group = "tele",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_telegroupbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 660,
+      offY = -47
+    },
+    text = Locale["ma_telegroupbutton"]
+  })
+
 end

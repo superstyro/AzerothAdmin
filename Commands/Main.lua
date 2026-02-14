@@ -316,6 +316,15 @@ function AzerothAdminCommands.AcctPasswd()
   AzerothAdmin:ChatMsg(".account set password "..param)
 end
 
+function AzerothAdminCommands.AcctChange()
+  local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
+  AzerothAdmin:ChatMsg(".character changeaccount "..param)
+end
+
 function AzerothAdminCommands.GMNotify()
   local param = ma_parameter:GetText()
   if param == "" then

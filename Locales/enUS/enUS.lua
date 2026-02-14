@@ -184,6 +184,7 @@ if L then
     ["tt_acctaddonbutton"]            = "Sets $account to use #addon(0=WoW, 1=TBC, 2=WotLK) [[Parameters: $accountname #addon]]",
     ["tt_acctgmlvlbutton"]            = "Sets $account to #gmlevel (0=Player, 1=Helper, 2=Assistant, 3=GM, 4=Admin) [[Parameters: $accountname #gmlevel]]",
     ["tt_acctpasswdbutton"]           = "Sets $account $password [[Parameters: $accountname $password $password]]",
+    ["tt_acctchangebutton"]           = "Moves the specified character to the provided account. Kicks the player if the character is online. [[Parameters: $NewAccountName $Name]]",
   --[[Control Labels]]
     ["ma_OffButton"]                  = "Off",
     ["ma_displaylevelbutton"]         = "Display Account Level",
@@ -230,6 +231,7 @@ if L then
     ["ma_acctaddon"]                  = "Acct Addon",
     ["ma_acctgmlvl"]                  = "Acct GMLvl",
     ["ma_acctpasswd"]                 = "Acct Passwd",
+    ["ma_acctchange"]                 = "Acct Change",
     ["ma_MiniMenuGM"]                 = "Gm",
     ["ma_MiniMenuChar"]               = "Cr",
     ["ma_MiniMenuNPC"]                = "Np",

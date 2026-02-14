@@ -434,6 +434,26 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_acctchangebutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_acctchangebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 333,
+      offY = -54
+    },
+    text = Locale["ma_acctchange"]
+  })
+
+  FrameLib:BuildButton({
     type = "CheckButton",
     name = "ma_instantkillbutton",
     group = "main",
@@ -674,7 +694,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -75
+      offY = -97
     },
     text = Locale["ma_gmingame"]
   })
@@ -694,7 +714,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -54
+      offY = -75
     },
     text = Locale["ma_gmlist"]
   })
@@ -1154,7 +1174,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -97
+      offY = -119
     },
     text = Locale["ma_gmnotify"]
   })

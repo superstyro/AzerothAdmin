@@ -798,8 +798,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -204 --charRowNine
+      offX = 385, --charColFour
+      offY = -117 --charRowFive
     },
     text = Locale["ma_NPCComeToMe"]
   })

@@ -4,6 +4,7 @@
 
 - ADD mouse wheel support for Speed and Scale sliders on Main tab
 - ADD mouse wheel support for Transparency sliders on Misc tab
+- CHANGE moved ComeToMe button below Mov Random on NPC tab
 
 - REPLACE Hover-mode with Spectator mode on Main tab
   - Replaced non-functional Hover-mode buttons with Spectator mode (.gm spectator on/off)

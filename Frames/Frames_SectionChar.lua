@@ -950,6 +950,26 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_checkbagbutton",
+    group = "char",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_checkbagbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 467, --charColFive
+      offY = -160 --charRowSeven
+    },
+    text = Locale["ma_CheckBagButton"]
+  })
+
+  FrameLib:BuildButton({
     name = "ma_dismountbutton",
     group = "char",
     parent = ma_midframe,
@@ -964,9 +984,29 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -160 --charRowSeven
+      offY = -204 --charRowNine
     },
     text = Locale["ma_DismountButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_checkprofessionbutton",
+    group = "char",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_checkprofessionbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 467, --charColFive
+      offY = -182 --charRowEight
+    },
+    text = Locale["ma_CheckProfessionButton"]
   })
 
   FrameLib:BuildButton({

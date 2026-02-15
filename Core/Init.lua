@@ -126,6 +126,8 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_charunpossessbutton             , Locale["tt_charunpossess"]              , function() AzerothAdminCommands.CharUnPossess() end)
   AzerothAdmin:PrepareScript(ma_charrepairitemsbutton           , Locale["tt_charrepair"]                 , function() AzerothAdminCommands.CharRepair() end)
   AzerothAdmin:PrepareScript(ma_bankbutton                      , Locale["tt_BankButton"]                 , function() AzerothAdminCommands.ShowBank() end)
+  AzerothAdmin:PrepareScript(ma_checkbagbutton                  , Locale["tt_CheckBagButton"]             , function() AzerothAdminCommands.CheckBagButton() end)
+  AzerothAdmin:PrepareScript(ma_checkprofessionbutton            , Locale["tt_CheckProfessionButton"]      , function() AzerothAdminCommands.CheckProfessionButton() end)
   AzerothAdmin:PrepareScript(ma_dismountbutton                  , Locale["tt_Dismount"]                   , function() AzerothAdminCommands.DismountPlayer() end)
 
   AzerothAdminCommands.LearnDropDownInitialize()

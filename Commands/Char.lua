@@ -530,9 +530,9 @@ function AzerothAdminCommands.TeleGroupButton()
 
 end
 
-function AzerothAdminCommands.UnBanButton()
+function AzerothAdminCommands.UnBanButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".unban "..cname)
+  AzerothAdmin:ChatMsg(".unban "..bantype.." "..cname)
 
 end
 
@@ -617,6 +617,16 @@ end
 function AzerothAdminCommands.ShowAreaButton()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".showarea "..cname)
+end
+
+function AzerothAdminCommands.CheckBagButton()
+  local cname = ma_charactertarget:GetText()
+  AzerothAdmin:ChatMsg(".character check bag "..cname)
+end
+
+function AzerothAdminCommands.CheckProfessionButton()
+  local cname = ma_charactertarget:GetText()
+  AzerothAdmin:ChatMsg(".character check profession "..cname)
 end
 
 function AzerothAdminCommands.CharClearParams()

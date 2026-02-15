@@ -2399,16 +2399,36 @@ end
 function AzerothAdmin:InitSliders()
   -- Frame Transparency Slider
   ma_frmtrslider:SetOrientation("HORIZONTAL")
-  ma_frmtrslider:SetMinMaxValues(0.1, 1.0)
-  ma_frmtrslider:SetValueStep(0.05)
+  ma_frmtrslider:SetMinMaxValues(0, 1.0)
   ma_frmtrslider:SetValue(AzerothAdmin.db.profile.style.transparency.frames)
   ma_frmtrsliderText:SetText(string.format("%.2f", AzerothAdmin.db.profile.style.transparency.frames))
+  ma_frmtrslider:EnableMouseWheel(true)
+  ma_frmtrslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local step = 0.05
+    local curVal = self:GetValue()
+    local newVal = math.floor((curVal + (delta * step)) / step + 0.5) * step
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdmin:ChangeTransparency("frames")
+  end)
   -- Button Transparency Slider
   ma_btntrslider:SetOrientation("HORIZONTAL")
-  ma_btntrslider:SetMinMaxValues(0.1, 1.0)
-  ma_btntrslider:SetValueStep(0.05)
+  ma_btntrslider:SetMinMaxValues(0, 1.0)
   ma_btntrslider:SetValue(AzerothAdmin.db.profile.style.transparency.buttons)
   ma_btntrsliderText:SetText(string.format("%.2f", AzerothAdmin.db.profile.style.transparency.buttons))
+  ma_btntrslider:EnableMouseWheel(true)
+  ma_btntrslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local step = 0.05
+    local curVal = self:GetValue()
+    local newVal = math.floor((curVal + (delta * step)) / step + 0.5) * step
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdmin:ChangeTransparency("buttons")
+  end)
 end
 
 function AzerothAdmin:InitScrollFrames()

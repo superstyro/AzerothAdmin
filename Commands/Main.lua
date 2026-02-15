@@ -161,6 +161,26 @@ function AzerothAdminCommands.ToggleWaterwalk(value)
   AzerothAdmin:ChatMsg(".cheat waterwalk "..value)
 end
 
+function AzerothAdminCommands.ToggleCheatCastTime(value)
+  AzerothAdmin:ChatMsg(".cheat casttime "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatCooldown(value)
+  AzerothAdmin:ChatMsg(".cheat cooldown "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatGod(value)
+  AzerothAdmin:ChatMsg(".cheat god "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatPower(value)
+  AzerothAdmin:ChatMsg(".cheat power "..value)
+end
+
+function AzerothAdminCommands.CheatStatus()
+  AzerothAdmin:ChatMsg(".cheat status")
+end
+
 function AzerothAdminCommands.ToggleAccountlock(value)
   local state = (value == "on") and "lock" or "unlock"
   local confirmMsg = string.format(Locale["msg_account_lock_confirm"] or "Are you sure you want to %s this account?", state)

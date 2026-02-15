@@ -1,5 +1,11 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 21 - 02/15/2026]=-
+
+- ADD Cheat CastTime, Cooldown, God Mode, and Power On/Off buttons to GM tab left sidebar
+- ADD Cheat Status button to GM tab
+- CHANGE moved Parameter label, editbox, and Clear Params button right to avoid overlap with new sidebar buttons
+
 ## -=[ Version 21 - 02/14/2026]=-
 
 - FIX GO tab movement buttons (FWD, BACK, LEFT, RIGHT, UP, DOWN, HERE) failing due to undefined variables

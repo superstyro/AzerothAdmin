@@ -99,7 +99,7 @@ Bottom bar (offY -231): Parameter label, EditBox (240x20), Clear button.
 
 Most tabs use free-form positioning rather than a strict grid. Key patterns:
 
-- **Main Tab:** Left sidebar (offX 10-134) for GM toggles and display controls. Right columns (offX 333-660) for command buttons. Speed/Scale sliders at offX 205. No strict grid.
+- **Main Tab:** Left sidebar (offX 10-174) for GM toggles and display controls (On buttons 120px at offX 10, Off buttons 40px at offX 134). Sidebar runs from offY -10 to -230. Right columns (offX 333-660) for command buttons. Speed/Scale sliders at offX 205. Parameter area at offY -231 (label offX 180, editbox offX 264, Clear Params offX 508). No strict grid.
 - **Tele Tab:** Three-column scroll list layout (offX 5/220/420) with FauxScrollFrames. Action buttons at offX 660. Vertical chaining with offY -2 gaps.
 - **Ticket Tab:** Horizontal bottom button bar at offY -226 (offX 5-505 in 85px steps). Top area has scroll lists and detail panels.
 - **Misc Tab:** Left-aligned settings column (offX 6-160) with checkboxes, sliders, color swatches. Dropdowns at TOPRIGHT/BOTTOMRIGHT.

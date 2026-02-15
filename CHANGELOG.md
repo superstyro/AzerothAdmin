@@ -8,6 +8,10 @@
   - Show button displays "Load" when models are not loaded, switches to "Show" after loading
   - Unload button starts disabled and enables only after models are loaded
   - Unload now shows a confirmation dialog and reloads the UI to fully free memory
+- CHANGE moved Obj Info button under Obj Target on GO tab
+- ADD Clear Info button on GO tab to clear GUID, EntryID, Range, DisplayID and Phase fields
+- ADD confirmation dialog when deleting a game object on GO tab
+- CHANGE swapped Obj Add and Obj Del button positions on GO tab
 - CHANGE moved ComeToMe button below Mov Random on NPC tab
 
 - REPLACE Hover-mode with Spectator mode on Main tab

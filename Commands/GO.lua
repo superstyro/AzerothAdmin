@@ -43,9 +43,14 @@ function AzerothAdminCommands.OBJTurn()
 end
 
 function AzerothAdminCommands.OBJDel()
-    local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_guidbutton:GetText()
-    AzerothAdmin:ChatMsg(".gobject delete "..obj)
+    if obj == "" then
+        AzerothAdmin:Print("Error: GUID cannot be empty")
+        return
+    end
+    AzerothAdmin:ShowConfirmDialog("Delete game object with GUID "..obj.."?", function()
+        AzerothAdmin:ChatMsg(".gobject delete "..obj)
+    end)
 end
 
 function AzerothAdminCommands.OBJNear()
@@ -76,6 +81,14 @@ function AzerothAdminCommands.OBJInfo()
     local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_idbutton:GetText()
     AzerothAdmin:ChatMsg(".gobject info "..obj)
+end
+
+function AzerothAdminCommands.OBJClearInfo()
+    ma_Obj_guidbutton:SetText("")
+    ma_Obj_idbutton:SetText("")
+    ma_gobnearrange:SetText("")
+    ma_gobdisplayid:SetText("")
+    ma_gobsetphaseinput:SetText("")
 end
 
 function AzerothAdminCommands.OBJSetPhase()

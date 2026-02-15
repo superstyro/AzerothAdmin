@@ -2,6 +2,7 @@
 
 ## -=[ Version 21 - 02/14/2026]=-
 
+- FIX GO tab movement buttons (FWD, BACK, LEFT, RIGHT, UP, DOWN, HERE) failing due to undefined variables
 - ADD mouse wheel support for Speed and Scale sliders on Main tab
 - ADD mouse wheel support for Transparency sliders on Misc tab
 - FIX Show/Unload button states on GO tab to reflect model database status

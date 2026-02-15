@@ -236,7 +236,7 @@ function AzerothAdminCommands.DMUP()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incZ = ma_gobmovedistupdown:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -244,7 +244,7 @@ function AzerothAdminCommands.DMDown()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incZ = 0 - ma_gobmovedistupdown:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -252,7 +252,7 @@ function AzerothAdminCommands.DMLeft()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incY = ma_gobmovedistleftright:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -260,14 +260,14 @@ function AzerothAdminCommands.DMRight()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incY = 0 - ma_gobmovedistleftright:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
 function AzerothAdminCommands.DMSS()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -290,7 +290,7 @@ function AzerothAdminCommands.DMFront()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incX = ma_gobmovedistforwardback:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -298,6 +298,6 @@ function AzerothAdminCommands.DMBack()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incX = 0 - ma_gobmovedistforwardback:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end

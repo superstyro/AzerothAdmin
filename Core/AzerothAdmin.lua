@@ -728,8 +728,8 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         else -- Just move player
         end
         AzerothAdmin.cWorking = 0
+        AzerothAdminCommands.OBJTarget()
         end
-        OBJTarget()
     end
     -- hook .gps for gridnavigation
     for x, y in string.gmatch(text, Strings["ma_GmatchGPS"]) do

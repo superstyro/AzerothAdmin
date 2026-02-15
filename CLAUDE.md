@@ -80,19 +80,19 @@ Standard button size is 80x20. Columns 1-3 overlap with the player model area (b
 
 Current button positions (Label = locale display text):
 
-| Position     | Col1 (140)   | Col2 (222)   | Col3 (303)    | Col4 (385)  | Col5 (467)  | Col6 (548)  |
-|--------------|--------------|--------------|---------------|-------------|-------------|-------------|
-| Row1 (-30)   | Kill         | Revive       | GPS           | Jail (A)    | Jail (H)    | UnJail      |
-| Row2 (-52)   | Show GUID    | PLAYER Info  | Distance      | Ban         | Appear      | G Create    |
-| Row3 (-74)   | MaxSkill     | Repair       | CombatStop    | BanInfo     | Recall      | G Invite    |
-| Row4 (-95)   | Kick         | BindSight    | UnBindSight   | BanList     | Summon      | G Rank      |
-| Row5 (-117)  | Cooldown     | Morph        | Demorph       | UnBan       | GroupSumn   | G UnInv     |
-| Row6 (-139)  | Rename       | Aura         | UnAura        | Mute        | Bank        | G Delete    |
-| Row7 (-160)  | Chng Faction | Freeze       | UnFreeze      | UnMute      | Dismount    |             |
-| Row8 (-182)  | Chng Race    | Possess      | UnPossess     | Damage      |             |             |
-| Row9 (-204)  | Customize    | ShowArea     | HideArea      | Save        |             |             |
+| Position     | Col1 (140)   | Col2 (222)   | Col3 (303)    | Col4 (385)  | Col5 (467)  | Col6 (548)  | Col7 (630)  |
+|--------------|--------------|--------------|---------------|-------------|-------------|-------------|-------------|
+| Row1 (-30)   | Kill         | Revive       | GPS           | Jail (A)    | Jail (H)    | UnJail      | Ban         |
+| Row2 (-52)   | Show GUID    | PLAYER Info  | Distance      |             | Appear      | G Create    | BanInfo     |
+| Row3 (-74)   | MaxSkill     | Repair       | CombatStop    |             | Recall      | G Invite    | BanList     |
+| Row4 (-95)   | Kick         | BindSight    | UnBindSight   |             | Summon      | G Rank      | UnBan       |
+| Row5 (-117)  | Cooldown     | Morph        | Demorph       |             | GroupSumn   | G UnInv     |             |
+| Row6 (-139)  | Rename       | Aura         | UnAura        | Mute        | Bank        | G Delete    |             |
+| Row7 (-160)  | Chng Faction | Freeze       | UnFreeze      | UnMute      | Dismount    |             |             |
+| Row8 (-182)  | Chng Race    | Possess      | UnPossess     | Damage      |             |             |             |
+| Row9 (-204)  | Customize    | ShowArea     | HideArea      | Save        |             |             |             |
 
-Top bar (offY -1 to -4): LearnLang dropdown + Learn button, Reset dropdown + Reset button, Modify dropdown + EditBox + Modify button.
+Top bar (offY -1 to -4): LearnLang dropdown + Learn button, Reset dropdown + Reset button, Modify dropdown + EditBox + Modify button, Ban type dropdown.
 Bottom bar (offY -231): Parameter label, EditBox (240x20), Clear button.
 
 ### UI Grid Layouts (Other Tabs)

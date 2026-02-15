@@ -91,6 +91,7 @@ local function EnsureModelsLoaded()
         local loaded, reason = LoadAddOn("AzerothAdmin_Models")
         if loaded then
             AzerothAdmin:Print("Loaded model database")
+            return true
         else
             local reasons = {
                 [0] = "Unknown error",
@@ -101,25 +102,56 @@ local function EnsureModelsLoaded()
                 [5] = "Addon insecure"
             }
             AzerothAdmin:Print("ERROR: Could not load Models addon - " .. (reasons[reason] or "Unknown"))
+            return false
         end
+    end
+    return true
+end
+
+-- Helper to set button state based on whether models are loaded
+local function SetModelButtonStates(loaded)
+    if loaded then
+        ma_gobshowmodel:SetText(Locale["ma_GOShowButton"])
+        ma_gobshowmodel:SetScript("OnClick", function() AzerothAdminCommands.ShowGobModel() end)
+        ma_gobunloadmodel:Enable()
+    else
+        ma_gobshowmodel:SetText(Locale["ma_GOLoadButton"])
+        ma_gobshowmodel:SetScript("OnClick", function() AzerothAdminCommands.LoadAndShowGobModel() end)
+        ma_gobunloadmodel:Disable()
     end
 end
 
+function AzerothAdminCommands.InitGobButtonStates()
+    local loaded = IsAddOnLoaded("AzerothAdmin_Models") and ModelA ~= nil
+    SetModelButtonStates(loaded)
+end
+
 function AzerothAdminCommands.UnloadModels()
-    if IsAddOnLoaded("AzerothAdmin_Models") then
-        -- Clear the global ModelA table to free memory
-        ModelA = nil
-        -- Force garbage collection
-        collectgarbage("collect")
-        AzerothAdmin:Print("Model database unloaded. Use /reload to fully free memory")
+    if ModelA ~= nil then
+        AzerothAdmin:ShowConfirmDialog(
+            "Unloading the Model database requires a UI reload. Proceed?",
+            function()
+                ModelA = nil
+                collectgarbage("collect")
+                ReloadUI()
+            end
+        )
     else
         AzerothAdmin:Print("Model database is not currently loaded")
     end
 end
 
+function AzerothAdminCommands.LoadAndShowGobModel()
+    if not EnsureModelsLoaded() then return end
+    SetModelButtonStates(true)
+    AzerothAdminCommands.ShowGobModel()
+end
+
 function AzerothAdminCommands.ShowGobModel()
-    -- Load models database if not already loaded
-    EnsureModelsLoaded()
+    if ModelA == nil then
+        AzerothAdmin:Print("Model database not loaded. Click Load first.")
+        return
+    end
 
     local Scale = UIParent:GetEffectiveScale();
     local Hypotenuse = ( ( GetScreenWidth() * Scale ) ^ 2 + ( GetScreenHeight() * Scale ) ^ 2 ) ^ 0.5;

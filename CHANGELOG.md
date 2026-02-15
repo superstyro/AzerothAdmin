@@ -4,6 +4,10 @@
 
 - ADD mouse wheel support for Speed and Scale sliders on Main tab
 - ADD mouse wheel support for Transparency sliders on Misc tab
+- FIX Show/Unload button states on GO tab to reflect model database status
+  - Show button displays "Load" when models are not loaded, switches to "Show" after loading
+  - Unload button starts disabled and enables only after models are loaded
+  - Unload now shows a confirmation dialog and reloads the UI to fully free memory
 - CHANGE moved ComeToMe button below Mov Random on NPC tab
 
 - REPLACE Hover-mode with Spectator mode on Main tab

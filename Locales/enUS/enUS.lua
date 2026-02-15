@@ -621,6 +621,7 @@ if L then
     ["ma_GOMoveUp"]                   = "UP",
     ["ma_GOMoveDown"]                 = "DOWN",
     ["ma_GOShowButton"]               = "Show",
+    ["ma_GOLoadButton"]               = "Load",
     ["ma_GOUnloadButton"]             = "Unload",
   --[[Other]]
     ["msg_account_lock_confirm"]      = "Are you sure you want to %s this account?",

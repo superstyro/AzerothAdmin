@@ -829,7 +829,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 280,
       offY = -5
     },
-    text = Locale["ma_GOShowButton"]
+    text = Locale["ma_GOLoadButton"]
   })
 
   -- MEMORY OPTIMIZATION: Unload Models button (frees ~5.6 MB)
@@ -852,5 +852,6 @@ function AzerothAdmin:CreateGOSection()
     },
     text = Locale["ma_GOUnloadButton"]
   })
+  ma_gobunloadmodel:Disable()
 
 end

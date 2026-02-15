@@ -124,7 +124,7 @@ Some buttons (Kill, Kick, Revive, Save) are dynamically enabled/disabled in `Cor
 
 ## Adding a New Command Button
 
-Four steps (see `Docs/Adding.txt`):
+Four steps:
 
 1. Add localized tooltip and button text in `Locales/<locale>/<locale>.lua`
 2. Write the command function in `Commands/<section>.lua`

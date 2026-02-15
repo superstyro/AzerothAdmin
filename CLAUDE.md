@@ -138,6 +138,17 @@ Four steps:
 - **Interface version** is `30300` (WoW 3.3.5). Do not change this.
 - Commands are sent to the server by writing to the chat frame (e.g., `SendChatMessage(".gm on")`).
 
+## Changelog Maintenance
+
+Always update `CHANGELOG.md` before committing. Follow the existing format:
+
+- Use category prefixes: ADD, REMOVE, FIX, IMPROVE, REPLACE, REORGANIZE, CHANGE, MIGRATE, OPTIMIZE
+- Keep entries concise and user-facing — omit internal details like frame names, offX values, or file lists
+- Group related changes into a single entry with sub-bullets only when needed for clarity
+- Minor changes (typo fixes, internal cleanup) get a single line with no sub-bullets
+
+A PreToolUse hook will block commits that don't include `CHANGELOG.md` changes.
+
 ## AzerothCore Command References
 
 - **GM Commands:** <https://www.azerothcore.org/wiki/gm-commands>

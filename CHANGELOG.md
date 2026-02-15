@@ -1,32 +1,46 @@
 # AzerothAdmin Changelog
 
-## -=[ Version 21 - 02/12/2026]=-
+## -=[ Version 21 - 02/14/2026]=-
+
+- REPLACE Hover-mode with Spectator mode on Main tab
+  - Replaced non-functional Hover-mode buttons with Spectator mode (.gm spectator on/off)
+  - Added tooltip explaining usage and zone reload requirement
+
+- REMOVE non-functional buttons from Main tab
+  - Removed Acct Create, Acct Delete, and Acct Passwd buttons
+  - Removed View All Maps, Show/Hide Maps, and Account Lock buttons
+  - Reorganized remaining buttons to fill gaps
+
+- ADD Acct Change button to Main tab
+  - New button for .character changeaccount command
 
 - ADD Clear Params button to Char and NPC tabs
-  - Moved existing Clear Params button on Main tab inline with the Parameters input box
-  - Added Clear Params button to Char tab (ma_charclearbutton) inline with the Parameters input box
-  - Added Clear Params button to NPC tab (ma_npcclearparamsbutton) inline with the Parameters input box
-  - Each button clears its own tab's parameter input box
-  - Registered button scripts in Init.lua with shared tooltip
+  - Added Clear Params button inline with the Parameters input box on Char and NPC tabs
+  - Repositioned existing Clear Params button on Main tab to match
 
-- REMOVE Acct Create and Acct Delete buttons from GM tab
-  - Removed non-functional Acct Create and Acct Delete buttons
-  - Moved Acct Addon to the top position of the column and shifted remaining buttons up
-  - Removed AcctDelete and AcctDelete_Confirmed command functions and confirmation dialog
-  - Cleaned up related locale strings, tooltips, and script references across all 11 locale files
+- ADD Check Bags and Check Profession buttons to Char tab
 
-- REMOVE Acct Passwd button and reorganize Main tab layout
-  - Removed Acct Passwd button from Main tab
-  - Moved GMs InGame and GM List buttons into the first column (offX=333)
-  - Moved TeleAdd and TeleDel buttons to where GMs InGame and GM List were (offX=578)
-  - Cleaned up related PrepareScript reference in Init.lua
+- ADD Ban type dropdown to Char tab
+  - Moved Ban, BanInfo, BanList, and UnBan buttons to their own column
 
-- REPLACE Hover-mode button with Spectator mode on GM tab
-  - Replaced non-functional Hover-mode on/off buttons with Spectator mode (.gm spectator on/off)
-  - Spectator mode allows GM characters to use /follow on members of the opposite faction (requires .gm on)
-  - Enabled buttons that were previously disabled
-  - Added descriptive tooltip explaining usage and zone reload requirement
-  - Updated all 12 locale files with translated button labels and tooltips
+- REORGANIZE Char tab layout
+  - Moved Bank from Main tab to Char tab
+  - Moved TeleName and TeleGroup buttons from Char tab to Tele tab
+  - Removed Quest and Honor buttons
+  - Removed Dismount button
+  - Swapped Summon/Appear button positions for better flow
+  - General column and row cleanup for a cleaner layout
+
+- REORGANIZE Main tab layout
+  - Swapped GM List and GM Notify button positions
+  - Moved GMs InGame, GM List, TeleAdd, and TeleDel buttons into better positions
+
+- FIX GridNavigate nil global error in grid navigation buttons
+
+- FIX target change overwriting parameter box while typing
+  - PLAYER_TARGET_CHANGED no longer overwrites the parameter input if the user is actively typing
+
+- REMOVE Docs folder (no longer needed)
 
 ## -=[ Version 20 - 01/20/2026]=-
 

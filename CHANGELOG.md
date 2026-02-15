@@ -2,6 +2,8 @@
 
 ## -=[ Version 21 - 02/14/2026]=-
 
+- ADD mouse wheel support for Speed and Scale sliders on Main tab
+
 - REPLACE Hover-mode with Spectator mode on Main tab
   - Replaced non-functional Hover-mode buttons with Spectator mode (.gm spectator on/off)
   - Added tooltip explaining usage and zone reload requirement

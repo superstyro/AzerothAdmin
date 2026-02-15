@@ -85,12 +85,30 @@ function InitControls()
   ma_speedslider:SetValueStep(0.5)
   ma_speedslider:SetValue(1)
   ma_speedsliderText:SetText("Speed: 1.0")
+  ma_speedslider:EnableMouseWheel(true)
+  ma_speedslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local newVal = self:GetValue() + (delta * 0.5)
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdminCommands.SetSpeed()
+  end)
   -- Scale Slider
   ma_scaleslider:SetOrientation("HORIZONTAL")
   ma_scaleslider:SetMinMaxValues(0.1 , 10)
   ma_scaleslider:SetValueStep(0.1)
   ma_scaleslider:SetValue(1)
   ma_scalesliderText:SetText("Scale: 1.0")
+  ma_scaleslider:EnableMouseWheel(true)
+  ma_scaleslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local newVal = self:GetValue() + (delta * 0.5)
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdminCommands.SetScale()
+  end)
 
 --[[Char Tab]]
   AzerothAdminCommands.InitModelFrame()

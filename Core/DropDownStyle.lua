@@ -287,7 +287,8 @@ function AzerothAdmin:InitDropDownStyling()
     "ma_npcemotedropdown_a",
     "ma_learnlangdropdown",
     "ma_modifydropdown",
-    "ma_resetdropdown"
+    "ma_resetdropdown",
+    "ma_bandropdown"
   }
 
   for _, name in ipairs(dropdowns) do

@@ -433,6 +433,11 @@ if L then
     ["ma_StandState"]                 = "StandState",
     ["ma_SwimSpeed"]                  = "SwimSpeed",
     ["ma_TalentPoints"]               = "TalentPoints",
+    -- ban type dropdown
+    ["ma_BanAccount"]                 = "Account",
+    ["ma_BanCharacter"]               = "Character",
+    ["ma_BanIP"]                      = "IP",
+    ["ma_BanPlayerAcct"]              = "Player Acct",
     -- languages
     ["Common"]                        = "Common",
     ["Orcish"]                        = "Orcish",

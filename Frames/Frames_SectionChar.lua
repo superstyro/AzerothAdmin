@@ -437,6 +437,21 @@ function AzerothAdmin:CreateCharSection()
   })
 
   FrameLib:BuildFrame({
+    name = "ma_bandropdown",
+    group = "char",
+    parent = ma_midframe,
+    size = {
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 705,
+      offY = -1
+    },
+    inherits = "UIDropDownMenuTemplate"
+  })
+
+  FrameLib:BuildFrame({
     name = "ma_resetdropdown",
     group = "char",
     parent = ma_midframe,
@@ -748,8 +763,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -52 --charRowTwo
+      offX = 630, --charColSeven
+      offY = -30 --charRowOne
     },
     text = Locale["ma_banbutton"]
   })
@@ -828,8 +843,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -74  --charRowThree
+      offX = 630, --charColSeven
+      offY = -52  --charRowTwo
     },
     text = Locale["ma_baninfobutton"]
   })
@@ -888,8 +903,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -95 --charRowFour
+      offX = 630, --charColSeven
+      offY = -74 --charRowThree
     },
     text = Locale["ma_banlistbutton"]
   })
@@ -988,8 +1003,8 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 385, --charColFour
-      offY = -117 --charRowFive
+      offX = 630, --charColSeven
+      offY = -95 --charRowFour
     },
     text = Locale["ma_unbanbutton"]
   })

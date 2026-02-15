@@ -353,6 +353,27 @@ function AzerothAdminCommands.ResetDropDownInitialize()
     end
 end
 
+  -- BAN TYPE
+function AzerothAdminCommands.BanDropDownInitialize()
+    local level = 1
+    local info = UIDropDownMenu_CreateInfo()
+    local buttons = {
+      {Locale["ma_BanAccount"],"account"},
+      {Locale["ma_BanCharacter"],"character"},
+      {Locale["ma_BanIP"],"ip"},
+      {Locale["ma_BanPlayerAcct"],"playeraccount"}
+    }
+    for k,v in pairs(buttons) do
+      info.text = v[1]
+      info.value = v[2]
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_bandropdown, self.value) end
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_bandropdown) == v[2])
+      info.icon = nil
+      info.keepShownOnClick = nil
+      UIDropDownMenu_AddButton(info, level)
+    end
+end
+
 function AzerothAdminCommands.CharModelZoomIn()
     ma_modelframe:SetCamera(0)
     --ma_modelframe:SetModelScale(ma_modelframe:GetModelScale() + .1)
@@ -449,9 +470,9 @@ function AzerothAdminCommands.CharRepair()
     AzerothAdmin:ChatMsg(".gear repair")
 end
 
-function AzerothAdminCommands.BanButton()
+function AzerothAdminCommands.BanButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".ban "..cname)
+  AzerothAdmin:ChatMsg(".ban "..bantype.." "..cname)
 
 end
 
@@ -467,9 +488,9 @@ function AzerothAdminCommands.CreateGuildButton()
 
 end
 
-function AzerothAdminCommands.BanInfoButton()
+function AzerothAdminCommands.BanInfoButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".baninfo "..cname)
+  AzerothAdmin:ChatMsg(".baninfo "..bantype.." "..cname)
 
 end
 
@@ -485,9 +506,9 @@ function AzerothAdminCommands.GuildInviteButton()
 
 end
 
-function AzerothAdminCommands.BanlistButton()
+function AzerothAdminCommands.BanlistButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".banlist "..cname)
+  AzerothAdmin:ChatMsg(".banlist "..bantype.." "..cname)
 
 end
 

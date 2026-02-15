@@ -343,7 +343,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 385, --charColFour
       offY = -74 --charRowThree
     },
     text = Locale["ma_RecallButton"]
@@ -803,7 +803,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 385, --charColFour
       offY = -52 --charRowTwo
     },
     text = Locale["ma_gonamebutton"]
@@ -823,7 +823,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548, --charColSix
+      offX = 467, --charColFive
       offY = -52 --charRowTwo
     },
     text = Locale["ma_createguildbutton"]
@@ -863,7 +863,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 385, --charColFour
       offY = -117  --charRowFive
     },
     text = Locale["ma_groupgobutton"]
@@ -883,7 +883,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548, --charColSix
+      offX = 467, --charColFive
       offY = -74  --charRowThree
     },
     text = Locale["ma_guildinvitebutton"]
@@ -923,7 +923,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 467, --charColFive
+      offX = 385, --charColFour
       offY = -95 --charRowFour
     },
     text = Locale["ma_namegobutton"]
@@ -944,7 +944,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -139 --charRowSix
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_BankButton"]
   })
@@ -964,29 +964,9 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -160 --charRowSeven
+      offY = -182 --charRowEight
     },
     text = Locale["ma_CheckBagButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_dismountbutton",
-    group = "char",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_dismountbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 467, --charColFive
-      offY = -204 --charRowNine
-    },
-    text = Locale["ma_DismountButton"]
   })
 
   FrameLib:BuildButton({
@@ -1004,7 +984,7 @@ function AzerothAdmin:CreateCharSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 467, --charColFive
-      offY = -182 --charRowEight
+      offY = -204 --charRowNine
     },
     text = Locale["ma_CheckProfessionButton"]
   })
@@ -1023,7 +1003,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548, --charColSix
+      offX = 467, --charColFive
       offY = -95 --charRowFour
     },
     text = Locale["ma_guildrankbutton"]
@@ -1063,7 +1043,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548, --charColSix
+      offX = 467, --charColFive
       offY = -139 --charRowSix
     },
     text = Locale["ma_guilddeletebutton"]
@@ -1083,7 +1063,7 @@ function AzerothAdmin:CreateCharSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 548, --charColSix
+      offX = 467, --charColFive
       offY = -117 --charRowFive
     },
     text = Locale["ma_guilduninvitebutton"]

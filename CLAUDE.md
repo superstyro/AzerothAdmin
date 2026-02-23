@@ -104,8 +104,27 @@ Most tabs use free-form positioning rather than a strict grid. Key patterns:
 - **Ticket Tab:** Horizontal bottom button bar at offY -226 (offX 5-505 in 85px steps). Top area has scroll lists and detail panels.
 - **Misc Tab:** Left-aligned settings column (offX 6-160) with checkboxes, sliders, color swatches. Dropdowns at TOPRIGHT/BOTTOMRIGHT.
 - **Server Tab:** Left area with network graphs (offX 10, 170). Right sidebar buttons at TOPRIGHT. Bottom bar for announce/settings.
-- **NPC Tab:** Uses same grid system as Char tab (same column/row offsets). Has model viewer at BOTTOMLEFT, emote dropdowns at top. ColFive is 498, ColSix is 585 (different from Char).
+- **NPC Tab:** Uses same grid system as Char tab (same column/row offsets). Has model viewer at BOTTOMLEFT, emote dropdowns at top. ColFive is 498, ColSix is 585, ColSeven is TOPRIGHT-5 (different from Char). See NPC Tab Button Map below.
 - **GO Tab:** Three zones — left controls (offX 5-105), center model (offX 182-262), right movement panel (offX 584-706). Free-form positioning throughout.
+
+### NPC Tab Button Map
+
+Col1=140, Col2=222, Col3=303, Col4=385, Col5=498, Col6=585, Col7=TOPRIGHT-5. Same row offsets as Char tab.
+
+| Position     | Col1 (140)    | Col2 (222)     | Col3 (303)   | Col4 (385)        | Col5 (498)    | Col6 (585)     | Col7 (TR-5)  |
+|--------------|---------------|----------------|--------------|-------------------|---------------|----------------|--------------|
+| Row1 (-30)   | Kill          | Respawn        | NPC Info     | Way Show          |               |                |              |
+| Row2 (-52)   | Freeze        | Way All Del    | NPC Add      | NPC Unfreeze Way  |               |                |              |
+| Row3 (-74)   | Way Add       | Way Show On    | NPC Add ID   | Move Stack        |               |                |              |
+| Row4 (-95)   | Way End Add   | Way Show Off   | NPC Del      | Come To Me        |               |                |              |
+| Row5 (-117)  | Way M Add     | Way M Del      | NPC Move     | Unfreeze Rnd      | NPC Distance  |                |              |
+| Row6 (-139)  | Possess       | UnPossess      | NPC Go       |                   | [dist box]    |                | NPC Clear    |
+| Row7 (-160)  | Morph         | Demorph        | NPC Say      |                   | Get GUID      | [GUID box]     | Show GUID    |
+| Row8 (-182)  | Bindsight     | UnBindsight    | NPC Yell     |                   | ID Down       | [NPC ID box]   | ID Up        |
+| Row9 (-204)  | Aura          | UnAura         |              |                   | Display Down  | [Display box]  | Display Up   |
+
+Top bar (offY -1 to -4): Emote dropdown 1 (offX 5) + Play button (offX 124), Emote dropdown 2 (offX 210) + Play button (offX 299).
+Bottom bar (offY -231/-232): Parameter label (offX 142), EditBox 240x20 (offX 226), Clear Params (offX 470).
 
 ### Button Name-to-Label Mapping
 

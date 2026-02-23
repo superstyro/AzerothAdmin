@@ -1,5 +1,9 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 21 - 02/22/2026]=-
+
+- ADD NPC Add ID button to NPC tab to spawn a creature by template ID from the params box
+
 ## -=[ Version 21 - 02/15/2026]=-
 
 - ADD Cheat CastTime, Cooldown, God Mode, and Power On/Off buttons to GM tab left sidebar

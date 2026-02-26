@@ -227,6 +227,22 @@ function AzerothAdmin:OnInitialize()
   --altering the function setitemref, to make it possible to click links
   MangLinkifier_SetItemRef_Original = SetItemRef
   SetItemRef = MangLinkifier_SetItemRef
+  -- Hook shift-click item links to populate search box when item search popup is open
+  local orig_ChatEdit_InsertLink = ChatEdit_InsertLink
+  ChatEdit_InsertLink = function(text)
+    if ma_popupframe and ma_popupframe:IsVisible()
+      and ma_popupframe.popupMode == "search"
+      and ma_popupframe.searchType == "item"
+    then
+      local itemName = text and text:match("%[(.-)%]")
+      if itemName then
+        ma_searcheditbox:SetText(itemName)
+        ma_searcheditbox:SetFocus()
+        return true
+      end
+    end
+    return orig_ChatEdit_InsertLink(text)
+  end
   self.db.char.msgDeltaTime = time()
   -- hide minimenu if not enabled
   if not self.db.profile.style.showminimenu then
@@ -480,6 +496,8 @@ function AzerothAdmin:TogglePopup(value, param)
   else]]
   if value == "search" then
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
+    ma_popupframe.popupMode = "search"
+    ma_popupframe.searchType = param.type
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
 
@@ -585,6 +603,7 @@ function AzerothAdmin:TogglePopup(value, param)
       ma_resetsearchbutton:SetScript("OnClick", function() AzerothAdmin.db.profile.tickets.loading = true; self:LoadTickets(AzerothAdmin.db.profile.tickets.count) end)]]--
     end
   elseif value == "favorites" then
+    ma_popupframe.popupMode = "favorites"
     self:SearchReset()
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
@@ -609,6 +628,7 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_modfavsbutton:Enable()
     self:Favorites("show", param.type)
   elseif value == "mail" then
+    ma_popupframe.popupMode = "mail"
     self:SetupMailPopup(param)
   end
 end

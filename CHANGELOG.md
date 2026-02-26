@@ -2,6 +2,7 @@
 
 ## -=[ Version 21 - 02/25/2026]=-
 
+- ADD shift-click item link support in item search popup — shift-clicking an item now populates the search box with the item name
 - FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links. Authored by AzDeltaQQ
 
 - ADD NPC Add ID button to NPC tab to spawn a creature by template ID from the params box

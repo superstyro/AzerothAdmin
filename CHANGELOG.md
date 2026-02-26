@@ -2,20 +2,12 @@
 
 ## -=[ Version 21 - 02/25/2026]=-
 
-- FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links
-
-## -=[ Version 21 - 02/22/2026]=-
+- FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links. Authored by AzDeltaQQ
 
 - ADD NPC Add ID button to NPC tab to spawn a creature by template ID from the params box
-
-## -=[ Version 21 - 02/15/2026]=-
-
 - ADD Cheat CastTime, Cooldown, God Mode, and Power On/Off buttons to GM tab left sidebar
 - ADD Cheat Status button to GM tab
 - CHANGE moved Parameter label, editbox, and Clear Params button right to avoid overlap with new sidebar buttons
-
-## -=[ Version 21 - 02/14/2026]=-
-
 - FIX GO tab movement buttons (FWD, BACK, LEFT, RIGHT, UP, DOWN, HERE) failing due to undefined variables
 - ADD mouse wheel support for Speed and Scale sliders on Main tab
 - ADD mouse wheel support for Transparency sliders on Misc tab

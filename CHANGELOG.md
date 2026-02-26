@@ -1,5 +1,9 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 21 - 02/25/2026]=-
+
+- FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links
+
 ## -=[ Version 21 - 02/22/2026]=-
 
 - ADD NPC Add ID button to NPC tab to spawn a creature by template ID from the params box

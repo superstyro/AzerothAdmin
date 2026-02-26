@@ -23,14 +23,19 @@ if L then
   local translations = {
     ["ma_GmatchRevision"] = "AzerothCore rev. (%S*)",
     ["ma_GmatchGPS"] = "X: (.*) Y: (.*) Z",
-    ["ma_GmatchItem"] = "%|cffffffff%|Hitem:(%d+).*%[(.*)%]%|h%|r",
-    ["ma_GmatchQuest"] = ".-(%d+).*%[(.*)%]%|h%|r",
-    ["ma_GmatchItemSet"] = "|cffffffff|Hitemset:(%d+)|h%[(.-)%]|h|r",
-    ["ma_GmatchSpell"] = "|cffffffff|Hspell:(%d+)|h%[(.-)%]|h|r",
-    ["ma_GmatchSkill"] = "|cffffffff|Hskill:(%d+)|h%[(.-)%]|h|r",
-    ["ma_GmatchCreature"] = "|cffffffff|Hcreature_entry:(%d+)|h%[(.-)%]|h|r",
-    ["ma_GmatchGameObject"] = "|cffffffff|Hgameobject_entry:(%d+)|h%[(.-)%]|h|r",
-    ["ma_GmatchTele"] = "%|cffffffff%|Htele:(.*)%|h%[(.*)%]%|h%|r",
+    -- FIX: Use %x+ to match any quality color (not just white |cffffffff).
+    -- AzerothCore sends items/spells/etc with their actual quality colors:
+    --   Poor=9d9d9d, Common=ffffffff, Uncommon=1eff00, Rare=0070dd, Epic=a335ee, etc.
+    -- The old hardcoded |cffffffff caused all non-white results to silently disappear.
+    -- Also changed .* to [^|]* for item suffix and (.-) for name to avoid greedy-match issues.
+    ["ma_GmatchItem"] = "%|c%x+%|Hitem:(%d+)[^|]*%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchQuest"] = ".-(%d+).*%[(.-)%]%|h%|r",
+    ["ma_GmatchItemSet"] = "%|c%x+%|Hitemset:(%d+)%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchSpell"] = "%|c%x+%|Hspell:(%d+)%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchSkill"] = "%|c%x+%|Hskill:(%d+)%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchCreature"] = "%|c%x+%|Hcreature_entry:(%d+)%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchGameObject"] = "%|c%x+%|Hgameobject_entry:(%d+)%|h%[(.-)%]%|h%|r",
+    ["ma_GmatchTele"] = "%|c%x+%|Htele:(.-)%|h%[(.-)%]%|h%|r",
     ["ma_GmatchTeleFound"] = "Locations found are:",
     ["ma_GmatchUpdateDiff"] = "Update time diff: (.*)",
     ["ma_GmatchUpdateDiffTime"] = "Update time diff: (%d+)",

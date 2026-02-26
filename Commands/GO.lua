@@ -43,9 +43,14 @@ function AzerothAdminCommands.OBJTurn()
 end
 
 function AzerothAdminCommands.OBJDel()
-    local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_guidbutton:GetText()
-    AzerothAdmin:ChatMsg(".gobject delete "..obj)
+    if obj == "" then
+        AzerothAdmin:Print("Error: GUID cannot be empty")
+        return
+    end
+    AzerothAdmin:ShowConfirmDialog("Delete game object with GUID "..obj.."?", function()
+        AzerothAdmin:ChatMsg(".gobject delete "..obj)
+    end)
 end
 
 function AzerothAdminCommands.OBJNear()
@@ -78,6 +83,14 @@ function AzerothAdminCommands.OBJInfo()
     AzerothAdmin:ChatMsg(".gobject info "..obj)
 end
 
+function AzerothAdminCommands.OBJClearInfo()
+    ma_Obj_guidbutton:SetText("")
+    ma_Obj_idbutton:SetText("")
+    ma_gobnearrange:SetText("")
+    ma_gobdisplayid:SetText("")
+    ma_gobsetphaseinput:SetText("")
+end
+
 function AzerothAdminCommands.OBJSetPhase()
     local player = UnitName("target") or UnitName("player")
     local obj = ma_Obj_guidbutton:GetText()
@@ -91,6 +104,7 @@ local function EnsureModelsLoaded()
         local loaded, reason = LoadAddOn("AzerothAdmin_Models")
         if loaded then
             AzerothAdmin:Print("Loaded model database")
+            return true
         else
             local reasons = {
                 [0] = "Unknown error",
@@ -101,25 +115,56 @@ local function EnsureModelsLoaded()
                 [5] = "Addon insecure"
             }
             AzerothAdmin:Print("ERROR: Could not load Models addon - " .. (reasons[reason] or "Unknown"))
+            return false
         end
+    end
+    return true
+end
+
+-- Helper to set button state based on whether models are loaded
+local function SetModelButtonStates(loaded)
+    if loaded then
+        ma_gobshowmodel:SetText(Locale["ma_GOShowButton"])
+        ma_gobshowmodel:SetScript("OnClick", function() AzerothAdminCommands.ShowGobModel() end)
+        ma_gobunloadmodel:Enable()
+    else
+        ma_gobshowmodel:SetText(Locale["ma_GOLoadButton"])
+        ma_gobshowmodel:SetScript("OnClick", function() AzerothAdminCommands.LoadAndShowGobModel() end)
+        ma_gobunloadmodel:Disable()
     end
 end
 
+function AzerothAdminCommands.InitGobButtonStates()
+    local loaded = IsAddOnLoaded("AzerothAdmin_Models") and ModelA ~= nil
+    SetModelButtonStates(loaded)
+end
+
 function AzerothAdminCommands.UnloadModels()
-    if IsAddOnLoaded("AzerothAdmin_Models") then
-        -- Clear the global ModelA table to free memory
-        ModelA = nil
-        -- Force garbage collection
-        collectgarbage("collect")
-        AzerothAdmin:Print("Model database unloaded. Use /reload to fully free memory")
+    if ModelA ~= nil then
+        AzerothAdmin:ShowConfirmDialog(
+            "Unloading the Model database requires a UI reload. Proceed?",
+            function()
+                ModelA = nil
+                collectgarbage("collect")
+                ReloadUI()
+            end
+        )
     else
         AzerothAdmin:Print("Model database is not currently loaded")
     end
 end
 
+function AzerothAdminCommands.LoadAndShowGobModel()
+    if not EnsureModelsLoaded() then return end
+    SetModelButtonStates(true)
+    AzerothAdminCommands.ShowGobModel()
+end
+
 function AzerothAdminCommands.ShowGobModel()
-    -- Load models database if not already loaded
-    EnsureModelsLoaded()
+    if ModelA == nil then
+        AzerothAdmin:Print("Model database not loaded. Click Load first.")
+        return
+    end
 
     local Scale = UIParent:GetEffectiveScale();
     local Hypotenuse = ( ( GetScreenWidth() * Scale ) ^ 2 + ( GetScreenHeight() * Scale ) ^ 2 ) ^ 0.5;
@@ -191,7 +236,7 @@ function AzerothAdminCommands.DMUP()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incZ = ma_gobmovedistupdown:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -199,7 +244,7 @@ function AzerothAdminCommands.DMDown()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incZ = 0 - ma_gobmovedistupdown:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -207,7 +252,7 @@ function AzerothAdminCommands.DMLeft()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incY = ma_gobmovedistleftright:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -215,14 +260,14 @@ function AzerothAdminCommands.DMRight()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incY = 0 - ma_gobmovedistleftright:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
 function AzerothAdminCommands.DMSS()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -245,7 +290,7 @@ function AzerothAdminCommands.DMFront()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incX = ma_gobmovedistforwardback:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end
 
@@ -253,6 +298,6 @@ function AzerothAdminCommands.DMBack()
     if AzerothAdmin.cWorking == 0 then
         AzerothAdmin.cWorking = 1
         AzerothAdmin.incX = 0 - ma_gobmovedistforwardback:GetText()
-        SendChatMessage(GPS)
+        SendChatMessage(".gps")
     end
 end

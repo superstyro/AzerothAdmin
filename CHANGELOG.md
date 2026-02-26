@@ -1,5 +1,67 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 21 - 02/25/2026]=-
+
+- ADD shift-click item link support in item search popup — shift-clicking an item now populates the search box with the item name
+- FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links. Authored by AzDeltaQQ
+
+- ADD NPC Add ID button to NPC tab to spawn a creature by template ID from the params box
+- ADD Cheat CastTime, Cooldown, God Mode, and Power On/Off buttons to GM tab left sidebar
+- ADD Cheat Status button to GM tab
+- CHANGE moved Parameter label, editbox, and Clear Params button right to avoid overlap with new sidebar buttons
+- FIX GO tab movement buttons (FWD, BACK, LEFT, RIGHT, UP, DOWN, HERE) failing due to undefined variables
+- ADD mouse wheel support for Speed and Scale sliders on Main tab
+- ADD mouse wheel support for Transparency sliders on Misc tab
+- FIX Show/Unload button states on GO tab to reflect model database status
+  - Show button displays "Load" when models are not loaded, switches to "Show" after loading
+  - Unload button starts disabled and enables only after models are loaded
+  - Unload now shows a confirmation dialog and reloads the UI to fully free memory
+- CHANGE moved Obj Info button under Obj Target on GO tab
+- ADD Clear Info button on GO tab to clear GUID, EntryID, Range, DisplayID and Phase fields
+- ADD confirmation dialog when deleting a game object on GO tab
+- CHANGE swapped Obj Add and Obj Del button positions on GO tab
+- CHANGE moved ComeToMe button below Mov Random on NPC tab
+
+- REPLACE Hover-mode with Spectator mode on Main tab
+  - Replaced non-functional Hover-mode buttons with Spectator mode (.gm spectator on/off)
+  - Added tooltip explaining usage and zone reload requirement
+
+- REMOVE non-functional buttons from Main tab
+  - Removed Acct Create, Acct Delete, and Acct Passwd buttons
+  - Removed View All Maps, Show/Hide Maps, and Account Lock buttons
+  - Reorganized remaining buttons to fill gaps
+
+- ADD Acct Change button to Main tab
+  - New button for .character changeaccount command
+
+- ADD Clear Params button to Char and NPC tabs
+  - Added Clear Params button inline with the Parameters input box on Char and NPC tabs
+  - Repositioned existing Clear Params button on Main tab to match
+
+- ADD Check Bags and Check Profession buttons to Char tab
+
+- ADD Ban type dropdown to Char tab
+  - Moved Ban, BanInfo, BanList, and UnBan buttons to their own column
+
+- REORGANIZE Char tab layout
+  - Moved Bank from Main tab to Char tab
+  - Moved TeleName and TeleGroup buttons from Char tab to Tele tab
+  - Removed Quest and Honor buttons
+  - Removed Dismount button
+  - Swapped Summon/Appear button positions for better flow
+  - General column and row cleanup for a cleaner layout
+
+- REORGANIZE Main tab layout
+  - Swapped GM List and GM Notify button positions
+  - Moved GMs InGame, GM List, TeleAdd, and TeleDel buttons into better positions
+
+- FIX GridNavigate nil global error in grid navigation buttons
+
+- FIX target change overwriting parameter box while typing
+  - PLAYER_TARGET_CHANGED no longer overwrites the parameter input if the user is actively typing
+
+- REMOVE Docs folder (no longer needed)
+
 ## -=[ Version 20 - 01/20/2026]=-
 
 **NOTE:** Ace3 localization system automatically detects and uses your WoW client's language setting. No manual configuration needed - your language is set automatically in version 20 and newer.

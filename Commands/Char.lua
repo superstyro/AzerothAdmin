@@ -133,10 +133,6 @@ function AzerothAdminCommands.Demorph()
     AzerothAdmin:ChatMsg(".morph reset")
 end
 
-function AzerothAdminCommands.ToggleMapsChar(value)
-  AzerothAdmin:ChatMsg(".explorecheat "..value)
-end
-
 function AzerothAdminCommands.GPS()
   if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
     local player = UnitName("target") or UnitName("player")
@@ -357,6 +353,27 @@ function AzerothAdminCommands.ResetDropDownInitialize()
     end
 end
 
+  -- BAN TYPE
+function AzerothAdminCommands.BanDropDownInitialize()
+    local level = 1
+    local info = UIDropDownMenu_CreateInfo()
+    local buttons = {
+      {Locale["ma_BanAccount"],"account"},
+      {Locale["ma_BanCharacter"],"character"},
+      {Locale["ma_BanIP"],"ip"},
+      {Locale["ma_BanPlayerAcct"],"playeraccount"}
+    }
+    for k,v in pairs(buttons) do
+      info.text = v[1]
+      info.value = v[2]
+      info.func = function(self) UIDropDownMenu_SetSelectedValue(ma_bandropdown, self.value) end
+      info.checked = (UIDropDownMenu_GetSelectedValue(ma_bandropdown) == v[2])
+      info.icon = nil
+      info.keepShownOnClick = nil
+      UIDropDownMenu_AddButton(info, level)
+    end
+end
+
 function AzerothAdminCommands.CharModelZoomIn()
     ma_modelframe:SetCamera(0)
     --ma_modelframe:SetModelScale(ma_modelframe:GetModelScale() + .1)
@@ -453,9 +470,9 @@ function AzerothAdminCommands.CharRepair()
     AzerothAdmin:ChatMsg(".gear repair")
 end
 
-function AzerothAdminCommands.BanButton()
+function AzerothAdminCommands.BanButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".ban "..cname)
+  AzerothAdmin:ChatMsg(".ban "..bantype.." "..cname)
 
 end
 
@@ -471,9 +488,9 @@ function AzerothAdminCommands.CreateGuildButton()
 
 end
 
-function AzerothAdminCommands.BanInfoButton()
+function AzerothAdminCommands.BanInfoButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".baninfo "..cname)
+  AzerothAdmin:ChatMsg(".baninfo "..bantype.." "..cname)
 
 end
 
@@ -489,9 +506,9 @@ function AzerothAdminCommands.GuildInviteButton()
 
 end
 
-function AzerothAdminCommands.BanlistButton()
+function AzerothAdminCommands.BanlistButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".banlist "..cname)
+  AzerothAdmin:ChatMsg(".banlist "..bantype.." "..cname)
 
 end
 
@@ -513,9 +530,9 @@ function AzerothAdminCommands.TeleGroupButton()
 
 end
 
-function AzerothAdminCommands.UnBanButton()
+function AzerothAdminCommands.UnBanButton(bantype)
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".unban "..cname)
+  AzerothAdmin:ChatMsg(".unban "..bantype.." "..cname)
 
 end
 
@@ -586,24 +603,6 @@ function AzerothAdminCommands.UnMuteButton()
 
 end
 
-function AzerothAdminCommands.QuestAddButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest add "..cname)
-
-end
-
-function AzerothAdminCommands.QuestCompleteButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest complete "..cname)
-
-end
-
-function AzerothAdminCommands.QuestRemoveButton()
-  local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".quest remove "..cname)
-
-end
-
 function AzerothAdminCommands.DamageButton ()
   local cname = ma_charactertarget:GetText()
   AzerothAdmin:ChatMsg(".damage "..cname)
@@ -620,16 +619,16 @@ function AzerothAdminCommands.ShowAreaButton()
   AzerothAdmin:ChatMsg(".showarea "..cname)
 end
 
-function AzerothAdminCommands.HonorAddButton()
+function AzerothAdminCommands.CheckBagButton()
   local cname = ma_charactertarget:GetText()
-  AzerothAdmin:ChatMsg(".honor add "..cname)
+  AzerothAdmin:ChatMsg(".character check bag "..cname)
 end
 
-function AzerothAdminCommands.HonorUpdateButton()
-  if AzerothAdmin:Selection("player") or AzerothAdmin:Selection("self") or AzerothAdmin:Selection("none") then
-    local player = UnitName("target") or UnitName("player")
-    AzerothAdmin:ChatMsg(".honor update ")
-  else
-    AzerothAdmin:Print(Locale["selectionerror1"])
-  end
+function AzerothAdminCommands.CheckProfessionButton()
+  local cname = ma_charactertarget:GetText()
+  AzerothAdmin:ChatMsg(".character check profession "..cname)
+end
+
+function AzerothAdminCommands.CharClearParams()
+  ma_charactertarget:SetText("")
 end

@@ -67,8 +67,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 90,
-      offY = -130
+      offX = 5,
+      offY = -180
     },
     text = Locale["ma_OBJAdd"]
   })
@@ -127,8 +127,8 @@ function AzerothAdmin:CreateGOSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 5,
-      offY = -180
+      offX = 90,
+      offY = -130
     },
     text = Locale["ma_OBJDel"]
   })
@@ -290,9 +290,29 @@ function AzerothAdmin:CreateGOSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 90,
-      offY = -205
+      offY = -30
     },
     text = Locale["ma_OBJInfo"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_gobclearinfobutton",
+    group = "go",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_gobclearinfobutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 90,
+      offY = -205
+    },
+    text = Locale["ma_OBJClearInfo"]
   })
 
   FrameLib:BuildButton({
@@ -829,7 +849,7 @@ function AzerothAdmin:CreateGOSection()
       offX = 280,
       offY = -5
     },
-    text = Locale["ma_GOShowButton"]
+    text = Locale["ma_GOLoadButton"]
   })
 
   -- MEMORY OPTIMIZATION: Unload Models button (frees ~5.6 MB)
@@ -852,5 +872,6 @@ function AzerothAdmin:CreateGOSection()
     },
     text = Locale["ma_GOUnloadButton"]
   })
+  ma_gobunloadmodel:Disable()
 
 end

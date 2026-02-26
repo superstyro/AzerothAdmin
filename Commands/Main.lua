@@ -32,14 +32,8 @@ function AzerothAdminCommands.ToggleFlyMode(value)
   AzerothAdmin:ChatMsg(".gm fly "..value)
 end
 
-function AzerothAdminCommands.ToggleHoverMode(value)
-  --AzerothAdmin:ChatMsg("hover command not used "..value) --TODO: Change to another function.
-  local status
-  if value == 1 then
-    status = "on"
-  else
-    status = "off"
-  end
+function AzerothAdminCommands.ToggleSpectatorMode(value)
+  AzerothAdmin:ChatMsg(".gm spectator "..value)
 end
 
 function AzerothAdminCommands.ToggleWhisper(value)
@@ -63,13 +57,6 @@ function AzerothAdminCommands.ToggleCheatTaxi(value)
   else
     AzerothAdmin:Print(Locale["selectionerror1"])
   end
-end
-
-function AzerothAdminCommands.ToggleMaps(value)
-  local confirmMsg = Locale["msg_toggle_maps_confirm"] or "Are you sure you want to toggle all maps? This may freeze the client for a few seconds."
-  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
-    AzerothAdminCommands.ToggleMaps_Confirmed(value)
-  end)
 end
 
 function AzerothAdminCommands.KillSomething()
@@ -172,6 +159,26 @@ end
 
 function AzerothAdminCommands.ToggleWaterwalk(value)
   AzerothAdmin:ChatMsg(".cheat waterwalk "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatCastTime(value)
+  AzerothAdmin:ChatMsg(".cheat casttime "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatCooldown(value)
+  AzerothAdmin:ChatMsg(".cheat cooldown "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatGod(value)
+  AzerothAdmin:ChatMsg(".cheat god "..value)
+end
+
+function AzerothAdminCommands.ToggleCheatPower(value)
+  AzerothAdmin:ChatMsg(".cheat power "..value)
+end
+
+function AzerothAdminCommands.CheatStatus()
+  AzerothAdmin:ChatMsg(".cheat status")
 end
 
 function AzerothAdminCommands.ToggleAccountlock(value)
@@ -302,18 +309,6 @@ function AzerothAdminCommands.AcctCreate()
   end)
 end
 
-function AzerothAdminCommands.AcctDelete()
-  local param = ma_parameter:GetText()
-  if param == "" then
-    AzerothAdmin:Print("Error: Parameter cannot be empty")
-    return
-  end
-  local confirmMsg = string.format(Locale["msg_acct_delete_confirm"] or "Are you sure you want to DELETE account '%s'?", param)
-  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
-    AzerothAdminCommands.AcctDelete_Confirmed()
-  end)
-end
-
 function AzerothAdminCommands.AcctAddon()
   local param = ma_parameter:GetText()
   if param == "" then
@@ -339,6 +334,15 @@ function AzerothAdminCommands.AcctPasswd()
     return
   end
   AzerothAdmin:ChatMsg(".account set password "..param)
+end
+
+function AzerothAdminCommands.AcctChange()
+  local param = ma_parameter:GetText()
+  if param == "" then
+    AzerothAdmin:Print("Error: Parameter cannot be empty")
+    return
+  end
+  AzerothAdmin:ChatMsg(".character changeaccount "..param)
 end
 
 function AzerothAdminCommands.GMNotify()

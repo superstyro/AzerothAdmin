@@ -227,6 +227,22 @@ function AzerothAdmin:OnInitialize()
   --altering the function setitemref, to make it possible to click links
   MangLinkifier_SetItemRef_Original = SetItemRef
   SetItemRef = MangLinkifier_SetItemRef
+  -- Hook shift-click item links to populate search box when item search popup is open
+  local orig_ChatEdit_InsertLink = ChatEdit_InsertLink
+  ChatEdit_InsertLink = function(text)
+    if ma_popupframe and ma_popupframe:IsVisible()
+      and ma_popupframe.popupMode == "search"
+      and ma_popupframe.searchType == "item"
+    then
+      local itemName = text and text:match("%[(.-)%]")
+      if itemName then
+        ma_searcheditbox:SetText(itemName)
+        ma_searcheditbox:SetFocus()
+        return true
+      end
+    end
+    return orig_ChatEdit_InsertLink(text)
+  end
   self.db.char.msgDeltaTime = time()
   -- hide minimenu if not enabled
   if not self.db.profile.style.showminimenu then
@@ -251,17 +267,7 @@ function AzerothAdmin:OnEnable()
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
 
-  -- Dissable unusable options in GM(main) tab WIP: FIX #10
-  ma_hoveronbutton:Disable()
-  ma_hoveroffbutton:Disable()
-  ma_acctcreatebutton:Disable()
-  ma_acctdeletebutton:Disable()
-
   -- Dissable unusable options in Char tab WIP: FIX #9
-  ma_mapsonbutton:Disable()
-  ma_mapsoffbutton:Disable()
-  ma_showmapsbutton:Disable()
-  ma_hidemapsbutton:Disable()
 end
 
 --events
@@ -298,7 +304,9 @@ function AzerothAdmin:PLAYER_TARGET_CHANGED()
     AzerothAdminCommands.NpcModelChanged()
   end
   if UnitIsPlayer("target") then
-    ma_charactertarget:SetText(UnitName("target"))
+    if not ma_charactertarget:HasFocus() then
+      ma_charactertarget:SetText(UnitName("target"))
+    end
     ma_savebutton:Enable()
     if UnitIsDead("target") then
       ma_revivebutton:Enable()
@@ -488,6 +496,8 @@ function AzerothAdmin:TogglePopup(value, param)
   else]]
   if value == "search" then
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
+    ma_popupframe.popupMode = "search"
+    ma_popupframe.searchType = param.type
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
 
@@ -593,6 +603,7 @@ function AzerothAdmin:TogglePopup(value, param)
       ma_resetsearchbutton:SetScript("OnClick", function() AzerothAdmin.db.profile.tickets.loading = true; self:LoadTickets(AzerothAdmin.db.profile.tickets.count) end)]]--
     end
   elseif value == "favorites" then
+    ma_popupframe.popupMode = "favorites"
     self:SearchReset()
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
@@ -617,6 +628,7 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_modfavsbutton:Enable()
     self:Favorites("show", param.type)
   elseif value == "mail" then
+    ma_popupframe.popupMode = "mail"
     self:SetupMailPopup(param)
   end
 end
@@ -736,14 +748,14 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         else -- Just move player
         end
         AzerothAdmin.cWorking = 0
+        AzerothAdminCommands.OBJTarget()
         end
-        OBJTarget()
     end
     -- hook .gps for gridnavigation
     for x, y in string.gmatch(text, Strings["ma_GmatchGPS"]) do
       for k,v in pairs(self.db.char.functionQueue) do
         if v == "GridNavigate" then
-          GridNavigate(string.format("%.1f", x), string.format("%.1f", y), nil)
+          AzerothAdminCommands.GridNavigate(string.format("%.1f", x), string.format("%.1f", y), nil)
           table.remove(self.db.char.functionQueue, k)
           break
         end
@@ -2407,16 +2419,36 @@ end
 function AzerothAdmin:InitSliders()
   -- Frame Transparency Slider
   ma_frmtrslider:SetOrientation("HORIZONTAL")
-  ma_frmtrslider:SetMinMaxValues(0.1, 1.0)
-  ma_frmtrslider:SetValueStep(0.05)
+  ma_frmtrslider:SetMinMaxValues(0, 1.0)
   ma_frmtrslider:SetValue(AzerothAdmin.db.profile.style.transparency.frames)
   ma_frmtrsliderText:SetText(string.format("%.2f", AzerothAdmin.db.profile.style.transparency.frames))
+  ma_frmtrslider:EnableMouseWheel(true)
+  ma_frmtrslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local step = 0.05
+    local curVal = self:GetValue()
+    local newVal = math.floor((curVal + (delta * step)) / step + 0.5) * step
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdmin:ChangeTransparency("frames")
+  end)
   -- Button Transparency Slider
   ma_btntrslider:SetOrientation("HORIZONTAL")
-  ma_btntrslider:SetMinMaxValues(0.1, 1.0)
-  ma_btntrslider:SetValueStep(0.05)
+  ma_btntrslider:SetMinMaxValues(0, 1.0)
   ma_btntrslider:SetValue(AzerothAdmin.db.profile.style.transparency.buttons)
   ma_btntrsliderText:SetText(string.format("%.2f", AzerothAdmin.db.profile.style.transparency.buttons))
+  ma_btntrslider:EnableMouseWheel(true)
+  ma_btntrslider:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self:GetMinMaxValues()
+    local step = 0.05
+    local curVal = self:GetValue()
+    local newVal = math.floor((curVal + (delta * step)) / step + 0.5) * step
+    if newVal < min then newVal = min end
+    if newVal > max then newVal = max end
+    self:SetValue(newVal)
+    AzerothAdmin:ChangeTransparency("buttons")
+  end)
 end
 
 function AzerothAdmin:InitScrollFrames()

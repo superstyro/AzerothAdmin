@@ -150,7 +150,7 @@ function AzerothAdmin:CreateMainSection()
       offX = 10,
       offY = -70
     },
-    text = Locale["ma_HoverOnButton"]
+    text = Locale["ma_SpectatorOnButton"]
   })
 
   FrameLib:BuildButton({
@@ -294,46 +294,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_mapsonbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_mapsonbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 120,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 10,
-      offY = -150
-    },
-    text = Locale["ma_mapsbutton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_mapsoffbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_mapsoffbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 40,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 134,
-      offY = -150
-    },
-    text = Locale["ma_OffButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_waterwalkonbutton",
     group = "main",
     parent = ma_midframe,
@@ -348,7 +308,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 10,
-      offY = -170
+      offY = -150
     },
     text = Locale["ma_waterwalkbutton"]
   })
@@ -368,17 +328,57 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 134,
+      offY = -150
+    },
+    text = Locale["ma_OffButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatcasttimeonbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatcasttimeonbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 120,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -170
+    },
+    text = Locale["ma_cheatcasttimebutton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatcasttimeoffbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatcasttimeoffbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 40,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 134,
       offY = -170
     },
     text = Locale["ma_OffButton"]
   })
 
   FrameLib:BuildButton({
-    name = "ma_accountlockonbutton",
+    name = "ma_cheatcooldownonbutton",
     group = "main",
     parent = ma_midframe,
     texture = {
-      name = "ma_accountlockonbutton_texture",
+      name = "ma_cheatcooldownonbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -390,15 +390,15 @@ function AzerothAdmin:CreateMainSection()
       offX = 10,
       offY = -190
     },
-    text = Locale["ma_accountlockbutton"]
+    text = Locale["ma_cheatcooldownbutton"]
   })
 
   FrameLib:BuildButton({
-    name = "ma_accountlockoffbutton",
+    name = "ma_cheatcooldownoffbutton",
     group = "main",
     parent = ma_midframe,
     texture = {
-      name = "ma_accountlockoffbutton_texture",
+      name = "ma_cheatcooldownoffbutton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {
@@ -409,6 +409,86 @@ function AzerothAdmin:CreateMainSection()
       pos = "TOPLEFT",
       offX = 134,
       offY = -190
+    },
+    text = Locale["ma_OffButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatgodonbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatgodonbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 120,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -210
+    },
+    text = Locale["ma_cheatgodbutton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatgodoffbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatgodoffbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 40,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 134,
+      offY = -210
+    },
+    text = Locale["ma_OffButton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatpoweronbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatpoweronbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 120,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 10,
+      offY = -230
+    },
+    text = Locale["ma_cheatpowerbutton"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatpoweroffbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatpoweroffbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 40,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 134,
+      offY = -230
     },
     text = Locale["ma_OffButton"]
   })
@@ -434,46 +514,6 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_bankbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_bankbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 660,
-      offY = -32
-    },
-    text = Locale["ma_BankButton"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_dismountbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_dismountbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 660,
-      offY = -54
-    },
-    text = Locale["ma_DismountButton"]
-  })
-
-  FrameLib:BuildButton({
     name = "ma_setjail_a_button",
     group = "main",
     parent = ma_midframe,
@@ -488,7 +528,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 660,
-      offY = -75
+      offY = -32
     },
     text = Locale["ma_SetJail_A_Button"]
   })
@@ -508,9 +548,29 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 660,
-      offY = -97
+      offY = -54
     },
     text = Locale["ma_SetJail_H_Button"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_acctchangebutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_acctchangebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 333,
+      offY = -54
+    },
+    text = Locale["ma_acctchange"]
   })
 
   FrameLib:BuildButton({
@@ -716,7 +776,7 @@ function AzerothAdmin:CreateMainSection()
     text = Locale["ma_parameters"],
     setpoint = {
       pos = "TOPLEFT",
-      offX = 142, --charColOne
+      offX = 180,
       offY = -232
     }
   })
@@ -733,8 +793,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 226,
-      offY = -231 --charRowTen
+      offX = 264,
+      offY = -231
     },
     inherits = "InputBoxTemplate"
   })
@@ -753,8 +813,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -10
+      offX = 333,
+      offY = -97
     },
     text = Locale["ma_gmingame"]
   })
@@ -773,8 +833,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -32
+      offX = 333,
+      offY = -75
     },
     text = Locale["ma_gmlist"]
   })
@@ -1120,6 +1180,66 @@ function AzerothAdmin:CreateMainSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_charlistdeletedbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_charlistdeletedbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 415,
+      offY = -141
+    },
+    text = Locale["ma_charlistdeleted"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_chardeletedrestorebutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_chardeletedrestorebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 415,
+      offY = -163
+    },
+    text = Locale["ma_chardeletedrestore"]
+  })
+
+  FrameLib:BuildButton({
+    name = "ma_cheatstatusbutton",
+    group = "main",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_cheatstatusbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 415,
+      offY = -185
+    },
+    text = Locale["ma_cheatstatusbutton"]
+  })
+
+  FrameLib:BuildButton({
     name = "ma_gmclearbutton",
     group = "main",
     parent = ma_midframe,
@@ -1133,50 +1253,10 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 578,
-      offY = -140
+      offX = 508,
+      offY = -231
     },
     text = Locale["ma_GmClear"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_acctcreatebutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctcreatebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -10
-    },
-    text = Locale["ma_acctcreate"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_acctdeletebutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctdeletebutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -32
-    },
-    text = Locale["ma_acctdelete"]
   })
 
   FrameLib:BuildButton({
@@ -1194,7 +1274,7 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -54
+      offY = -10
     },
     text = Locale["ma_acctaddon"]
   })
@@ -1214,29 +1294,9 @@ function AzerothAdmin:CreateMainSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 333,
-      offY = -75
+      offY = -32
     },
     text = Locale["ma_acctgmlvl"]
-  })
-
-  FrameLib:BuildButton({
-    name = "ma_acctpasswdbutton",
-    group = "main",
-    parent = ma_midframe,
-    texture = {
-      name = "ma_acctpasswdbutton_texture",
-      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
-    },
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 333,
-      offY = -97
-    },
-    text = Locale["ma_acctpasswd"]
   })
 
   FrameLib:BuildButton({
@@ -1273,8 +1333,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 333,
-      offY = -140
+      offX = 578,
+      offY = -10
     },
     text = Locale["ma_teleaddbutton"]
     })
@@ -1293,8 +1353,8 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 415,
-      offY = -140
+      offX = 578,
+      offY = -32
     },
     text = Locale["ma_teledelbutton"]
     })

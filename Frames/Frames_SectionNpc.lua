@@ -244,7 +244,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -95 --charRowFour
+      offY = -117 --charRowFive
     },
     text = Locale["ma_NPCMove"]
   })
@@ -264,7 +264,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -74  --charRowThree
+      offY = -95  --charRowFour
     },
     text = Locale["ma_NPCDel"]
   })
@@ -284,7 +284,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -117 --charRowFive
+      offY = -139 --charRowSix
     },
     text = Locale["ma_NPCGo"]
   })
@@ -526,6 +526,26 @@ function AzerothAdmin:CreateNpcSection()
   })
 
   FrameLib:BuildButton({
+    name = "ma_NPC_addIDbutton",
+    group = "npc",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_NPC_addIDbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 303, --charColThree
+      offY = -74 --charRowThree
+    },
+    text = Locale["ma_NPCAddID"]
+  })
+
+  FrameLib:BuildButton({
     name = "ma_NPC_guidgetbutton",
     group = "npc",
     parent = ma_midframe,
@@ -604,6 +624,26 @@ function AzerothAdmin:CreateNpcSection()
     inherits = "InputBoxTemplate"
   })
 
+  FrameLib:BuildButton({
+    name = "ma_npcclearparamsbutton",
+    group = "npc",
+    parent = ma_midframe,
+    texture = {
+      name = "ma_npcclearparamsbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 470,
+      offY = -231
+    },
+    text = Locale["ma_GmClear"]
+  })
+
   FrameLib:BuildButton({ --Morph
     name = "ma_npcmorphbutton",
     group = "npc",
@@ -659,7 +699,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -139 --charRowSix
+      offY = -160 --charRowSeven
     },
     text = Locale["ma_NPCSay"]
     })
@@ -679,7 +719,7 @@ function AzerothAdmin:CreateNpcSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 303, --charColThree
-      offY = -160 --charRowSeven
+      offY = -182 --charRowEight
     },
     text = Locale["ma_NPCYell"]
     })
@@ -778,8 +818,8 @@ function AzerothAdmin:CreateNpcSection()
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 303, --charColThree
-      offY = -204 --charRowNine
+      offX = 385, --charColFour
+      offY = -117 --charRowFive
     },
     text = Locale["ma_NPCComeToMe"]
   })

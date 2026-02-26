@@ -127,6 +127,11 @@ function AzerothAdminCommands.NPC_Add()
     AzerothAdmin:ChatMsg(".npc add "..npc)
 end
 
+function AzerothAdminCommands.NPC_AddID()
+    local creatureid = ma_npccharactertarget:GetText()
+    AzerothAdmin:ChatMsg(".npc add "..creatureid)
+end
+
 function AzerothAdminCommands.NPCGo()
     local player = UnitName("target") or UnitName("player")
     local npc =	ma_NPC_guidbutton:GetText()
@@ -335,4 +340,8 @@ end
 function AzerothAdminCommands.ShowMove()
     local player = UnitName("target") or UnitName("player")
     AzerothAdmin:ChatMsg(".movegens")
+end
+
+function AzerothAdminCommands.NpcClearParams()
+  ma_npccharactertarget:SetText("")
 end

@@ -3041,7 +3041,7 @@ function AzerothAdmin:InlineScrollUpdate_temp()
 end
 
 function pairsByKeys(t, f)
-  if t == Nil then
+  if t == nil then
   else
     local a = {}
     for n in pairs(t) do table.insert(a, n) end

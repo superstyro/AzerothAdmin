@@ -313,7 +313,7 @@ if L then
     ["ma_SaveButton"]                 = "Guardar",
     ["ma_KickButton"]                 = "Expulsar",
     ["ma_CooldownButton"]             = "Cooldown",
-    ["ma_GUIDButton"]                 = "Ver GUID",
+    ["ma_IDButton"]                   = "Ver ID",
     ["ma_PinfoButton"]                = "Info JUGADOR",
     ["ma_DistanceButton"]             = "Distancia",
     ["ma_RecallButton"]               = "Devolver",

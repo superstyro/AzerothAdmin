@@ -315,7 +315,7 @@ if L then
     ["ma_SaveButton"]                 = "儲存",
     ["ma_KickButton"]                 = "踢出",
     ["ma_CooldownButton"]             = "冷卻",
-    ["ma_GUIDButton"]                 = "顯示GUID",
+    ["ma_IDButton"]                   = "顯示ID",
     ["ma_PinfoButton"]                = "玩家資訊",
     ["ma_DistanceButton"]             = "距離",
     ["ma_RecallButton"]               = "召回",

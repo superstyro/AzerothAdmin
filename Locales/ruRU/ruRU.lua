@@ -315,7 +315,7 @@ if L then
     ["ma_SaveButton"]                 = "Сохранить",
     ["ma_KickButton"]                 = "Выгнать",
     ["ma_CooldownButton"]             = "Откаты",
-    ["ma_GUIDButton"]                 = "Показать GUID",
+    ["ma_IDButton"]                   = "Показать ID",
     ["ma_PinfoButton"]                = "Инфо ИГРОКА",
     ["ma_DistanceButton"]             = "Расстояние",
     ["ma_RecallButton"]               = "Вернуть",

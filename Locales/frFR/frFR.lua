@@ -315,7 +315,7 @@ if L then
     ["ma_SaveButton"]                 = "Sauvegarder",
     ["ma_KickButton"]                 = "Expulser",
     ["ma_CooldownButton"]             = "Temps recharge",
-    ["ma_GUIDButton"]                 = "Afficher GUID",
+    ["ma_IDButton"]                   = "Afficher ID",
     ["ma_PinfoButton"]                = "Info JOUEUR",
     ["ma_DistanceButton"]             = "Distance",
     ["ma_RecallButton"]               = "Rappeler",

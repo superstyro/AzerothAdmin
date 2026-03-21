@@ -315,7 +315,7 @@ if L then
     ["ma_SaveButton"]                 = "Speichern",
     ["ma_KickButton"]                 = "Kicken",
     ["ma_CooldownButton"]             = "Abklingzeit",
-    ["ma_GUIDButton"]                 = "GUID zeigen",
+    ["ma_IDButton"]                   = "ID zeigen",
     ["ma_PinfoButton"]                = "SPIELER-Info",
     ["ma_DistanceButton"]             = "Entfernung",
     ["ma_RecallButton"]               = "Zurückrufen",

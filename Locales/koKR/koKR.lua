@@ -315,7 +315,7 @@ if L then
     ["ma_SaveButton"]                 = "저장",
     ["ma_KickButton"]                 = "추방",
     ["ma_CooldownButton"]             = "재사용 대기시간",
-    ["ma_GUIDButton"]                 = "GUID 표시",
+    ["ma_IDButton"]                   = "ID 표시",
     ["ma_PinfoButton"]                = "플레이어 정보",
     ["ma_DistanceButton"]             = "거리",
     ["ma_RecallButton"]               = "소환",

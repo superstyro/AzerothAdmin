@@ -68,7 +68,7 @@ function AzerothAdminCommands.NpcModelChanged()
 end
 
 function AzerothAdminCommands.NPCKillSomething()
-  local target = UnitName("target") or UnitName("player")
+  local target = UnitName("target")
   AzerothAdmin:ChatMsg(".die")
 end
 
@@ -80,7 +80,7 @@ function AzerothAdminCommands.NPCDistance()
     -- Check if a target exists
     if UnitExists("target") then
         AzerothAdmin:ID_Setting_Start_Write(1)
-        local player = UnitName("target") or UnitName("player")
+        local player = UnitName("target")
         AzerothAdmin:ChatMsg(".distance")
     else
         print("Target NPC to use distance command")
@@ -88,41 +88,41 @@ function AzerothAdminCommands.NPCDistance()
 end
 
 function AzerothAdminCommands.NPCShowGUID()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".guid")
 end
 
 function AzerothAdminCommands.NPCInfo()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc info")
 end
 
 function AzerothAdminCommands.NPCDemorph()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".demorph")
 end
 
 
 function AzerothAdminCommands.NPCMove()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc move")
 end
 
 
 
 function AzerothAdminCommands.NPCDel()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc del")
 end
 
 function AzerothAdminCommands.NPC_GUID_Get()
 	AzerothAdmin:ID_Setting_Start_Write(1)
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc info")
 end
 
 function AzerothAdminCommands.NPC_Add()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     local npc = ma_NPC_idbutton:GetText()
     AzerothAdmin:ChatMsg(".npc add "..npc)
 end
@@ -135,7 +135,7 @@ function AzerothAdminCommands.NPC_AddID()
 end
 
 function AzerothAdminCommands.NPCGo()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     local npc =	ma_NPC_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".go creature "..npc)
 end
@@ -275,33 +275,33 @@ function AzerothAdminCommands.NPCModelZoomOut()
 end
 
 function AzerothAdminCommands.NPCPossess()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".possess")
 
 end
 function AzerothAdminCommands.NPCUnPossess()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".unpossess")
 
 end
 
 function AzerothAdminCommands.NPCFreeze()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc set movetype stay NODEL")
 end
 
 function AzerothAdminCommands.NPCFreezeDEL()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc set movetype stay")
 end
 
 function AzerothAdminCommands.WayEndAdd()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".wp add")
 end
 
 function AzerothAdminCommands.NPCAdd_Way()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     local npc =	ma_NPC_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".wp add "..npc)
     --AzerothAdmin:Way_Point_Add_Start_Write(1)
@@ -309,38 +309,38 @@ function AzerothAdminCommands.NPCAdd_Way()
 end
 
 function AzerothAdminCommands.WayModifyAdd()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".wp modify add")
 end
 
 function AzerothAdminCommands.WayModifyDel()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".wp modify del")
 end
 
 function AzerothAdminCommands.NPCAdd_WayShowOn()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     local npc =	ma_NPC_guidbutton:GetText()
     AzerothAdmin:ChatMsg(".wp show on "..npc)
 end
 
 function AzerothAdminCommands.WayShowOn()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".wp show on")
 end
 
 function AzerothAdminCommands.WayShowOff()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".wp show off")
 end
 
 function AzerothAdminCommands.NPCUnFreeze_Way()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".npc set movetype way NODEL")
 end
 
 function AzerothAdminCommands.ShowMove()
-    local player = UnitName("target") or UnitName("player")
+    local player = UnitName("target")
     AzerothAdmin:ChatMsg(".movegens")
 end
 

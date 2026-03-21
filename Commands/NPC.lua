@@ -128,7 +128,9 @@ function AzerothAdminCommands.NPC_Add()
 end
 
 function AzerothAdminCommands.NPC_AddID()
-    local creatureid = ma_npccharactertarget:GetText()
+    local idbox = ma_NPC_idbutton:GetText()
+    local params = ma_npccharactertarget:GetText()
+    local creatureid = (idbox ~= "" and idbox) or params
     AzerothAdmin:ChatMsg(".npc add "..creatureid)
 end
 

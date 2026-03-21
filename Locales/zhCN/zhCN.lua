@@ -449,7 +449,7 @@ if L then
     ["tt_NPCKillButton"]              = "杀死所选目标",
     ["tt_npcrespawn"]                 = "重生所选生物，如果未选择则重生附近所有生物",
     ["tt_NPCDistanceButton"]          = "获取到所选生物的距离。",
-    ["tt_NPCGUIDButton"]              = "显示所选角色的GUID。",
+    ["tt_NPCEntryIDButton"]           = "显示所选角色的GUID。",
     ["tt_NPCInfoButton"]              = "获取所选NPC的信息。",
     ["tt_NPCDemorph"]                 = "解除所选NPC的变形",
     ["tt_NPCMove"]                    = "将所选生物移动到你的位置",

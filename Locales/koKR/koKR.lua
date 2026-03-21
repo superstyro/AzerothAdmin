@@ -449,7 +449,7 @@ if L then
     ["tt_NPCKillButton"]              = "선택한 대상을 죽입니다",
     ["tt_npcrespawn"]                 = "선택한 생명체를 다시 생성하거나, 선택되지 않은 경우 근처의 모든 생명체를 다시 생성합니다",
     ["tt_NPCDistanceButton"]          = "선택한 생명체까지의 거리를 가져옵니다.",
-    ["tt_NPCGUIDButton"]              = "선택한 캐릭터의 GUID를 표시합니다.",
+    ["tt_NPCEntryIDButton"]           = "선택한 캐릭터의 GUID를 표시합니다.",
     ["tt_NPCInfoButton"]              = "선택한 NPC의 정보를 가져옵니다.",
     ["tt_NPCDemorph"]                 = "선택한 NPC의 변신을 해제합니다",
     ["tt_NPCMove"]                    = "선택한 생명체를 당신의 위치로 이동시킵니다",

@@ -449,7 +449,7 @@ if L then
     ["tt_NPCKillButton"]              = "Mata o alvo selecionado",
     ["tt_npcrespawn"]                 = "Reaparece a criatura selecionada, ou se nenhuma selecionada, todas as criaturas próximas",
     ["tt_NPCDistanceButton"]          = "Obter distância à criatura selecionada.",
-    ["tt_NPCGUIDButton"]              = "Mostra o GUID do personagem selecionado.",
+    ["tt_NPCEntryIDButton"]           = "Mostra o GUID do personagem selecionado.",
     ["tt_NPCInfoButton"]              = "Obter informação sobre o NPC selecionado.",
     ["tt_NPCDemorph"]                 = "Remove a transformação do NPC selecionado",
     ["tt_NPCMove"]                    = "Move a criatura selecionada para a sua localização",

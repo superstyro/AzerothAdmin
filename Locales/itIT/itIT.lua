@@ -449,7 +449,7 @@ if L then
     ["tt_NPCKillButton"]              = "Uccide il bersaglio selezionato",
     ["tt_npcrespawn"]                 = "Fa respawnare la creatura selezionata, o se nessuna è selezionata, tutte le creature vicine",
     ["tt_NPCDistanceButton"]          = "Ottieni la distanza dalla creatura selezionata.",
-    ["tt_NPCGUIDButton"]              = "Mostra il GUID del personaggio selezionato.",
+    ["tt_NPCEntryIDButton"]           = "Mostra il GUID del personaggio selezionato.",
     ["tt_NPCInfoButton"]              = "Ottieni informazioni sull'NPC selezionato.",
     ["tt_NPCDemorph"]                 = "Rimuove la trasformazione dall'NPC selezionato",
     ["tt_NPCMove"]                    = "Muovi la creatura selezionata alla tua posizione",

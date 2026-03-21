@@ -485,7 +485,7 @@ if L then
     ["tt_NPCKillButton"]              = "Kills the selected target",
     ["tt_npcrespawn"]                 = "Respawns selected creasture, or if none selected, all nearby creatures",
     ["tt_NPCDistanceButton"]          = "Get distance to the selected creature.",
-    ["tt_NPCGUIDButton"]              = "Shows the Creature Entry of the selected NPC.",
+    ["tt_NPCEntryIDButton"]           = "Shows the Creature Entry of the selected NPC.",
     ["tt_NPCInfoButton"]              = "Get information on the selected NPC.",
     ["tt_NPCDemorph"]                 = "Demorphs selected NPC",
     ["tt_NPCMove"]                    = "Move the selected creature to your location",

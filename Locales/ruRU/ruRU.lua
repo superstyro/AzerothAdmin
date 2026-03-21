@@ -493,7 +493,7 @@ if L then
     ["ma_NPCKillButton"]              = "Убить",
     ["ma_Respawn"]                    = "Возродить",
     ["ma_NPCDistanceButton"]          = "Расстояние",
-    ["ma_NPCGUIDButton"]              = "Показать GUID",
+    ["ma_NPCEntryIDButton"]           = "Показать GUID",
     ["ma_NPCInfoButton"]              = "Инфо NPC",
     ["ma_NPCDemorph"]                 = "Убрать морф",
     ["ma_NPCMove"]                    = "Переместить NPC",

@@ -493,7 +493,7 @@ if L then
     ["ma_NPCKillButton"]              = "죽이기",
     ["ma_Respawn"]                    = "재생성",
     ["ma_NPCDistanceButton"]          = "거리",
-    ["ma_NPCGUIDButton"]              = "GUID 표시",
+    ["ma_NPCEntryIDButton"]           = "GUID 표시",
     ["ma_NPCInfoButton"]              = "NPC 정보",
     ["ma_NPCDemorph"]                 = "변신 해제",
     ["ma_NPCMove"]                    = "NPC 이동",

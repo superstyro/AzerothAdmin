@@ -190,7 +190,7 @@ function AzerothAdmin:CreateNpcSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_npcguidbutton",
+    name = "ma_NPCEntryIDButton",
     group = "npc",
     parent = ma_midframe,
     texture = {
@@ -206,7 +206,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = -5, --charColSix
       offY = -160 --charRowSeven
     },
-    text = Locale["ma_NPCGUIDButton"]
+    text = Locale["ma_NPCEntryIDButton"]
   })
 
   FrameLib:BuildButton({

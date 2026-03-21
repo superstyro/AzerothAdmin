@@ -493,7 +493,7 @@ if L then
     ["ma_NPCKillButton"]              = "Matar",
     ["ma_Respawn"]                    = "Reaparecer",
     ["ma_NPCDistanceButton"]          = "Distância",
-    ["ma_NPCGUIDButton"]              = "Mostrar GUID",
+    ["ma_NPCEntryIDButton"]           = "Mostrar GUID",
     ["ma_NPCInfoButton"]              = "Info NPC",
     ["ma_NPCDemorph"]                 = "Remover Transform",
     ["ma_NPCMove"]                    = "Mover NPC",

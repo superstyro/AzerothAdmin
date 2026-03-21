@@ -762,8 +762,8 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
       end
     end
     if AzerothAdmin:ID_Setting_Start_Read() then
-        -- Match GUID Low value from "Low: 544."
-        local npc_guid_capture = string.match(text, "Low: (%d+)%.")
+        -- Match DB GUID from "DB GUID: 85217,"
+        local npc_guid_capture = string.match(text, "DB GUID: (%d+)")
         if npc_guid_capture then
             AzerothAdmin:ID_Setting_Write(0, npc_guid_capture)
             ma_NPC_guidbutton:SetText(npc_guid_capture)

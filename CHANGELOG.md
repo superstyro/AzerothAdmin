@@ -2,6 +2,8 @@
 
 ## -=[ Version 21 - 02/25/2026]=-
 
+- FIX Get GUID button on NPC tab now correctly captures DB GUID instead of the Low value from the GUID field
+
 - FIX NPC ID box on NPC tab is now editable so a creature ID can be typed in manually
 - FIX NPC Add ID button now uses the NPC ID box value instead of the params box
 - FIX NPC Add ID button is disabled until a value is entered in the NPC ID box or params box

@@ -209,7 +209,7 @@ function AzerothAdmin:CreateServerSection()
     local eb = CreateFrame("EditBox", "ma_shutdowneditbox", ma_midframe)
     FrameLib:AddGroupFrame("server", eb)
     eb:SetSize(45, 20)
-    eb:SetPoint("TOPRIGHT", ma_midframe, "TOPRIGHT", -115, -78)
+    eb:SetPoint("TOPRIGHT", ma_midframe, "TOPRIGHT", -115, -153)
     eb:SetAutoFocus(false)
     eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
     eb:SetFontObject("ChatFontNormal")
@@ -240,7 +240,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -65
+      offY = -140
     },
     text = Locale["ma_RestartButton"]
   })
@@ -260,7 +260,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -90
+      offY = -165
     },
     text = Locale["ma_ShutdownButton"]
   })
@@ -280,7 +280,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -115
+      offY = -190
     },
     text = Locale["ma_CancelShutdownButton"]
   })

@@ -796,7 +796,7 @@ if L then
     ["tabmenu_server"]                = "SERVER",
     ["tt_ServerButton"]               = "Toggle tab with Server related functions",
   --[[Tooltips]]
-    ["tt_ReloadTableButton"]          = "Reload Table from dropdown menu",
+    ["tt_ReloadTableButton"]          = "Reload Database Table from dropdown menu",
     ["tt_ReloadScriptsButton"]        = "Reload all Scripts on the server",
     ["tt_AnnounceButton"]             = "Announce a system message",
     ["tt_ShutdownButton"]             = "Shut down the server in the amount of seconds from the field, if omitted shut down immediately!",

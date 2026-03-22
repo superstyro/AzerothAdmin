@@ -397,22 +397,24 @@ function AzerothAdmin:CreateNpcSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_npcdisplayid",
-    group = "npc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 585, --charColSix
-      offY = -204 --charRowNine
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_npcdisplayid", ma_midframe)
+    FrameLib:AddGroupFrame("npc", eb)
+    eb:SetSize(80, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 582, -204) --charColSix, charRowNine
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_npcdisplayupbutton",
@@ -446,22 +448,24 @@ function AzerothAdmin:CreateNpcSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_NPC_idbutton",
-    group = "npc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 585, --charColSix
-      offY = -182 --charRowEight
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_NPC_idbutton", ma_midframe)
+    FrameLib:AddGroupFrame("npc", eb)
+    eb:SetSize(80, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 582, -182) --charColSix, charRowEight
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_npcID_UPbutton",
@@ -577,22 +581,24 @@ function AzerothAdmin:CreateNpcSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_NPC_guidbutton",
-    group = "npc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 585, --charColSix
-      offY = -160 --charRowSeven
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_NPC_guidbutton", ma_midframe)
+    FrameLib:AddGroupFrame("npc", eb)
+    eb:SetSize(80, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 582, -160) --charColSix, charRowSeven
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildFontString({
     name = "ma_npcparameterboxtext",
@@ -607,22 +613,24 @@ function AzerothAdmin:CreateNpcSection()
   })
 
   --[[Parameter Box Input]]
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_npccharactertarget",
-    group = "npc",
-    parent = ma_midframe,
-    size = {
-      width = 240,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 226,
-      offY = -231 --charRowTen
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_npccharactertarget", ma_midframe)
+    FrameLib:AddGroupFrame("npc", eb)
+    eb:SetSize(250, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 217, -231)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_npcclearparamsbutton",
@@ -1088,22 +1096,24 @@ function AzerothAdmin:CreateNpcSection()
     text = Locale["ma_NPCUnFreeze_RandomButton"]
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_npc_distance_box",
-    group = "npc",
-    parent = ma_midframe,
-    size = {
-      width = 80,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 585, --charColSix
-      offY = -139 --charRowSix
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_npc_distance_box", ma_midframe)
+    FrameLib:AddGroupFrame("npc", eb)
+    eb:SetSize(80, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 582, -139) --charColSix, charRowSix
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_movestackbutton",

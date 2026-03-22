@@ -493,7 +493,7 @@ if L then
     ["tt_getguid"]                    = "Gets the selected NPC DB GUID, Creature Entry, and DisplayID",
     ["tt_NPCClear"]                   = "Clears all NPC info fields (DB GUID, Creature Entry, DisplayID, Distance)",
     ["tt_NPCAdd"]                     = "Adds a copy of current target NPC at your location",
-    ["tt_NPCAddID"]                   = "Spawn a NPC by the given template id of #creatureid",
+    ["tt_NPCAddID"]                   = "Spawn a NPC from the given template id of #creatureid",
     ["tt_NPCGo"]                      = "Teleports you to the NPC in the GUID text box (Use 'NPC Info' first)",
     ["tt_NPCMorph"]                   = "Parameters = #DisplayID [[Enter the DisplayID of the morph you want to apply]]",
     ["tt_NPCSay"]                     = "Make selected NPC say [parameters]",

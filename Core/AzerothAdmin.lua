@@ -73,6 +73,7 @@ local defaults = {
     newTicketQueue = {},
     instantKillMode = false,
     msgDeltaTime = time(),
+    serverRestartState = nil,
   },
   profile = {
     -- Was "account" defaults
@@ -266,6 +267,21 @@ function AzerothAdmin:OnEnable()
   self:RegisterEvent("PLAYER_ALIVE")
   self:PLAYER_TARGET_CHANGED() --init
   --ma_mm_revivebutton:Show()
+
+  -- Restore server restart/shutdown button state
+  if self.db.char.serverRestartState then
+    ma_restartbutton:Disable()
+    ma_shutdownbutton:Disable()
+    ma_shutdowneditbox:EnableMouse(false)
+    ma_shutdowneditbox:EnableKeyboard(false)
+    ma_cancelshutdownbutton:Show()
+  else
+    ma_restartbutton:Enable()
+    ma_shutdownbutton:Enable()
+    ma_shutdowneditbox:EnableMouse(true)
+    ma_shutdowneditbox:EnableKeyboard(true)
+    ma_cancelshutdownbutton:Hide()
+  end
 
   -- Dissable unusable options in Char tab WIP: FIX #9
 end
@@ -469,7 +485,7 @@ end
 function AzerothAdmin:ToggleContentGroup(group)
   --AzerothAdmin:LogAction("Toggled navigation point '"..group.."'.")
   self:HideAllGroups()
-  FrameLib:HandleGroup(group, function(frame) 
+  FrameLib:HandleGroup(group, function(frame)
     if frame and frame.Show then
       local status, err = pcall(frame.Show, frame)
       if not status then
@@ -478,6 +494,10 @@ function AzerothAdmin:ToggleContentGroup(group)
       end
     end
   end)
+  -- Restore cancel button visibility when switching to Server tab
+  if group == "server" and self.db.char.serverRestartState then
+    ma_cancelshutdownbutton:Show()
+  end
 end
 
 function AzerothAdmin:InstantGroupToggle(group)
@@ -641,6 +661,7 @@ function AzerothAdmin:HideAllGroups()
   FrameLib:HandleGroup("tele", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("ticket", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("server", function(frame) frame:Hide() end)
+  FrameLib:HandleGroup("server_special", function(frame) frame:Hide() end)
   FrameLib:HandleGroup("misc", function(frame) frame:Hide() end)
 end
 

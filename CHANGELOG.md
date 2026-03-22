@@ -1,5 +1,19 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 23 - 03/22/2026]=-
+
+- ADD Server Restart button to Server tab using the same seconds field as shutdown
+- CHANGE Cancel Shutdown button renamed to "Cancel Shutdown/Restart" and now appears below both Restart and Shutdown buttons only when a restart or shutdown has been initiated
+- CHANGE Restart and Shutdown buttons are disabled (instead of hidden) when a restart/shutdown is active, and re-enabled when cancelled
+- ADD Button state (restart/shutdown pending) persists across addon window close/reopen via AceDB
+- CHANGE Countdown seconds editbox styled with custom 2px dark gray border replacing default InputBoxTemplate
+- FIX Countdown seconds editbox now clears focus on Escape key press
+- CHANGE Countdown seconds editbox is disabled while a restart or shutdown is active, preventing edits mid-countdown
+- FIX Countdown seconds editbox cursor no longer lingers after being disabled
+- CHANGE Restart, Shutdown, editbox, and Cancel button positions adjusted on Server tab
+- CHANGE All three Server tab editboxes (announce, delay, countdown) now use consistent custom dark style with 2px gray border
+- FIX Update diff graph delay no longer updates live on text change — now only applies when the Update button is pressed
+
 ## -=[ Version 22 - 03/21/2026]=-
 
 - CHANGE Ace3 does not allow for easy locale manual selection. Locale dropdown menu hidden so it is not confusing

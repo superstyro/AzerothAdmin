@@ -92,22 +92,24 @@ function AzerothAdmin:CreateServerSection()
     end)
   f:Show()
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_announceeditbox",
-    group = "server",
-    parent = ma_midframe,
-    size = {
-      width = 460,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 15,
-      offY = -226
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_announceeditbox", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(460, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 15, -226)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_announcebutton",
@@ -200,26 +202,49 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -38
+      offY = -35
     },
     text = Locale["ma_ReloadScriptsButton"]
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_shutdowneditbox",
+  do
+    local eb = CreateFrame("EditBox", "ma_shutdowneditbox", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(45, 20)
+    eb:SetPoint("TOPRIGHT", ma_midframe, "TOPRIGHT", -115, -153)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(4)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
+
+  FrameLib:BuildButton({
+    name = "ma_restartbutton",
     group = "server",
     parent = ma_midframe,
+    texture = {
+      name = "ma_restartbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
     size = {
-      width = 30,
+      width = 100,
       height = 20
     },
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -115,
-      offY = -65
+      offX = -10,
+      offY = -140
     },
-    inherits = "InputBoxTemplate"
+    text = Locale["ma_RestartButton"]
   })
 
   FrameLib:BuildButton({
@@ -237,7 +262,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -65
+      offY = -165
     },
     text = Locale["ma_ShutdownButton"]
   })
@@ -257,7 +282,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -65
+      offY = -190
     },
     text = Locale["ma_CancelShutdownButton"]
   })
@@ -320,25 +345,26 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_delayparam",
-    group = "server",
-    parent = ma_midframe,
-    size = {
-      width = 60,
-      height = 20
-    },
-    setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 195,
-      offY = 45
-    },
-    inherits = "InputBoxTemplate"
-  })
-
-  ma_delayparam:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
-  ma_delayparam:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+  do
+    local eb = CreateFrame("EditBox", "ma_delayparam", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(60, 20)
+    eb:SetPoint("BOTTOMLEFT", ma_midframe, "BOTTOMLEFT", 195, 45)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+    eb:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
+    eb:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+  end
 
   FrameLib:BuildButton({
     name = "ma_updatedelaybutton",
@@ -453,8 +479,7 @@ function AzerothAdmin:CreateServerSection()
   local q = 0
   x:SetScript("OnUpdate",function()
       q = q + 1
-      -- Check if ma_delayparam exists before using it
-      local delayParam = ma_delayparam and tonumber(ma_delayparam:GetText())
+      local delayParam = tonumber(AzerothAdmin.db.profile.style.delayparam)
       if delayParam and q > delayParam then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           -- Don't update server info or graph if a dropdown menu is currently open
           -- Check both UIDROPDOWNMENU_OPEN_MENU and if any dropdown list frames are visible

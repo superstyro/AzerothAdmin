@@ -800,12 +800,14 @@ if L then
     ["tt_ReloadTableButton"]          = "Reload Database Table from dropdown menu",
     ["tt_ReloadScriptsButton"]        = "Reload all Scripts on the server",
     ["tt_AnnounceButton"]             = "Announce a system message",
-    ["tt_ShutdownButton"]             = "Shut down the server in the amount of seconds from the field, if omitted shut down immediately!",
-    ["tt_CancelShutdownButton"]       = "Cancel the server shutdown countdown",
+    ["tt_RestartButton"]              = "Restart the server in the amount of seconds from the field, if omitted restart immediately!",
+    ["tt_ShutdownButton"]             = "Shutdown the server in the amount of seconds from the field, if omitted shut down immediately!",
+    ["tt_CancelShutdownButton"]       = "Cancel the server shutdown or restart countdown",
   --[[Control Labels]]
     ["ma_AnnounceButton"]             = "Announce",
+    ["ma_RestartButton"]              = "Server Restart",
     ["ma_ShutdownButton"]             = "Server Shutdown",
-    ["ma_CancelShutdownButton"]       = "Cancel Shutdown",
+    ["ma_CancelShutdownButton"]       = "Cancel",
     ["ma_ReloadTableButton"]          = "Reload Table",
     ["ma_ReloadScriptsButton"]        = "Reload Scripts",
     ["ma_UpdateButton"]               = "Update",
@@ -817,6 +819,8 @@ if L then
   --[[Other]]
     ["msg_shutdown_time_required"]    = "Please enter the time in seconds before using server shutdown",
     ["msg_shutdown_confirm"]          = "Are you sure you want to shut down the server in %s seconds?",
+    ["msg_restart_time_required"]     = "Please enter the time in seconds before using server restart",
+    ["msg_restart_confirm"]           = "Are you sure you want to restart the server in %s seconds?",
 
 
 

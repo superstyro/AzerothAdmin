@@ -197,43 +197,45 @@ function AzerothAdmin:CreateGOSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_Obj_guidbutton",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 75,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 10,
-      offY = -70
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_Obj_guidbutton", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(75, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 7, -70)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_Obj_idbutton",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 75,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 95,
-      offY = -70
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_Obj_idbutton", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(75, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 92, -70)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_gobactivatebutton",
@@ -335,24 +337,25 @@ function AzerothAdmin:CreateGOSection()
     text = Locale["ma_OBJSetPhase"]
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobsetphaseinput",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 75,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 95,
-      offY = -230
-    },
-    maxLetters = 5,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobsetphaseinput", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(75, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 92, -230)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(5)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_gobmodelrotatelbutton",
@@ -509,43 +512,45 @@ function AzerothAdmin:CreateGOSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobdisplayid",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 75,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 95,
-      offY = -106
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobdisplayid", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(75, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 92, -106)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
-    FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobnearrange",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 75,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 10,
-      offY = -106
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobnearrange", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(75, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 7, -106)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildFontString({
     name = "ma_gobrangelabel",
@@ -727,62 +732,65 @@ function AzerothAdmin:CreateGOSection()
     inherits = "OptionsCheckButtonTemplate"
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobmovedistforwardback",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 50,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 696,
-      offY = -155
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobmovedistforwardback", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(50, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 693, -155)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobmovedistleftright",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 50,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 696,
-      offY = -181
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobmovedistleftright", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(50, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 693, -181)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gobmovedistupdown",
-    group = "go",
-    parent = ma_midframe,
-    size = {
-      width = 50,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 696,
-      offY = -207
-    },
-    maxLetters = 10,
-    multiline = false,
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_gobmovedistupdown", ma_midframe)
+    FrameLib:AddGroupFrame("go", eb)
+    eb:SetSize(50, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 693, -207)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(10)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildFontString({
     name = "ma_gobmovedistanceslabel",

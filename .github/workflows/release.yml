@@ -52,22 +52,22 @@ jobs:
           mkdir -p package/AzerothAdmin
           mkdir -p package/AzerothAdmin_Models
 
-          # Copy main addon files (excluding non-addon files)
-          cp -r . package/AzerothAdmin/
-          rm -rf package/AzerothAdmin/.git \
-                 package/AzerothAdmin/.github \
-                 package/AzerothAdmin/.gitignore \
-                 package/AzerothAdmin/.claude \
-                 package/AzerothAdmin/Docs \
-                 package/AzerothAdmin/_build \
-                 package/AzerothAdmin/README.md \
-                 package/AzerothAdmin/CREDITS.md \
-                 package/AzerothAdmin/logo_raw.psd \
-                 package/AzerothAdmin/icon_raw.psd \
-                 package/AzerothAdmin/AA_char.jpg \
-                 package/AzerothAdmin/AA_gm.jpg \
-                 package/AzerothAdmin/AA_server.jpg \
-                 package/AzerothAdmin/logo.png
+          # Copy main addon files
+          rsync -av --progress . package/AzerothAdmin/ \
+            --exclude .git \
+            --exclude .github \
+            --exclude .gitignore \
+            --exclude .claude \
+            --exclude Docs \
+            --exclude _build \
+            --exclude 'README.md' \
+            --exclude 'CREDITS.md' \
+            --exclude 'logo_raw.psd' \
+            --exclude 'icon_raw.psd' \
+            --exclude 'AA_char.jpg' \
+            --exclude 'AA_gm.jpg' \
+            --exclude 'AA_server.jpg' \
+            --exclude 'logo.png'
 
           # Copy AzerothAdmin_Models from _build directory
           if [ -d "_build/AzerothAdmin_Models" ]; then

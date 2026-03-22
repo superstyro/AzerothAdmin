@@ -1,12 +1,15 @@
 # AzerothAdmin Changelog
 
-## -=[ Version 21 - 02/25/2026]=-
+## -=[ Version 22 - 03/21/2026]=-
 
+- CHANGE Ace3 does not allow for easy locale selection. Locale dropdown menu hidden for now so it is not confusing
+- CHANGE Button tooltips updated for consistency
 - FIX Get GUID button on NPC tab now correctly captures DB GUID instead of the Low value from the GUID field
-
 - FIX NPC ID box on NPC tab is now editable so a creature ID can be typed in manually
 - FIX NPC Add ID button now uses the NPC ID box value instead of the params box
 - FIX NPC Add ID button is disabled until a value is entered in the NPC ID box or params box
+
+## -=[ Version 21 - 02/25/2026]=-
 
 - ADD shift-click item link support in item search popup — shift-clicking an item now populates the search box with the item name
 - FIX hyperlink pattern matching across all locales to match any item quality color instead of only white, fixing silent failures for uncommon/rare/epic/etc links. Authored by AzDeltaQQ

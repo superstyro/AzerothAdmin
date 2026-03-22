@@ -12,6 +12,7 @@
 - FIX Countdown seconds editbox cursor no longer lingers after being disabled
 - CHANGE Restart, Shutdown, editbox, and Cancel button positions adjusted on Server tab
 - CHANGE All three Server tab editboxes (announce, delay, countdown) now use consistent custom dark style with 2px gray border
+- FIX Update diff graph delay no longer updates live on text change — now only applies when the Update button is pressed
 
 ## -=[ Version 22 - 03/21/2026]=-
 

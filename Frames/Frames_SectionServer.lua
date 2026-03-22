@@ -479,8 +479,7 @@ function AzerothAdmin:CreateServerSection()
   local q = 0
   x:SetScript("OnUpdate",function()
       q = q + 1
-      -- Check if ma_delayparam exists before using it
-      local delayParam = ma_delayparam and tonumber(ma_delayparam:GetText())
+      local delayParam = tonumber(AzerothAdmin.db.profile.style.delayparam)
       if delayParam and q > delayParam then --10000=approx 1 minute, 50000=approx 5 minutes FIX #13
           -- Don't update server info or graph if a dropdown menu is currently open
           -- Check both UIDROPDOWNMENU_OPEN_MENU and if any dropdown list frames are visible

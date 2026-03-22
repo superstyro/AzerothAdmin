@@ -361,11 +361,11 @@ function AzerothAdmin:CreateMiscSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_changeweatherbutton",
+    name = "ma_ApplyWeatherButton",
     group = "misc",
     parent = ma_midframe,
     texture = {
-      name = "ma_changeweatherbutton_texture",
+      name = "ma_ApplyWeatherButton_texture",
       color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
     },
     size = {

@@ -318,11 +318,11 @@ function InitControls()
   AzerothAdmin:PrepareScript(ma_frmcolorshowbutton              , nil                                     , function() AzerothAdminCommands.ShowColorPicker("frm") end)
   AzerothAdmin:PrepareScript(ma_btncolorshowbutton              , nil                                     , function() AzerothAdminCommands.ShowColorPicker("btn") end)
   AzerothAdmin:PrepareScript(ma_linkifiercolorbutton            , nil                                     , function() AzerothAdminCommands.ShowColorPicker("linkifier") end)
-  AzerothAdmin:PrepareScript(ma_updatechangesbutton             , Locale["tt_updatechanges"]              , function() AzerothAdminCommands.UpdateChanges() end)
   AzerothAdmin:PrepareScript(ma_showminimenubutton              , nil                                     , function() AzerothAdminCommands.ToggleMinimenuCheckbox() end)
   AzerothAdmin:PrepareScript(ma_showtooltipsbutton              , nil                                     , function() AzerothAdminCommands.ToggleTooltipsCheckbox() end)
   AzerothAdmin:PrepareScript(ma_instantteleportbutton           , nil                                     , function() AzerothAdminCommands.ToggleInstantTeleport() end)
-  AzerothAdmin:PrepareScript(ma_changeweatherbutton             , nil                                     , function() AzerothAdminCommands.ChangeWeather(UIDropDownMenu_GetSelectedValue(ma_weatherdropdown)) end)
+  AzerothAdmin:PrepareScript(ma_updatechangesbutton             , Locale["tt_updatechanges"]              , function() AzerothAdminCommands.UpdateChanges() end)
+  AzerothAdmin:PrepareScript(ma_ApplyWeatherButton              , Locale["tt_ApplyWeatherButton"]         , function() AzerothAdminCommands.ChangeWeather(UIDropDownMenu_GetSelectedValue(ma_weatherdropdown)) end)
 
 --[[Server Tab]]
   AzerothAdmin:PrepareScript(ma_announcebutton                  , Locale["tt_AnnounceButton"]             , function() AzerothAdminCommands.Announce(ma_announceeditbox:GetText()) end)

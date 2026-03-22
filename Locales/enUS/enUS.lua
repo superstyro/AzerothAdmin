@@ -532,7 +532,7 @@ if L then
     ["ma_NPCEntryIDButton"]           = "Show Entry",
     ["ma_NPCInfoButton"]              = "NPC Info",
     ["ma_NPCDemorph"]                 = "Demorph",
-    ["ma_NPCMove"]                    = "NPC Move",
+    ["ma_NPCMove"]                    = "NPC Mov",
     ["ma_NPCDel"]                     = "NPC Del",
     ["ma_getguid"]                    = "Get GUID",
     ["ma_NPCAdd"]                     = "NPC Add",
@@ -747,11 +747,11 @@ if L then
     ["tabmenu_Misc"]                  = "MISC",
     ["tt_MiscButton"]                 = "Toggle tab with Settings related functions",
   --[[Tooltips]]
+    ["tt_ApplyWeatherButton"]         = "Apply Weather from dropdown menu",
     ["tt_FrmTrSlider"]                = "Change frame transparency",
     ["tt_BtnTrSlider"]                = "Change button transparency",
     ["tt_windowismovable"]            = "Allow a movable window",
     ["tt_updatechanges"]              = "Apply changes made to settings. Reloads UI",
-    ["tt_UpdateFrequency"]            = "10000 = ~1 minute, 50000 = ~5 minutes",
   --[[Control Labels]]
     ["cmd_toggle"]                    = "Toggle the main window",
     ["cmd_transparency"]              = "Toggle the basic transparency (0.5 or 1.0)",
@@ -795,6 +795,7 @@ if L then
 --[[Server Tab]]
     ["tabmenu_server"]                = "SERVER",
     ["tt_ServerButton"]               = "Toggle tab with Server related functions",
+    ["tt_UpdateFrequency"]            = "10000 = ~1 minute, 50000 = ~5 minutes",
   --[[Tooltips]]
     ["tt_ReloadTableButton"]          = "Reload Database Table from dropdown menu",
     ["tt_ReloadScriptsButton"]        = "Reload all Scripts on the server",

@@ -157,6 +157,35 @@ Four steps:
 - **Interface version** is `30300` (WoW 3.3.5). Do not change this.
 - Commands are sent to the server by writing to the chat frame (e.g., `SendChatMessage(".gm on")`).
 
+### EditBox Style
+
+All EditBoxes should be created as bare `CreateFrame("EditBox", ...)` frames (no `InputBoxTemplate`) and styled with the following pattern:
+
+```lua
+do
+  local eb = CreateFrame("EditBox", "my_editbox", parent)
+  FrameLib:AddGroupFrame("groupname", eb)
+  eb:SetSize(width, height)
+  eb:SetPoint("ANCHOR", parent, "ANCHOR", offX, offY)
+  eb:SetAutoFocus(false)
+  eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+  eb:SetFontObject("ChatFontNormal")
+  eb:SetTextInsets(4, 4, 2, 2)
+  eb:SetBackdrop({
+    bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+    edgeFile = "Interface\\Buttons\\WHITE8X8",
+    edgeSize = 2,
+    insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+  })
+  eb:SetBackdropColor(0, 0, 0, 0.6)
+  eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+end
+```
+
+- Add `eb:SetMaxLetters(n)` only when a character limit is required.
+- Do **not** use `inherits = "InputBoxTemplate"` — it adds internal textures that conflict with `SetBackdrop` and cannot be cleanly overridden.
+- `OnEscapePressed` must always be set manually since bare EditBoxes do not inherit it.
+
 ## Changelog Maintenance
 
 Always update `CHANGELOG.md` before committing. Follow the existing format:

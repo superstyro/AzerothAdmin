@@ -2,7 +2,9 @@
 
 ## -=[ Version 22 - 03/21/2026]=-
 
-- CHANGE Ace3 does not allow for easy locale selection. Locale dropdown menu hidden for now so it is not confusing
+- CHANGE Ace3 does not allow for easy locale manual selection. Locale dropdown menu hidden so it is not confusing
+  - Commented out other locales from .toc file so only enUS is loaded as the local.
+  - Uncomment line of locale taht matches your WoW client. This has to match the client due to Ace3 Locale
 - CHANGE Button tooltips updated for consistency
 - FIX Get GUID button on NPC tab now correctly captures DB GUID instead of the Low value from the GUID field
 - FIX NPC ID box on NPC tab is now editable so a creature ID can be typed in manually

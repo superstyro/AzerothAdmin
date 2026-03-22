@@ -399,22 +399,24 @@ function AzerothAdmin:CreateCharSection()
     inherits = "UIDropDownMenuTemplate"
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_modifyeditbox",
-    group = "char",
-    parent = ma_midframe,
-    size = {
-      width = 90,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 455,
-      offY = -4
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_modifyeditbox", ma_midframe)
+    FrameLib:AddGroupFrame("char", eb)
+    eb:SetSize(95, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 450, -4)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_modifybutton",
@@ -1282,22 +1284,24 @@ function AzerothAdmin:CreateCharSection()
   })
 
   --[[Parameter Box Input]]
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_charactertarget",
-    group = "char",
-    parent = ma_midframe,
-    size = {
-      width = 240,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 226,
-      offY = -231 --charRowTen
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_charactertarget", ma_midframe)
+    FrameLib:AddGroupFrame("char", eb)
+    eb:SetSize(250, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 217, -231)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_charclearbutton",

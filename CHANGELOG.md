@@ -13,6 +13,10 @@
 - CHANGE Restart, Shutdown, editbox, and Cancel button positions adjusted on Server tab
 - CHANGE All three Server tab editboxes (announce, delay, countdown) now use consistent custom dark style with 2px gray border
 - FIX Update diff graph delay no longer updates live on text change — now only applies when the Update button is pressed
+- CHANGE Main tab parameter and grid navigation editboxes now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
+- CHANGE Char tab modify value and parameter editboxes now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
+- CHANGE NPC tab all five editboxes (display ID, NPC ID, GUID, distance, parameter) now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
+- CHANGE GO tab all eight editboxes now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
 
 ## -=[ Version 22 - 03/21/2026]=-
 

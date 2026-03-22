@@ -671,23 +671,26 @@ function AzerothAdmin:CreateMainSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_gridnavieditbox",
-    group = "main",
-    parent = ma_midframe,
-    size = {
-      width = 20,
-      height = 20
-    },
-    setpoint = {
-      pos = "BOTTOMRIGHT",
-      offX = -29,
-      offY = 41
-    },
-    maxLetters = 2,
-    inherits = "InputBoxTemplate"
-  })
+  --[[Navigation Box Input]]
+  do
+    local eb = CreateFrame("EditBox", "ma_gridnavieditbox", ma_midframe)
+    FrameLib:AddGroupFrame("main", eb)
+    eb:SetSize(30, 20)
+    eb:SetPoint("BOTTOMRIGHT", ma_midframe, "BOTTOMRIGHT", -27, 41)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_gridnaviaheadbutton",
@@ -743,7 +746,7 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "BOTTOMRIGHT",
-      offX = -55,
+      offX = -57,
       offY = 41
     },
     text = Locale["E"]
@@ -763,7 +766,7 @@ function AzerothAdmin:CreateMainSection()
     },
     setpoint = {
       pos = "BOTTOMRIGHT",
-      offX = -8,
+      offX = -6,
       offY = 41
     },
     text = Locale["W"]
@@ -782,22 +785,24 @@ function AzerothAdmin:CreateMainSection()
   })
 
   --[[Parameter Box Input]]
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_parameter",
-    group = "main",
-    parent = ma_midframe,
-    size = {
-      width = 240,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 264,
-      offY = -231
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_parameter", ma_midframe)
+    FrameLib:AddGroupFrame("main", eb)
+    eb:SetSize(250, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 255, -231)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_gmingamebutton",

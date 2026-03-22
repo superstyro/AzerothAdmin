@@ -92,22 +92,24 @@ function AzerothAdmin:CreateServerSection()
     end)
   f:Show()
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_announceeditbox",
-    group = "server",
-    parent = ma_midframe,
-    size = {
-      width = 460,
-      height = 20
-    },
-    setpoint = {
-      pos = "TOPLEFT",
-      offX = 15,
-      offY = -226
-    },
-    inherits = "InputBoxTemplate"
-  })
+  do
+    local eb = CreateFrame("EditBox", "ma_announceeditbox", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(460, 20)
+    eb:SetPoint("TOPLEFT", ma_midframe, "TOPLEFT", 15, -226)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_announcebutton",
@@ -343,25 +345,26 @@ function AzerothAdmin:CreateServerSection()
     }
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_delayparam",
-    group = "server",
-    parent = ma_midframe,
-    size = {
-      width = 60,
-      height = 20
-    },
-    setpoint = {
-      pos = "BOTTOMLEFT",
-      offX = 195,
-      offY = 45
-    },
-    inherits = "InputBoxTemplate"
-  })
-
-  ma_delayparam:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
-  ma_delayparam:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+  do
+    local eb = CreateFrame("EditBox", "ma_delayparam", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(60, 20)
+    eb:SetPoint("BOTTOMLEFT", ma_midframe, "BOTTOMLEFT", 195, 45)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+    eb:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetText(Locale["tt_UpdateFrequency"]); GameTooltip:Show() end)
+    eb:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+  end
 
   FrameLib:BuildButton({
     name = "ma_updatedelaybutton",

@@ -11,6 +11,7 @@
 - CHANGE Countdown seconds editbox is disabled while a restart or shutdown is active, preventing edits mid-countdown
 - FIX Countdown seconds editbox cursor no longer lingers after being disabled
 - CHANGE Restart, Shutdown, editbox, and Cancel button positions adjusted on Server tab
+- CHANGE All three Server tab editboxes (announce, delay, countdown) now use consistent custom dark style with 2px gray border
 
 ## -=[ Version 22 - 03/21/2026]=-
 

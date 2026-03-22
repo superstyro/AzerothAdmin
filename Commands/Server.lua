@@ -22,6 +22,30 @@ function AzerothAdminCommands.Announce(value)
   AzerothAdmin:ChatMsg(".announce "..value)
 end
 
+function AzerothAdminCommands.Restart(value)
+  if value == "" then
+    AzerothAdmin:Print(Locale["msg_restart_time_required"])
+    return
+  end
+
+  local confirmMsg = string.format(Locale["msg_restart_confirm"], value)
+
+  AzerothAdmin:ShowConfirmDialog(confirmMsg, function()
+    AzerothAdminCommands.Restart_Confirmed(value)
+  end)
+end
+
+function AzerothAdminCommands.Restart_Confirmed(value)
+  AzerothAdmin:ChatMsg(".server restart "..value)
+  ma_restartbutton:Disable()
+  ma_shutdownbutton:Disable()
+  ma_shutdowneditbox:ClearFocus()
+  ma_shutdowneditbox:EnableMouse(false)
+  ma_shutdowneditbox:EnableKeyboard(false)
+  ma_cancelshutdownbutton:Show()
+  AzerothAdmin.db.char.serverRestartState = "restart"
+end
+
 function AzerothAdminCommands.Shutdown(value)
   if value == "" then
     AzerothAdmin:Print(Locale["msg_shutdown_time_required"])
@@ -37,16 +61,23 @@ end
 
 function AzerothAdminCommands.Shutdown_Confirmed(value)
   AzerothAdmin:ChatMsg(".server shutdown "..value)
-  -- Show the cancel button and hide the shutdown button
-  ma_shutdownbutton:Hide()
+  ma_restartbutton:Disable()
+  ma_shutdownbutton:Disable()
+  ma_shutdowneditbox:ClearFocus()
+  ma_shutdowneditbox:EnableMouse(false)
+  ma_shutdowneditbox:EnableKeyboard(false)
   ma_cancelshutdownbutton:Show()
+  AzerothAdmin.db.char.serverRestartState = "shutdown"
 end
 
 function AzerothAdminCommands.CancelShutdown()
   AzerothAdmin:ChatMsg(".server shutdown cancel")
-  -- Hide the cancel button and show the shutdown button
   ma_cancelshutdownbutton:Hide()
-  ma_shutdownbutton:Show()
+  ma_restartbutton:Enable()
+  ma_shutdownbutton:Enable()
+  ma_shutdowneditbox:EnableMouse(true)
+  ma_shutdowneditbox:EnableKeyboard(true)
+  AzerothAdmin.db.char.serverRestartState = nil
 end
 
 function AzerothAdminCommands.ReloadTable(tablename)

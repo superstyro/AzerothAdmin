@@ -327,6 +327,7 @@ function InitControls()
 --[[Server Tab]]
   AzerothAdmin:PrepareScript(ma_announcebutton                  , Locale["tt_AnnounceButton"]             , function() AzerothAdminCommands.Announce(ma_announceeditbox:GetText()) end)
   AzerothAdmin:PrepareScript(ma_resetannouncebutton             , nil                                     , function() ma_announceeditbox:SetText("") end)
+  AzerothAdmin:PrepareScript(ma_restartbutton                   , Locale["tt_RestartButton"]              , function() AzerothAdminCommands.Restart(ma_shutdowneditbox:GetText()) end)
   AzerothAdmin:PrepareScript(ma_shutdownbutton                  , Locale["tt_ShutdownButton"]             , function() AzerothAdminCommands.Shutdown(ma_shutdowneditbox:GetText()) end)
   AzerothAdmin:PrepareScript(ma_cancelshutdownbutton            , Locale["tt_CancelShutdownButton"]       , function() AzerothAdminCommands.CancelShutdown() end)
   AzerothAdmin:PrepareScript(ma_loadtablebutton                 , Locale["tt_ReloadTableButton"]          , function() AzerothAdminCommands.ReloadTable(UIDropDownMenu_GetSelectedValue(ma_reloadtabledropdown)) end)

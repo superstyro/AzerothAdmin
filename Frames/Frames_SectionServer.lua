@@ -200,26 +200,49 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -38
+      offY = -35
     },
     text = Locale["ma_ReloadScriptsButton"]
   })
 
-  FrameLib:BuildFrame({
-    type = "EditBox",
-    name = "ma_shutdowneditbox",
+  do
+    local eb = CreateFrame("EditBox", "ma_shutdowneditbox", ma_midframe)
+    FrameLib:AddGroupFrame("server", eb)
+    eb:SetSize(45, 20)
+    eb:SetPoint("TOPRIGHT", ma_midframe, "TOPRIGHT", -115, -78)
+    eb:SetAutoFocus(false)
+    eb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    eb:SetFontObject("ChatFontNormal")
+    eb:SetTextInsets(4, 4, 2, 2)
+    eb:SetMaxLetters(4)
+    eb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    eb:SetBackdropColor(0, 0, 0, 0.6)
+    eb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+  end
+
+  FrameLib:BuildButton({
+    name = "ma_restartbutton",
     group = "server",
     parent = ma_midframe,
+    texture = {
+      name = "ma_restartbutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
     size = {
-      width = 30,
+      width = 100,
       height = 20
     },
     setpoint = {
       pos = "TOPRIGHT",
-      offX = -115,
+      offX = -10,
       offY = -65
     },
-    inherits = "InputBoxTemplate"
+    text = Locale["ma_RestartButton"]
   })
 
   FrameLib:BuildButton({
@@ -237,7 +260,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -65
+      offY = -90
     },
     text = Locale["ma_ShutdownButton"]
   })
@@ -257,7 +280,7 @@ function AzerothAdmin:CreateServerSection()
     setpoint = {
       pos = "TOPRIGHT",
       offX = -10,
-      offY = -65
+      offY = -115
     },
     text = Locale["ma_CancelShutdownButton"]
   })

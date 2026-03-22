@@ -283,7 +283,8 @@ function AzerothAdmin:CreateStartFrames()
 
   FrameLib:BuildFrame({
     name = "ma_languagedropdown",
-    group = "bg",
+    group = "hidden",
+    hidden = true,
     parent = ma_topframe,
     setpoint = {
       pos = "TOPRIGHT",

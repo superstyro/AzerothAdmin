@@ -762,8 +762,8 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
       end
     end
     if AzerothAdmin:ID_Setting_Start_Read() then
-        -- Match GUID Low value from "Low: 544."
-        local npc_guid_capture = string.match(text, "Low: (%d+)%.")
+        -- Match DB GUID from "DB GUID: 85217,"
+        local npc_guid_capture = string.match(text, "DB GUID: (%d+)")
         if npc_guid_capture then
             AzerothAdmin:ID_Setting_Write(0, npc_guid_capture)
             ma_NPC_guidbutton:SetText(npc_guid_capture)
@@ -2134,8 +2134,8 @@ function AzerothAdmin:InitButtons()
   self:PrepareScript(ma_questbutton          , Locale["tt_QuestButton"]        , function() AzerothAdmin:TogglePopup("search", {type = "quest"}) end)
   self:PrepareScript(ma_creaturebutton       , Locale["tt_CreatureButton"]     , function() AzerothAdmin:TogglePopup("search", {type = "creature"}) end)
   self:PrepareScript(ma_objectbutton         , Locale["tt_ObjectButton"]       , function() AzerothAdmin:TogglePopup("search", {type = "object"}) end)
-  self:PrepareScript(ma_telesearchbutton     , Locale["ma_TeleSearchButton"]   , function() AzerothAdmin:TogglePopup("search", {type = "tele"}) end)
-  self:PrepareScript(ma_sendmailbutton       , Locale["ma_Mail"]               , function() AzerothAdmin:TogglePopup("mail", {}) end)
+  self:PrepareScript(ma_telesearchbutton     , Locale["tt_TeleSearchButton"]   , function() AzerothAdmin:TogglePopup("search", {type = "tele"}) end)
+  self:PrepareScript(ma_sendmailbutton       , Locale["tt_SendMail"]           , function() AzerothAdmin:TogglePopup("mail", {}) end)
   self:PrepareScript(ma_searchbutton         , nil                             , function() AzerothAdmin:SearchStart("item", ma_searcheditbox:GetText()) end)
   self:PrepareScript(ma_resetsearchbutton    , nil                             , function() AzerothAdmin:SearchReset() end)
   self:PrepareScript(ma_closebutton          , Locale["tt_CloseWindow"]        , function() AzerothAdmin:CloseButton("bg") end)
@@ -3041,7 +3041,7 @@ function AzerothAdmin:InlineScrollUpdate_temp()
 end
 
 function pairsByKeys(t, f)
-  if t == Nil then
+  if t == nil then
   else
     local a = {}
     for n in pairs(t) do table.insert(a, n) end

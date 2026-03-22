@@ -286,7 +286,7 @@ function AzerothAdmin:CreateCharSection()
       offX = 140, --charColOne
       offY = -52 --charRowTwo
     },
-    text = Locale["ma_GUIDButton"]
+    text = Locale["ma_IDButton"]
   })
 
   FrameLib:BuildButton({

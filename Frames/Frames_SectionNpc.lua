@@ -190,7 +190,7 @@ function AzerothAdmin:CreateNpcSection()
   })
 
   FrameLib:BuildButton({
-    name = "ma_npcguidbutton",
+    name = "ma_NPCEntryIDButton",
     group = "npc",
     parent = ma_midframe,
     texture = {
@@ -206,7 +206,7 @@ function AzerothAdmin:CreateNpcSection()
       offX = -5, --charColSix
       offY = -160 --charRowSeven
     },
-    text = Locale["ma_NPCGUIDButton"]
+    text = Locale["ma_NPCEntryIDButton"]
   })
 
   FrameLib:BuildButton({
@@ -1150,9 +1150,17 @@ function AzerothAdmin:CreateNpcSection()
   ma_NPC_guidbutton:EnableKeyboard(false)
   ma_NPC_guidbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
 
-  ma_NPC_idbutton:EnableMouse(false)
-  ma_NPC_idbutton:EnableKeyboard(false)
   ma_NPC_idbutton:SetTextColor(1, 1, 1, 1) -- White text for visibility
+  ma_NPC_addIDbutton:Disable()
+  local function UpdateNPCAddIDButton()
+    if ma_NPC_idbutton:GetText() ~= "" or ma_npccharactertarget:GetText() ~= "" then
+      ma_NPC_addIDbutton:Enable()
+    else
+      ma_NPC_addIDbutton:Disable()
+    end
+  end
+  ma_NPC_idbutton:SetScript("OnTextChanged", UpdateNPCAddIDButton)
+  ma_npccharactertarget:HookScript("OnTextChanged", UpdateNPCAddIDButton)
 
   ma_npcdisplayid:EnableMouse(false)
   ma_npcdisplayid:EnableKeyboard(false)

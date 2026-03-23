@@ -17,6 +17,8 @@
 - CHANGE Char tab modify value and parameter editboxes now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
 - CHANGE NPC tab all five editboxes (display ID, NPC ID, GUID, distance, parameter) now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
 - CHANGE GO tab all eight editboxes now use consistent custom dark style with 2px gray border, replacing InputBoxTemplate
+- CHANGE All checkboxes (Main, Misc, GO tabs) now use consistent custom style — hidden box border/glow, dark gray 18x18 background for contrast
+- FIX Addon no longer errors on load if PLAYER_TARGET_CHANGED fires before Char tab frames are built
 
 ## -=[ Version 22 - 03/21/2026]=-
 

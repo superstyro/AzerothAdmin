@@ -586,6 +586,17 @@ function AzerothAdmin:CreateMainSection()
     text = Locale["ma_instakill"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_instantkillbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildFrame({
     type = "Slider",

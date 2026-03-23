@@ -186,6 +186,39 @@ end
 - Do **not** use `inherits = "InputBoxTemplate"` — it adds internal textures that conflict with `SetBackdrop` and cannot be cleanly overridden.
 - `OnEscapePressed` must always be set manually since bare EditBoxes do not inherit it.
 
+### CheckBox Style
+
+All CheckBoxes using `OptionsCheckButtonTemplate` must have their built-in textures hidden and a custom background applied immediately after the `FrameLib:BuildButton` call:
+
+```lua
+FrameLib:BuildButton({
+  type = "CheckButton",
+  name = "my_checkbox",
+  group = "mygroup",
+  parent = ma_midframe,
+  setpoint = { ... },
+  text = Locale["my_label"],
+  inherits = "OptionsCheckButtonTemplate"
+})
+do
+  local cb = _G["my_checkbox"]
+  cb:GetNormalTexture():SetAlpha(0)
+  cb:GetHighlightTexture():SetAlpha(0)
+  cb:GetPushedTexture():SetAlpha(0)
+  local bg = cb:CreateTexture(nil, "BACKGROUND")
+  bg:SetSize(18, 18)
+  bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+  bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+  bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+end
+```
+
+- `GetNormalTexture()` — hides the box border at rest
+- `GetHighlightTexture()` — hides the hover glow
+- `GetPushedTexture()` — hides the border shown on click
+- The 18x18 background gives a dark gray backdrop contrasting against the addon's dark frame
+- Do **not** use `_G["buttonNameHighlight"]` — `OptionsCheckButtonTemplate` does not create a named highlight child; use `GetHighlightTexture()` instead
+
 ## Changelog Maintenance
 
 Always update `CHANGELOG.md` before committing. Follow the existing format:

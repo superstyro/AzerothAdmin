@@ -604,15 +604,25 @@ function AzerothAdmin:CreateMainSection()
     group = "main",
     parent = ma_midframe,
     size = {
-      width = 80
+      width =100
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 205,
+      offX = 185,
       offY = -50
     },
     inherits = "OptionsSliderTemplate"
   })
+  do
+    local s = _G["ma_speedslider"]
+    s:SetBackdrop(nil)
+    local line = s:CreateTexture(nil, "BACKGROUND")
+    line:SetHeight(4)
+    line:SetPoint("LEFT", s, "LEFT", 10, 0)
+    line:SetPoint("RIGHT", s, "RIGHT", -10, 0)
+    line:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    line:SetVertexColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_speedsliderreset_button",
@@ -640,15 +650,25 @@ function AzerothAdmin:CreateMainSection()
     group = "main",
     parent = ma_midframe,
     size = {
-      width = 80
+      width = 100
     },
     setpoint = {
       pos = "TOPLEFT",
-      offX = 205,
+      offX = 185,
       offY = -95
     },
     inherits = "OptionsSliderTemplate"
   })
+  do
+    local s = _G["ma_scaleslider"]
+    s:SetBackdrop(nil)
+    local line = s:CreateTexture(nil, "BACKGROUND")
+    line:SetHeight(4)
+    line:SetPoint("LEFT", s, "LEFT", 10, 0)
+    line:SetPoint("RIGHT", s, "RIGHT", -10, 0)
+    line:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    line:SetVertexColor(0.35, 0.35, 0.35, 1)
+  end
 
   FrameLib:BuildButton({
     name = "ma_scalesliderreset_button",

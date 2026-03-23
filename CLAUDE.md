@@ -219,6 +219,36 @@ end
 - The 18x18 background gives a dark gray backdrop contrasting against the addon's dark frame
 - Do **not** use `_G["buttonNameHighlight"]` — `OptionsCheckButtonTemplate` does not create a named highlight child; use `GetHighlightTexture()` instead
 
+### Slider Style
+
+All Sliders using `OptionsSliderTemplate` must have their backdrop removed and replaced with a custom 4px track line immediately after the `FrameLib:BuildFrame` call:
+
+```lua
+FrameLib:BuildFrame({
+  type = "Slider",
+  name = "my_slider",
+  group = "mygroup",
+  parent = ma_midframe,
+  size = { width = 80 },
+  setpoint = { ... },
+  inherits = "OptionsSliderTemplate"
+})
+do
+  local s = _G["my_slider"]
+  s:SetBackdrop(nil)
+  local line = s:CreateTexture(nil, "BACKGROUND")
+  line:SetHeight(4)
+  line:SetPoint("LEFT", s, "LEFT", 10, 0)
+  line:SetPoint("RIGHT", s, "RIGHT", -10, 0)
+  line:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+  line:SetVertexColor(0.35, 0.35, 0.35, 1)
+end
+```
+
+- `SetBackdrop(nil)` removes the default raised border/background — there is no named child texture for it
+- The 10px insets keep the line from extending past the thumb endpoints
+- The `$parentThumb` texture (the drag handle) is the only named child of `OptionsSliderTemplate` and is left untouched
+
 ## Changelog Maintenance
 
 Always update `CHANGELOG.md` before committing. Follow the existing format:

@@ -46,6 +46,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_EnableTransparency"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_checktransparencybutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -60,6 +71,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_EnableLocalizedSearch"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_checklocalsearchstringsbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -74,6 +96,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_EnableMinimenu"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_showminimenubutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -88,6 +121,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_EnableTooltips"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_showtooltipsbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -102,6 +146,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_ShowChatOutput"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_showchatoutputbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -116,6 +171,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_ShowMinimapButton"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_showminimapbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -130,6 +196,17 @@ function AzerothAdmin:CreateMiscSection()
     text = Locale["ma_InstantTeleport"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_instantteleportbutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildFontString({
     name = "ma_framestratalabel",
@@ -161,7 +238,7 @@ function AzerothAdmin:CreateMiscSection()
     group = "misc",
     parent = ma_midframe,
     size = {
-      width = 80
+      width = 130
     },
     setpoint = {
       pos = "TOPLEFT",
@@ -170,6 +247,16 @@ function AzerothAdmin:CreateMiscSection()
     },
     inherits = "OptionsSliderTemplate"
   })
+  do
+    local s = _G["ma_frmtrslider"]
+    s:SetBackdrop(nil)
+    local line = s:CreateTexture(nil, "BACKGROUND")
+    line:SetHeight(4)
+    line:SetPoint("LEFT", s, "LEFT", 10, 0)
+    line:SetPoint("RIGHT", s, "RIGHT", -10, 0)
+    line:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    line:SetVertexColor(0.35, 0.35, 0.35, 1)
+  end
   ma_frmtrslider:SetMinMaxValues(0, 1)
   ma_frmtrslider:SetValueStep(0.01)
   ma_frmtrslider:SetValue(transparency.frm)
@@ -183,7 +270,7 @@ function AzerothAdmin:CreateMiscSection()
     group = "misc",
     parent = ma_midframe,
     size = {
-      width = 80
+      width = 130
     },
     setpoint = {
       pos = "TOPLEFT",
@@ -192,6 +279,16 @@ function AzerothAdmin:CreateMiscSection()
     },
     inherits = "OptionsSliderTemplate"
   })
+  do
+    local s = _G["ma_btntrslider"]
+    s:SetBackdrop(nil)
+    local line = s:CreateTexture(nil, "BACKGROUND")
+    line:SetHeight(4)
+    line:SetPoint("LEFT", s, "LEFT", 10, 0)
+    line:SetPoint("RIGHT", s, "RIGHT", -10, 0)
+    line:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    line:SetVertexColor(0.35, 0.35, 0.35, 1)
+  end
   ma_btntrslider:SetMinMaxValues(0, 1)
   ma_btntrslider:SetValueStep(0.01)
   ma_btntrslider:SetValue(transparency.btn)

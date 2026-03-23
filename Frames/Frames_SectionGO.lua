@@ -717,6 +717,17 @@ function AzerothAdmin:CreateGOSection()
     text = Locale["ma_GOAddOnMoveLabel"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_spawnonmovecheck"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   FrameLib:BuildButton({
     type = "CheckButton",
@@ -731,6 +742,17 @@ function AzerothAdmin:CreateGOSection()
     text = Locale["ma_GOMoveOnMoveLabel"],
     inherits = "OptionsCheckButtonTemplate"
   })
+  do
+    local cb = _G["ma_moveonmovecheck"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
 
   do
     local eb = CreateFrame("EditBox", "ma_gobmovedistforwardback", ma_midframe)

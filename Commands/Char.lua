@@ -56,6 +56,7 @@ function AzerothAdminCommands.InitModelFrame()
 end
 
 function AzerothAdminCommands.ModelChanged()
+  if not ma_modelframe then return end
   if not AzerothAdmin:Selection("none") then
     ma_modelframe:SetUnit("target")
   else

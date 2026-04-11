@@ -1,5 +1,30 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 24 - 03/22/2026]=-
+
+- FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)
+
+- ADD Live search with 0.5s debounce — results appear automatically as you type without clicking the Search button
+- ADD Search history (up to 10 terms per type) stored per character — click any history entry to restore the search term
+- ADD Search state preserved on popup close — reopening the same search type restores previous results and scroll position
+- ADD Recent tab (Tab 3) in the search popup — tracks last 100 interacted entries per search type without server requests
+- ADD Client-side filter bar in the search popup — filters displayed results by name or ID without a new server request
+- ADD Sort toggle button in the search popup — cycles through Default, A→Z, Z→A, and ID ascending sort orders
+- ADD Right-click context menu on search result rows — options to Add to Favorites, Copy ID, or Copy Name
+- ADD Alternating row shading in search result rows for improved readability
+- IMPROVE Item search results now display quality color on the item name
+- IMPROVE Spell search results now show the spell icon alongside the result row
+- FIX Search now requires at least 3 characters to prevent server overload from broad queries
+- FIX Filter and Sort controls moved to bottom of search popup to avoid overlapping top bar controls
+- FIX Filter and Sort controls now hidden in mail popup mode
+- FIX Recent tab no longer triggers a new server search when activated
+- ADD Recent tab: search box now filters the recent list by name or ID without a server call
+- ADD Recent tab: Reset button repurposed as "Clear Recent" to wipe the list for the current type
+- FIX Switching to Favorites or Recent tab no longer clears the search editbox or buffers
+- ADD Right-clicking an item on the Favorites tab now shows a "Remove from Favorites" option in the context menu; it appears at the top of the menu replacing "Add to Favorites" with no blank space
+- CHANGE Item left-click now shows a confirmation prompt before adding to inventory, naming the recipient (self or targeted player)
+- CHANGE Search popup context menu widened by 10px
+
 ## -=[ Version 23 - 03/22/2026]=-
 
 - ADD Server Restart button to Server tab using the same seconds field as shutdown

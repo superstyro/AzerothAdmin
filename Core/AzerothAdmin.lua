@@ -74,6 +74,14 @@ local defaults = {
     instantKillMode = false,
     msgDeltaTime = time(),
     serverRestartState = nil,
+    searchHistory = {
+      item = {}, itemset = {}, spell = {}, skill = {},
+      quest = {}, creature = {}, object = {}, tele = {}
+    },
+    recent = {
+      item = {}, itemset = {}, spell = {}, skill = {},
+      quest = {}, creature = {}, object = {}, tele = {}
+    },
   },
   profile = {
     -- Was "account" defaults
@@ -516,13 +524,16 @@ function AzerothAdmin:TogglePopup(value, param)
   else]]
   if value == "search" then
     FrameLib:HandleGroup("popup", function(frame) frame:Show() end)
+    -- Only reset if switching to a different search type
+    local prevType = ma_popupframe.searchType
+    local typeChanged = (prevType ~= param.type) or (ma_popupframe.popupMode ~= "search")
     ma_popupframe.popupMode = "search"
     ma_popupframe.searchType = param.type
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
 
     -- Hide mail-specific elements
-    ma_ptabbutton_3:Hide()
     ma_mailscrollframe:Hide()
     ma_maileditbox:Hide()
     for i = 1, 12 do
@@ -542,6 +553,19 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_var2text:Hide()
     ma_searchbutton:SetScript("OnClick", function() self:SearchStart(param.type, ma_searcheditbox:GetText()) end)
     ma_searcheditbox:SetScript("OnEnterPressed", function() self:SearchStart(param.type, ma_searcheditbox:GetText()) end)
+    -- Live search: debounce 0.5s after last keypress
+    local debounceTimer = nil
+    ma_searcheditbox:SetScript("OnTextChanged", function(self, userInput)
+      if not userInput then return end
+      if debounceTimer then debounceTimer:Cancel() end
+      debounceTimer = C_Timer.NewTimer(0.5, function()
+        debounceTimer = nil
+        local term = ma_searcheditbox:GetText()
+        if term and term ~= "" then
+          AzerothAdmin:SearchStart(param.type, term)
+        end
+      end)
+    end)
     ma_searchbutton:SetText(Locale["ma_SearchButton"])
     ma_resetsearchbutton:SetScript("OnClick", function() AzerothAdmin:SearchReset() end)
     ma_resetsearchbutton:SetText(Locale["ma_ResetButton"])
@@ -561,7 +585,12 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_questremovebutton:Hide()
     ma_questrewardbutton:Hide()
     ma_queststatusbutton:Hide()
-    self:SearchReset()
+    if typeChanged then
+      self:SearchReset()
+    else
+      -- Restore previous results display without wiping buffer
+      PopupScrollUpdate()
+    end
     self.db.char.requests.toggle = true
     if param.type == "item" then
       ma_ptabbutton_1:SetText(Locale["ma_ItemButton"])
@@ -582,8 +611,9 @@ function AzerothAdmin:TogglePopup(value, param)
       ma_var2text:SetText(Locale["ma_SkillVar2Button"])
     elseif param.type == "quest" then
       ma_ptabbutton_1:SetText(Locale["ma_QuestButton"])
-      -- Hide favorites tab for quest searches
+      -- Hide favorites and recent tabs for quest searches
       ma_ptabbutton_2:Hide()
+      ma_ptabbutton_3:Hide()
       -- Hide select/deselect/add buttons for quests
       ma_selectallbutton:Hide()
       ma_deselectallbutton:Hide()
@@ -622,14 +652,66 @@ function AzerothAdmin:TogglePopup(value, param)
       ma_resetsearchbutton:SetText(Locale["ma_LoadMore"])
       ma_resetsearchbutton:SetScript("OnClick", function() AzerothAdmin.db.profile.tickets.loading = true; self:LoadTickets(AzerothAdmin.db.profile.tickets.count) end)]]--
     end
+    -- Show Recent tab for all non-quest types
+    if param.type ~= "quest" and param.type ~= "ticket" then
+      ma_ptabbutton_3:SetText(Locale["ma_PopupRecentTab"])
+      ma_ptabbutton_3:SetScript("OnClick", function() AzerothAdmin:TogglePopup("recent", {type = param.type}) end)
+      ma_ptabbutton_3:Show()
+    end
+
+    -- Show filter + sort controls (hide for skill/object which use var boxes in same row)
+    if param.type ~= "skill" and param.type ~= "object" then
+      ma_filtereditbox:Show()
+      ma_filterlabel:Show()
+      ma_sorttogglebutton:Show()
+      -- Reset sort mode when switching types
+      if typeChanged then
+        ma_popupframe.sortMode = "default"
+        ma_sorttogglebutton:SetText(Locale["ma_SortDefault"])
+      end
+      -- Wire filter to re-render on text change
+      ma_filtereditbox:SetScript("OnTextChanged", function() PopupScrollUpdate() end)
+      -- Wire sort cycle
+      ma_sorttogglebutton:SetScript("OnClick", function()
+        local modes = {"default", "nameAZ", "nameZA", "idAsc"}
+        local labels = {Locale["ma_SortDefault"], Locale["ma_SortNameAZ"], Locale["ma_SortNameZA"], Locale["ma_SortIdAsc"]}
+        local cur = ma_popupframe.sortMode or "default"
+        local nextIdx = 1
+        for i, m in ipairs(modes) do
+          if m == cur then nextIdx = (i % #modes) + 1; break end
+        end
+        ma_popupframe.sortMode = modes[nextIdx]
+        ma_sorttogglebutton:SetText(labels[nextIdx])
+        PopupScrollUpdate()
+      end)
+    else
+      ma_filtereditbox:Hide()
+      ma_filterlabel:Hide()
+      ma_sorttogglebutton:Hide()
+    end
+    if typeChanged then
+      ma_filtereditbox:SetText("")
+    end
   elseif value == "favorites" then
     ma_popupframe.popupMode = "favorites"
-    self:SearchReset()
+    -- Clear active search/recent flags without wiping the editbox or buffers
+    ma_searcheditbox:SetScript("OnTextChanged", function() end)
+    self.db.char.requests.item = false; self.db.char.requests.favitem = false
+    self.db.char.requests.itemset = false; self.db.char.requests.favitemset = false
+    self.db.char.requests.spell = false; self.db.char.requests.favspell = false
+    self.db.char.requests.skill = false; self.db.char.requests.favskill = false
+    self.db.char.requests.quest = false; self.db.char.requests.favquest = false
+    self.db.char.requests.creature = false; self.db.char.requests.favcreature = false
+    self.db.char.requests.object = false; self.db.char.requests.favobject = false
+    self.db.char.requests.tele = false; self.db.char.requests.favtele = false
+    for _, t in ipairs({"item","itemset","spell","skill","quest","creature","object","tele"}) do
+      self.db.char.requests["recent_"..t] = false
+    end
     _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
     _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
 
     -- Hide mail-specific elements
-    ma_ptabbutton_3:Hide()
     ma_mailscrollframe:Hide()
     ma_maileditbox:Hide()
     for i = 1, 12 do
@@ -643,10 +725,86 @@ function AzerothAdmin:TogglePopup(value, param)
     ma_mailcoppereditbox:Hide()
     ma_mailcoppericon:Hide()
 
+    ma_filtereditbox:Hide()
+    ma_filterlabel:Hide()
+    ma_sorttogglebutton:Hide()
     ma_modfavsbutton:SetScript("OnClick", function() self:Favorites("remove", param.type) end)
     ma_modfavsbutton:SetText(Locale["ma_FavRemove"])
     ma_modfavsbutton:Enable()
+    -- Show Recent tab
+    ma_ptabbutton_3:SetText(Locale["ma_PopupRecentTab"])
+    ma_ptabbutton_3:SetScript("OnClick", function() AzerothAdmin:TogglePopup("recent", {type = param.type}) end)
+    ma_ptabbutton_3:Show()
     self:Favorites("show", param.type)
+  elseif value == "recent" then
+    ma_popupframe.popupMode = "recent"
+    -- Clear search/fav request flags without wiping the editbox or buffers
+    ma_searcheditbox:SetScript("OnTextChanged", function() end)
+    self.db.char.requests.item = false; self.db.char.requests.favitem = false
+    self.db.char.requests.itemset = false; self.db.char.requests.favitemset = false
+    self.db.char.requests.spell = false; self.db.char.requests.favspell = false
+    self.db.char.requests.skill = false; self.db.char.requests.favskill = false
+    self.db.char.requests.quest = false; self.db.char.requests.favquest = false
+    self.db.char.requests.creature = false; self.db.char.requests.favcreature = false
+    self.db.char.requests.object = false; self.db.char.requests.favobject = false
+    self.db.char.requests.tele = false; self.db.char.requests.favtele = false
+    for _, t in ipairs({"item","itemset","spell","skill","quest","creature","object","tele"}) do
+      self.db.char.requests["recent_"..t] = false
+    end
+    _G["ma_ptabbutton_3_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 1, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_1_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+    _G["ma_ptabbutton_2_texture"]:SetGradientAlpha("vertical", 102, 102, 102, 0, 102, 102, 102, 0.7)
+
+    -- Hide mail-specific elements
+    ma_mailscrollframe:Hide()
+    ma_maileditbox:Hide()
+    for i = 1, 12 do
+      _G["ma_mailitemslot"..i]:Hide()
+    end
+    ma_mailmoneytext:Hide()
+    ma_mailgoldeditbox:Hide()
+    ma_mailgoldicon:Hide()
+    ma_mailsilvereditbox:Hide()
+    ma_mailsilvericon:Hide()
+    ma_mailcoppereditbox:Hide()
+    ma_mailcoppericon:Hide()
+
+    -- Hide add/remove favorites buttons and filter for recent view
+    ma_modfavsbutton:Hide()
+    ma_selectallbutton:Hide()
+    ma_deselectallbutton:Hide()
+    ma_filtereditbox:Hide()
+    ma_filterlabel:Hide()
+    ma_sorttogglebutton:Hide()
+    -- Wire Search button and editbox to filter the recent list (no server call)
+    ma_searchbutton:SetText(Locale["ma_SearchButton"])
+    ma_searchbutton:SetScript("OnClick", function() PopupScrollUpdate() end)
+    ma_searcheditbox:SetScript("OnEnterPressed", function() PopupScrollUpdate() end)
+    local debounceTimer = nil
+    ma_searcheditbox:SetScript("OnTextChanged", function(self, userInput)
+      if not userInput then return end
+      if debounceTimer then debounceTimer:Cancel() end
+      debounceTimer = C_Timer.NewTimer(0.3, function()
+        debounceTimer = nil
+        PopupScrollUpdate()
+      end)
+    end)
+    -- Wire Reset button to clear the recent list for this type
+    ma_resetsearchbutton:SetText(Locale["ma_ClearRecentButton"])
+    ma_resetsearchbutton:SetScript("OnClick", function()
+      AzerothAdmin.db.char.recent[param.type] = {}
+      PopupScrollUpdate()
+    end)
+    ma_resetsearchbutton:Enable()
+    -- Tab nav
+    ma_ptabbutton_1:SetScript("OnClick", function() AzerothAdmin:TogglePopup("search", {type = param.type}) end)
+    ma_ptabbutton_2:SetScript("OnClick", function() AzerothAdmin:TogglePopup("favorites", {type = param.type}) end)
+    ma_ptabbutton_3:SetText(Locale["ma_PopupRecentTab"])
+    ma_ptabbutton_3:Show()
+    -- Signal recent display
+    self.db.char.requests.toggle = true
+    self.db.char.requests["recent_"..param.type] = true
+    PopupScrollUpdate()
   elseif value == "mail" then
     ma_popupframe.popupMode = "mail"
     self:SetupMailPopup(param)
@@ -1538,6 +1696,36 @@ function AzerothAdmin:AddItem(value, state)
   end
 end
 
+-- Shows a confirmation dialog before adding an item.
+-- Targets: no target or self → item goes to the GM; player target → item goes to that player.
+function AzerothAdmin:ConfirmAddItem(itemId, itemName)
+  if not (self:Selection("player") or self:Selection("self") or self:Selection("none")) then
+    self:Print(Locale["selectionerror1"])
+    return
+  end
+  local targetName = UnitName("target")
+  local isPlayerTarget = targetName and UnitIsPlayer("target") and not UnitIsUnit("target", "player")
+  local confirmMsg
+  if isPlayerTarget then
+    confirmMsg = string.format(Locale["ma_ItemConfirmTarget"], itemName or tostring(itemId), targetName)
+  else
+    confirmMsg = string.format(Locale["ma_ItemConfirmSelf"], itemName or tostring(itemId))
+  end
+  StaticPopupDialogs["AZEROTH_ADMIN_ITEM_CONFIRM"] = {
+    text = confirmMsg,
+    button1 = "Yes",
+    button2 = "No",
+    OnAccept = function()
+      AzerothAdmin:AddItem(itemId, nil)
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+  }
+  StaticPopup_Show("AZEROTH_ADMIN_ITEM_CONFIRM")
+end
+
 function AzerothAdmin:AddItemSet(value)
   if self:Selection("player") or self:Selection("self") or self:Selection("none") then
     local player = UnitName("target") or UnitName("player")
@@ -2033,7 +2221,40 @@ function AzerothAdmin:Favorites(value, searchtype)
   end
 end
 
+-- Push a search term into the per-type history (max 10, no duplicates, newest first)
+function AzerothAdmin:PushSearchHistory(searchtype, term)
+  if not term or term == "" then return end
+  local hist = self.db.char.searchHistory[searchtype]
+  if not hist then return end
+  -- Remove duplicate if present
+  for i = #hist, 1, -1 do
+    if hist[i] == term then table.remove(hist, i) end
+  end
+  table.insert(hist, 1, term)
+  if #hist > 10 then table.remove(hist) end
+end
+
+-- Push an entry into the per-type recent list (max 100, no duplicate IDs, newest first)
+function AzerothAdmin:PushRecent(searchtype, entry)
+  local recent = self.db.char.recent[searchtype]
+  if not recent then return end
+  local idKey = entry.itId or entry.isId or entry.spId or entry.skId or entry.qsId or entry.crId or entry.objId or entry.tName
+  if not idKey then return end
+  for i = #recent, 1, -1 do
+    local existingKey = recent[i].itId or recent[i].isId or recent[i].spId or recent[i].skId or recent[i].qsId or recent[i].crId or recent[i].objId or recent[i].tName
+    if existingKey == idKey then table.remove(recent, i) end
+  end
+  local copy = {}
+  for k, v in pairs(entry) do copy[k] = v end
+  copy.checked = false
+  table.insert(recent, 1, copy)
+  if #recent > 100 then table.remove(recent) end
+end
+
 function AzerothAdmin:SearchStart(var, value)
+  if not value or value == "" then return end
+  if strlen(value) < 3 then return end
+  self:PushSearchHistory(var, value)
   self.db.char.requests.toggle = true
   if var == "item" then
     self.db.char.requests.item = true
@@ -2095,6 +2316,9 @@ function AzerothAdmin:SearchReset()
   self.db.char.requests.tele = false
   self.db.char.requests.favtele = false
   self.db.char.requests.toggle = false
+  for _, t in ipairs({"item","itemset","spell","skill","quest","creature","object","tele"}) do
+    self.db.char.requests["recent_"..t] = false
+  end
   self.db.profile.buffer.items = {}
   self.db.profile.buffer.itemsets = {}
   self.db.profile.buffer.spells = {}
@@ -2546,6 +2770,21 @@ function AzerothAdmin:NoResults(var)
         _G["ma_PopupScrollBarEntry"..line]:Hide()
       end
     end
+  elseif var == "recent" then
+    ma_lookupresulttext:SetText(Locale["recentResults"].."0")
+    FauxScrollFrame_Update(ma_PopupScrollBar,7,7,30)
+    for line = 1,7 do
+      _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+      _G["ma_PopupScrollBarEntry"..line]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Disable()
+      _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+      if line == 1 then
+        _G["ma_PopupScrollBarEntry"..line]:SetText(Locale["ma_NoRecent"])
+        _G["ma_PopupScrollBarEntry"..line]:Show()
+      else
+        _G["ma_PopupScrollBarEntry"..line]:Hide()
+      end
+    end
   elseif var == "zones" then
     FauxScrollFrame_Update(ma_ZoneScrollBar,12,12,16);
     for line = 1,12 do
@@ -2571,49 +2810,188 @@ function AzerothAdmin:NoResults(var)
   end
 end
 
+-- Show the right-click context menu for a search result entry.
+-- entryData: the raw data table ({itId,itName} / {spId,spName} / etc.)
+-- searchtype: "item","spell","skill","creature","object","itemset","tele"
+-- isFav: true when right-clicking an entry on the Favorites tab (enables Remove button)
+-- origKey: 1-based index of the entry in the favorites table (used for removal)
+local function ShowEntryContextMenu(entryData, searchtype, isFav, origKey)
+  if not ma_popupContextMenu then return end
+  -- Resolve id and name from whichever fields are present
+  local entryId   = entryData.itId or entryData.isId or entryData.spId or entryData.skId
+                 or entryData.qsId or entryData.crId or entryData.objId or entryData.tName or ""
+  local entryName = entryData.itName or entryData.isName or entryData.spName or entryData.skName
+                 or entryData.qsName or entryData.crName or entryData.objName or entryData.tName or ""
+
+  local typeMap = {item="items",itemset="itemsets",spell="spells",skill="skills",
+                   creature="creatures",object="objects",tele="teles",quest="quests"}
+  local favKey = typeMap[searchtype]
+
+  -- Slot 1: show either Add or Remove at the top; re-anchor slots 2+3 off whichever is visible
+  local slot1
+  if isFav then
+    ma_ctxFavButton:Hide()
+    ma_ctxRemoveFavButton:Show()
+    slot1 = ma_ctxRemoveFavButton
+  else
+    ma_ctxRemoveFavButton:Hide()
+    ma_ctxFavButton:Show()
+    slot1 = ma_ctxFavButton
+  end
+  ma_ctxCopyIdButton:ClearAllPoints()
+  ma_ctxCopyIdButton:SetPoint("TOPLEFT", slot1, "BOTTOMLEFT", 0, -2)
+  ma_ctxCopyNameButton:ClearAllPoints()
+  ma_ctxCopyNameButton:SetPoint("TOPLEFT", ma_ctxCopyIdButton, "BOTTOMLEFT", 0, -2)
+  ma_popupContextMenu:SetWidth(140)
+  ma_popupContextMenu:SetHeight(66)
+
+  -- Wire Add to Favorites
+  ma_ctxFavButton:SetScript("OnClick", function()
+    ma_popupContextMenu:Hide()
+    if favKey then
+      local copy = {}
+      for k,v in pairs(entryData) do copy[k] = v end
+      copy.checked = false
+      table.insert(AzerothAdmin.db.profile.favorites[favKey], copy)
+    end
+  end)
+
+  -- Wire Remove from Favorites
+  ma_ctxRemoveFavButton:SetScript("OnClick", function()
+    ma_popupContextMenu:Hide()
+    if favKey and origKey then
+      table.remove(AzerothAdmin.db.profile.favorites[favKey], origKey)
+      PopupScrollUpdate()
+    end
+  end)
+
+  ma_ctxCopyIdButton:SetScript("OnClick", function()
+    ma_popupContextMenu:Hide()
+    ma_searcheditbox:SetText(tostring(entryId))
+    ma_searcheditbox:HighlightText()
+    ma_searcheditbox:SetFocus()
+  end)
+  ma_ctxCopyNameButton:SetScript("OnClick", function()
+    ma_popupContextMenu:Hide()
+    ma_searcheditbox:SetText(entryName)
+    ma_searcheditbox:HighlightText()
+    ma_searcheditbox:SetFocus()
+  end)
+
+  -- Position at cursor
+  local cx, cy = GetCursorPosition()
+  local scale = UIParent:GetEffectiveScale()
+  ma_popupContextMenu:ClearAllPoints()
+  ma_popupContextMenu:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", cx / scale, cy / scale)
+  ma_popupContextMenu:Show()
+  ma_popupContextMenu:Raise()
+end
+
+-- Apply alternating row shading to a scroll entry button
+local function SetEntryRowShading(line)
+  local btn = _G["ma_PopupScrollBarEntry"..line]
+  if not btn then return end
+  if not btn._shadingTex then
+    btn._shadingTex = btn:CreateTexture(nil, "BACKGROUND")
+    btn._shadingTex:SetAllPoints(btn)
+  end
+  if line % 2 == 0 then
+    btn._shadingTex:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    btn._shadingTex:SetVertexColor(0, 0, 0, 0.15)
+  else
+    btn._shadingTex:SetTexture(nil)
+  end
+end
+
+-- Returns a filtered and sorted view of a result list.
+-- Each returned entry has an extra field "_origKey" = original 1-based index in sourceList.
+-- nameField: the key holding the display name; idField: the key holding the numeric ID.
+local function GetFilteredSortedList(sourceList, nameField, idField)
+  local filterText = ma_filtereditbox and ma_filtereditbox:IsShown() and ma_filtereditbox:GetText() or ""
+  local sortMode = ma_popupframe and ma_popupframe.sortMode or "default"
+  local list = {}
+  for i, entry in ipairs(sourceList) do
+    if filterText == "" or string.find(string.lower(entry[nameField] or ""), string.lower(filterText), 1, true)
+                        or string.find(tostring(entry[idField] or ""), filterText, 1, true) then
+      -- Shallow wrapper so we don't mutate the original
+      local wrapper = {}
+      for k,v in pairs(entry) do wrapper[k] = v end
+      wrapper._origKey = i
+      list[#list+1] = wrapper
+    end
+  end
+  if sortMode == "nameAZ" then
+    table.sort(list, function(a,b) return string.lower(a[nameField] or "") < string.lower(b[nameField] or "") end)
+  elseif sortMode == "nameZA" then
+    table.sort(list, function(a,b) return string.lower(a[nameField] or "") > string.lower(b[nameField] or "") end)
+  elseif sortMode == "idAsc" then
+    table.sort(list, function(a,b) return tonumber(a[idField] or 0) < tonumber(b[idField] or 0) end)
+  end
+  return list
+end
+
+-- Wrap an OnClick handler to intercept right-clicks for the context menu.
+-- leftClickFn(self, button) is called for left clicks as before.
+-- isFav: true when entry is in the favorites list (enables Remove option)
+-- origKey: index in the favorites table for removal
+local function WithRightClick(leftClickFn, entryData, searchtype, isFav, origKey)
+  return function(self, button)
+    if button == "RightButton" then
+      ShowEntryContextMenu(entryData, searchtype, isFav, origKey)
+    else
+      leftClickFn(self, button)
+    end
+  end
+end
+
 function PopupScrollUpdate()
   local line -- 1 through 7 of our window to scroll
   local lineplusoffset -- an index into our data calculated from the scroll offset
   if AzerothAdmin.db.char.requests.item or AzerothAdmin.db.char.requests.favitem then --get items
-    local count = 0
-    if AzerothAdmin.db.char.requests.item then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.items) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favitem then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.items) do count = count + 1 end
+    local sourceList
+    local isFav = AzerothAdmin.db.char.requests.favitem
+    if not isFav then
+      sourceList = AzerothAdmin.db.profile.buffer.items
+    else
+      sourceList = AzerothAdmin.db.profile.favorites.items
     end
+    local filtered = GetFilteredSortedList(sourceList, "itName", "itId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
       for line = 1,7 do
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local item
-          if AzerothAdmin.db.char.requests.item then
-            item = AzerothAdmin.db.profile.buffer.items[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favitem then
-            item = AzerothAdmin.db.profile.favorites.items[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local item = filtered[lineplusoffset]
+          local key = item._origKey
+          SetEntryRowShading(line)
           --item icons
           _G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetItemIcon(item["itId"]))
           _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
           _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
-          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddItem(item["itId"], button) end)
+          _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", WithRightClick(function() AzerothAdmin:PushRecent("item", item); AzerothAdmin:ConfirmAddItem(item["itId"], item["itName"]) end, item, "item", isFav, key))
           _G["ma_PopupScrollBarEntryIcon"..line]:Show()
-          --item description
-          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..item["itId"].."|r Name: |cffffffff"..item["itName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddItem(item["itId"], button) end)
+          --item description with quality color
+          local _, _, itemQuality = GetItemInfo(item["itId"])
+          local qr, qg, qb = 1, 1, 1
+          if itemQuality then
+            qr, qg, qb = GetItemQualityColor(itemQuality)
+          end
+          local qHex = string.format("%02x%02x%02x", qr*255, qg*255, qb*255)
+          _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..item["itId"].."|r  |cff"..qHex..item["itName"].."|r")
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function() AzerothAdmin:PushRecent("item", item); AzerothAdmin:ConfirmAddItem(item["itId"], item["itName"]) end, item, "item", isFav, key))
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..item["itId"]); GameTooltip:Show() end)
           _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:Hide() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.item then
+          if not isFav then
             if item["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.items[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.items[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favitem then
+          else
             if item["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.items[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2630,20 +3008,18 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.item then
+      if not isFav then
         AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favitem then
+      else
         AzerothAdmin:NoResults("favorites")
       end
     end
 
   elseif AzerothAdmin.db.char.requests.itemset or AzerothAdmin.db.char.requests.favitemset then --get itemsets
-    local count = 0
-    if AzerothAdmin.db.char.requests.itemset then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.itemsets) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favitemset then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.itemsets) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favitemset
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.itemsets or AzerothAdmin.db.profile.buffer.itemsets
+    local filtered = GetFilteredSortedList(sourceList, "isName", "isId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2651,26 +3027,22 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local itemset
-          if AzerothAdmin.db.char.requests.itemset then
-            itemset = AzerothAdmin.db.profile.buffer.itemsets[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favitemset then
-            itemset = AzerothAdmin.db.profile.favorites.itemsets[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local itemset = filtered[lineplusoffset]
+          local key = itemset._origKey
+          SetEntryRowShading(line)
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..itemset["isId"].."|r Name: |cffffffff"..itemset["isName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddItemSet(itemset["isId"]) end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function() AzerothAdmin:PushRecent("itemset", itemset); AzerothAdmin:AddItemSet(itemset["isId"]) end, itemset, "itemset", isFav, key))
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.itemset then
+          if not isFav then
             if itemset["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.itemsets[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favitemset then
+          else
             if itemset["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.itemsets[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2686,20 +3058,14 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.itemset then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favitemset then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.quest or AzerothAdmin.db.char.requests.favquest then --get quests
-    local count = 0
-    if AzerothAdmin.db.char.requests.quest then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.quests) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favquest then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.quests) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favquest
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.quests or AzerothAdmin.db.profile.buffer.quests
+    local filtered = GetFilteredSortedList(sourceList, "qsName", "qsId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2707,13 +3073,9 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local quest
-          if AzerothAdmin.db.char.requests.quest then
-            quest = AzerothAdmin.db.profile.buffer.quests[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favquest then
-            quest = AzerothAdmin.db.profile.favorites.quests[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local quest = filtered[lineplusoffset]
+          local key = quest._origKey
+          SetEntryRowShading(line)
           -- Build display text with status flags
           local displayText = "Id: |cffffffff"..quest["qsId"].."|r Name: |cffffffff"..quest["qsName"].."|r"
 
@@ -2751,20 +3113,14 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.quest then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favquest then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.creature or AzerothAdmin.db.char.requests.favcreature then --get creatures
-    local count = 0
-    if AzerothAdmin.db.char.requests.creature then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.creatures) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favcreature then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.creatures) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favcreature
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.creatures or AzerothAdmin.db.profile.buffer.creatures
+    local filtered = GetFilteredSortedList(sourceList, "crName", "crId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2772,26 +3128,22 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local creature
-          if AzerothAdmin.db.char.requests.creature then
-            creature = AzerothAdmin.db.profile.buffer.creatures[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favcreature then
-            creature = AzerothAdmin.db.profile.favorites.creatures[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local creature = filtered[lineplusoffset]
+          local key = creature._origKey
+          SetEntryRowShading(line)
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..creature["crId"].."|r Name: |cffffffff"..creature["crName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:Creature(creature["crId"], button) end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function(self, button) AzerothAdmin:PushRecent("creature", creature); AzerothAdmin:Creature(creature["crId"], button) end, creature, "creature", isFav, key))
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.creature then
+          if not isFav then
             if creature["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.creatures[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.creatures[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favcreature then
+          else
             if creature["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.creatures[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2807,20 +3159,14 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.creature then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favcreature then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.spell or AzerothAdmin.db.char.requests.favspell then --get spells
-    local count = 0
-    if AzerothAdmin.db.char.requests.spell then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.spells) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favspell then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.spells) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favspell
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.spells or AzerothAdmin.db.profile.buffer.spells
+    local filtered = GetFilteredSortedList(sourceList, "spName", "spId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2828,29 +3174,34 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local spell
-          if AzerothAdmin.db.char.requests.spell then
-            spell = AzerothAdmin.db.profile.buffer.spells[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favspell then
-            spell = AzerothAdmin.db.profile.favorites.spells[lineplusoffset]
+          local spell = filtered[lineplusoffset]
+          local key = spell._origKey
+          SetEntryRowShading(line)
+          --spell icon via GetSpellInfo(id) which returns name, rank, icon at index 3
+          local spellTex = select(3, GetSpellInfo(spell["spId"]))
+          if spellTex then
+            _G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(spellTex)
+            _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetSpellByID(spell["spId"]); GameTooltip:Show() end)
+            _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function() GameTooltip:Hide() end)
+            _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", WithRightClick(function(self, button) AzerothAdmin:PushRecent("spell", spell); AzerothAdminCommands.LearnSpell(spell["spId"], button) end, spell, "spell", isFav, key))
+            _G["ma_PopupScrollBarEntryIcon"..line]:Show()
+          else
+            _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
           end
-          local key = lineplusoffset
-          --spell icon
-          --_G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetSpellTexture(spell["spId"],BOOKTYPE_SPELL))
           --spell info
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..spell["spId"].."|r Name: |cffffffff"..spell["spName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdminCommands.LearnSpell(spell["spId"], button) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function(self, button) AzerothAdmin:PushRecent("spell", spell); AzerothAdminCommands.LearnSpell(spell["spId"], button) end, spell, "spell", isFav, key))
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.spell then
+          if not isFav then
             if spell["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.spells[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.spells[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favspell then
+          else
             if spell["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.spells[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2866,20 +3217,14 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.spell then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favspell then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.skill or AzerothAdmin.db.char.requests.favskill then --get skills
-    local count = 0
-    if AzerothAdmin.db.char.requests.skill then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.skills) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favskill then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.skills) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favskill
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.skills or AzerothAdmin.db.profile.buffer.skills
+    local filtered = GetFilteredSortedList(sourceList, "skName", "skId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2887,26 +3232,22 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local skill
-          if AzerothAdmin.db.char.requests.skill then
-            skill = AzerothAdmin.db.profile.buffer.skills[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favskill then
-            skill = AzerothAdmin.db.profile.favorites.skills[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local skill = filtered[lineplusoffset]
+          local key = skill._origKey
+          SetEntryRowShading(line)
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..skill["skId"].."|r Name: |cffffffff"..skill["skName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:SetSkill(skill["skId"], nil, nil) end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function() AzerothAdmin:PushRecent("skill", skill); AzerothAdmin:SetSkill(skill["skId"], nil, nil) end, skill, "skill", isFav, key))
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.skill then
+          if not isFav then
             if skill["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.skills[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.skills[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favskill then
+          else
             if skill["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.skills[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2922,20 +3263,14 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.skill then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favskill then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.object or AzerothAdmin.db.char.requests.favobject then --get objects
-    local count = 0
-    if AzerothAdmin.db.char.requests.object then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.objects) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favobject then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.objects) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favobject
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.objects or AzerothAdmin.db.profile.buffer.objects
+    local filtered = GetFilteredSortedList(sourceList, "objName", "objId")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
       FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
@@ -2943,26 +3278,22 @@ function PopupScrollUpdate()
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local object
-          if AzerothAdmin.db.char.requests.object then
-            object = AzerothAdmin.db.profile.buffer.objects[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favobject then
-            object = AzerothAdmin.db.profile.favorites.objects[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local object = filtered[lineplusoffset]
+          local key = object._origKey
+          SetEntryRowShading(line)
           _G["ma_PopupScrollBarEntry"..line]:SetText("Id: |cffffffff"..object["objId"].."|r Name: |cffffffff"..object["objName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddObject(object["objId"], button) end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function(self, button) AzerothAdmin:PushRecent("object", object); AzerothAdmin:AddObject(object["objId"], button) end, object, "object", isFav, key))
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.object then
+          if not isFav then
             if object["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.objects[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.objects[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favobject then
+          else
             if object["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.objects[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -2978,47 +3309,37 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.object then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favobject then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   elseif AzerothAdmin.db.char.requests.tele or AzerothAdmin.db.char.requests.favtele then --get teles
-    local count = 0
-    if AzerothAdmin.db.char.requests.tele then
-      for _ in pairs(AzerothAdmin.db.profile.buffer.teles) do count = count + 1 end
-    elseif AzerothAdmin.db.char.requests.favtele then
-      for _ in pairs(AzerothAdmin.db.profile.favorites.teles) do count = count + 1 end
-    end
+    local isFav = AzerothAdmin.db.char.requests.favtele
+    local sourceList = isFav and AzerothAdmin.db.profile.favorites.teles or AzerothAdmin.db.profile.buffer.teles
+    local filtered = GetFilteredSortedList(sourceList, "tName", "tName")
+    local count = #filtered
     if count > 0 then
       ma_lookupresulttext:SetText(Locale["searchResults"]..count)
-      FauxScrollFrame_Update(ma_PopupScrollBar,count,7,30);
-      for line = 1,7 do
+      FauxScrollFrame_Update(ma_PopupScrollBar, count, 7, 30)
+      for line = 1, 7 do
         _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
         lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
         if lineplusoffset <= count then
-          local tele
-          if AzerothAdmin.db.char.requests.tele then
-            tele = AzerothAdmin.db.profile.buffer.teles[lineplusoffset]
-          elseif AzerothAdmin.db.char.requests.favtele then
-            tele = AzerothAdmin.db.profile.favorites.teles[lineplusoffset]
-          end
-          local key = lineplusoffset
+          local tele = filtered[lineplusoffset]
+          local key = tele._origKey
+          SetEntryRowShading(line)
           _G["ma_PopupScrollBarEntry"..line]:SetText("Name: |cffffffff"..tele["tName"].."|r")
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:ChatMsg(".tele "..tele["tName"]) end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() --[[Do nothing]] end)
-          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() --[[Do nothing]] end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", WithRightClick(function() AzerothAdmin:PushRecent("tele", tele); AzerothAdmin:ChatMsg(".tele "..tele["tName"]) end, tele, "tele", isFav, key))
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+          _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
           _G["ma_PopupScrollBarEntry"..line]:Enable()
           _G["ma_PopupScrollBarEntry"..line]:Show()
-          if AzerothAdmin.db.char.requests.tele then
+          if not isFav then
             if tele["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.teles[key]["checked"] = false; PopupScrollUpdate() end)
             else
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.buffer.teles[key]["checked"] = true; PopupScrollUpdate() end)
             end
-          elseif AzerothAdmin.db.char.requests.favtele then
+          else
             if tele["checked"] then
               _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:SetScript("OnClick", function() AzerothAdmin.db.profile.favorites.teles[key]["checked"] = false; PopupScrollUpdate() end)
             else
@@ -3034,15 +3355,89 @@ function PopupScrollUpdate()
         end
       end
     else
-      if AzerothAdmin.db.char.requests.tele then
-        AzerothAdmin:NoResults("search")
-      elseif AzerothAdmin.db.char.requests.favtele then
-        AzerothAdmin:NoResults("favorites")
-      end
+      AzerothAdmin:NoResults(isFav and "favorites" or "search")
     end
 
   else
-    AzerothAdmin:NoResults("search")
+    -- Check for recent tab display
+    local recentType = nil
+    for _, t in ipairs({"item","itemset","spell","skill","quest","creature","object","tele"}) do
+      if AzerothAdmin.db.char.requests["recent_"..t] then
+        recentType = t
+        break
+      end
+    end
+    if recentType then
+      local recentList = AzerothAdmin.db.char.recent[recentType]
+      -- Filter recent list by search editbox text
+      local nameFields = {item="itName",itemset="isName",spell="spName",skill="skName",
+                          quest="qsName",creature="crName",object="objName",tele="tName"}
+      local idFields   = {item="itId",itemset="isId",spell="spId",skill="skId",
+                          quest="qsId",creature="crId",object="objId",tele="tName"}
+      local nameField = nameFields[recentType]
+      local idField   = idFields[recentType]
+      local filtered = GetFilteredSortedList(recentList or {}, nameField, idField)
+      local count = #filtered
+      if count > 0 then
+        ma_lookupresulttext:SetText(Locale["recentResults"]..count)
+        FauxScrollFrame_Update(ma_PopupScrollBar, count, 7, 30)
+        for line = 1, 7 do
+          local lineplusoffset = line + FauxScrollFrame_GetOffset(ma_PopupScrollBar)
+          if lineplusoffset <= count then
+            local entry = filtered[lineplusoffset]
+            SetEntryRowShading(line)
+            -- Show icon for items
+            if recentType == "item" then
+              _G["ma_PopupScrollBarEntryIcon"..line.."IconTexture"]:SetTexture(GetItemIcon(entry["itId"]))
+              _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnEnter", function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetHyperlink("item:"..entry["itId"]); GameTooltip:Show() end)
+              _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+              _G["ma_PopupScrollBarEntryIcon"..line]:SetScript("OnClick", function() AzerothAdmin:ConfirmAddItem(entry["itId"], entry["itName"]) end)
+              _G["ma_PopupScrollBarEntryIcon"..line]:Show()
+            else
+              _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+            end
+            -- Build display text and wire click
+            local displayText
+            if recentType == "item" then
+              displayText = "Id: |cffffffff"..entry["itId"].."|r Name: |cffffffff"..entry["itName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:ConfirmAddItem(entry["itId"], entry["itName"]) end)
+            elseif recentType == "itemset" then
+              displayText = "Id: |cffffffff"..entry["isId"].."|r Name: |cffffffff"..entry["isName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:AddItemSet(entry["isId"]) end)
+            elseif recentType == "spell" then
+              displayText = "Id: |cffffffff"..entry["spId"].."|r Name: |cffffffff"..entry["spName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdminCommands.LearnSpell(entry["spId"], button) end)
+            elseif recentType == "skill" then
+              displayText = "Id: |cffffffff"..entry["skId"].."|r Name: |cffffffff"..entry["skName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:SetSkill(entry["skId"], nil, nil) end)
+            elseif recentType == "creature" then
+              displayText = "Id: |cffffffff"..entry["crId"].."|r Name: |cffffffff"..entry["crName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:Creature(entry["crId"], button) end)
+            elseif recentType == "object" then
+              displayText = "Id: |cffffffff"..entry["objId"].."|r Name: |cffffffff"..entry["objName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function(self, button) AzerothAdmin:AddObject(entry["objId"], button) end)
+            elseif recentType == "tele" then
+              displayText = "Name: |cffffffff"..entry["tName"].."|r"
+              _G["ma_PopupScrollBarEntry"..line]:SetScript("OnClick", function() AzerothAdmin:ChatMsg(".tele "..entry["tName"]) end)
+            end
+            _G["ma_PopupScrollBarEntry"..line]:SetText(displayText)
+            _G["ma_PopupScrollBarEntry"..line]:SetScript("OnEnter", function() end)
+            _G["ma_PopupScrollBarEntry"..line]:SetScript("OnLeave", function() end)
+            _G["ma_PopupScrollBarEntry"..line]:Enable()
+            _G["ma_PopupScrollBarEntry"..line]:Show()
+            _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+          else
+            _G["ma_PopupScrollBarEntryIcon"..line]:Hide()
+            _G["ma_PopupScrollBarEntry"..line.."ChkBtn"]:Hide()
+            _G["ma_PopupScrollBarEntry"..line]:Hide()
+          end
+        end
+      else
+        AzerothAdmin:NoResults("recent")
+      end
+    else
+      AzerothAdmin:NoResults("search")
+    end
   end
 end
 
@@ -3190,8 +3585,9 @@ function AzerothAdmin:CloseButton(name)
     AzerothAdmin:SearchReset()
     FrameLib:HandleGroup("bg", function(frame) frame:Hide() end)
   elseif name == "popup" then
-    AzerothAdmin:SearchReset()
-    FrameLib:HandleGroup("popup", function(frame) frame:Hide()  end)
+    -- Preserve search state: only hide the frame, don't wipe the buffer.
+    -- The buffer will be restored when the popup reopens for the same type.
+    FrameLib:HandleGroup("popup", function(frame) frame:Hide() end)
   elseif name == "popup2" then
     FrameLib:HandleGroup("popup2", function(frame) frame:Hide()  end)
   end

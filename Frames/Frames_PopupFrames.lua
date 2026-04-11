@@ -82,7 +82,7 @@ function AzerothAdmin:CreatePopupFrames()
       color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
     },
     size = {
-      width = 230,
+      width = 333,
       height = 22
     },
     setpoint = {

@@ -3,6 +3,7 @@
 ## -=[ Version 24 - 03/22/2026]=-
 
 - FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)
+- IMPROVE Search editbox widened to better fill the available space in the popup header
 
 - ADD Live search with 0.5s debounce — results appear automatically as you type without clicking the Search button
 - ADD Search history (up to 10 terms per type) stored per character — click any history entry to restore the search term

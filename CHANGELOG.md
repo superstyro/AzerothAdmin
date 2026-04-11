@@ -1,6 +1,6 @@
 # AzerothAdmin Changelog
 
-## -=[ Version 24 - 03/22/2026]=-
+## -=[ Version 24 - 04/10/2026]=-
 
 - FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)
 - IMPROVE Search editbox widened to better fill the available space in the popup header

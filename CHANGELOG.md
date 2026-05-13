@@ -3,6 +3,7 @@
 ## -=[ Version 24 - 04/10/2026]=-
 
 - FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)
+- FIX Removed stale .toc reference to a non-existent Log section frames file that produced a load-time warning (issue #85, reported by Raz0r1337)
 - IMPROVE Search editbox widened to better fill the available space in the popup header
 
 - ADD Live search with 0.5s debounce — results appear automatically as you type without clicking the Search button

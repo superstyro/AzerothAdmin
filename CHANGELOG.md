@@ -1,6 +1,6 @@
 # AzerothAdmin Changelog
 
-## -=[ Version 23 - 04/10/2026]=-
+## -=[ Version 23 - 05/13/2026]=-
 
 - FIX Clicking a quest, spell, or quest add/remove link in chat no longer sends an "unsigned int" error to the server — link payloads with extra fields (e.g. `quest:24555:80`) are now parsed for just the numeric ID (issue #86, reported by lightstylez)
 - FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)

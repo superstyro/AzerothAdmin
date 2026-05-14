@@ -82,7 +82,7 @@ function AzerothAdmin:CreatePopupFrames()
       color = {color.bg.r, color.bg.g, color.bg.b, transparency.bg}
     },
     size = {
-      width = 230,
+      width = 333,
       height = 22
     },
     setpoint = {
@@ -381,6 +381,55 @@ function AzerothAdmin:CreatePopupFrames()
     },
     inherits = "InputBoxTemplate"
   })
+
+  -- Filter editbox: client-side text filter applied after results arrive
+  do
+    local fb = CreateFrame("EditBox", "ma_filtereditbox", ma_popupbottomframe)
+    FrameLib:AddGroupFrame("popup", fb)
+    fb:SetSize(170, 20)
+    fb:SetPoint("BOTTOMLEFT", ma_popupbottomframe, "BOTTOMLEFT", 5, 5)
+    fb:SetAutoFocus(false)
+    fb:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+    fb:SetFontObject("ChatFontNormal")
+    fb:SetTextInsets(4, 4, 2, 2)
+    fb:SetBackdrop({
+      bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+      edgeFile = "Interface\\Buttons\\WHITE8X8",
+      edgeSize = 2,
+      insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+    fb:SetBackdropColor(0, 0, 0, 0.6)
+    fb:SetBackdropBorderColor(0.35, 0.35, 0.35, 1)
+    fb:Hide()
+
+    local fbLabel = ma_popupbottomframe:CreateFontString("ma_filterlabel", "OVERLAY", "ChatFontNormal")
+    fbLabel:SetText(Locale["ma_FilterLabel"])
+    fbLabel:SetPoint("BOTTOMLEFT", fb, "TOPLEFT", 0, 2)
+    fbLabel:Hide()
+    FrameLib:AddGroupFrame("popup", fbLabel)
+  end
+
+  -- Sort toggle button: cycles through sort modes
+  FrameLib:BuildButton({
+    name = "ma_sorttogglebutton",
+    group = "popup",
+    parent = ma_popupbottomframe,
+    texture = {
+      name = "ma_sorttogglebutton_texture",
+      color = {color.btn.r, color.btn.g, color.btn.b, transparency.btn}
+    },
+    size = {
+      width = 80,
+      height = 20
+    },
+    setpoint = {
+      pos = "BOTTOMLEFT",
+      offX = 178,
+      offY = 5
+    },
+    text = Locale["ma_SortDefault"]
+  })
+  ma_sorttogglebutton:Hide()
 
   -- Popup Search ScrollFrame
   FrameLib:BuildFrame({
@@ -1063,6 +1112,64 @@ function AzerothAdmin:CreatePopupFrames()
     },
     text = Locale["ma_QuestStatusButton"]
   })
+
+  -- [[Right-click Context Menu]] (shared by all search result entries)
+  local ctxMenu = CreateFrame("Frame", "ma_popupContextMenu", UIParent)
+  ctxMenu:SetSize(140, 66)
+  ctxMenu:SetFrameStrata("TOOLTIP")
+  ctxMenu:SetBackdrop({
+    bgFile   = "Interface\\ChatFrame\\ChatFrameBackground",
+    edgeFile = "Interface\\Buttons\\WHITE8X8",
+    edgeSize = 2,
+    insets   = { left = 2, right = 2, top = 2, bottom = 2 }
+  })
+  ctxMenu:SetBackdropColor(0.1, 0.1, 0.1, 0.95)
+  ctxMenu:SetBackdropBorderColor(0.4, 0.4, 0.4, 1)
+  ctxMenu:Hide()
+  -- Close menu when clicking elsewhere
+  ctxMenu:SetScript("OnShow", function(self)
+    self:SetScript("OnUpdate", function(s)
+      if not MouseIsOver(s) and IsMouseButtonDown("LeftButton") then
+        s:Hide()
+        s:SetScript("OnUpdate", nil)
+      end
+    end)
+  end)
+
+  -- Slot 1 (top): Add to Favorites — shown on Search/Recent tabs
+  local ctxFav = CreateFrame("Button", "ma_ctxFavButton", ctxMenu)
+  ctxFav:SetSize(136, 20)
+  ctxFav:SetPoint("TOPLEFT", ctxMenu, "TOPLEFT", 2, -2)
+  ctxFav:SetNormalFontObject("GameFontNormalSmall")
+  ctxFav:SetText(Locale["ma_CtxAddFav"])
+  ctxFav:SetScript("OnEnter", function(self) self:GetFontString():SetTextColor(1, 1, 0, 1) end)
+  ctxFav:SetScript("OnLeave", function(self) self:GetFontString():SetTextColor(1, 1, 1, 1) end)
+
+  -- Slot 1 (top): Remove from Favorites — shown on Favorites tab, same anchor as ctxFav
+  local ctxRemoveFav = CreateFrame("Button", "ma_ctxRemoveFavButton", ctxMenu)
+  ctxRemoveFav:SetSize(136, 20)
+  ctxRemoveFav:SetPoint("TOPLEFT", ctxMenu, "TOPLEFT", 2, -2)
+  ctxRemoveFav:SetNormalFontObject("GameFontNormalSmall")
+  ctxRemoveFav:SetText(Locale["ma_CtxRemoveFav"])
+  ctxRemoveFav:SetScript("OnEnter", function(self) self:GetFontString():SetTextColor(1, 0.2, 0.2, 1) end)
+  ctxRemoveFav:SetScript("OnLeave", function(self) self:GetFontString():SetTextColor(1, 1, 1, 1) end)
+  ctxRemoveFav:Hide()
+
+  -- Slot 2: Copy ID — anchored dynamically in ShowEntryContextMenu
+  local ctxCopyId = CreateFrame("Button", "ma_ctxCopyIdButton", ctxMenu)
+  ctxCopyId:SetSize(136, 20)
+  ctxCopyId:SetNormalFontObject("GameFontNormalSmall")
+  ctxCopyId:SetText(Locale["ma_CtxCopyId"])
+  ctxCopyId:SetScript("OnEnter", function(self) self:GetFontString():SetTextColor(1, 1, 0, 1) end)
+  ctxCopyId:SetScript("OnLeave", function(self) self:GetFontString():SetTextColor(1, 1, 1, 1) end)
+
+  -- Slot 3: Copy Name — anchored dynamically in ShowEntryContextMenu
+  local ctxCopyName = CreateFrame("Button", "ma_ctxCopyNameButton", ctxMenu)
+  ctxCopyName:SetSize(136, 20)
+  ctxCopyName:SetNormalFontObject("GameFontNormalSmall")
+  ctxCopyName:SetText(Locale["ma_CtxCopyName"])
+  ctxCopyName:SetScript("OnEnter", function(self) self:GetFontString():SetTextColor(1, 1, 0, 1) end)
+  ctxCopyName:SetScript("OnLeave", function(self) self:GetFontString():SetTextColor(1, 1, 1, 1) end)
 end
 
 -- Setup Mail Popup UI
@@ -1085,6 +1192,9 @@ function AzerothAdmin:SetupMailPopup(param)
   ma_deselectallbutton:Hide()
   ma_var2editbox:Hide()
   ma_var2text:Hide()
+  ma_filtereditbox:Hide()
+  ma_filterlabel:Hide()
+  ma_sorttogglebutton:Hide()
 
   -- Hide quest action buttons (not used in mail mode)
   ma_questaddbutton:Hide()

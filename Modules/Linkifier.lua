@@ -226,13 +226,16 @@ function MangLinkifier_SetItemRef(link, text, button)
     return;
   ----------====~~ Support for Clickable Links Made by Mangos and Added Options ~~====----------
   elseif ( strsub(link, 1, 5) == "quest" ) then
-    SendChatMessage(".quest add "..strsub(link, 7), say, nil, nil)
+    local _, _, parsedId = link:find("quest:(%d+)")
+    SendChatMessage(".quest add "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 14) == "lookupquestadd" ) then
-    SendChatMessage(".quest add "..strsub(link, 16), say, nil, nil)
+    local _, _, parsedId = link:find("lookupquestadd:(%d+)")
+    SendChatMessage(".quest add "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 14) == "lookupquestrem" ) then
-    SendChatMessage(".quest remove "..strsub(link, 16), say, nil, nil)
+    local _, _, parsedId = link:find("lookupquestrem:(%d+)")
+    SendChatMessage(".quest remove "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 13) == "lookupitemadd" ) then -- Updated new string parse, may need to be used in other functions FIX: #6
     local str = link
@@ -270,13 +273,16 @@ function MangLinkifier_SetItemRef(link, text, button)
     SendChatMessage(".go creature "..strsub(link, 10), say, nil, nil)
     return;
   elseif ( strsub(link, 1, 5) == "spell" ) then
-    SendChatMessage(".learn "..strsub(link, 7), say, nil, nil)
+    local _, _, parsedId = link:find("spell:(%d+)")
+    SendChatMessage(".learn "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 16) == "lookupspelllearn" ) then
-    SendChatMessage(".learn "..strsub(link, 18), say, nil, nil)
+    local _, _, parsedId = link:find("lookupspelllearn:(%d+)")
+    SendChatMessage(".learn "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 18) == "lookupspellunlearn" ) then
-    SendChatMessage(".unlearn "..strsub(link, 20), say, nil, nil)
+    local _, _, parsedId = link:find("lookupspellunlearn:(%d+)")
+    SendChatMessage(".unlearn "..parsedId, say, nil, nil)
     return;
   elseif ( strsub(link, 1, 4) == "tele" ) then
     SendChatMessage(".tele "..strsub(link, 6), say, nil, nil)

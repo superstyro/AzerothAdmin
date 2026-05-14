@@ -71,7 +71,6 @@ Frames\Frames_PopupFrames.lua
 Frames\Frames_SmallPopupFrames.lua
 Frames\Frames_SectionMain.lua
 Frames\Frames_SectionTele.lua
-Frames\Frames_SectionLog.lua
 Frames\Frames_SectionChar.lua
 Frames\Frames_SectionTicket.lua
 Frames\Frames_SectionMisc.lua

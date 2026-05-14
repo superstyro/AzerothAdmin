@@ -2,6 +2,7 @@
 
 ## -=[ Version 23 - 04/10/2026]=-
 
+- FIX Clicking a quest, spell, or quest add/remove link in chat no longer sends an "unsigned int" error to the server — link payloads with extra fields (e.g. `quest:24555:80`) are now parsed for just the numeric ID (issue #86, reported by lightstylez)
 - FIX Spell search popup no longer errors with "Invalid spell slot" — spell icons now fetched via GetSpellInfo(id) instead of GetSpellTexture(slot)
 - FIX Removed stale .toc reference to a non-existent Log section frames file that produced a load-time warning (issue #85, reported by Raz0r1337)
 - IMPROVE Search editbox widened to better fill the available space in the popup header

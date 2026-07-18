@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "투명도 활성화",
     ["ma_EnableLocalizedSearch"]      = "지역화된 검색 문자열 활성화",
     ["ma_EnableMinimenu"]             = "미니메뉴/도구 모음 활성화",
+    ["ma_MinimenuFreeMove"]           = "미니메뉴/도구 모음 자유 이동 활성화",
     ["ma_EnableTooltips"]             = "툴팁 활성화",
     ["ma_ShowChatOutput"]             = "채팅 출력 표시",
     ["ma_ShowMinimapButton"]          = "미니맵 버튼 표시",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r 투명도 설정이 저장되었습니다. 변경 사항 업데이트 또는 UI 다시 로드하여 적용하세요.",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r 지역화된 검색 문자열 설정이 저장되었습니다. 변경 사항 업데이트 또는 UI 다시 로드하여 적용하세요.",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r 미니메뉴 설정이 저장되었습니다.",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r 미니메뉴 자유 이동 설정이 저장되었습니다.",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r 툴팁 설정이 저장되었습니다. 변경 사항 업데이트 또는 UI 다시 로드하여 적용하세요.",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r 채팅 출력 설정이 저장되었습니다.",
 

@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "启用透明度",
     ["ma_EnableLocalizedSearch"]      = "启用本地化搜索字符串",
     ["ma_EnableMinimenu"]             = "启用迷你菜单/工具栏",
+    ["ma_MinimenuFreeMove"]           = "启用迷你菜单/工具栏自由移动",
     ["ma_EnableTooltips"]             = "启用工具提示",
     ["ma_ShowChatOutput"]             = "显示聊天输出",
     ["ma_ShowMinimapButton"]          = "显示小地图按钮",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r 透明度设置已保存。更新更改或重新加载界面以应用。",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r 本地化搜索字符串设置已保存。更新更改或重新加载界面以应用。",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r 迷你菜单设置已保存。",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r 迷你菜单自由移动设置已保存。",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r 工具提示设置已保存。更新更改或重新加载界面以应用。",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r 聊天输出设置已保存。",
 

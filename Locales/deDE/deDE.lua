@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "Transparenz aktivieren",
     ["ma_EnableLocalizedSearch"]      = "Lokalisierte Suchstrings aktivieren",
     ["ma_EnableMinimenu"]             = "Minimenü/Toolbar aktivieren",
+    ["ma_MinimenuFreeMove"]           = "Minimenü/Toolbar frei bewegen aktivieren",
     ["ma_EnableTooltips"]             = "Tooltips aktivieren",
     ["ma_ShowChatOutput"]             = "Chat-Ausgabe anzeigen",
     ["ma_ShowMinimapButton"]          = "Minimap-Schaltfläche anzeigen",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Transparenz-Einstellung gespeichert. Änderungen übernehmen oder UI neu laden zum Anwenden.",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Lokalisierte Suchstrings-Einstellung gespeichert. Änderungen übernehmen oder UI neu laden zum Anwenden.",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Minimenü-Einstellung gespeichert.",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r Freie Minimenü-Positionierung gespeichert.",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Tooltip-Einstellung gespeichert. Änderungen übernehmen oder UI neu laden zum Anwenden.",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Chat-Ausgabe-Einstellung gespeichert.",
 

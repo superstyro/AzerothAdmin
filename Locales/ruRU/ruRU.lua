@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "Включить прозрачность",
     ["ma_EnableLocalizedSearch"]      = "Включить локализованные строки поиска",
     ["ma_EnableMinimenu"]             = "Включить минименю/панель",
+    ["ma_MinimenuFreeMove"]           = "Включить свободное перемещение минименю/панели",
     ["ma_EnableTooltips"]             = "Включить подсказки",
     ["ma_ShowChatOutput"]             = "Показывать вывод чата",
     ["ma_ShowMinimapButton"]          = "Показать кнопку миникарты",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Настройка прозрачности сохранена. Обновите изменения или перезагрузите UI для применения.",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Настройка локализованных строк поиска сохранена. Обновите изменения или перезагрузите UI для применения.",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Настройка минименю сохранена.",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r Настройка свободного перемещения минименю сохранена.",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Настройка подсказок сохранена. Обновите изменения или перезагрузите UI для применения.",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Настройка вывода чата сохранена.",
 

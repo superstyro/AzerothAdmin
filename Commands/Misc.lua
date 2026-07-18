@@ -68,6 +68,30 @@ function AzerothAdminCommands.ToggleMinimenuCheckbox()
   print(Locale["msg_minimenu_saved"])
 end
 
+function AzerothAdminCommands.ToggleMinimenuFreeMoveCheckbox()
+  local isChecked = ma_minimenufreemovebutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.minimenuFreeMove = isChecked
+
+  -- When free move is disabled, snap the menu to the nearest screen edge
+  if not isChecked and ma_minibgframe then
+    local screenWidth = UIParent:GetWidth()
+    local screenHeight = UIParent:GetHeight()
+    local x, y = ma_minibgframe:GetCenter()
+    if x and y then
+      local side = (x < screenWidth / 2) and "LEFT" or "RIGHT"
+      local yOffset = y - (screenHeight / 2)
+      ma_minibgframe:ClearAllPoints()
+      ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
+      AzerothAdmin.db.profile.minimenuPosition = {
+        side = side,
+        yOffset = yOffset
+      }
+    end
+  end
+
+  print(Locale["msg_minimenu_freemove_saved"])
+end
+
 function AzerothAdminCommands.ToggleTooltipsCheckbox()
   -- Get the checkbox state and convert to boolean (checkbox returns 1 or nil, not true/false)
   local isChecked = ma_showtooltipsbutton:GetChecked() and true or false
@@ -149,6 +173,7 @@ function AzerothAdminCommands.UpdateChanges()
   AzerothAdmin.db.profile.style.showtooltips = ma_showtooltipsbutton:GetChecked() and true or false
   AzerothAdmin.db.profile.style.showchat = ma_showchatoutputbutton:GetChecked() and true or false
   AzerothAdmin.db.profile.style.showminimenu = ma_showminimenubutton:GetChecked() and true or false
+  AzerothAdmin.db.profile.style.minimenuFreeMove = ma_minimenufreemovebutton:GetChecked() and true or false
   ReloadUI()
 end
 

@@ -110,13 +110,38 @@ function AzerothAdmin:CreateMiscSection()
 
   FrameLib:BuildButton({
     type = "CheckButton",
-    name = "ma_showtooltipsbutton",
+    name = "ma_minimenufreemovebutton",
     group = "misc",
     parent = ma_midframe,
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
       offY = -44
+    },
+    text = Locale["ma_MinimenuFreeMove"],
+    inherits = "OptionsCheckButtonTemplate"
+  })
+  do
+    local cb = _G["ma_minimenufreemovebutton"]
+    cb:GetNormalTexture():SetAlpha(0)
+    cb:GetHighlightTexture():SetAlpha(0)
+    cb:GetPushedTexture():SetAlpha(0)
+    local bg = cb:CreateTexture(nil, "BACKGROUND")
+    bg:SetSize(18, 18)
+    bg:SetPoint("CENTER", cb, "CENTER", 0, 0)
+    bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+    bg:SetVertexColor(0.2, 0.2, 0.2, 0.8)
+  end
+
+  FrameLib:BuildButton({
+    type = "CheckButton",
+    name = "ma_showtooltipsbutton",
+    group = "misc",
+    parent = ma_midframe,
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 160,
+      offY = -64
     },
     text = Locale["ma_EnableTooltips"],
     inherits = "OptionsCheckButtonTemplate"
@@ -141,7 +166,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -64
+      offY = -84
     },
     text = Locale["ma_ShowChatOutput"],
     inherits = "OptionsCheckButtonTemplate"
@@ -166,7 +191,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -84
+      offY = -104
     },
     text = Locale["ma_ShowMinimapButton"],
     inherits = "OptionsCheckButtonTemplate"
@@ -191,7 +216,7 @@ function AzerothAdmin:CreateMiscSection()
     setpoint = {
       pos = "TOPLEFT",
       offX = 160,
-      offY = -104
+      offY = -124
     },
     text = Locale["ma_InstantTeleport"],
     inherits = "OptionsCheckButtonTemplate"

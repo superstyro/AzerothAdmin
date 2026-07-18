@@ -73,6 +73,42 @@ function AzerothAdmin:CreateMiniMenu()
   ma_minibgframe:RegisterForDrag("LeftButton")
   ma_minibgframe:SetClampedToScreen(true)
 
+  local function SaveMiniMenuPosition(frame)
+    frame:StopMovingOrSizing()
+
+    if AzerothAdmin.db.profile.style.minimenuFreeMove then
+      -- Keep exact free placement and save bottom-left offsets
+      local left = frame:GetLeft() or 0
+      local bottom = frame:GetBottom() or 0
+      frame:ClearAllPoints()
+      frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left, bottom)
+      AzerothAdmin.db.profile.minimenuPosition = {
+        free = true,
+        x = left,
+        y = bottom
+      }
+      return
+    end
+
+    -- Snap to left or right screen edge
+    local screenWidth = UIParent:GetWidth()
+    local screenHeight = UIParent:GetHeight()
+    local x, y = frame:GetCenter()
+    if not x or not y then
+      return
+    end
+
+    local side = (x < screenWidth / 2) and "LEFT" or "RIGHT"
+    local yOffset = y - (screenHeight / 2)
+
+    frame:ClearAllPoints()
+    frame:SetPoint(side, UIParent, side, 0, yOffset)
+    AzerothAdmin.db.profile.minimenuPosition = {
+      side = side,
+      yOffset = yOffset
+    }
+  end
+
   ma_minibgframe:SetScript("OnDragStart", function(self)
     if IsLeftControlKeyDown() then
       self:StartMoving()
@@ -80,34 +116,7 @@ function AzerothAdmin:CreateMiniMenu()
   end)
 
   ma_minibgframe:SetScript("OnDragStop", function(self)
-    self:StopMovingOrSizing()
-
-    -- Determine if we should position on left or right
-    local screenWidth = UIParent:GetWidth()
-    local screenHeight = UIParent:GetHeight()
-    local x, y = self:GetCenter()
-    local side
-
-    if x < screenWidth / 2 then
-      -- Snap to left side
-      side = "LEFT"
-    else
-      -- Snap to right side
-      side = "RIGHT"
-    end
-
-    -- Calculate offset from center
-    local yOffset = y - (screenHeight / 2)
-
-    -- Snap to the edge and save position
-    self:ClearAllPoints()
-    self:SetPoint(side, UIParent, side, 0, yOffset)
-
-    -- Save position to database (create new table or replace old string)
-    AzerothAdmin.db.profile.minimenuPosition = {
-      side = side,
-      yOffset = yOffset
-    }
+    SaveMiniMenuPosition(self)
   end)
 
   FrameLib:BuildFrame({
@@ -384,32 +393,7 @@ function AzerothAdmin:CreateMiniMenu()
   end)
 
   ma_mm_logoframe:SetScript("OnDragStop", function(self)
-    ma_minibgframe:StopMovingOrSizing()
-
-    -- Determine if we should position on left or right
-    local screenWidth = UIParent:GetWidth()
-    local screenHeight = UIParent:GetHeight()
-    local x, y = ma_minibgframe:GetCenter()
-    local side
-
-    if x < screenWidth / 2 then
-      side = "LEFT"
-    else
-      side = "RIGHT"
-    end
-
-    -- Calculate offset from center
-    local yOffset = y - (screenHeight / 2)
-
-    -- Snap to the edge and save position
-    ma_minibgframe:ClearAllPoints()
-    ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
-
-    -- Save position to database
-    AzerothAdmin.db.profile.minimenuPosition = {
-      side = side,
-      yOffset = yOffset
-    }
+    SaveMiniMenuPosition(ma_minibgframe)
   end)
 
   -- Logo button toggles the minimenu visibility
@@ -461,15 +445,25 @@ function AzerothAdmin:CreateMiniMenu()
   -- Restore saved position
   if AzerothAdmin.db.profile.minimenuPosition then
     ma_minibgframe:ClearAllPoints()
-    -- Handle both old (string) and new (table) format
-    if type(AzerothAdmin.db.profile.minimenuPosition) == "string" then
-      -- Old format: just "LEFT" or "RIGHT"
-      ma_minibgframe:SetPoint(AzerothAdmin.db.profile.minimenuPosition, UIParent, AzerothAdmin.db.profile.minimenuPosition, 0, 0)
-    else
-      -- New format: table with side and yOffset
-      local side = AzerothAdmin.db.profile.minimenuPosition.side or "RIGHT"
-      local yOffset = AzerothAdmin.db.profile.minimenuPosition.yOffset or 0
+    local pos = AzerothAdmin.db.profile.minimenuPosition
+    local freeMove = AzerothAdmin.db.profile.style.minimenuFreeMove
+    -- Handle old (string), edge-snap (side/yOffset), and free-move (x/y) formats
+    if type(pos) == "string" then
+      ma_minibgframe:SetPoint(pos, UIParent, pos, 0, 0)
+    elseif freeMove and pos.free and pos.x and pos.y then
+      ma_minibgframe:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", pos.x, pos.y)
+    elseif pos.side then
+      local side = pos.side or "RIGHT"
+      local yOffset = pos.yOffset or 0
       ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
+    elseif pos.free and pos.x and pos.y then
+      -- Free position exists but free move is off: snap to nearest edge from saved coords
+      local screenWidth = UIParent:GetWidth()
+      local side = (pos.x < screenWidth / 2) and "LEFT" or "RIGHT"
+      local yOffset = (pos.y + (ma_minibgframe:GetHeight() / 2)) - (UIParent:GetHeight() / 2)
+      ma_minibgframe:SetPoint(side, UIParent, side, 0, yOffset)
+    else
+      ma_minibgframe:SetPoint("RIGHT", UIParent, "RIGHT", 0, 0)
     end
   end
 

@@ -759,6 +759,7 @@ if L then
     ["ma_EnableTransparency"]         = "Enable Transparency",
     ["ma_EnableLocalizedSearch"]      = "Enable Localized Search Strings",
     ["ma_EnableMinimenu"]             = "Enable Minimenu/Toolbar",
+    ["ma_MinimenuFreeMove"]           = "Enable Minimenu/Toolbar Free Move",
     ["ma_EnableTooltips"]             = "Enable Tooltips",
     ["ma_ShowChatOutput"]             = "Show Chat Output",
     ["ma_ShowMinimapButton"]          = "Show Minimap Button",
@@ -787,6 +788,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Transparency setting saved. Update Changes or Reload UI to apply",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Localized search strings setting saved. Update Changes or Reload UI to apply",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Minimenu setting saved",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r Minimenu free move setting saved",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Tooltip setting saved. Update Changes or Reload UI to apply",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Chat output setting saved",
 

@@ -122,6 +122,7 @@ local defaults = {
       showtooltips = true,
       showchat = false,
       showminimenu = true,
+      minimenuFreeMove = false,
       framestrata = "MEDIUM",
       transparency = {
         buttons = 1.0,
@@ -3566,6 +3567,7 @@ function AzerothAdmin:InitCheckButtons()
   ma_instantkillbutton:SetChecked(self.db.char.instantKillMode)
   ma_checklocalsearchstringsbutton:SetChecked(self.db.profile.localesearchstring)
   ma_showminimenubutton:SetChecked(self.db.profile.style.showminimenu)
+  ma_minimenufreemovebutton:SetChecked(self.db.profile.style.minimenuFreeMove)
   ma_showtooltipsbutton:SetChecked(self.db.profile.style.showtooltips)
   ma_showchatoutputbutton:SetChecked(self.db.profile.style.showchat)
   ma_instantteleportbutton:SetChecked(self.db.profile.instantTeleport)

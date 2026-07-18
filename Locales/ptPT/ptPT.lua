@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "Ativar Transparência",
     ["ma_EnableLocalizedSearch"]      = "Ativar Strings de Pesquisa Localizadas",
     ["ma_EnableMinimenu"]             = "Ativar Minimenú/Barra de Ferramentas",
+    ["ma_MinimenuFreeMove"]           = "Ativar movimento livre do Minimenú/Barra de Ferramentas",
     ["ma_EnableTooltips"]             = "Ativar Dicas",
     ["ma_ShowChatOutput"]             = "Mostrar Saída do Chat",
     ["ma_ShowMinimapButton"]          = "Mostrar Botão do Minimapa",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Definição de transparência guardada. Atualize Alterações ou Recarregue a UI para aplicar.",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Definição de strings de pesquisa localizadas guardada. Atualize Alterações ou Recarregue a UI para aplicar.",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Definição de minimenú guardada.",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r Definição de movimento livre do minimenú guardada.",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Definição de dicas guardada. Atualize Alterações ou Recarregue a UI para aplicar.",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Definição de saída do chat guardada.",
 

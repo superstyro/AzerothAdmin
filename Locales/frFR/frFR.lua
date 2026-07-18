@@ -711,6 +711,7 @@ if L then
     ["ma_EnableTransparency"]         = "Activer la transparence",
     ["ma_EnableLocalizedSearch"]      = "Activer les chaînes de recherche localisées",
     ["ma_EnableMinimenu"]             = "Activer le minimenu/barre d'outils",
+    ["ma_MinimenuFreeMove"]           = "Activer le déplacement libre du minimenu/barre d'outils",
     ["ma_EnableTooltips"]             = "Activer les info-bulles",
     ["ma_ShowChatOutput"]             = "Afficher la sortie du chat",
     ["ma_ShowMinimapButton"]          = "Afficher le bouton de la minicarte",
@@ -739,6 +740,7 @@ if L then
     ["msg_transparency_saved"]        = "|cff00ff00AzerothAdmin:|r Paramètre de transparence sauvegardé. Appliquez les modifications ou rechargez l'UI pour l'appliquer.",
     ["msg_localsearch_saved"]         = "|cff00ff00AzerothAdmin:|r Paramètre des chaînes de recherche localisées sauvegardé. Appliquez les modifications ou rechargez l'UI pour l'appliquer.",
     ["msg_minimenu_saved"]            = "|cff00ff00AzerothAdmin:|r Paramètre du minimenu sauvegardé.",
+    ["msg_minimenu_freemove_saved"]   = "|cff00ff00AzerothAdmin:|r Paramètre de déplacement libre du minimenu sauvegardé.",
     ["msg_tooltip_saved"]             = "|cff00ff00AzerothAdmin:|r Paramètre des info-bulles sauvegardé. Appliquez les modifications ou rechargez l'UI pour l'appliquer.",
     ["msg_chatoutput_saved"]          = "|cff00ff00AzerothAdmin:|r Paramètre de sortie du chat sauvegardé.",
 

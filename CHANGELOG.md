@@ -1,5 +1,9 @@
 # AzerothAdmin Changelog
 
+## -=[ Version 24 - 07/17/2026]=-
+
+- ADD Misc tab "Enable Minimenu/Toolbar Free Move" toggle under Enable Minimenu/Toolbar — when enabled, Ctrl+drag places the minimenu anywhere on screen instead of snapping to the left/right edge (issue #88)
+
 ## -=[ Version 23 - 05/13/2026]=-
 
 - FIX Clicking a quest, spell, or quest add/remove link in chat no longer sends an "unsigned int" error to the server — link payloads with extra fields (e.g. `quest:24555:80`) are now parsed for just the numeric ID (issue #86, reported by lightstylez)

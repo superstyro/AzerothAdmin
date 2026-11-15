@@ -1209,7 +1209,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
         output = AzerothAdmin.db.profile.style.showchat
     end
     -- AzerothCore PR #27819 moved the peak into "Connected players: X (peak: Y)."
-    for maxConnections in string.gmatch(text, Strings["ma_GmatchMaxConnectionsNew"] or "Connected players: %d+ %(peak: (%d+)%)") do
+    for maxConnections in string.gmatch(text, rawget(Strings, "ma_GmatchMaxConnectionsNew")  or "Connected players: %d+ %(peak: (%d+)%)") do
       ma_infomaxonlinetext:SetText(Locale["info_maxonline"]..maxConnections)
       catchedSth = true
       output = AzerothAdmin.db.profile.style.showchat
@@ -1218,7 +1218,7 @@ function AzerothAdmin:AddMessage(frame, text, r, g, b, id)
     for c in string.gmatch(text, "Connected players: (%d+)") do
       AzerothAdmin_Connected = tonumber(c)
     end
-    for w in string.gmatch(text, Strings["ma_GmatchCharactersInWorld"] or "Characters in world: (%d+)") do
+        for w in string.gmatch(text, rawget(Strings, "ma_GmatchCharactersInWorld") or "Characters in world: (%d+)") do
       local bots = tonumber(w) - (AzerothAdmin_Connected or 0)
       if bots < 0 then bots = 0 end
       ma_infobotstext:SetText((Locale["info_bots"] or "|cFF00FF00Bots Online:|r ")..bots)

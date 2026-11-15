@@ -103,6 +103,8 @@ if L then
     ["info_platform"]                 = "|cFF00FF00Server Platform:|r ",
     ["info_online"]                   = "|cFF00FF00Players Online:|r ",
     ["info_maxonline"]                = "|cFF00FF00Maximum Online:|r ",
+    ["ma_InfoBotsText"]               = "Bots Online: ...",
+    ["info_bots"]                     = "|cFF00FF00Bots Online:|r ",
     ["info_uptime"]                   = "|cFF00FF00Uptime:|r ",
     ["ma_CloseWindow"]                = "X",
     ["tt_CloseWindow"]                = "Close Window",

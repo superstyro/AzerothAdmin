@@ -226,6 +226,18 @@ function AzerothAdmin:CreateStartFrames()
   })
 
   FrameLib:BuildFontString({
+    name = "ma_infobotstext",
+    group = "bg",
+    parent = ma_rightframe,
+    text = rawget(Locale, "ma_InfoBotsText") or "Bots Online: ...",
+    setpoint = {
+      pos = "TOPLEFT",
+      offX = 220,
+      offY = -10
+    }
+  })
+  
+  FrameLib:BuildFontString({
     name = "ma_infouptimetext",
     group = "bg",
     parent = ma_rightframe,

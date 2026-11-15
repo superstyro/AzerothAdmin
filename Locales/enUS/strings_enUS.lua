@@ -46,8 +46,10 @@ if L then
     ["ma_GmatchTickets"] = ".+Ticket.-:(.*)Created by.-:|cff00ccff (.*)|r.+Created.-:(.*)Last change.-:(.*)",
     ["ma_GmatchAccountInfo"] = "Player(.*) %(guid: (%d+)%) Account: (.*) %(id: (%d+)%) Email: (.*) GMLevel: (%d+) Last IP: (.*) Last login: (.*) Latency: (%d+)ms",
     ["ma_GmatchAccountInfo2"] = "Race: (.*) Class: (.*) Played time: (.*) Level: (%d+) Money: (.*)",
-    ["ma_GmatchOnlinePlayers"] = "Connected players: (%d+). Characters in world: (%d+).",
+    ["ma_GmatchOnlinePlayers"] = "Connected players: (%d+)",
     ["ma_GmatchMaxConnections"] = "Connection peak: (%d+).",
+    ["ma_GmatchMaxConnectionsNew"] = "Connected players: %d+ %(peak: (%d+)%)",
+    ["ma_GmatchCharactersInWorld"] = "Characters in world: (%d+)",
     ["ma_GmatchUptime"] = "Server uptime: (.*)",
     ["ma_GmatchActiveConnections"] = "Active connections.*",
 

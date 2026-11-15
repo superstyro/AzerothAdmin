@@ -229,7 +229,7 @@ function AzerothAdmin:CreateStartFrames()
     name = "ma_infobotstext",
     group = "bg",
     parent = ma_rightframe,
-    text = Locale["ma_InfoBotsText"] or "Bots Online: ...",
+    text = rawget(Locale, "ma_InfoBotsText") or "Bots Online: ...",
     setpoint = {
       pos = "TOPLEFT",
       offX = 220,
